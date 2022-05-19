@@ -47,7 +47,8 @@ class Transaction extends CI_Controller {
 						'dept_no'   => $this->input->post('dept'),
 						'docket_no' => $this->input->post('docket'),
 						'file_no'   => $file_type.'-'.$sess.'-'.($sl+1),
-						'created_by' => $this->session->userdata('uloggedin')->phone_no,
+						'note_sheet'=> $this->input->post('editor1'),
+						'created_by' => $this->session->userdata('uloggedin')->id,
 						'created_at'=> date("Y-m-d h:i:s")
 		               );
 		$id = $this->master->f_insert('td_file',$data_array);
@@ -62,20 +63,55 @@ class Transaction extends CI_Controller {
 			$where = array('docket_no' => $this->input->post('docket_no'));
 			$docket_no = trim($this->input->post('docket_no'));
 			$query = $this->db->get_where('td_docket_no', array('docket_no =' => $docket_no))->result();
-		
 			if(count($query) > 0){
 
 			   $data['docs']  = $this->master->f_get_particulars('td_document',NULL,array('fwd_flag' => 'Y'),0);
-			   $view = $this->load->view('dispach/documentblock',$data);
+			   $view = $this->load->view('transaction/documentblock',$data);
 			   return $view;
 
 			}else{
 				echo 0;
 			}
-
-
 			
 		  }
+	}
+	public function docdetail(){
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+		  $fdetail = explode('/',$this->input->post('docket_no'));
+		  $where = array('docket_no' => $fdetail[0]);
+		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,NULL,0);
+		  $data['fileno'] = $fdetail[1];
+		  $view = $this->load->view('transaction/documentdetail',$data);
+		  return $view;
+		}
+
+	}
+
+	public function print_notesheet(){
+		$fileno = $this->input->get('fileno');
+		$data['notesheet'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fileno),1);
+		$this->load->view('transaction/notesheet',$data);
+		
+	}
+	public function editfile(){
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+			$data_array =array('docket_no' => $this->input->post('docket'),
+								'note_sheet'=>$this->input->post('editor1'),
+								'modified_by' =>$this->session->userdata('uloggedin')->id ,
+							    'modified_at' =>date("Y-m-d h:i:s")
+							);
+			$where  = array('file_no'=>$this->input->post('fileno'));
+			$this->master->f_edit('td_file',$data_array,$where);
+
+		redirect('index.php/transaction/file');
+		}else{
+		$fdetail = explode('/',$this->input->get('filedetail'));
+		$data['fdetail'] = $this->master->f_get_particulars('td_file',NULL,array('file_no' =>$fdetail[1] ),1);
+		$data['depts']   = $this->master->f_get_particulars('md_department',NULL,NULL,0);
+		$data['dockets'] = $this->trans_model->get_forwarded_document('td_document');
+		$this->load->view('transaction/editfile',$data);
+		}
+
 	}
 
 	

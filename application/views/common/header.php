@@ -22,6 +22,8 @@
 <!--font-family: 'Roboto', sans-serif;-->
 <link href="https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&display=swap" rel="stylesheet"> 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
+ <script src="<?=base_url()?>ckeditor/ckeditor.js"></script>
+<!-- <script src="<?=base_url()?>ckeditor_basic/ckeditor.js"></script> -->
 </head>
 
 <body>
