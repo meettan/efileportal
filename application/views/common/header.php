@@ -31,7 +31,8 @@
 	<div class="float-left logo"><img src="<?=base_url()?>assets/images/confed.jpg" alt="" style='height:50px'/></div>
 	<div class="float-left navRightSec">		
 		<ul class="topDate">
- <li>KMS Year: 2020-21</li> <li>User: synergic</li> <li>Module: Paddy Procurement</li>
+ <li>KMS Year: 2020-21</li> <li>User: synergic</li> 
+ <!-- <li>Module: Paddy Procurement</li> -->
 </ul>
 		
 <!--
@@ -90,6 +91,9 @@
 	</li>
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-code"></i>File</a></div>
+	</li>
+  <li>
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/file_track"><i class="fa fa-code"></i>File Track</a></div>
 	</li>
   <li>
 	 <div class="link"><a href="<?=base_url()?>index.php/auth/logout/"><i class="fa fa-code"></i>Logout</a></div>

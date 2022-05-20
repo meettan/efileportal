@@ -30,6 +30,7 @@
                                 <a href="<?php echo site_url('index.php/transaction/print_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>
                                 <button class="link" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button>
                                 <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button>
+                                <a href="javascript:void(0)" onclick="" class="delete editeCus" title="Delete" id='<?=$key->file_no?>'><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
                                
                             </td>
                             </tr>
@@ -95,5 +96,37 @@ $(document).ready(function() {
                 }
         });
     });
+
+    $('#doclist').on('click', '.delete', function(){
+        var row = $(this).parents('tr');
+        var fileno = $(this).attr('id');
+        alert(fileno);
+        Swal.fire({  
+            title: 'You will not be able to recover this imaginary file!',  
+            showDenyButton: true,  showCancelButton: true,  
+            confirmButtonText: `Delete`,  
+            denyButtonText: `Don't Delete`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */  
+                if(result.isConfirmed){
+                    $.ajax({
+                            type: "POST",
+                            url: '<?=base_url()?>index.php/transaction/del_file/',
+                            data: {fileno:fileno},
+                            success: function(response)
+                            {
+                                if (response == 1){ 
+                                    Swal.fire('Deleted!', '', 'success')
+                                    row.remove();  
+                                }else{
+                                    Swal.fire('Row not deleted', '', 'info')
+                                }
+                            }
+                    });
+                }else if (result.isDenied) {
+                    Swal.fire('Changes are not saved', '', 'info')  
+                }
+            });
+    })
 })
 </script>

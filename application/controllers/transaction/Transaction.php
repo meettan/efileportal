@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Transaction extends CI_Controller {
 
 	function __construct() {
@@ -81,6 +80,8 @@ class Transaction extends CI_Controller {
 		  $where = array('docket_no' => $fdetail[0]);
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,NULL,0);
 		  $data['fileno'] = $fdetail[1];
+		  $whereu = array('dept != '=>'Dispatch');
+		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
 		  $view = $this->load->view('transaction/documentdetail',$data);
 		  return $view;
 		}
@@ -110,6 +111,35 @@ class Transaction extends CI_Controller {
 		$data['depts']   = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 		$data['dockets'] = $this->trans_model->get_forwarded_document('td_document');
 		$this->load->view('transaction/editfile',$data);
+		}
+
+	}
+	public function del_file(){
+		
+		$where = array('file_no'=>$this->input->post('fileno'));
+		$res = $this->db->delete('td_file', $where);
+		$affected_rows = $this->db->affected_rows();
+		if($affected_rows == 0){
+			echo 0;
+		}else{
+			echo 1;
+		}
+
+	}
+	public function file_forward(){
+
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+			$data = array(
+					'fwd_dt' => date('Y-m-d'),
+					'file_no'=> $this->input->post('fileno'),
+					'remarks' => $this->input->post('remarks'),
+					'fwd_status' => $this->input->post('fwd_status'),
+					'fwd_to' =>$this->input->post('user'),
+					'created_by' =>$this->session->userdata('uloggedin')->id,
+					'created_at' =>date("Y-m-d h:i:s")
+			        );
+			$this->master->f_insert('td_track_file',$data);
+			redirect('index.php/transaction/file');
 		}
 
 	}

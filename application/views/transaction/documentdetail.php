@@ -7,7 +7,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12"> 
-                        <form method="post" action="<?=base_url()?>index.php/dispach/add_doc/" enctype='multipart/form-data'>
+                        <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data'>
                         <?php foreach($docs as $dt);?>   
                         <div class="form-group row">
                             <div class="col-sm-2">File No</div>
@@ -19,34 +19,51 @@
                             <input type="text" name="docket_no" required class="form-control" value='<?=$dt->docket_no?>' id='docket_no' readonly >
                             </div>
                         </div>
-                            <div class="form-group row">
-                              <div class="col-sm-2">Remarks</div>
-                               <div class="col-sm-10">
-                                <textarea name='remarks' class="form-control" placeholder='Remarks' readonly><?=$dt->remarks?></textarea>
+                            <hr/>
+                            <div class="form-group row" id='intro2'>
+                            <?php foreach($docs as $key) { ?>  
+                                <div class="col-sm-2">
+                               <a href='javascript:void(0)' class='simg'> </a>
+                                <p><?=$key->name?></p>
+                                <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
                                 </div>
+                            <?php }?> 
+                                
                             </div>
-                            <div class="form-group row">
-                            <div class="col-sm-2"></div>
-                                <div class="col-sm-9">
-                                <table class="table">
-					               <thead>
-						            <tr><th>Name.</th><th>Document.</th><th>Show.</th><th>Option</th></tr>
-                                   </thead>
-                                   <tbody id="intro2">
-                                   <?php foreach($docs as $key) { ?>   
-                                   <tr>
-                                   <td><?=$key->name?></td>   
-                                   <td><?=$key->document?></td>
-                                  <td><button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button></td>
-                                  <?php if($key->fwd_flag == 'N') { ?>
-                                  <td><button type="button" class="btn btn-danger del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>Delete</button></td>
-                                  <?php } ?>
-                                   </tr>
-                                   <?php }?>
-                                   </tbody>
-                             </table> 
-                                </div>
-                            </div>	
+                        
+                        <hr/>
+                        <div class="form-group row">
+                            <div class="col-sm-2">Remarks</div>
+                            <div class="col-sm-10">
+                            <textarea name='remarks' class="form-control" placeholder='' ></textarea>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="form-group row">
+                            <div class="col-sm-2">User</div>
+                            <div class="col-sm-4">
+                                <select name='user' class='form-control' required><option value=''>Select user</option>
+                                        <?php foreach($users as $key) { ?>
+                                        <option value='<?=$key->id?>'><?=$key->first_name?></option>
+                                        <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-sm-2">Forward Status</div>
+                            <div class="col-sm-4">
+                                <select name='fwd_status' class='form-control' required>
+                                    <option value=''>Select user</option>
+                                    <option value='A'>Approve</option>
+                                    <option value='R'>Reject</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="form-group row">
+                            
+                            <div class="col-sm-4">
+                               <button class='btn btn-primary' type='submit' value='Forward'>Submit</button>
+                            </div>
+                        </div>
                         </form> 
                 </div>
             </div>
@@ -54,53 +71,6 @@
     </div>
 </div>
 <script>
-$('.addAnotherrow').click(function(){
-
-let row = '<tr>'+
-			'<td><input type="file" name="fileToUpload[]" required class="form-control doc"></td>'
-            +'<td><button type="button" class="btn btn-danger removeRow"><i class="fa fa-remove"></i></button></td>'
-          +'</tr>';
- 
-$('#intro2').append(row);
-//$('#order_no'+count, '#intro2').select2();
-});
-
-$("#intro2").on('click', '.removeRow',function(){
-            
-            $(this).parents('tr').remove();
- 
-});
-
-$( document ).ajaxComplete(function() {
-    $("#docket_no").on("change", function() {
-      $.ajax({
-              type: "POST",
-              url: '<?=base_url()?>index.php/dispach/docket_check/',
-              data: {docket_no:$(this).val()},
-              success: function(response)
-              {
-                  //var jsonData = JSON.parse(response);
-                  if (response > "0"){     }
-                  else
-                  {
-                        $("#docket_no").val('');
-                        Swal.fire({
-                        //title: "Alert Set on Timer",
-                        text: "Docket No Does not Exist.",
-                        position: "middle",
-                        color: '#f0f0f0',
-                        background: "#ffc0cb",
-                        timer: 100000
-                        });
-                       
-                  }
-              }
-        });
-    })
-
-    
-   
-})
 $( document ).ready(function() {
     $('#intro2').on('change', '.doc', function(){
 
@@ -165,9 +135,7 @@ $( document ).ready(function() {
                         Swal.fire('Changes are not saved', '', 'info')  
                     }
                 });
-              
         })
-      
 
 })
 </script>

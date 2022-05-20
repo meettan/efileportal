@@ -1,8 +1,6 @@
 <div class="content-wrapper">
 			<div class="card">
 			 <div class="card-body">
-				 
-				 
 				 <div class="titleSec">
 					 <button type="button" class="btn btn-primary">Export as CSV</button>
 				 <h2>Page Title</h2> 
@@ -92,7 +90,7 @@
                 <td>55</td>
                 <td>2010/10/14</td>
                 <td><a href="#" data-toggle="tooltip" data-placement="bottom" title="Edit" class="deletCus"><i class="fa fa-edit menu-icon"></i></a>
-								<a href="#" onclick="" class="delete editeCus" title="Delete"><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a></td>
+					<a href="#" onclick="" class="delete editeCus" title="Delete"><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a></td>
             </tr>
 
 		</tbody>
