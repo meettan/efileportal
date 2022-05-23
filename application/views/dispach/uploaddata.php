@@ -25,7 +25,7 @@
                                 <div class="col-sm-9">
                                 <table class="table">
 					               <thead>
-						            <tr><th>Document Name</th><th>Document.(jpg,jped,pdf Allowed and Size upto 100kb)</th><th>Add.</th></tr>
+						            <tr><th>Document Name</th><th>Document.(jpg,jped,pdf Allowed and Size upto 8MB)</th><th></th></tr>
                                    </thead>
                                    <tbody id="intro2">
                                    <tr><td><input type="text" name="name[]" class="form-control" required></td><td><input type="file" name="fileToUpload[]" required class="form-control doc"></td>

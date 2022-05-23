@@ -13,6 +13,7 @@
                     <th>Docket dt</th>
                     <th>Docket No</th>
                     <th>Created By</th>
+                    <th>No Of Document</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,6 +26,7 @@
                     <td><?=date('d/m/Y',strtotime($key->docket_dt))?></td>
                     <td><?=$key->docket_no?></td>
                     <td><?=$key->first_name?></td>
+                    <td><?=totaldocument($key->docket_no)?></td>
                 </tr>
                 <?php   }
                     }else { ?>
@@ -36,6 +38,7 @@
                     <th>Docket dt</th>
                     <th>Docket No</th>
                     <th>Created By</th>
+                    <th>No Of Document</th>
                 </tr>
             </tfoot>
             </table>

@@ -6,6 +6,7 @@ class Dis extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('Login_Process');
+		$this->load->helper('common');
 		//For User's Authentication
         if(!isset($this->session->userdata('uloggedin')->phone_no)){
             redirect('auth/verification/');
@@ -36,7 +37,7 @@ class Dis extends CI_Controller {
 		               );
 		$id = $this->master->f_insert('td_docket_no',$data_array);
 		if($id){
-			echo 'Docket No generated Scessfully';
+			echo 'Docket No '.$sess.'-'.($sl+1).' generated Scessfully';
 		}else{
 			echo 'Docket No not generated Scessfully';
 		}
@@ -60,7 +61,7 @@ class Dis extends CI_Controller {
 	public function docdetail(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 		  $where = array('docket_no' => $this->input->post('docket_no'));
-		  $data['docs']  = $this->master->f_get_particulars('td_document',NULL,NULL,0);
+		  $data['docs']  = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $view = $this->load->view('dispach/documentdetail',$data);
 		  return $view;
 		}
@@ -78,7 +79,7 @@ class Dis extends CI_Controller {
 		$name = $this->input->post('name');
 		$file      = $_FILES["fileToUpload"]["name"];
 		$error = '';
-		$old = umask(0);
+		//$old = umask(0);
 		$target_dir = './uploads/'.$docket_no.'/';
 		// to mkdir() must be specified.
 		if(!file_exists($target_dir)){
@@ -89,19 +90,22 @@ class Dis extends CI_Controller {
         //foreach($_FILES["fileToUpload"]["tmp_name"] as $key=>$tmp_name) {
 		for($key=0;$key<sizeof($file);$key++){
 			$filename=$_FILES["fileToUpload"]["name"][$key];
-			$extension=end(explode(".", $filename));
+			//$extension=end(explode(".", $filename));
+			$tmp = explode('.', $filename);
+            $extension = end($tmp);
 			$newfilename=$key.time().".".$extension;
 			//$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"][$key]);
 			$target_file = $target_dir . $newfilename;
 			$uploadOk = 1;
 			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
+			//print_r($file);
+			//die();
 			// Check if image file is a actual image or fake image
-			$check = getimagesize($_FILES["fileToUpload"]["tmp_name"][$key]);
-			if($check == false) {
-				$uploadOk = 0;
-				//$error .= "File is an image - " . $check["mime"] . ".";
-			}
+			// $check = getimagesize($_FILES["fileToUpload"]["tmp_name"][$key]);
+			// if($check == false) {
+			// 	$uploadOk = 0;
+			// 	//$error .= "File is an image - " . $check["mime"] . ".";
+			// }
 
 			// Check file size   500000=> 500KB file  allow size 100KB
 			if ($_FILES["fileToUpload"]["size"][$key] > 100000) {
@@ -110,11 +114,12 @@ class Dis extends CI_Controller {
 			}
 
 			//Allow certain file formats
-			if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "pdf") {
+			if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "pdf" && $imageFileType != "xlsx" && $imageFileType != "txt" && $imageFileType != "docx") {
 			//echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
+			$error .= "only JPG, JPEG, PDF  files are allowed.";
 			$uploadOk = 0;
 			}
-
+           
 			// Check if $uploadOk is set to 0 by an error
 			if ($uploadOk == 1) {
 				if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$key], $target_file)) {
