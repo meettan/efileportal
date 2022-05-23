@@ -33,7 +33,7 @@
                                    <tr>
                                    <td><?=$key->name?></td>   
                                    <td><?=$key->document?></td>
-                                  <td><button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button></td>
+                                  <td><a href="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" target='_blank'><button type="button" class="btn btn-success " value='<?=$key->document?>'>view</button></a></td>
                                   <?php if($key->fwd_flag == 'N') { ?>
                                   <td><button type="button" class="btn btn-danger del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>Delete</button></td>
                                   <?php } ?>
