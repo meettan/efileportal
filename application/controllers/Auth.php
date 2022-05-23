@@ -39,7 +39,7 @@ class Auth extends CI_Controller {
 						$user_data = $this->Login_Process->f_get_user_inf($user_id);
 						$this->session->set_userdata('uloggedin',$user_data);
 						$this->session->set_userdata('session_year_id',$session_year_id->sl_no);
-						redirect('auth/dashboard');
+						redirect('index.php/auth/dashboard');
 					}else{
 						$this->session->unset_userdata('valuecaptchaCode');
 		                $this->session->set_userdata('valuecaptchaCode',$data['word']);
