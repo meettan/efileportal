@@ -130,17 +130,24 @@ class Transaction extends CI_Controller {
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$data = array(
-					'fwd_dt' => date('Y-m-d'),
+				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
 					'remarks' => $this->input->post('remarks'),
 					'fwd_status' => $this->input->post('fwd_status'),
 					'fwd_to' =>$this->input->post('user'),
 					'created_by' =>$this->session->userdata('uloggedin')->id,
-					'created_at' =>date("Y-m-d h:i:s")
-			        );
+					'created_at' =>date("Y-m-d h:i:s"));
 			$this->master->f_insert('td_track_file',$data);
 			redirect('index.php/transaction/file');
 		}
+
+	}
+	public function file_track(){
+
+		$data['files'] = $this->master->f_get_particulars('td_track_file',NULL,NULL,0);
+		$this->load->view('common/header');
+		$this->load->view('transaction/file',$data);
+		$this->load->view('common/footer');
 
 	}
 
