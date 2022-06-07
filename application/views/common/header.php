@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <title>Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">	
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/font-awesome.css">
@@ -72,7 +71,7 @@
 	<nav class="sidebar sidebar-offcanvas" id="sidebar">
 		<ul id="accordion" class="accordion">
   <li>
-    <div class="link"><a href="index.html"><i class="fa fa-tachometer"></i>Dashboard</a></div>
+  <div class="link"><a href="<?=base_url()?>index.php/auth/dashboard"><i class="fa fa-tachometer"></i>Dashboard</a></div>
   </li>
   <li>
     <div class="link"><a href="<?=base_url()?>index.php/dispach/"><i class="fa fa-code"></i>Docket No </a></div>
