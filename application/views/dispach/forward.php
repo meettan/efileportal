@@ -107,7 +107,7 @@ $("#docket_no").on("change", function() {
                     $("#imgdetails").html('');
                     Swal.fire({
                     //title: "Alert Set on Timer",
-                    text: "Docket No Does not Exist.",
+                    text: "Docket No Does not Have Document.",
                     position: "middle",
                     color: '#f0f0f0',
                     background: "#ffc0cb",
