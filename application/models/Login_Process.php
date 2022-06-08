@@ -1,5 +1,4 @@
-<?php
-	defined('BASEPATH') OR exit('No direct script access allowed');
+<?php  defined('BASEPATH') OR exit('No direct script access allowed');
 
 	class Login_Process extends CI_Model{
 
@@ -40,11 +39,8 @@
 		public function f_get_kms_inf($sl_no){
 
 			$this->db->select('*');
-
 			$this->db->where('sl_no',$sl_no);
-
 			$data = $this->db->get('mm_kms_yr');
-
 			return $data->row();
 
 	    }
@@ -53,9 +49,7 @@
 		public function f_get_kms_yr(){
 
 			$this->db->select('*');
-
 			$data = $this->db->get('mm_kms_yr');
-
 			return $data->result();
 		}
 		public function f_update_audit_trail($user_id){
@@ -84,8 +78,6 @@
     		$details = $this->db->get('td_audit_trail');
     		return $details->row();
     	}
-
-		
 
 	}	
 ?>

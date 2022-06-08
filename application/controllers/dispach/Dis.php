@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dis extends CI_Controller {
 
@@ -12,16 +11,29 @@ class Dis extends CI_Controller {
             redirect('auth/verification/');
         }
     }
-	
+
+	//  *****  Code Docket Number List  ***** //
 	public function index(){
+
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+			$data['start_date'] = $this->input->post('from_dt');;
+			$data['end_date'] = $this->input->post('to_dt');
+		}else{
+			$data['start_date'] = date('Y-m-01');
+			$data['end_date'] = date('Y-m-t');
+		}
         $select  = array('a.*','b.first_name');
-		$where   = array('a.created_by = b.phone_no' => NULL);
+		$where   = array('a.created_by = b.id' => NULL,
+						'a.docket_dt >=' => $data['start_date'],
+						'a.docket_dt <=' => $data['end_date'],
+					    '1 order by a.docket_dt desc' => NULL );
 		$data['dockets']  = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
 		$this->load->view('dispach/docket',$data);
 		$this->load->view('common/footer');
 	}
 
+	//  *****  Code for generate Docket list    *****  //
 	public function gen_docket(){
 		$where = array('fin_year' => 1);
 		$sess = SESSION_YEAR;
@@ -32,7 +44,7 @@ class Dis extends CI_Controller {
 						'fin_year'  => $this->session->userdata('session_year_id'),
 						'sl_no'     => ($sl+1),
 						'docket_no' => $sess.'-'.($sl+1),
-						'created_by' => $this->session->userdata('uloggedin')->phone_no,
+						'created_by' => $this->session->userdata('uloggedin')->id,
 						'created_at'=> date("Y-m-d h:i:s")
 		               );
 		$id = $this->master->f_insert('td_docket_no',$data_array);
@@ -43,6 +55,8 @@ class Dis extends CI_Controller {
 		}
 
 	}
+
+	//  *****   Code for uploaded list for data in docket no  *****   //
 	public function upload(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 		  $where = array('group by docket_no' => NULL);	
@@ -58,6 +72,8 @@ class Dis extends CI_Controller {
 		}
 
 	}
+
+	//  *****  Code for  Document list by docket no    *****   // 
 	public function docdetail(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 		  $where = array('docket_no' => $this->input->post('docket_no'));
@@ -67,12 +83,16 @@ class Dis extends CI_Controller {
 		}
 
 	}
+
+	//  *****  Code for  Valid Docket No *****   // 
 	public function docket_check(){
 
 		$docket_no = trim($this->input->post('docket_no'));
 		$query = $this->db->get_where('td_docket_no', array('docket_no =' => $docket_no))->result();
 		echo count($query);
 	}
+
+	//  *****  Code for  Adding Document *****   // 
 	public function add_doc(){
 
 		$docket_no = $this->input->post('docket_no');
@@ -142,6 +162,7 @@ class Dis extends CI_Controller {
 	
 	}
 
+	//  *****  Code for deleting document   *****    //
 	public function del_doc(){
 
 		$data = explode('/',$this->input->post('sl_no'));
@@ -155,25 +176,31 @@ class Dis extends CI_Controller {
 		}else{
 			echo 1;
 		}
-	 
 
 	}
-	public function forward(){
 
+	//  *****  Code for Forward From Dispatch   *****    //
+	public function forward(){
+		
 		$where = array('dept != '=>'Dispatch');
 		$data['users'] = $this->master->f_get_particulars('md_users',NULL,$where,0);
+		$dwhere = array('fin_year'=>$this->session->userdata('session_year_id'),
+						'status'=>'0');
+		$data['dockets'] = $this->master->f_get_particulars('td_docket_no',array('docket_no'),$dwhere,0);
 		$this->load->view('common/header');
 		$this->load->view('dispach/forward',$data);
 		$this->load->view('common/footer');
 
 	}
+
+	//   *****   Get document detail on particular docket   *****  //
 	public function docket_detail(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			
 			$where = array('docket_no' => $this->input->post('docket_no'));
 			$docket_no = trim($this->input->post('docket_no'));
-			$query = $this->db->get_where('td_docket_no', array('docket_no =' => $docket_no))->result();
+			$query = $this->db->get_where('td_document', array('docket_no =' => $docket_no))->result();
 		
 			if(count($query) > 0){
 
@@ -182,27 +209,28 @@ class Dis extends CI_Controller {
 			   return $view;
 
 			}else{
-				echo 0;
+
+				return 0;
 			}
-
-
-			
-		  }
+	
+		}
 	}
 
 	public function forward_doc(){
 
-		    $data_array  = array('fwd_flag'=>'Y',
-								 'fwd_to' => $this->input->post('user'),
-								 'fwd_by' => $this->session->userdata('uloggedin')->phone_no,
-							     'fwd_at' => date("Y-m-d h:i:s"));
-			$where =array('docket_no' => $this->input->post('docket_no'));					 
-			$this->master->f_edit('td_document', $data_array, $where);
-			$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
+		$data_array  = array('fwd_flag'=>'Y',
+							'fwd_to' => $this->input->post('user'),
+							'fwd_by' => $this->session->userdata('uloggedin')->phone_no,
+							'fwd_at' => date("Y-m-d h:i:s")
+							);
+		$where =array('docket_no' => $this->input->post('docket_no'));					 
+		$this->master->f_edit('td_document', $data_array, $where);
+		$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
 
-		    redirect('index.php/dispach/forward');
+		redirect('index.php/dispach/forward');
 	}
 
+	//     Search document view page
 	public function searchdoc(){
 
 		$this->load->view('common/header');
@@ -210,6 +238,7 @@ class Dis extends CI_Controller {
 		$this->load->view('common/footer');
 	}
 
+	//     ******     Document detail on docket number   ******   ///
 	public function docket_detaillist(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -232,9 +261,6 @@ class Dis extends CI_Controller {
 			}
 			
 		}
-		
-
-
 	}
 
 	

@@ -11,28 +11,37 @@ class Transaction extends CI_Controller {
         }
     }
 	
+	//  ***** List for forwarded document   *****   //
 	public function index(){
 		$data['docs']  = $this->trans_model->get_forwarded_document('td_document');
 		$this->load->view('common/header');
 		$this->load->view('transaction/forwarded_docket',$data);
 		$this->load->view('common/footer');
 	}
+
+	//  *****  List of files used table  td_file  *****    //
 	public function file(){
 		$data['files'] = $this->master->f_get_particulars('td_file',NULL,NULL,0);
 		$this->load->view('common/header');
 		$this->load->view('transaction/file',$data);
 		$this->load->view('common/footer');
 	}
+
+	//   ******  View for creating add view Screen   *****    //
 	public function create_file(){
 		$data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 		$data['dockets']  = $this->trans_model->get_forwarded_document('td_document');
 		$this->load->view('transaction/createfile',$data);
 	}
+
+	//   ******  get file type  on ajax call by selecting department   *****   //
 	public function getfiletype(){
 		$dept = $this->input->post('dept');
 		$data = $this->master->f_get_particulars('md_file_type',array('file_name','file_no'),array('dept_id'=>$dept),0);
 		echo json_encode($data);
 	}
+
+	// ******  Generate file  on file type  using table td_file  ******  //
 	public function generatefile(){
 
 		$sess = SESSION_YEAR;
@@ -55,10 +64,9 @@ class Transaction extends CI_Controller {
 
 	}
 
+	//  ****   Code for docket detail  using and td_document,td_docket_no
 	public function docket_detail(){
-
 		if($_SERVER['REQUEST_METHOD']=="POST"){
-			
 			$where = array('docket_no' => $this->input->post('docket_no'));
 			$docket_no = trim($this->input->post('docket_no'));
 			$query = $this->db->get_where('td_docket_no', array('docket_no =' => $docket_no))->result();
@@ -72,7 +80,7 @@ class Transaction extends CI_Controller {
 				echo 0;
 			}
 			
-		  }
+		}
 	}
 	public function docdetail(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -88,12 +96,15 @@ class Transaction extends CI_Controller {
 
 	}
 
+	//   Code for printing notesheet after generating file using table td_file  ****  ///
 	public function print_notesheet(){
 		$fileno = $this->input->get('fileno');
 		$data['notesheet'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fileno),1);
 		$this->load->view('transaction/notesheet',$data);
 		
 	}
+
+	//    Code for editing file detail using table td_file    *****   ///
 	public function editfile(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$data_array =array('docket_no' => $this->input->post('docket'),
@@ -114,6 +125,8 @@ class Transaction extends CI_Controller {
 		}
 
 	}
+
+	//   ******    Code for deleting file using table td_file     *****  ///
 	public function del_file(){
 		
 		$where = array('file_no'=>$this->input->post('fileno'));
@@ -126,6 +139,8 @@ class Transaction extends CI_Controller {
 		}
 
 	}
+
+	//  *****  Code for forwarding file to respect department using table td_track_file  *****  ///  
 	public function file_forward(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -142,6 +157,8 @@ class Transaction extends CI_Controller {
 		}
 
 	}
+
+	/// *****  Code  for track file on using table td_track_file ****   //
 	public function file_track(){
 
 		$data['files'] = $this->master->f_get_particulars('td_track_file',NULL,NULL,0);

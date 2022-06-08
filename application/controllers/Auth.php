@@ -8,7 +8,8 @@ class Auth extends CI_Controller {
         $this->load->model('Login_Process');
 		$this->load->helper('captcha');
     }
-	
+
+	//  *****    Code for login  user    *****     // 
 	public function index(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -75,12 +76,16 @@ class Auth extends CI_Controller {
 		}
 			
 	}
+
+	//  *****    Code for Checking Phone number exist or not For registration *****     // 
 	public function phnumber_check(){
 
 		$phnumber = trim($this->input->post('pnnumber'));
 		$query = $this->db->get_where('md_users', array('phone_no =' => $phnumber))->result();
 		echo count($query);
 	}
+
+	//  *****    Code for Register a  user    *****    // 
 	public function register(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
@@ -147,16 +152,20 @@ class Auth extends CI_Controller {
 			
 	}
 
+	//  *****  Code for forgot password listing   ***** //
 	public function forgotpass(){
 		$this->load->view('forgot');
 	}
 
+    //  *****  Code for Dashboard listing   ***** //
 	public function dashboard()
 	{
 		$this->load->view('common/header');
 		$this->load->view('dashboard');
 		$this->load->view('common/footer');
 	}
+
+	//  *****  Code for logout User***** //
 	public function logout(){
 
 		if($this->session->userdata('uloggedin')){
@@ -170,7 +179,7 @@ class Auth extends CI_Controller {
 		}
 	}
 
-	//   User verification 
+	//  *****  Code for New User Verification BY Administator ***** //
 	public function verification(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
