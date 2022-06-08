@@ -1,8 +1,23 @@
-                 <?php if($docs){  ?>
-                    <?php foreach($docs as $doc);?> 
-                    <div class="form-group row"><div class="col-sm-2">Remarks</div><div class="col-sm-10">
-                        <textarea class='form-control' readonly><?=$doc->remarks?></textarea></div> </div> 
-                 <input type="hidden" name='status' value='1' id='status'>
+                <?php if($docs){  ?>
+                    <?php foreach($docs as $doc);?>
+                    <input type="hidden" name='status' value='1' id='status'> 
+                    <div class="form-group row">
+                        <div class="col-sm-2">Remarks</div>
+                        <div class="col-sm-10">
+                        <textarea class='form-control' readonly><?=$doc->remarks?></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-2">Creatd By</div>
+                        <div class="col-sm-4">
+                        <input type="text" class='form-control' value='<?=$doc->created_by?>' readonly> 
+                        </div>
+                        <div class="col-sm-2">Creatd Date</div>
+                        <div class="col-sm-4">
+                        <input type="text" class='form-control' value='<?=$doc->docket_dt?>' readonly> 
+                        </div>
+                    </div> 
+                 
                  <div class="form-group row">
                  <?php foreach($docs as $key){?>   
                           <div class="col-sm-3" >
@@ -18,11 +33,8 @@
                 <?php }else { ?>   
                     <input type="hidden" name='status' value='0' id='status'>
                        
-                              <div class='row' >
-                              <div class="col-sm-4"></div>
-                              <div class="col-sm-6"><br><h2 style="color:red">No Document To Forward</h2></div>
-                             </div>
-                               
-                         
-
+                        <div class='row' >
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-6"><br><h2 style="color:red">No Document To Forward</h2></div>
+                        </div>
                  <?php } ?>   

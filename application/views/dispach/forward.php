@@ -19,7 +19,13 @@
                             <div class="form-group row">
                                 <div class="col-sm-2">Docket No</div>
                                 <div class="col-sm-4">
-                                <input type="text" name="docket_no" required class="form-control" id='docket_no'>
+                                    <select class="form-control select2" name='docket_no' id='docket_no' required >
+                                        <option value=''>Select</option>
+                                        <?php foreach($dockets as $doc){ ?>
+                                        <option value='<?=$doc->docket_no?>'><?=$doc->docket_no?></option>
+                                        <?php }?>
+                                    </select>
+                                <!-- <input type="text" name="docket_no" required class="form-control" id='docket_no'> -->
                                 </div>
                                 <div class="col-sm-2">User</div>
                                 <div class="col-sm-4">
@@ -99,6 +105,7 @@ $("#intro2").on('click', '.removeRow',function(){
 
 
 $("#docket_no").on("change", function() {
+    $("#imgdetails").html();
     $.ajax({
             type: "POST",
             url: '<?=base_url()?>index.php/dispach/docket_detail/',
@@ -108,11 +115,11 @@ $("#docket_no").on("change", function() {
                 if (response != 0){
 
                     $("#imgdetails").html(response);
-                    
                 }
                 else
                 {
                     $("#docket_no").val('');
+                    $("#imgdetails").html('');
                     Swal.fire({
                     //title: "Alert Set on Timer",
                     text: "Docket No Does not Exist.",
@@ -141,4 +148,7 @@ $("#forward").on("submit", function(){
     return true;
    }
  })
+ $(document).ready(function() {
+    $('.select2').select2();
+});
 </script>

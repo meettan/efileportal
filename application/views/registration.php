@@ -64,7 +64,7 @@
        </div>
        <div class="form-group">
         <div class="row">
-          <div class="col"><input type="password" class="form-control" name="user_pwd" placeholder="Password" required="required" id='psw'></div>
+          <div class="col"><input type="password" class="form-control" name="user_pwd" placeholder="Password" required="required" id='psw' onchange="return validatePassword()"></div>
            <div class="col"> <input type="password" class="form-control" name="conf_pwd" placeholder="Confirm Password" required="required"  id='psw1'></div>
        </div>          
        </div>
@@ -133,9 +133,13 @@ function myFunction(){
             event.preventDefault();
         }
 
-        if (pswlen < 3) {
-           
+        if(pswlen < 8) {
             alert('minmum  3 characters needed')
+            event.preventDefault()
+        }elseif(password.search(/[0-9]/) < 0){
+
+          alert("Your password must contain at least one digit.")
+          event.preventDefault()
         }
         else if(password != password1){
                 alert('Password is not same');
@@ -242,6 +246,25 @@ function myFunction(){
         });
       });
   });
+
+  function validatePassword() {
+    var p = document.getElementById('psw').value,
+        errors = [];
+    if (p.length < 8) {
+        errors.push("Your password must be at least 8 characters"); 
+    }
+    // if (p.search(/[a-z]/i) < 0) {
+    //     errors.push("Your password must contain at least one letter.");
+    // }
+    if (p.search(/[0-9]/) < 0) {
+        errors.push("Your password must contain at least one digit."); 
+    }
+    if (errors.length > 0) {
+        alert(errors.join("\n"));
+        return false;
+    }
+    return true;
+  }
 </script>         
 </body>
 </html>

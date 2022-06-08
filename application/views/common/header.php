@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/apps.css">
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/apps_inner.css">
 <link rel="stylesheet" type="text/css" href="<?=base_url()?>assets/css/res.css">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
@@ -65,7 +66,7 @@
       </button>
 -->
 		
-	</div>
+</div>
 </nav>
 <div class="page-body-wrapper">
 	<nav class="sidebar sidebar-offcanvas" id="sidebar">

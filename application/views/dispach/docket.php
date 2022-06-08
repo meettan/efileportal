@@ -2,8 +2,30 @@
 			<div class="card">
 			 <div class="card-body">
 				<div class="titleSec">
-					 <button type="button" class="btn btn-primary" id='gdocketno'>Generate Docket No</button>
-				<h2>Page Title</h2> 
+                    <div class='row'>
+                        <div class='col-md-3'><h2>Docket List</h2> </div>
+                        <div class='col-md-6'>
+                            <form action ='<?=base_url()?>index.php/dispach/' method='POST'>
+                            <div class='row'>
+                                
+                                <div class='col-md-4'>
+                                    <input type='date' name='from_dt' class='form-control' value='<?=$start_date?>' >
+                                </div>
+                                <div class='col-md-4'>
+                                    <input type='date' name='to_dt' class='form-control' value='<?=$end_date?>' >
+                                </div>
+                                <div class='col-md-3'>
+                                <button type="submit" class="btn btn-success" >Submit</button>
+                                </div>
+                                
+                            </div>
+                            </form>
+                        </div>
+                        <div class='col-md-3'> <button type="button" class="btn btn-primary" id='gdocketno'>Generate Docket No</button> </div>
+                     </div>   
+                    
+					
+				
 				</div>
 				<div class="row">
 					 <div class="col-sm-12"> 
