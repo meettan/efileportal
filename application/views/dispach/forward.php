@@ -17,7 +17,7 @@
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/dispach/forward_doc/" enctype='multipart/form-data' id='forward'>
                             <div class="form-group row">
-                                <div class="col-sm-2">Docket No</div>
+                                <div class="col-sm-2 fieldname">Docket No</div>
                                 <div class="col-sm-4">
                                     <select class="form-control select2" name='docket_no' id='docket_no' required >
                                         <option value=''>Select</option>
@@ -25,26 +25,11 @@
                                         <option value='<?=$doc->docket_no?>'><?=$doc->docket_no?></option>
                                         <?php }?>
                                     </select>
-                                <!-- <input type="text" name="docket_no" required class="form-control" id='docket_no'> -->
                                 </div>
-                                <div class="col-sm-2">User</div>
-                                <div class="col-sm-4">
-                                <select name='user' class='form-control' ><option value=''>Select user</option>
-                                        <?php foreach($users as $key) { ?>
-                                        <option value='<?=$key->id?>'><?=$key->first_name?></option>
-                                        <?php } ?>
-                                </select>
-                                </div>
-                               
                             </div>
                             <div id='imgdetails'>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-12 btnSubmitSec">
-                                <input type="submit" class="btn btn-info" id="submit" name="submit" value="Forward">
-                            <!-- <input type="reset" onclick="" class="btn btn-info" value="Cancel">-->
-                                </div>
-                            </div>	
+                        
                         </form> 
                 </div>
             </div>
