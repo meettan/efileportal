@@ -16,3 +16,4 @@ $route['transaction'] = "transaction/transaction";
 $route['transaction/(:any)'] = "transaction/transaction/$1";
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['api/item'] = "api/item/index";
