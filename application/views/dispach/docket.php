@@ -10,6 +10,7 @@
                                 <div class='col-md-4'>
                                     <input type='date' name='from_dt' class='form-control' value='<?=$start_date?>' >
                                 </div>
+                               
                                 <div class='col-md-4'>
                                     <input type='date' name='to_dt' class='form-control' value='<?=$end_date?>' >
                                 </div>
@@ -32,9 +33,10 @@
                     <th>Docket No</th>
                     <th>Created By</th>
                     <th>No Of Document</th>
+                    <th>Option</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id='doclist'>
             <?php if($dockets){ 
                        $sl = 0 ;
                         foreach($dockets as $key){
@@ -44,7 +46,16 @@
                     <td><?=date('d/m/Y',strtotime($key->docket_dt))?></td>
                     <td><?=$key->docket_no?></td>
                     <td><?=$key->first_name?></td>
-                    <td><?=totaldocument($key->docket_no)?></td>
+                    
+                    <td>
+                        <?php if(totaldocument($key->docket_no) == 0 ){ ?>
+                        <?=totaldocument($key->docket_no)?>
+                        <?php }else{  ?>
+                            <button type="button" class="btn btn-success link" value="<?=$key->docket_no?>">Detail</button>
+                        <?php } ?>    
+                    </td>
+                    <td><button type="button" class="btn btn-primary add" value='<?=$key->docket_no?>'>Upload</button></td>
+
                 </tr>
                 <?php   }
                     }else { ?>
@@ -57,6 +68,7 @@
                     <th>Docket No</th>
                     <th>Created By</th>
                     <th>No Of Document</th>
+                    <th>Option</th>
                 </tr>
             </tfoot>
             </table>
@@ -97,5 +109,36 @@
             }
         });
     });
+
+    $(document ).ready(function() {
+
+        $('#doclist').on('click', '.link', function(){
+
+            $('#ajaxview').empty();
+            $.ajax({
+                    type: "POST",
+                    data:{docket_no:$(this).val()},
+                    url: '<?=base_url()?>index.php/dispach/docdetail',
+                    success: function(response)
+                    {
+                    $('#ajaxview').html(response);
+                    
+                    }
+            });
+
+        });
+        $('#doclist').on('click', '.add', function(){
+        $('#ajaxview').empty();
+        $.ajax({
+                type: "POST",
+                url: '<?=base_url()?>index.php/dispach/upload',
+                success: function(response)
+                {
+                $('#ajaxview').html(response);
+                
+                }
+        });
+    });
+    })
 
 </script>

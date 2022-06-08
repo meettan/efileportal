@@ -63,21 +63,21 @@
                 }
         });
     });
-$(document ).ready(function() {
-    $('#doclist').on('click', '.link', function(){
+    $(document ).ready(function() {
+        $('#doclist').on('click', '.link', function(){
 
-        $('#ajaxview').empty();
-        $.ajax({
-                type: "POST",
-                data:{docket_no:$(this).val()},
-                url: '<?=base_url()?>index.php/dispach/docdetail',
-                success: function(response)
-                {
-                $('#ajaxview').html(response);
-                
-                }
+            $('#ajaxview').empty();
+            $.ajax({
+                    type: "POST",
+                    data:{docket_no:$(this).val()},
+                    url: '<?=base_url()?>index.php/dispach/docdetail',
+                    success: function(response)
+                    {
+                    $('#ajaxview').html(response);
+                    
+                    }
+            });
+
         });
-
-    });
-})
+    })
 </script>
