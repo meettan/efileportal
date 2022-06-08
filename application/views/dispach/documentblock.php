@@ -2,19 +2,19 @@
                     <?php foreach($docs as $doc);?>
                     <input type="hidden" name='status' value='1' id='status'> 
                     <div class="form-group row">
-                        <div class="col-sm-2">Remarks</div>
-                        <div class="col-sm-10">
-                        <textarea class='form-control' readonly><?=$doc->remarks?></textarea>
+                        <div class="col-sm-2 fieldname">Creatd By</div>
+                        <div class="col-sm-4">
+                        <input type="text" class='form-control' value='<?=$docket->first_name?>' readonly> 
+                        </div>
+                        <div class="col-sm-2 fieldname">Creatd Date</div>
+                        <div class="col-sm-4">
+                        <input type="text" class='form-control' value='<?=$docket->docket_dt?>' readonly> 
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-sm-2">Creatd By</div>
-                        <div class="col-sm-4">
-                        <input type="text" class='form-control' value='<?=$doc->created_by?>' readonly> 
-                        </div>
-                        <div class="col-sm-2">Creatd Date</div>
-                        <div class="col-sm-4">
-                        <input type="text" class='form-control' value='<?=$doc->docket_dt?>' readonly> 
+                        <div class="col-sm-2 fieldname">Remarks</div>
+                        <div class="col-sm-10">
+                        <textarea class='form-control' readonly><?=$doc->remarks?></textarea>
                         </div>
                     </div> 
                  
@@ -30,6 +30,22 @@
                          
                           <?php } ?>
                  </div>
+                 <br>
+                <div class="form-group row">
+                
+                        <div class="col-sm-2 fieldname">User</div>
+                        <div class="col-sm-4">
+                                <select name='user' class='form-control' ><option value=''>Select user</option>
+                                        <?php foreach($users as $key) { ?>
+                                        <option value='<?=$key->id?>'><?=$key->first_name?></option>
+                                        <?php } ?>
+                                </select>
+                        </div>
+                        <div class="col-sm-4 btnSubmitSec">
+                                <input type="submit" class="btn btn-info" id="submit" name="submit" value="Forward">
+                            <!-- <input type="reset" onclick="" class="btn btn-info" value="Cancel">-->
+                        </div>
+                </div>    
                 <?php }else { ?>   
                     <input type="hidden" name='status' value='0' id='status'>
                        

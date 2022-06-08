@@ -182,8 +182,6 @@ class Dis extends CI_Controller {
 	//  *****  Code for Forward From Dispatch   *****    //
 	public function forward(){
 		
-		$where = array('dept != '=>'Dispatch');
-		$data['users'] = $this->master->f_get_particulars('md_users',NULL,$where,0);
 		$dwhere = array('fin_year'=>$this->session->userdata('session_year_id'),
 						'status'=>'0');
 		$data['dockets'] = $this->master->f_get_particulars('td_docket_no',array('docket_no'),$dwhere,0);
@@ -203,10 +201,16 @@ class Dis extends CI_Controller {
 			$query = $this->db->get_where('td_document', array('docket_no =' => $docket_no))->result();
 		
 			if(count($query) > 0){
-
-			   $data['docs']  = $this->master->f_get_particulars('td_document',NULL,array('fwd_flag' => 'N'),0);
-			   $view = $this->load->view('dispach/documentblock',$data);
-			   return $view;
+				$uwhere = array('dept != '=>'Dispatch');
+		        $data['users'] = $this->master->f_get_particulars('md_users',NULL,$uwhere,0);
+			    $select  = array('a.*','b.first_name');
+		        $where   = array('a.created_by = b.id' => NULL,
+								'a.docket_no'  => trim($this->input->post('docket_no'))
+								);
+				$data['docket']  = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,1);
+				$data['docs']    = $this->master->f_get_particulars('td_document',NULL,array('fwd_flag' => 'N'),0);
+				$view = $this->load->view('dispach/documentblock',$data);
+				return $view;
 
 			}else{
 
@@ -224,7 +228,8 @@ class Dis extends CI_Controller {
 							'fwd_at' => date("Y-m-d h:i:s")
 							);
 		$where =array('docket_no' => $this->input->post('docket_no'));					 
-		$this->master->f_edit('td_document', $data_array, $where);
+		$this->master->f_edit('td_document',$data_array, $where);
+		$this->master->f_edit('td_docket_no',array('status' => '1'), $where);
 		$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
 
 		redirect('index.php/dispach/forward');
