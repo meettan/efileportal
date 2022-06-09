@@ -27,7 +27,7 @@ class Dis extends CI_Controller {
 						'a.docket_dt >=' => $data['start_date'],
 						'a.docket_dt <=' => $data['end_date'],
 					    '1 order by a.docket_dt desc' => NULL );
-		$data['dockets']  = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,0);
+		$data['dockets']   = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
 		$this->load->view('dispach/docket',$data);
 		$this->load->view('common/footer');
@@ -226,7 +226,7 @@ class Dis extends CI_Controller {
 
 		$data_array  = array('fwd_flag'=>'Y',
 							'fwd_to' => $this->input->post('user'),
-							'fwd_by' => $this->session->userdata('uloggedin')->phone_no,
+							'fwd_by' => $this->session->userdata('uloggedin')->id,
 							'fwd_at' => date("Y-m-d h:i:s")
 							);
 		$where =array('docket_no' => $this->input->post('docket_no'));					 
