@@ -2,17 +2,27 @@
 	<div class="card">
         <div class="card-body" >
             <div class="titleSec">
-                              <a href='<?=base_url()?>index.php/dispach/upload/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
+                              <a href='<?=base_url()?>index.php/dispach/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
                             <h2>Page Title</h2> 
             </div>
             <div class="row">
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/dispach/add_doc/" enctype='multipart/form-data'>
                         <?php foreach($docs as $dt);?>   
-                        <div class="form-group row">
+                            <div class="form-group row">
                                 <div class="col-sm-2">Docket No</div>
                                 <div class="col-sm-4">
                                 <input type="text" name="docket_no" required class="form-control" value='<?=$dt->docket_no?>' id='docket_no' readonly >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-sm-2">Docket date</div>
+                               <div class="col-sm-4">
+                               <input type="text" name="docket_no" required class="form-control" value='<?=$dkt->docket_dt?>'  readonly >
+                                </div>
+                                <div class="col-sm-2">Created By</div>
+                               <div class="col-sm-4">
+                               <input type="text" name="docket_no" required class="form-control" value='<?=$dkt->first_name?>'  readonly >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -22,9 +32,8 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                            <div class="col-sm-2"></div>
-                                <div class="col-sm-9">
-                                <table class="table">
+                                    <div class='row' id='#intro2'>
+                                <!-- <table class="table">
 					               <thead>
 						            <tr><th>Name.</th><th>Document.</th><th>Show.</th><th>Option</th></tr>
                                    </thead>
@@ -40,11 +49,48 @@
                                    </tr>
                                    <?php }?>
                                    </tbody>
-                             </table> 
-                                </div>
+                                 </table>  -->
+                                 <?php foreach($docs as $key) { 
+                                     $ext = explode('.',$key->document)[1]; 
+                                     $ids ='';
+                                     if($ext == 'pdf'){
+                                        $ids ='myModal';
+                                     }else{
+                                        $ids ='myModals';
+                                     }
+                                     ?> 
+                                 <div class='col-md-3 img-wrap' >
+                                 <span  class="close del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>&times;</span> 
+                                 
+                                 <li> <a href="#<?=$ids?>" data-toggle="modal" value='<?=$key->document?>' data-img-url="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>"><img src="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" alt="pdf" class="" id="docdel" style="height: 100px !important;"></a></li>
+                                  </div>
+                                  <?php } ?>
+                                 </div>
+                                
                             </div>	
                         </form> 
                 </div>
+        <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            
+                <div class="modal-content" >
+                    <div class="modal-body">
+                    <iframe src="" style="width: 750px;height:700px"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="myModals" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            
+                <div class="modal-content" >
+                    <div class="modal-body">
+                    <img src="" ></img>
+                    </div>
+                </div>
+            </div>
+        </div>
+
             </div>
         </div>
     </div>
@@ -93,10 +139,8 @@ $( document ).ajaxComplete(function() {
               }
         });
     })
-
-    
-   
 })
+
 $( document ).ready(function() {
     $('#intro2').on('change', '.doc', function(){
 
@@ -133,7 +177,8 @@ $( document ).ready(function() {
                         timer: 100000
                 });
         });
-        $('#intro2').on('click', '.del', function(){
+        //$('#intro2').on('click', '.del', function(){
+            $('.del').click( function(){
             var row = $(this).parents('tr');
             Swal.fire({  
                 title: 'You will not be able to recover this imaginary file!',  
@@ -163,7 +208,18 @@ $( document ).ready(function() {
                 });
               
         })
-      
-
-})
+}) 
+$('li a').click(function(e) {
+    
+    var img = $(this).attr('data-img-url');
+    var extension = img.substr( (img.lastIndexOf('.') +1) );
+               
+    if(extension == 'pdf' ){
+        $('#myModal iframe').attr('src', $(this).attr('data-img-url'));
+    }else{
+       $('#myModals img').attr('src', $(this).attr('data-img-url'));
+    }
+        
+    
+});
 </script>

@@ -390,6 +390,15 @@ background: linear-gradient(90deg, rgba(11,112,112,1) 0%, rgba(33,181,181,1) 92%
   font-weight: 400; 
   font-size: 18px;  
 }
+.img-wrap {
+  position: relative;
+}
+.img-wrap .close {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 100;
+}
 
 /*--------------Accordion Dropdown CSS End----------------*/
 

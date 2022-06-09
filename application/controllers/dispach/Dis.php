@@ -76,6 +76,8 @@ class Dis extends CI_Controller {
 	//  *****  Code for  Document list by docket no    *****   // 
 	public function docdetail(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
+		  $dwhere = array('a.created_by=b.id'=>NULL);
+		  $data['dkt']   = $this->master->f_get_particulars('td_docket_no a,md_users b',array('a.*','b.first_name'),$dwhere,1);
 		  $where = array('docket_no' => $this->input->post('docket_no'));
 		  $data['docs']  = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $view = $this->load->view('dispach/documentdetail',$data);
@@ -149,8 +151,8 @@ class Dis extends CI_Controller {
 						'name'       => $name[$key],
 						'document'   => $newfilename,
 						'remarks'    => $this->input->post('remarks'),
-						'upld_by' => $this->session->userdata('uloggedin')->phone_no,
-						'upld_at' => date("Y-m-d h:i:s")
+						'upld_by'    => $this->session->userdata('uloggedin')->id,
+						'upld_at'    => date("Y-m-d h:i:s")
 					);
 					$id = $this->master->f_insert('td_document',$data_array);
 					//echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"][$key])). " has been uploaded.";

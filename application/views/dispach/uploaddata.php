@@ -2,7 +2,7 @@
 	<div class="card">
         <div class="card-body" >
             <div class="titleSec">
-                        <a href='<?=base_url()?>index.php/dispach/upload/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
+                        <a href='<?=base_url()?>index.php/dispach/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
                             <h2>Page Title</h2> 
             </div>
             <div class="row">
