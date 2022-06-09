@@ -15,17 +15,86 @@
             <div class="row">
             
                 <div class="col-sm-12"> 
-                        <form method="post" action="<?=base_url()?>index.php/dispach/forward_doc/" enctype='multipart/form-data' id='forward'>
-                            <div class="form-group row">
-                                <div class="col-sm-2">Docket No</div>
-                                <div class="col-sm-4">
-                                <input type="text" name="docket_no" required class="form-control" id='docket_no'>
-                                </div>
+                <form method="post" action="<?=base_url()?>index.php/dispach/searchdoc/" enctype='multipart/form-data' id='forward'>
+                        <div class="form-group row">
+                            <div class="col-sm-2 fieldname" style="color: #008000;">Search Process</div>
+                            <div class="col-sm-2">
+                                <input type="radio" name="searchtype" value="docket">
+                                <label class="fieldname"> Docket No</label>
+                            </div>   
+                            <div class="col-sm-2">
+                                <input type="radio" name="searchtype" value="daterange">
+                                <label class="fieldname"> Date Range</label>
                             </div>
+                        </div>
+                        
+                            <div class="form-group row">
+                                <div class="col-sm-2 fieldname" style="color: #0000ff;">Docket No</div>
+                                <div class="col-sm-4">
+                                <input type="text" name="docket_no"  class="form-control" id='docket_no' disabled >
+                                </div>
+                                <div class="col-sm-2">
+                                <input type="date" name="from_dt" required class="form-control" id='from_dt' disabled value='<?php if($start_date) { echo $start_date;}?>'>
+                                </div>
+                                <div class="col-sm-2">
+                                <input type="date" name="to_dt" required class="form-control" id='to_dt' disabled value='<?php if($end_date) { echo $end_date;}?>'>
+                                </div>
+                                <div class="col-sm-2">
+                                <input type="submit" name="submit" class="form-control" value='submit' id='submit' disabled>
+                                </div>
+
+                            </div>
+                            </form> 
                             <div id='docdetail'>
+         <?php      if($dockets){   ?>
+                            <table id="example" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                                <tr><th>Sl No</th>
+                                    <th>Docket dt</th>
+                                    <th>Docket No</th>
+                                    <th>Created By</th>
+                                    <th>No Of Document</th>
+                                    <th>Forwarded to </th>
+                                    <th>Forwarded by</th>
+                                    <th>Forwarded date</th>
+                                    <th>File</th>
+                                </tr>
+                            </thead>
+                            <tbody id='doclist'>
+                            <?php   $sl = 0 ;
+                                    foreach($dockets as $key){
+                                        ?>
+                                <tr>
+                                    <td><?=++$sl?></td>
+                                    <td><?=date('d/m/Y',strtotime($key->docket_dt))?></td>
+                                    <td><?=$key->docket_no?></td>
+                                    <td><?=$key->first_name?></td>
+                                    <td><?=totaldocument($key->docket_no)?>     </td>
+                                    <td><?=docketfrdto($key->docket_no)?></td>
+                                    <td><?=docketfrdby($key->docket_no,'NAME')?></td>
+                                    <td><?=docketfrdby($key->docket_no,'DATE')?></td>
+                                    <td></td>
+                                </tr>
+                                <?php   }
+                                    ?>
+                            </tbody>
+                            <tfoot>
+                                <tr><th>Sl No</th>
+                                    <th>Docket dt</th>
+                                    <th>Docket No</th>
+                                    <th>Created By</th>
+                                    <th>No Of Document</th>
+                                    <th>Forwarded to </th>
+                                    <th>Forwarded by</th>
+                                    <th>Forwarded date</th>
+                                    <th>File</th>
+                                </tr>
+                            </tfoot>
+                            </table>
+                    <?php } ?> 
                             </div>
                             	
-                        </form> 
+                        
                 </div>
             </div>
                     
@@ -75,9 +144,7 @@ $("#docket_no").on("change", function() {
             success: function(response)
             {
                 if (response != 0){
-
                     $("#docdetail").html(response);
-                    
                 }
                 else
                 {
@@ -94,12 +161,27 @@ $("#docket_no").on("change", function() {
             }
     });
 })
-$( document ).ajaxComplete(function() {
+$(document).ajaxComplete(function() {
     $(".rounded").click(function () {
         var myBookId = $(this).attr('id');
         $('#myImage').attr('src', myBookId);
         $(this).attr('data-target', '#exampleModal');
     });
-})  
+})
+
+$('input:radio[name="searchtype"]').change(function(){
+    if($(this).val() == 'docket'){
+        $("#docket_no").prop("disabled", false);
+        $("#from_dt").prop("disabled", true);
+        $("#to_dt").prop("disabled", true);
+        $("#submit").prop("disabled", true);
+    }else{
+        $("#docket_no").prop("disabled", true);
+        $("#from_dt").prop("disabled", false);
+        $("#to_dt").prop("disabled", false);
+        $("#submit").prop("disabled", false);
+    }
+    
+});
 
 </script>

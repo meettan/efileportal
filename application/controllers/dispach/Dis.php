@@ -239,10 +239,28 @@ class Dis extends CI_Controller {
 
 	//     Search document view page
 	public function searchdoc(){
+        if($_SERVER['REQUEST_METHOD']=="POST"){
 
-		$this->load->view('common/header');
-		$this->load->view('dispach/search_doc');
-		$this->load->view('common/footer');
+			$data['start_date'] = $this->input->post('from_dt');;
+			$data['end_date'] = $this->input->post('to_dt');
+			$select  = array('a.*','b.first_name');
+			$where   = array('a.created_by = b.id' => NULL,
+							'a.docket_dt >=' => $data['start_date'],
+							'a.docket_dt <=' => $data['end_date'],
+							'1 order by a.docket_dt desc' => NULL );
+			$data['dockets']   = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,0);
+
+			$this->load->view('common/header');
+			$this->load->view('dispach/search_doc',$data);
+			$this->load->view('common/footer');
+
+		}else{
+			$data['dockets']   =  '';
+			$this->load->view('common/header');
+			$this->load->view('dispach/search_doc',$data);
+			$this->load->view('common/footer');
+		}
+		
 	}
 
 	//     ******     Document detail on docket number   ******   ///
