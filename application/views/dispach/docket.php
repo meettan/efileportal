@@ -34,6 +34,10 @@
                     <th>Created By</th>
                     <th>No Of Document</th>
                     <th>Option</th>
+                    <th>Forwarded to </th>
+                    <th>Forwarded by</th>
+                    <th>Forwarded date</th>
+                    <th>File</th>
                 </tr>
             </thead>
             <tbody id='doclist'>
@@ -55,7 +59,10 @@
                         <?php } ?>    
                     </td>
                     <td><button type="button" class="btn btn-primary add" value='<?=$key->docket_no?>'>Upload</button></td>
-
+                    <td> <?=docketfrdto($key->docket_no)?></td>
+                    <td><?=docketfrdby($key->docket_no,'NAME')?></td>
+                    <td><?=docketfrdby($key->docket_no,'DATE')?></td>
+                    <td></td>
                 </tr>
                 <?php   }
                     }else { ?>
@@ -69,6 +76,10 @@
                     <th>Created By</th>
                     <th>No Of Document</th>
                     <th>Option</th>
+                    <th>Forwarded to </th>
+                    <th>Forwarded by</th>
+                    <th>Forwarded date</th>
+                    <th>File</th>
                 </tr>
             </tfoot>
             </table>

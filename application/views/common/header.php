@@ -77,9 +77,9 @@
   <li>
     <div class="link"><a href="<?=base_url()?>index.php/dispach/"><i class="fa fa-code"></i>Docket No </a></div>
   </li>
-  <li>
+  <!-- <li>
     <div class="link"><a href="<?=base_url()?>index.php/dispach/upload/"><i class="fa fa-code"></i>Upload </a></div>
-  </li>
+  </li> -->
 	<li>
 	<div class="link"><a href="<?=base_url()?>index.php/dispach/forward"><i class="fa fa-code"></i>Forward </a></div>
 	</li>
