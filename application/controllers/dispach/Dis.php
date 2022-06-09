@@ -19,8 +19,8 @@ class Dis extends CI_Controller {
 			$data['start_date'] = $this->input->post('from_dt');;
 			$data['end_date'] = $this->input->post('to_dt');
 		}else{
-			$data['start_date'] = date('Y-m-01');
-			$data['end_date'] = date('Y-m-t');
+			$data['start_date'] = date('Y-m-d', strtotime('-30 days')); //date('Y-m-01');
+			$data['end_date'] = date('Y-m-d');
 		}
         $select  = array('a.*','b.first_name');
 		$where   = array('a.created_by = b.id' => NULL,
