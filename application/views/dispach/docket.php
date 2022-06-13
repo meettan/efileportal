@@ -32,7 +32,7 @@
                     <th>Docket dt</th>
                     <th>Docket No</th>
                     <th>Created By</th>
-                    <th>No Of Document</th>
+                    <th>View</th>
                     <th>Option</th>
                     <!-- <th>Forwarded to </th>
                     <th>Forwarded by</th>
