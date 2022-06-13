@@ -60,7 +60,7 @@
                                      }
                                      ?> 
                                  <div class='col-md-3 img-wrap' >
-                                 <span  class="close del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>&times;</span> 
+                                 <span  class="close del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>' id='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>&times;</span> 
                                  
                                  <li> <a href="#<?=$ids?>" data-toggle="modal" value='<?=$key->document?>' data-img-url="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>"><img src="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" alt="pdf" class="" id="docdel" style="height: 100px !important;"></a></li>
                                   </div>
@@ -179,7 +179,7 @@ $( document ).ready(function() {
         });
         //$('#intro2').on('click', '.del', function(){
             $('.del').click( function(){
-            var row = $(this).parents('tr');
+           // var row = $(this).parents('tr');
             Swal.fire({  
                 title: 'You will not be able to recover this imaginary file!',  
                 showDenyButton: true,  showCancelButton: true,  
@@ -187,11 +187,11 @@ $( document ).ready(function() {
                 denyButtonText: `Don't Delete`,
                 }).then((result) => {  
                     /* Read more about isConfirmed, isDenied below */  
-                    if (result.isConfirmed) {    
+                    if (result.isConfirmed) {   
                         $.ajax({
                                 type: "POST",
                                 url: '<?=base_url()?>index.php/dispach/del_doc/',
-                                data: {sl_no:$(this).val()},
+                                data: {sl_no:$(this).attr("id")},
                                 success: function(response)
                                 {
                                     if (response == 1){ 

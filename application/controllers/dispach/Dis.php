@@ -167,9 +167,9 @@ class Dis extends CI_Controller {
 			echo '<script language="javascript">';
 			echo 'alert("Server not Allowing to upload Document")';
 			echo '</script>';
-			redirect(base_url().'index.php/dispach/upload/');
+			redirect(base_url().'index.php/dispach/');
 		}else{
-			redirect(base_url().'index.php/dispach/upload/');
+			redirect(base_url().'index.php/dispach/');
 		}
        
 	
