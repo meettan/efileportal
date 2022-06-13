@@ -18,7 +18,7 @@
                             <div class="form-group row">
                               <div class="col-sm-2">Docket date</div>
                                <div class="col-sm-4">
-                               <input type="text" name="docket_no" required class="form-control" value='<?=$dkt->docket_dt?>'  readonly >
+                               <input type="text" name="docket_no" required class="form-control" value='<?=date('d/m/Y',strtotime($dkt->docket_dt))?>'  readonly >
                                 </div>
                                 <div class="col-sm-2">Created By</div>
                                <div class="col-sm-4">

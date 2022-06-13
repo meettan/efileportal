@@ -8,7 +8,7 @@
                         </div>
                         <div class="col-sm-2 fieldname">Created Date</div>
                         <div class="col-sm-4">
-                        <input type="text" class='form-control' value='<?=$docket->docket_dt?>' readonly> 
+                        <input type="text" class='form-control' value='<?=date('d-m-Y',strtotime($docket->docket_dt))?>' readonly> 
                         </div>
                     </div>
                     <div class="form-group row">
