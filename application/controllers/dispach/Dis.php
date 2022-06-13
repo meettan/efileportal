@@ -120,23 +120,21 @@ class Dis extends CI_Controller {
 			$target_file = $target_dir . $newfilename;
 			$uploadOk = 1;
 			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-			//print_r($file);
-			//die();
+		
 			// Check if image file is a actual image or fake image
-			// $check = getimagesize($_FILES["fileToUpload"]["tmp_name"][$key]);
 			// if($check == false) {
+			//echo (mime_content_type($_FILES["fileToUpload"]["tmp_name"][$key]));
 			// 	$uploadOk = 0;
 			// 	//$error .= "File is an image - " . $check["mime"] . ".";
 			// }
-
-			// Check file size   500000=> 500KB file  allow size 100KB
-			if ($_FILES["fileToUpload"]["size"][$key] > 100000) {
+					// 1000000 => 1MB
+			if ($_FILES["fileToUpload"]["size"][$key] > 8000000) {
 			$error .= "Sorry, your file is too large.";
 			$uploadOk = 0;
 			}
-
 			//Allow certain file formats
-			if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "pdf" && $imageFileType != "xlsx" && $imageFileType != "txt" && $imageFileType != "docx") {
+			if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "pdf"){
+			//&& $imageFileType != "xlsx" && $imageFileType != "txt" && $imageFileType != "docx"
 			//echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
 			$error .= "only JPG, JPEG, PDF  files are allowed.";
 			$uploadOk = 0;
@@ -178,7 +176,6 @@ class Dis extends CI_Controller {
 		}else{
 			echo 1;
 		}
-
 	}
 
 	//  *****  Code for Forward From Dispatch   *****    //

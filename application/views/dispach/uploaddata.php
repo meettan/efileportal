@@ -106,7 +106,7 @@ $(document).ready(function() {
             $(this).val('');
         }else{
                 //  2000000  => 2MB  File size 
-            if(this.files[0].size > 100000) {
+            if(this.files[0].size > 8000000) {
                     Swal.fire({
                             text: "Please upload file less than 100kb. Thanks!!",
                             position: "middle",
