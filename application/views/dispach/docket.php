@@ -34,10 +34,10 @@
                     <th>Created By</th>
                     <th>No Of Document</th>
                     <th>Option</th>
-                    <th>Forwarded to </th>
+                    <!-- <th>Forwarded to </th>
                     <th>Forwarded by</th>
                     <th>Forwarded date</th>
-                    <th>File</th>
+                    <th>File</th> -->
                 </tr>
             </thead>
             <tbody id='doclist'>
@@ -55,14 +55,16 @@
                         <?php if(totaldocument($key->docket_no) == 0 ){ ?>
                         <?=totaldocument($key->docket_no)?>
                         <?php }else{  ?>
-                            <button type="button" class="btn btn-success link" value="<?=$key->docket_no?>">Detail</button>
+                            <span class="link" id ="<?=$key->docket_no?>"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            <!-- <button type="button" class="btn btn-success link" value="<?=$key->docket_no?>">Detail</button> -->
                         <?php } ?>    
                     </td>
-                    <td><button type="button" class="btn btn-primary add" value='<?=$key->docket_no?>'>Upload</button></td>
-                    <td> <?=docketfrdto($key->docket_no)?></td>
+                    <td><span class="add" id='<?=$key->docket_no?>'><i class="fa fa-upload" aria-hidden="true"></i>
+                     </td>
+                    <!-- <td> <?=docketfrdto($key->docket_no)?></td>
                     <td><?=docketfrdby($key->docket_no,'NAME')?></td>
                     <td><?=docketfrdby($key->docket_no,'DATE')?></td>
-                    <td></td>
+                    <td></td> -->
                 </tr>
                 <?php   }
                     }else { ?>
@@ -76,10 +78,10 @@
                     <th>Created By</th>
                     <th>No Of Document</th>
                     <th>Option</th>
-                    <th>Forwarded to </th>
+                    <!-- <th>Forwarded to </th>
                     <th>Forwarded by</th>
                     <th>Forwarded date</th>
-                    <th>File</th>
+                    <th>File</th> -->
                 </tr>
             </tfoot>
             </table>
@@ -128,7 +130,7 @@
             $('#ajaxview').empty();
             $.ajax({
                     type: "POST",
-                    data:{docket_no:$(this).val()},
+                    data:{docket_no:$(this).attr("id")},
                     url: '<?=base_url()?>index.php/dispach/docdetail',
                     success: function(response)
                     {
@@ -142,7 +144,7 @@
         $('#ajaxview').empty();
         $.ajax({
                 type: "POST",
-                data:{docket_no:$(this).val()},
+                data:{docket_no:$(this).attr("id")},
                 url: '<?=base_url()?>index.php/dispach/upload',
                 success: function(response)
                 {
