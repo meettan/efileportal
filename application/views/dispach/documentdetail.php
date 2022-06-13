@@ -179,7 +179,7 @@ $( document ).ready(function() {
         });
         //$('#intro2').on('click', '.del', function(){
             $('.del').click( function(){
-           // var row = $(this).parents('tr');
+            var row = $(this).parent('div'); 
             Swal.fire({  
                 title: 'You will not be able to recover this imaginary file!',  
                 showDenyButton: true,  showCancelButton: true,  
