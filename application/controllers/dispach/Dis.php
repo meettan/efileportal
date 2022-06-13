@@ -102,6 +102,7 @@ class Dis extends CI_Controller {
 		$name = $this->input->post('name');
 		$file      = $_FILES["fileToUpload"]["name"];
 		$error = '';
+		$error_count = 0 ;
 		//$old = umask(0);
 		$target_dir = './uploads/'.$docket_no.'/';
 		// to mkdir() must be specified.
@@ -157,11 +158,20 @@ class Dis extends CI_Controller {
 					//echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"][$key])). " has been uploaded.";
 				}
 			}else{
-				echo "<script>alert('Document Not uploaded properly')</script";
+				$error_count++;
 			}
 		
 		}
-       redirect(base_url().'index.php/dispach/upload/');
+		// else{
+		// 
+		// }
+		if($error_count > 0){
+			echo "<script>alert('Document Not uploaded properly')</script";
+			redirect(base_url().'index.php/dispach/upload/');
+		}else{
+			redirect(base_url().'index.php/dispach/upload/');
+		}
+       
 	
 	}
 
