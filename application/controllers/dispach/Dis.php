@@ -162,14 +162,14 @@ class Dis extends CI_Controller {
 			}
 		
 		}
-		// else{
-		// 
-		// }
+		
 		if( $error_count > 0){
-			echo "<script>alert('Document Not uploaded properly')</script";
-			//redirect(base_url().'index.php/dispach/upload/');
+			echo '<script language="javascript">';
+			echo 'alert("Server not Allowing to upload Document")';
+			echo '</script>';
+			redirect(base_url().'index.php/dispach/upload/');
 		}else{
-			//redirect(base_url().'index.php/dispach/upload/');
+			redirect(base_url().'index.php/dispach/upload/');
 		}
        
 	
