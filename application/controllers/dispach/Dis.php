@@ -103,6 +103,7 @@ class Dis extends CI_Controller {
 		$file      = $_FILES["fileToUpload"]["name"];
 		$error = '';
 		$error_count = 0 ;
+		$success_count = 0;
 		//$old = umask(0);
 		$target_dir = './uploads/'.$docket_no.'/';
 		// to mkdir() must be specified.
@@ -155,7 +156,8 @@ class Dis extends CI_Controller {
 						'upld_at'    => date("Y-m-d h:i:s")
 					);
 					$id = $this->master->f_insert('td_document',$data_array);
-					//echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"][$key])). " has been uploaded.";
+					$success_count++;
+
 				}else{
 					$error_count++;
 				}
@@ -165,13 +167,14 @@ class Dis extends CI_Controller {
 		
 		if( $error_count > 0){
 			echo '<script language="javascript">';
-			echo 'alert("Server not Allowing to upload Document")';
+			echo 'alert("'.$error_count.' Document Server not Allowing to upload Document")';
 			echo '</script>';
+			$this->session->set_flashdata('success', ''.$success_count.' Document Uploaded Successfully');
 			redirect(base_url().'index.php/dispach/');
 		}else{
+			$this->session->set_flashdata('success', ''.$success_count.' Document Uploaded Successfully');
 			redirect(base_url().'index.php/dispach/');
 		}
-       
 	
 	}
 
@@ -215,9 +218,10 @@ class Dis extends CI_Controller {
 			if(count($query) > 0){
 				$uwhere = array('dept != '=>'Dispatch');
 		        $data['users'] = $this->master->f_get_particulars('md_users',NULL,$uwhere,0);
+				$data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 			    $select  = array('a.*','b.first_name');
 		        $where   = array('a.created_by = b.id' => NULL,
-								'a.docket_no'  => trim($this->input->post('docket_no'))
+								 'a.docket_no'  => trim($this->input->post('docket_no'))
 								);
 				$data['docket']  = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,1);
 				$data['docs']    = $this->master->f_get_particulars('td_document',NULL,array('fwd_flag' => 'N','docket_no =' => $docket_no),0);
@@ -233,16 +237,25 @@ class Dis extends CI_Controller {
 
 	public function forward_doc(){
 
-		$data_array  = array('fwd_flag'=>'Y',
+		$data_array  = array('fwd_dt'  => date('Y-m-d'),
+							'docket_no'=>$this->input->post('docket_no'),
+		                    'remarks'  => $this->input->post('remarks'),
 							'fwd_to' => $this->input->post('user'),
-							'fwd_by' => $this->session->userdata('uloggedin')->id,
-							'fwd_at' => date("Y-m-d h:i:s")
+							'fwd_dept' => $this->input->post('dept'),
+							'forwarded_by' => $this->session->userdata('uloggedin')->id,
+							'forwarded_at' => date("Y-m-d h:i:s")
 							);
-		$where =array('docket_no' => $this->input->post('docket_no'));					 
-		$this->master->f_edit('td_document',$data_array, $where);
+		$where =array('docket_no' => $this->input->post('docket_no'));
+		$forward_doc_array =  array('fwd_flag'=>'Y',
+									'fwd_dept'=>$this->input->post('dept'),
+									'fwd_to' => $this->input->post('user'),
+									'fwd_by' => $this->session->userdata('uloggedin')->id,
+									'fwd_at' => date("Y-m-d h:i:s")
+								);			 
+		$this->master->f_edit('td_document',$forward_doc_array, $where);
+		$this->master->f_insert('td_doc_track',$data_array);
 		$this->master->f_edit('td_docket_no',array('status' => '1'), $where);
 		$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
-
 		redirect('index.php/dispach/forward');
 	}
 

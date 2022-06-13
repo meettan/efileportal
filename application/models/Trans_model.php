@@ -5,7 +5,7 @@
 
 		public function get_forwarded_document($user_id){
 
-			$sql = 'select distinct docket_no,fwd_at from td_document where fwd_to ="2" ' ;
+			$sql = 'select distinct docket_no,forwarded_at from td_doc_track where fwd_to ="'.$user_id.'" ' ;
             $result = $this->db->query($sql)->result();
 			return $result;
 			

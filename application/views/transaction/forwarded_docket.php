@@ -16,9 +16,9 @@
                             </tr>
                         </thead>
                         <tbody id='doclist'>
-                        <?php if($docs){ 
+                        <?php if($forwarded){ 
                                 $sl = 0 ;
-                                    foreach($docs as $key){
+                                    foreach($forwarded as $key){
                                     ?>
                             <tr>
                                 <td><?=++$sl?></td>

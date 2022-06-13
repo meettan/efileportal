@@ -31,9 +31,15 @@
                     <?php } ?>
                  </div>
                  <br>
-                <div class="form-group row">
+                 <div class="form-group row">
+                        <div class="col-sm-2 fieldname">Remarks</div>
+                        <div class="col-sm-8">
+                                <textarea name='remarks' class='form-control'></textarea>
+                        </div>
+                 </div>        
+                    <div class="form-group row">
                         <div class="col-sm-2 fieldname">User</div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                                 <select name='user' class='form-control' required>
                                     <option value=''>Select user</option>
                                         <?php foreach($users as $key) { ?>
@@ -41,7 +47,15 @@
                                         <?php } ?>
                                 </select>
                         </div>
-                        <div class="col-sm-4 btnSubmitSec">
+                        <div class="col-sm-3">
+                                <select name='dept' class='form-control' required>
+                                    <option value=''>Select Department</option>
+                                        <?php foreach($depts as $dept) { ?>
+                                        <option value='<?=$dept->sl_no?>'><?=$dept->department_name?></option>
+                                        <?php } ?>
+                                </select>
+                        </div>
+                        <div class="col-sm-3 btnSubmitSec">
                                 <input type="submit" class="btn btn-info" id="submit" name="submit" value="Forward">
                             <!-- <input type="reset" onclick="" class="btn btn-info" value="Cancel">-->
                         </div>

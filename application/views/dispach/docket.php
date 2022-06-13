@@ -3,7 +3,9 @@
 			 <div class="card-body">
 				<div class="titleSec">
                     <div class='row'>
-                        <div class='col-md-3'><h2>Docket List</h2> </div>
+                        <div class='col-md-3'><h2>Docket List</h2> 
+                       
+                        </div>
                         <div class='col-md-6'>
                             <form action ='<?=base_url()?>index.php/dispach/' method='POST'>
                             <div class='row'>
@@ -22,7 +24,12 @@
                         </div>
                         <div class='col-md-3'> <button type="button" class="btn btn-primary" id='gdocketno'>Generate Docket No</button> </div>
                      </div>   
-				
+                     <?php if ($this->session->flashdata('success') != ''):   ?>
+                        <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <?php  echo $this->session->flashdata('success');  ?>
+                        </div>
+                        <?php endif; ?>
 				</div>
 				<div class="row">
 					 <div class="col-sm-12"> 
