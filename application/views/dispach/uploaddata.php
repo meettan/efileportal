@@ -11,7 +11,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-2">Docket No</div>
                                 <div class="col-sm-4">
-                                <input type="text" name="docket_no" required class="form-control" id='docket_no'>
+                                <input type="text" name="docket_no" required class="form-control" id='docket_no' value="<?php if(isset($dockets)){ echo $dockets;}?>">
                                 </div>
                             </div>
                             <div class="form-group row">

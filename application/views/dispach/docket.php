@@ -142,11 +142,11 @@
         $('#ajaxview').empty();
         $.ajax({
                 type: "POST",
+                data:{docket_no:$(this).val()},
                 url: '<?=base_url()?>index.php/dispach/upload',
                 success: function(response)
                 {
                 $('#ajaxview').html(response);
-                
                 }
         });
     });

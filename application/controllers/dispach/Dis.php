@@ -60,7 +60,8 @@ class Dis extends CI_Controller {
 	public function upload(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 		  $where = array('group by docket_no' => NULL);	
-		  $data['dockets']  = $this->master->f_get_particulars('td_docket_no',NULL,NULL,0);
+		  //$data['dockets']  = $this->master->f_get_particulars('td_docket_no',NULL,NULL,0);
+		  $data['dockets']  = $this->input->post('docket_no');
 		  $view = $this->load->view('dispach/uploaddata',$data);
 		  return $view;
 		}else{
