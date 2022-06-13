@@ -156,6 +156,8 @@ class Dis extends CI_Controller {
 					$id = $this->master->f_insert('td_document',$data_array);
 					//echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"][$key])). " has been uploaded.";
 				}
+			}else{
+				echo "<script>alert('Document Not uploaded properly')</script";
 			}
 		
 		}
