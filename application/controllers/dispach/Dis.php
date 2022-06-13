@@ -165,8 +165,7 @@ class Dis extends CI_Controller {
 		// else{
 		// 
 		// }
-		echo $error_count;
-		if($error_count > 0){
+		if( $error_count > 0){
 			echo "<script>alert('Document Not uploaded properly')</script";
 			//redirect(base_url().'index.php/dispach/upload/');
 		}else{
