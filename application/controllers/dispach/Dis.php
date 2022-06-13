@@ -220,10 +220,9 @@ class Dis extends CI_Controller {
 								'a.docket_no'  => trim($this->input->post('docket_no'))
 								);
 				$data['docket']  = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,1);
-				$data['docs']    = $this->master->f_get_particulars('td_document',NULL,array('fwd_flag' => 'N'),0);
+				$data['docs']    = $this->master->f_get_particulars('td_document',NULL,array('fwd_flag' => 'N','docket_no =' => $docket_no),0);
 				$view = $this->load->view('dispach/documentblock',$data);
 				return $view;
-
 			}else{
 
 				return 0;

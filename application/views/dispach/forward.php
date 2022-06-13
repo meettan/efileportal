@@ -5,9 +5,7 @@
                         <!--  <a href='<?=base_url()?>index.php/dispach/upload/'>  <button type="button" class="btn btn-primary" id="list">List</button></a> -->
                             <h2>Page Title</h2> <?php if ($this->session->flashdata('success') != ''):   ?>
     <div class="alert alert-success alert-dismissible">
-       
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-     
              <?php  echo $this->session->flashdata('success');  ?>
     </div>
    <?php endif; ?>
@@ -37,7 +35,6 @@
         </div>
     </div>
 </div>
-
         <div class="modal fade" id="exampleModal" tabindex="-1"
                 role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -78,15 +75,13 @@ let row = '<tr>'+
             +'<td><button type="button" class="btn btn-danger removeRow"><i class="fa fa-remove"></i></button></td>'
           +'</tr>';
  
-$('#intro2').append(row);
-//$('#order_no'+count, '#intro2').select2();
-});
+    $('#intro2').append(row);
+    //$('#order_no'+count, '#intro2').select2();
+    });
 
-$("#intro2").on('click', '.removeRow',function(){
-            
-            $(this).parents('tr').remove();
- 
-});
+    $("#intro2").on('click', '.removeRow',function(){
+                $(this).parents('tr').remove();
+    });
 
 
 $("#docket_no").on("change", function() {
@@ -98,7 +93,6 @@ $("#docket_no").on("change", function() {
             success: function(response)
             {
                 if (response != 0){
-
                     $("#imgdetails").html(response);
                 }
                 else

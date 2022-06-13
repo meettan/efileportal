@@ -2,11 +2,11 @@
                     <?php foreach($docs as $doc);?>
                     <input type="hidden" name='status' value='1' id='status'> 
                     <div class="form-group row">
-                        <div class="col-sm-2 fieldname">Creatd By</div>
+                        <div class="col-sm-2 fieldname">Created By</div>
                         <div class="col-sm-4">
                         <input type="text" class='form-control' value='<?=$docket->first_name?>' readonly> 
                         </div>
-                        <div class="col-sm-2 fieldname">Creatd Date</div>
+                        <div class="col-sm-2 fieldname">Created Date</div>
                         <div class="col-sm-4">
                         <input type="text" class='form-control' value='<?=$docket->docket_dt?>' readonly> 
                         </div>
@@ -28,14 +28,14 @@
                                <span style='font-size:22px;border: 2px solid;padding: 5px;'><b><?=$key->name ?></b></span>
                           </div>
                          
-                          <?php } ?>
+                    <?php } ?>
                  </div>
                  <br>
                 <div class="form-group row">
-                
                         <div class="col-sm-2 fieldname">User</div>
                         <div class="col-sm-4">
-                                <select name='user' class='form-control' ><option value=''>Select user</option>
+                                <select name='user' class='form-control' required>
+                                    <option value=''>Select user</option>
                                         <?php foreach($users as $key) { ?>
                                         <option value='<?=$key->id?>'><?=$key->first_name?></option>
                                         <?php } ?>
@@ -53,4 +53,4 @@
                         <div class="col-sm-4"></div>
                         <div class="col-sm-6"><br><h2 style="color:red">No Document To Forward</h2></div>
                         </div>
-                 <?php } ?>   
+                <?php } ?>   

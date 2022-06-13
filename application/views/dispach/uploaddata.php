@@ -9,13 +9,23 @@
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/dispach/add_doc/" enctype='multipart/form-data'>
                             <div class="form-group row">
-                                <div class="col-sm-2">Docket No</div>
+                                <div class="col-sm-2 fieldname">Docket No</div>
                                 <div class="col-sm-4">
                                 <input type="text" name="docket_no" required class="form-control" id='docket_no' value="<?php if(isset($dockets)){ echo $dockets;}?>" readonly>
                                 </div>
+                                <?php if(totaldocument($dockets) > 0 ){ ?>
+                                <div class="col-sm-2 fieldname">Document Uploaded</div>
+                                <div class="col-sm-2 fieldname">
+                                <span class="link" id ="<?=$dockets?>">
+                                <a href="javascript:void(0)">
+                                <?=totaldocument($dockets)?>
+                                </a>
+                                </span>
+                                </div>
+                                <?php } ?>
                             </div>
                             <div class="form-group row">
-                              <div class="col-sm-2">Remarks</div>
+                              <div class="col-sm-2 fieldname">Remarks</div>
                                <div class="col-sm-10">
                                 <textarea name='remarks' class="form-control" placeholder='Remarks'></textarea>
                                 </div>
@@ -118,5 +128,23 @@ $(document).ready(function() {
             }
     });
 })
+
+$(document ).ready(function() {
+
+        $('.link').click( function(){
+            $('#ajaxview').empty();
+            $.ajax({
+                    type: "POST",
+                    data:{docket_no:$(this).attr("id")},
+                    url: '<?=base_url()?>index.php/dispach/docdetail',
+                    success: function(response)
+                    {
+                    $('#ajaxview').html(response);
+                    
+                    }
+            });
+
+            });
+    })
 
 </script>
