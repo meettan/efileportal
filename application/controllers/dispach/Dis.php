@@ -196,7 +196,6 @@ class Dis extends CI_Controller {
 
 	//  *****  Code for Forward From Dispatch   *****    //
 	public function forward(){
-		
 		$dwhere = array('docket_no in(SELECT distinct docket_no from td_document)'=>NULL,
 			            'fin_year'=>$this->session->userdata('session_year_id')
 						 //,'status'=>'0'
@@ -205,7 +204,6 @@ class Dis extends CI_Controller {
 		$this->load->view('common/header');
 		$this->load->view('dispach/forward',$data);
 		$this->load->view('common/footer');
-
 	}
 
 	//   *****   Get document detail on particular docket   *****  //

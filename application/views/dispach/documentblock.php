@@ -22,8 +22,15 @@
                  <?php foreach($docs as $key){?>   
                           <div class="col-sm-3" >
                               <div class='row' style='margin-bottom:15px;'>
+                              <?php $exten = explode('.',($key->document)); 
+                                    if($exten[1] != 'pdf'){
+                              ?>
                                <img src="<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>" data-toggle="modal" id='<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>'
                                class="rounded float-left" style="height:150px!important;"alt="..." >
+                               <?php } else { ?>
+                                <img src="<?=base_url()?>uploads/PDFsample.svg" data-toggle="modal" id='<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>'
+                               class="rounded float-left" style="height:150px!important;"alt="..." >
+                               <?php } ?> 
                            </div>
                                <span style='font-size:22px;border: 2px solid;padding: 5px;'><b><?=$key->name ?></b></span>
                           </div>

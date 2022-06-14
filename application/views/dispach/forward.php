@@ -3,7 +3,7 @@
         <div class="card-body" >
             <div class="titleSec">
                         <!--  <a href='<?=base_url()?>index.php/dispach/upload/'>  <button type="button" class="btn btn-primary" id="list">List</button></a> -->
-                            <h2>Page Title</h2> <?php if ($this->session->flashdata('success') != ''):   ?>
+        <h2>Page Title</h2> <?php if ($this->session->flashdata('success') != ''):   ?>
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
              <?php  echo $this->session->flashdata('success');  ?>
@@ -57,6 +57,7 @@
                         <!--Modal body with image-->
                         <div class="modal-body">
                             <img id="myImage" src="" />
+                            <iframe id="frame" style="width: 750px;height:700px"></iframe>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger"
@@ -84,50 +85,55 @@ let row = '<tr>'+
     });
 
 
-$("#docket_no").on("change", function() {
-    $("#imgdetails").html();
-    $.ajax({
-            type: "POST",
-            url: '<?=base_url()?>index.php/dispach/docket_detail/',
-            data: {docket_no:$(this).val()},
-            success: function(response)
-            {
-                if (response != 0){
-                    $("#imgdetails").html(response);
-                }
-                else
+    $("#docket_no").on("change", function() {
+        $("#imgdetails").html();
+        $.ajax({
+                type: "POST",
+                url: '<?=base_url()?>index.php/dispach/docket_detail/',
+                data: {docket_no:$(this).val()},
+                success: function(response)
                 {
-                    $("#docket_no").val('');
-                    $("#imgdetails").html('');
-                    Swal.fire({
-                    //title: "Alert Set on Timer",
-                    text: "Docket No Does not Have Document.",
-                    position: "middle",
-                    color: '#f0f0f0',
-                    background: "#ffc0cb",
-                    timer: 100000
-                    });
+                    if (response != 0){
+                        $("#imgdetails").html(response);
+                    }
+                    else
+                    {
+                        $("#docket_no").val('');
+                        $("#imgdetails").html('');
+                        Swal.fire({
+                        //title: "Alert Set on Timer",
+                        text: "Docket No Does not Have Document.",
+                        position: "middle",
+                        color: '#f0f0f0',
+                        background: "#ffc0cb",
+                        timer: 100000
+                        });
+                    }
                 }
+        });
+    })
+    $( document ).ajaxComplete(function() {
+        $(".rounded").click(function () {
+            var myBookId = $(this).attr('id');
+            var lastItem = myBookId.split(".").pop();
+            if(lastItem == 'pdf'){
+                $("#frame").attr("src", myBookId);
+            }else{
+                $('#myImage').attr('src', myBookId);
             }
+            $(this).attr('data-target', '#exampleModal');
+        });
+    })  
+    $("#forward").on("submit", function(){
+    var status =$('#status').val();
+    if(status == 0){
+        alert('No document to forward');
+        event.preventDefault()
+    }else{
+        return true;
+    }
+    })
+    $(document).ready(function() {
+        $('.select2').select2();
     });
-})
-$( document ).ajaxComplete(function() {
-    $(".rounded").click(function () {
-        var myBookId = $(this).attr('id');
-        $('#myImage').attr('src', myBookId);
-        $(this).attr('data-target', '#exampleModal');
-    });
-})  
-$("#forward").on("submit", function(){
-   var status =$('#status').val();
-   if(status == 0){
-       alert('No document to forward');
-       event.preventDefault()
-   }else{
-    return true;
-   }
- })
- $(document).ready(function() {
-    $('.select2').select2();
-});
 </script>
