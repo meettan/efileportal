@@ -81,10 +81,10 @@ class Dis extends CI_Controller {
 		  $data['dkt']   = $this->master->f_get_particulars('td_docket_no a,md_users b',array('a.*','b.first_name'),$dwhere,1);
 		  $where = array('docket_no' => $this->input->post('docket_no'));
 		  $data['docs']  = $this->master->f_get_particulars('td_document',NULL,$where,0);
+		  $data['status'] = $this->master->f_get_particulars('td_doc_track',array('ifnull(count(*),0) as cnt'),array('docket_no' => $this->input->post('docket_no')),1);
 		  $view = $this->load->view('dispach/documentdetail',$data);
 		  return $view;
 		}
-
 	}
 
 	//  *****  Code for  Valid Docket No *****   // 
@@ -197,8 +197,10 @@ class Dis extends CI_Controller {
 	//  *****  Code for Forward From Dispatch   *****    //
 	public function forward(){
 		
-		$dwhere = array('fin_year'=>$this->session->userdata('session_year_id'),
-						'status'=>'0');
+		$dwhere = array('docket_no in(SELECT distinct docket_no from td_document)'=>NULL,
+			            'fin_year'=>$this->session->userdata('session_year_id')
+						 //,'status'=>'0'
+					     );
 		$data['dockets'] = $this->master->f_get_particulars('td_docket_no',array('docket_no'),$dwhere,0);
 		$this->load->view('common/header');
 		$this->load->view('dispach/forward',$data);

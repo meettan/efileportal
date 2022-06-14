@@ -14,6 +14,10 @@
                                 <div class="col-sm-4">
                                 <input type="text" name="docket_no" required class="form-control" value='<?=$dt->docket_no?>' id='docket_no' readonly >
                                 </div>
+                                <div class="col-sm-2">Status</div>
+                                <div class="col-sm-4">
+                                <input type="text" name="*" required class="form-control" value='<?php  if($status->cnt != 0) { echo 'FORWARDED'; }else{ echo 'NOT FORWARDED'; } ?>' id='*' readonly >
+                                </div>
                             </div>
                             <div class="form-group row">
                               <div class="col-sm-2">Docket date</div>
@@ -60,15 +64,13 @@
                                      }
                                      ?> 
                                  <div class='col-md-3 img-wrap' >
-                                 <span  class="close del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>' id='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>&times;</span> 
-                                 
+                                 <span  class="close del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>' id='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>&times;</span>
                                  <li> <a href="#<?=$ids?>" data-toggle="modal" value='<?=$key->document?>' data-img-url="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>"><img src="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" alt="pdf" class="" id="docdel" style="height: 100px !important;"></a></li>
                                   </div>
                                   <?php } ?>
                                  </div>
-                                
                             </div>	
-                        </form> 
+                        </form>
                 </div>
         <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
