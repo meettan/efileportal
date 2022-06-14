@@ -272,13 +272,14 @@ class Dis extends CI_Controller {
 							'a.docket_dt <=' => $data['end_date'],
 							'1 order by a.docket_dt desc' => NULL );
 			$data['dockets']   = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,0);
-
 			$this->load->view('common/header');
 			$this->load->view('dispach/search_doc',$data);
 			$this->load->view('common/footer');
 
 		}else{
 			$data['dockets']   =  '';
+			$data['start_date']   =  '';
+			
 			$this->load->view('common/header');
 			$this->load->view('dispach/search_doc',$data);
 			$this->load->view('common/footer');
@@ -295,19 +296,15 @@ class Dis extends CI_Controller {
 			$docket_no = trim($this->input->post('docket_no'));
 			$query = $this->db->get_where('td_document', array('docket_no =' => $docket_no))->result();
 		
-			if(count($query) > 0){
-				$select = array('a.*','b.first_name');
-				$where = array('a.fwd_to = b.id' => NULL
-				               //,'a.fwd_flag' => 'Y'
-			                   );
-
-			   $data['docs']  = $this->master->f_get_particulars('td_document a,md_users b',$select,$where,0);
+			
+				$select  = array('a.*','b.first_name');
+				$where   = array('a.created_by = b.id' => NULL,
+							'a.docket_no' => $docket_no );
+			   $data['dockets']   = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,0);
 			   $view = $this->load->view('dispach/document_detailist',$data);
 			   return $view;
 
-			}else{
-				echo 0;
-			}
+			
 			
 		}
 	}

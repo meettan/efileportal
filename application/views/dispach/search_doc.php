@@ -3,11 +3,9 @@
         <div class="card-body" >
             <div class="titleSec">
                         <!--  <a href='<?=base_url()?>index.php/dispach/upload/'>  <button type="button" class="btn btn-primary" id="list">List</button></a> -->
-                            <h2>Page Title</h2> <?php if ($this->session->flashdata('success') != ''):   ?>
+                <h2>Page Title</h2> <?php if ($this->session->flashdata('success') != ''):   ?>
     <div class="alert alert-success alert-dismissible">
-       
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-     
              <?php  echo $this->session->flashdata('success');  ?>
     </div>
    <?php endif; ?>
@@ -27,53 +25,68 @@
                                 <label class="fieldname"> Date Range</label>
                             </div>
                         </div>
-                        
-                            <div class="form-group row">
+                        <div class="form-group row">
+                            <div class="col-md-12" id='sb' style='display:none'>
+                                <div class='row'>
                                 <div class="col-sm-2 fieldname" style="color: #0000ff;">Docket No</div>
                                 <div class="col-sm-4">
                                 <input type="text" name="docket_no"  class="form-control" id='docket_no' disabled >
                                 </div>
-                                <div class="col-sm-2">
+                                </div>
+                            </div>
+                            <div class="col-md-12" id='sr' 
+                            <?php if($start_date) { ?>
+                            style=''
+                            <?php }else{  ?>
+                                style='display:none'
+                            <?php }?>
+                            >
+                                <div class='row'>
+                                <div class="col-sm-3">
                                 <input type="date" name="from_dt" required class="form-control" id='from_dt' disabled value='<?php if($start_date) { echo $start_date;}?>'>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                 <input type="date" name="to_dt" required class="form-control" id='to_dt' disabled value='<?php if($end_date) { echo $end_date;}?>'>
                                 </div>
                                 <div class="col-sm-2">
                                 <input type="submit" name="submit" class="form-control" value='submit' id='submit' disabled>
                                 </div>
-
+                                </div>
                             </div>
+                        </div>
+
                             </form> 
                             <div id='docdetail'>
-         <?php      if($dockets){   ?>
+                                
+                    <?php      if($dockets){   ?>
                             <table id="example" class="table table-striped table-bordered" style="width:100%">
                             <thead>
-                                <tr><th>Sl No</th>
+                                <tr>
+                                    <th>Sl No</th>
                                     <th>Docket dt</th>
                                     <th>Docket No</th>
                                     <th>Created By</th>
                                     <th>No Of Document</th>
-                                    <th>Forwarded to </th>
-                                    <th>Forwarded by</th>
-                                    <th>Forwarded date</th>
-                                    <th>File</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody id='doclist'>
                             <?php   $sl = 0 ;
-                                    foreach($dockets as $key){
-                                        ?>
+                                    foreach($dockets as $key){  ?>
                                 <tr>
                                     <td><?=++$sl?></td>
                                     <td><?=date('d/m/Y',strtotime($key->docket_dt))?></td>
                                     <td><?=$key->docket_no?></td>
                                     <td><?=$key->first_name?></td>
-                                    <td><?=totaldocument($key->docket_no)?>     </td>
-                                    <td><?=docketfrdto($key->docket_no)?></td>
-                                    <td><?=docketfrdby($key->docket_no,'NAME')?></td>
-                                    <td><?=docketfrdby($key->docket_no,'DATE')?></td>
-                                    <td></td>
+                                    <td>
+                                    <?php if(totaldocument($key->docket_no) == 0 ){ ?>
+                                    <?=totaldocument($key->docket_no)?>
+                                    <?php }else{  ?>
+                                        <span class="link" id ="<?=$key->docket_no?>"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                        <!-- <button type="button" class="btn btn-success link" value="<?=$key->docket_no?>">Detail</button> -->
+                                    <?php } ?>    
+                                </td>
+                                   
                                 </tr>
                                 <?php   }
                                     ?>
@@ -84,17 +97,12 @@
                                     <th>Docket No</th>
                                     <th>Created By</th>
                                     <th>No Of Document</th>
-                                    <th>Forwarded to </th>
-                                    <th>Forwarded by</th>
-                                    <th>Forwarded date</th>
-                                    <th>File</th>
+                                   
                                 </tr>
                             </tfoot>
                             </table>
                     <?php } ?> 
                             </div>
-                            	
-                        
                 </div>
             </div>
                     
@@ -137,6 +145,7 @@
 <script>
 
 $("#docket_no").on("change", function() {
+    
     $.ajax({
             type: "POST",
             url: '<?=base_url()?>index.php/dispach/docket_detaillist/',
@@ -171,17 +180,55 @@ $(document).ajaxComplete(function() {
 
 $('input:radio[name="searchtype"]').change(function(){
     if($(this).val() == 'docket'){
+        $("#docdetail").html('');
         $("#docket_no").prop("disabled", false);
         $("#from_dt").prop("disabled", true);
         $("#to_dt").prop("disabled", true);
         $("#submit").prop("disabled", true);
+        $("#sb").show();
+        $("#sr").hide();
     }else{
+        $("#docdetail").html('');
         $("#docket_no").prop("disabled", true);
         $("#from_dt").prop("disabled", false);
         $("#to_dt").prop("disabled", false);
         $("#submit").prop("disabled", false);
+        $("#sb").hide();
+        $("#sr").show();
     }
     
 });
+$( document ).ready(function() {
+    $('#doclist').on('click', '.link', function(){
+     
+    $('#ajaxview').empty();
+    $.ajax({
+                type: "POST",
+                data:{docket_no:$(this).attr("id")},
+                url: '<?=base_url()?>index.php/dispach/docdetail',
+                success: function(response)
+                {
+                $('#ajaxview').html(response);
+                
+                }
+           });
+    });
+
+})
+$( document ).ajaxComplete(function() {
+    $('#doclist').on('click', '.link', function(){
+    $('#ajaxview').empty();
+    $.ajax({
+                type: "POST",
+                data:{docket_no:$(this).attr("id")},
+                url: '<?=base_url()?>index.php/dispach/docdetail',
+                success: function(response)
+                {
+                $('#ajaxview').html(response);
+                
+                }
+           });
+    });
+})
 
 </script>
