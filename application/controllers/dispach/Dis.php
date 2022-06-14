@@ -199,7 +199,7 @@ class Dis extends CI_Controller {
 	public function forward(){
 		$dwhere = array('docket_no in(SELECT distinct docket_no from td_document)'=>NULL,
 			            'fin_year'=>$this->session->userdata('session_year_id')
-						 //,'status'=>'0'
+						 ,'status'=>'0'
 					     );
 		$data['dockets'] = $this->master->f_get_particulars('td_docket_no',array('docket_no'),$dwhere,0);
 		$this->load->view('common/header');
@@ -293,12 +293,13 @@ class Dis extends CI_Controller {
 			
 			$where = array('docket_no' => $this->input->post('docket_no'));
 			$docket_no = trim($this->input->post('docket_no'));
-			$query = $this->db->get_where('td_docket_no', array('docket_no =' => $docket_no))->result();
+			$query = $this->db->get_where('td_document', array('docket_no =' => $docket_no))->result();
 		
 			if(count($query) > 0){
 				$select = array('a.*','b.first_name');
-				$where = array('a.fwd_to = b.id' => NULL,
-							   'a.fwd_flag' => 'Y');
+				$where = array('a.fwd_to = b.id' => NULL
+				               //,'a.fwd_flag' => 'Y'
+			                   );
 
 			   $data['docs']  = $this->master->f_get_particulars('td_document a,md_users b',$select,$where,0);
 			   $view = $this->load->view('dispach/document_detailist',$data);
