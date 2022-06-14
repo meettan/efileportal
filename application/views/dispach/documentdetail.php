@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-sm-2">Status</div>
                                 <div class="col-sm-4">
-                                <input type="text" name="*" required class="form-control" value='<?php  if($status->cnt != 0) { echo 'FORWARDED'; }else{ echo 'NOT FORWARDED'; } ?>' id='*' readonly >
+                                <input type="text" name="*" required class="form-control" value='<?php  if($status->cnt != 0) { echo 'FORWARDED'; }else{ echo 'PENDING'; } ?>' id='*' readonly >
                                 </div>
                             </div>
                             <div class="form-group row">
