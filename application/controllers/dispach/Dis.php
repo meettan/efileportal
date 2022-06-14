@@ -183,7 +183,8 @@ class Dis extends CI_Controller {
 
 		$data = explode('/',$this->input->post('sl_no'));
 		$where = array('sl_no'=>$data[0]);
-		$path  = $_SERVER['DOCUMENT_ROOT'].'/eportal/uploads/'.$data[1].'/'.$data[2];
+		//$path  = $_SERVER['DOCUMENT_ROOT'].'/eportal/uploads/'.$data[1].'/'.$data[2];
+		$path  = 'uploads/'.$data[1].'/'.$data[2];
 		unlink($path); 
 		$res = $this->db->delete('td_document', $where);
 		$affected_rows = $this->db->affected_rows();

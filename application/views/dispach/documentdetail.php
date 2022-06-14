@@ -134,16 +134,15 @@ $( document ).ajaxComplete(function() {
                   if (response > "0"){     }
                   else
                   {
-                        $("#docket_no").val('');
-                        Swal.fire({
-                        //title: "Alert Set on Timer",
-                        text: "Docket No Does not Exist.",
-                        position: "middle",
-                        color: '#f0f0f0',
-                        background: "#ffc0cb",
-                        timer: 100000
-                        });
-                       
+                    $("#docket_no").val('');
+                    Swal.fire({
+                    //title: "Alert Set on Timer",
+                    text: "Docket No Does not Exist.",
+                    position: "middle",
+                    color: '#f0f0f0',
+                    background: "#ffc0cb",
+                    timer: 100000
+                    });
                   }
               }
         });
@@ -190,10 +189,10 @@ $( document ).ready(function() {
             $('.del').click( function(){
             var row = $(this).parent('div'); 
             Swal.fire({  
-                title: 'You will not be able to recover this imaginary file!',  
-                showDenyButton: true,  showCancelButton: true,  
-                confirmButtonText: `Delete`,  
-                denyButtonText: `Don't Delete`,
+                title: 'Do you want to delete this file ?',  
+                showDenyButton: true,  showCancelButton: false,  
+                confirmButtonText: `Yes`,  
+                denyButtonText: `No`,
                 }).then((result) => {  
                     /* Read more about isConfirmed, isDenied below */  
                     if (result.isConfirmed) {   
