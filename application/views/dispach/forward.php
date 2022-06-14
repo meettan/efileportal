@@ -120,6 +120,7 @@ let row = '<tr>'+
                 $("#frame").attr("src", myBookId);
             }else{
                 $('#myImage').attr('src', myBookId);
+                $("#frame").attr("src", '');
             }
             $(this).attr('data-target', '#exampleModal');
         });
