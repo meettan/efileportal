@@ -23,7 +23,7 @@
                             <tr>
                                 <td><?=++$sl?></td>
                                 <td><?=$key->docket_no?></td>
-                                <td><?=date('d/m/Y',strtotime($key->fwd_at))?></td>
+                                <td><?=date('d/m/Y',strtotime($key->forwarded_at))?></td>
                             </tr>
                             <?php   }
                                 }else { ?>

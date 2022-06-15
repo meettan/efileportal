@@ -11,7 +11,6 @@
    <?php endif; ?>
             </div>
             <div class="row">
-            
                 <div class="col-sm-12"> 
                 <form method="post" action="<?=base_url()?>index.php/dispach/searchdoc/" enctype='multipart/form-data' id='forward'>
                         <div class="form-group row">
