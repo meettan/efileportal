@@ -3,7 +3,7 @@
 			 <div class="card-body" >
 				<div class="titleSec">
 					 
-				<h2>Forwarded Docket No</h2> 
+				<h2>Received Docket No</h2> 
 				</div>
 				<div class="row">
                 <div class="col-sm-12"> 
