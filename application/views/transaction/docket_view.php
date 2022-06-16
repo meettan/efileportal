@@ -105,75 +105,9 @@
     </div>
 </div>
 <script>
-$('.addAnotherrow').click(function(){
-
-let row = '<tr>'+
-			'<td><input type="file" name="fileToUpload[]" required class="form-control doc"></td>'
-            +'<td><button type="button" class="btn btn-danger removeRow"><i class="fa fa-remove"></i></button></td>'
-          +'</tr>';
- 
-$('#intro2').append(row);
-//$('#order_no'+count, '#intro2').select2();
-});
-
-$("#intro2").on('click', '.removeRow',function(){
-            
-            $(this).parents('tr').remove();
- 
-});
-
-$( document ).ajaxComplete(function() {
-    $("#docket_no").on("change", function() {
-      $.ajax({
-              type: "POST",
-              url: '<?=base_url()?>index.php/dispach/docket_check/',
-              data: {docket_no:$(this).val()},
-              success: function(response)
-              {
-                  //var jsonData = JSON.parse(response);
-                  if (response > "0"){     }
-                  else
-                  {
-                    $("#docket_no").val('');
-                    Swal.fire({
-                    //title: "Alert Set on Timer",
-                    text: "Docket No Does not Exist.",
-                    position: "middle",
-                    color: '#f0f0f0',
-                    background: "#ffc0cb",
-                    timer: 100000
-                    });
-                  }
-              }
-        });
-    })
-})
 
 $( document ).ready(function() {
-    $('#intro2').on('change', '.doc', function(){
-
-        var ext = $(this).val().split('.').pop().toLowerCase();
-        if($.inArray(ext, ['pdf','jpg','jpeg']) == -1) {
-                    Swal.fire({
-                        text: 'invalid extension!',
-                        position: "middle",
-                        color: '#f0f0f0',
-                        timer: 100000
-                    });
-            $(this).val('');
-        }else{
-                //  2000000  => 2MB  File size 
-            if(this.files[0].size > 100000) {
-                    Swal.fire({
-                            text: "Please upload file less than 100kb. Thanks!!",
-                            position: "middle",
-                            color: '#f0f0f0',
-                            timer: 100000
-                    });
-            $(this).val('');
-            }
-            }
-        });
+    
         $('#intro2').on('click', '.simg', function(){
                
             var ext = $(this).val();
@@ -185,37 +119,7 @@ $( document ).ready(function() {
                         timer: 100000
                 });
         });
-        //$('#intro2').on('click', '.del', function(){
-            $('.del').click( function(){
-            var row = $(this).parent('div'); 
-            Swal.fire({  
-                title: 'Do you want to delete this file ?',  
-                showDenyButton: true,  showCancelButton: false,  
-                confirmButtonText: `Yes`,  
-                denyButtonText: `No`,
-                }).then((result) => {  
-                    /* Read more about isConfirmed, isDenied below */  
-                    if (result.isConfirmed) {   
-                        $.ajax({
-                                type: "POST",
-                                url: '<?=base_url()?>index.php/dispach/del_doc/',
-                                data: {sl_no:$(this).attr("id")},
-                                success: function(response)
-                                {
-                                    if (response == 1){ 
-                                     Swal.fire('Deleted!', '', 'success')
-                                     row.remove();  
-                                    }else{
-                                     Swal.fire('Row not deleted', '', 'info')
-                                    }
-                                }
-                            });
-                    } else if (result.isDenied) {    
-                        Swal.fire('Changes are not saved', '', 'info')  
-                    }
-                });
-              
-        })
+            
 })
 $('.img-wrap').on('click', 'li a', function(){ 
 //$('li a').click(function(e) {
