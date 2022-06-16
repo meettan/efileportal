@@ -63,8 +63,8 @@
                                         $ids ='myModals';
                                      }
                                      ?> 
-                                 <div class='col-md-3 img-wrap' >
-                                 <span  class="close del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>' id='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>&times;</span>
+                                 <div class='col-md-3 img-wrap'>
+                                 <span class="close del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>' id='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>&times;</span>
                                  <li> <a href="#<?=$ids?>" data-toggle="modal" value='<?=$key->document?>' data-img-url="<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>">
                                  <?php $exten = explode('.',($key->document)); if($exten[1] != 'pdf'){ ?>
                                  <img src="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" alt="pdf" class="" id="docdel" style="height: 100px !important;">
@@ -181,7 +181,7 @@ $( document ).ready(function() {
                         text: "Thanks!!",
                         position: "middle",
                         color: '#f0f0f0',
-                        imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
+                        imageUrl: "<?=base_url()?>uploads/<?=$dkt->docket_no?>/"+ext,
                         timer: 100000
                 });
         });
@@ -216,9 +216,9 @@ $( document ).ready(function() {
                 });
               
         })
-}) 
-$('li a').click(function(e) {
-    
+})
+$('.img-wrap').on('click', 'li a', function(){ 
+//$('li a').click(function(e) {
     var img = $(this).attr('data-img-url');
     var extension = img.substr( (img.lastIndexOf('.') +1) );
     if(extension == 'pdf' ){
