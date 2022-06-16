@@ -70,7 +70,7 @@
                                  <img src="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" alt="pdf" class="" id="docdel" style="height: 100px !important;">
                                  <?php } else { ?>
                                 <img src="<?=base_url()?>uploads/PDFsample.svg"  id='docdel'
-                                   class="rounded float-left" style="" alt="pdf" >
+                                   class="rounded float-left" style="height:100px !important" alt="pdf" >
                                  <?php } ?> 
                                 </a></li>
                                   </div>
