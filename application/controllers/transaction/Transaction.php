@@ -82,6 +82,22 @@ class Transaction extends CI_Controller {
 			
 		}
 	}
+	//  *****  Code for  Document list by docket no    *****   // 
+	public function docket_view(){
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+		  $dwhere = array('a.created_by=b.id'=>NULL,
+							'a.docket_no'=>trim($this->input->post('docket_no')));
+		  $data['dkt']   = $this->master->f_get_particulars('td_docket_no a,md_users b',array('a.*','b.first_name'),$dwhere,1);
+		  $where = array('docket_no' => trim($this->input->post('docket_no')));
+		  $data['docs']  = $this->master->f_get_particulars('td_document',NULL,$where,0);
+		  $data['status'] = $this->master->f_get_particulars('td_doc_track',array('ifnull(count(*),0) as cnt'),array('docket_no' => $this->input->post('docket_no')),1);
+		  $data['remarks'] = $this->master->f_get_particulars('td_doc_track',array('remarks'),
+		  								array('docket_no' => $this->input->post('docket_no'),
+											  'fwd_to' =>$this->session->userdata('uloggedin')->id ),1);
+		  $view = $this->load->view('transaction/docket_view',$data);
+		  return $view;
+		}
+	}
 	public function docdetail(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 		  $fdetail = explode('/',$this->input->post('docket_no'));
