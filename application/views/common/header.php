@@ -31,7 +31,7 @@
 	<div class="float-left logo"><img src="<?=base_url()?>assets/images/confed.jpg" alt="" style='height:50px'/></div>
 	<div class="float-left navRightSec">		
 		<ul class="topDate">
- <li>KMS Year: 2020-21</li> <li>User: synergic</li> 
+ <li>KMS Year: 2020-21</li> <li>User:<?php  if($this->session->userdata('uloggedin')->first_name) echo $this->session->userdata('uloggedin')->first_name; ?></li> 
  <!-- <li>Module: Paddy Procurement</li> -->
 </ul>
 		
@@ -65,7 +65,6 @@
           <span class="fa fa-bars"></span>
       </button>
 -->
-		
 </div>
 </nav>
 <div class="page-body-wrapper">
