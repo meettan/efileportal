@@ -41,7 +41,7 @@
                                 <!-- <th>Upload dt</th> -->
                                 <th>Docket No</th>
                                 <th>Forwarded Date</th>
-                                <td>Forwarded By</td>
+                                <th>Forwarded By</th>
                                 <th>View</th>
                             </tr>
                         </tfoot>

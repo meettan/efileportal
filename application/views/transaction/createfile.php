@@ -11,7 +11,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-2">Department</div>
                                 <div class="col-sm-4">
-                                 <select class='form-control' name='dept' id='dept'>
+                                 <select class='form-control select2' name='dept' id='dept'>
                                      <option value=''>Select Department</option>
                                      <?php foreach($depts as $dt) {  ?>
                                      <option value='<?=$dt->sl_no?>'><?=$dt->department_name?></option>
@@ -21,7 +21,7 @@
                                 
                                 <div class="col-sm-2">Docket No</div>
                                <div class="col-sm-4">
-                                  <select class='form-control' name='docket' id='docket_no'>
+                                  <select class='form-control select2' name='docket' id='docket_no'>
                                     <option value=''>Select Docket</option>
                                    <?php foreach($dockets as $key) { ?>
                                    <option value='<?=$key->docket_no?>'><?=$key->docket_no?></option>
