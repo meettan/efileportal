@@ -31,10 +31,9 @@
 	<div class="float-left logo"><img src="<?=base_url()?>assets/images/confed.jpg" alt="" style='height:50px'/></div>
 	<div class="float-left navRightSec">		
 		<ul class="topDate">
- <li>KMS Year: 2020-21</li> <li>User:<?php  if($this->session->userdata('uloggedin')->first_name) echo $this->session->userdata('uloggedin')->first_name; ?></li> 
+ <li>KMS Year: 2022-23</li> <li>User: <?php  if($this->session->userdata('uloggedin')->first_name) echo ucfirst($this->session->userdata('uloggedin')->first_name); ?></li> 
  <!-- <li>Module: Paddy Procurement</li> -->
 </ul>
-		
 <!--
 		<ul class="topDateRoght">
  <li>User: synergic</li> <li>Module: Paddy Procurement</li>
@@ -55,7 +54,6 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i> Notification</a>
-                    
                 </li>
       </ul>
 </div>
