@@ -12,6 +12,7 @@
                                 <!-- <th>Upload dt</th>  -->
                                 <th>Docket No</th>
                                 <th>Forwarded Date</th>
+                                <th>Forwarded By</th>
                                 <th>View</th>
                             </tr>
                         </thead>
@@ -24,6 +25,7 @@
                                 <td><?=++$sl?></td>
                                 <td><?=$key->docket_no?></td>
                                 <td><?=date('d/m/Y',strtotime($key->forwarded_at))?></td>
+                                <td><?=$key->first_name?></td>
                                 <td>
                                 <span class="link" id ="<?=$key->docket_no?>"><i class="fa fa-eye" aria-hidden="true"></i></span>
                                     <!-- <button type="button" class="btn btn-success link" value="<?=$key->docket_no?>">Detail</button> -->
@@ -39,6 +41,7 @@
                                 <!-- <th>Upload dt</th> -->
                                 <th>Docket No</th>
                                 <th>Forwarded Date</th>
+                                <td>Forwarded By</td>
                                 <th>View</th>
                             </tr>
                         </tfoot>

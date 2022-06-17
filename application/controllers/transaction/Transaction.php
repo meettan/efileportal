@@ -13,7 +13,10 @@ class Transaction extends CI_Controller {
 	
 	//  ***** List for forwarded document   *****   //
 	public function index(){
-		$data['forwarded']  = $this->trans_model->get_forwarded_document($this->session->userdata('uloggedin')->id);
+		//$data['forwarded']  = $this->trans_model->get_forwarded_document($this->session->userdata('uloggedin')->id);
+		$where = array('a.forwarded_by=b.id'=>NULL);
+		$select = array('a.*','b.first_name');
+		$data['forwarded'] = $this->master->f_get_particulars('td_doc_track a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
 		$this->load->view('transaction/forwarded_docket',$data);
 		$this->load->view('common/footer');

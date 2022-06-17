@@ -8,7 +8,6 @@
             <div class="row">
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/dispach/add_doc/" enctype='multipart/form-data'>
-                          
                             <div class="form-group row">
                                 <div class="col-sm-2">Docket No</div>
                                 <div class="col-sm-4">
@@ -32,7 +31,7 @@
                             <div class="form-group row">
                               <div class="col-sm-2">Remarks</div>
                                <div class="col-sm-10">
-                                <textarea name='remarks' class="form-control" placeholder='Remarks' readonly><?php echo $remarks->remarks?></textarea>
+                                <textarea name='remarks' class="form-control" placeholder='' readonly><?php if(isset($remarks->remarks)) echo $remarks->remarks;?></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
