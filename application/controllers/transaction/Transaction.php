@@ -30,7 +30,9 @@ class Transaction extends CI_Controller {
 	//   ******  View for creating add view Screen   *****    //
 	public function create_file(){
 		$data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
-		$data['dockets']  = $this->trans_model->get_forwarded_document('td_document');
+		$data['dockets']  = $this->trans_model->get_forwarded_document($this->session->userdata('uloggedin')->id);
+		echo $this->db->last_query();
+		die();
 		$this->load->view('transaction/createfile',$data);
 	}
 
