@@ -177,9 +177,10 @@ class Transaction extends CI_Controller {
 	/// *****  Code  for track file on using table td_track_file ****   //
 	public function file_track(){
 
-		$data['files'] = $this->master->f_get_particulars('td_track_file',NULL,NULL,0);
+		$where = array('a.fwd_to=b.id'=>NULL);
+		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b',NULL,$where,0);
 		$this->load->view('common/header');
-		$this->load->view('transaction/file',$data);
+		$this->load->view('transaction/file_track',$data);
 		$this->load->view('common/footer');
 
 	}

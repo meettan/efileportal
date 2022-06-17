@@ -13,7 +13,6 @@
    <?php endif; ?>
             </div>
             <div class="row">
-            
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/dispach/forward_doc/" enctype='multipart/form-data' id='forward'>
                             <div class="form-group row">
@@ -29,7 +28,6 @@
                                         <?php } ?>
                                 </select>
                                 </div>
-                               
                             </div>
                             <div id='imgdetails'>
                             </div>
