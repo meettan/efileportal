@@ -37,23 +37,6 @@
                             </div>
                             <div class="form-group row">
                                     <div class='row' id='#intro2'>
-                                <!-- <table class="table">
-					               <thead>
-						            <tr><th>Name.</th><th>Document.</th><th>Show.</th><th>Option</th></tr>
-                                   </thead>
-                                   <tbody id="intro2">
-                                   <?php foreach($docs as $key) { ?>   
-                                   <tr>
-                                   <td><?=$key->name?></td>   
-                                   <td><?=$key->document?></td>
-                                  <td><a href="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" target='_blank'><button type="button" class="btn btn-success " value='<?=$key->document?>'>view</button></a></td>
-                                  <?php if($key->fwd_flag == 'N') { ?>
-                                  <td><button type="button" class="btn btn-danger del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>Delete</button></td>
-                                  <?php } ?>
-                                   </tr>
-                                   <?php }?>
-                                   </tbody>
-                                 </table>  -->
                                  <div class="pdfListBlockMain">
                                  <?php foreach($docs as $key) { 
                                      $ext = explode('.',$key->document)[1]; 
