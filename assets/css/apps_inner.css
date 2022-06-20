@@ -42,6 +42,41 @@ border-radius: 2px; font-size: 17px; padding: 12px 15px;}
 .btn-primary:not(:disabled):not(.disabled):active:focus{box-shadow: none;}
 
 
+.pdfListBlockMain{display:flex;}
+.pdfListBlock{padding: 8px 10px;
+width: 215px;
+box-shadow: 0px 0px 3px 2px #ccc;
+margin: 10px 15px 0 15px;
+border-radius: 3px;
+background: #f2f2f2;}
+.pdfListBlock .pdfImg{max-width: 100%; width: 20%; margin: 0 9px 0 0 !important; padding: 0; float: left;}
+.pdfListBlock .pdfImg img{max-width: 35px;}
+.pdfTitle{float: left; width: 75%; height: 100%; text-align: left; align-items: center; display: flex; color: #333; font-weight: 700}
+
+
+.fieldname {color: #333 !important; line-height: 34px !important; font-size: 15px;}
+
+button.link{background: #EAEAEA;border: #ccc solid 1px;border-radius: 3px;}
+button.edit{background: #05adff;border: #05adff solid 1px;border-radius: 3px;}
+button.edit i{color:#fff;}
+
+.thumImgMain{padding: 8px 10px;width: 100%;box-shadow: 0px 0px 3px 2px #ccc;margin: 0 0 27px 0;border-radius: 3px;background: #f2f2f2;display: inline-block;text-align: center;}
+.thumImgMain .thumImg{max-width: 100%;width: 100%;margin: 0 0 10px 0 !important;padding: 0;display: inline-block;height: 200px;overflow: hidden;border-radius: 5px;}
+.thumImgTitle{width: 100%;height: 100%;text-align: center;color: #333;font-weight: 700;}
+
+
+.viewListSec{padding: 8px 10px;width: 100%;box-shadow: 0px 0px 3px 2px #ccc;margin: 0 0 27px 0;border-radius: 3px;background: #f2f2f2;display: inline-block;text-align: center;}
+.viewListSec .titleBox{font-size: 15px;font-weight: 600;color: #333;margin: 0 0 18px 0;padding: 0;}
+
+.viewListSec button.btn{padding: 5px 20px;line-height: 15px;display: block;width: 100%;}
+.intro2ViewBtnSec{padding-top:10px;}
+
+.captureBtn{background: #fb8787;border: none;color: #fff;min-height: 49px;padding: 0 15px;font-size: 15px;border-radius: 5px;}
+
+.loginTitle{color:#333;}
+
+
+
 
 
 
