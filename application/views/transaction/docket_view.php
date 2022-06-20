@@ -35,7 +35,8 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                    <div class='row' id='#intro2'>
+                                    <div class='' id='#intro2'>
+                                    <div class="pdfListBlockMain">
                                 <!-- <table class="table">
 					               <thead>
 						            <tr><th>Name.</th><th>Document.</th><th>Show.</th><th>Option</th></tr>
@@ -62,17 +63,18 @@
                                         $ids ='myModals';
                                      }
                                      ?> 
-                                 <div class='col-md-3 img-wrap'>
-                                 <li> <a href="#<?=$ids?>" data-toggle="modal" value='<?=$key->document?>' data-img-url="<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>">
+                                 <div class='pdfListBlock'>
+                                 <div class='pdfImg'><a href="#<?=$ids?>" data-toggle="modal" value='<?=$key->document?>' data-img-url="<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>">
                                  <?php $exten = explode('.',($key->document)); if($exten[1] != 'pdf'){ ?>
-                                 <img src="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" alt="pdf" class="" id="docdel" style="height: 100px !important;">
+                                 <img src="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" alt="pdf" class="" id="docdel">
                                  <?php } else { ?>
                                 <img src="<?=base_url()?>uploads/PDFsample.svg"  id='docdel'
-                                   class="rounded float-left" style="height:100px !important" alt="pdf" >
+                                   class="rounded float-left" alt="pdf" >
                                  <?php } ?> 
-                                </a></li>
+                                </a></div>
                                   </div>
                                   <?php } ?>
+                                 </div>
                                  </div>
                             </div>	
                         </form>

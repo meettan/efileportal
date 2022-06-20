@@ -32,7 +32,7 @@
                 </div>
                 
                 <div class="form-group">
-                  <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                  <input type="submit" value="Submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                 </div>
                 
           

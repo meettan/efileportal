@@ -10,7 +10,7 @@
                         <form method="post" action="<?=base_url()?>index.php/transaction/editfile/" enctype='multipart/form-data'>
                             <input type='hidden' name='fileno' value='<?php echo $fdetail->file_no ?>'>
                         <div class="form-group row">
-                                <div class="col-sm-2">Department</div>
+                                <div class="col-sm-2 fieldname">Department</div>
                                 <div class="col-sm-4">
                                  <select class='form-control' name='dept' id='dept' disabled>
                                      <option value=''>Select Department</option>
@@ -20,7 +20,7 @@
                                  </select>
                                 </div>
                                 
-                                <div class="col-sm-2">Docket No</div>
+                                <div class="col-sm-2 fieldname">Docket No</div>
                                <div class="col-sm-4">
                                   <select class='form-control' name='docket' id='docket_no' required>
                                     <option value=''>Select Docket</option>
@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                            <div class="col-sm-2">File No</div>
+                            <div class="col-sm-2 fieldname">File No</div>
                                 <div class="col-sm-4">
                                     <input type='text' readonly class='form-control' name='filetype' value="<?php echo $fdetail->file_no ?>">
                                  <!-- <select class='form-control' id ='filetype' name='filetype'>
@@ -40,7 +40,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                              <div class="col-sm-2">Remarks</div>
+                              <div class="col-sm-2 fieldname">Remarks</div>
                                <div class="col-sm-10">
                                 <textarea  class="form-control" placeholder='Remarks' name="editor1">
                                     <?=$fdetail->note_sheet?>

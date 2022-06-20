@@ -10,22 +10,24 @@
                         <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data'>
                         <?php foreach($docs as $dt);?>   
                         <div class="form-group row">
-                            <div class="col-sm-2">File No</div>
+                            <div class="col-sm-2 fieldname">File No </div>
                             <div class="col-sm-4">
                             <input type="text" name="fileno"  class="form-control" value='<?=$fileno?>' readonly >
                             </div>
-                            <div class="col-sm-2">Docket No</div>
+                            <div class="col-sm-2 fieldname">Docket No</div>
                             <div class="col-sm-4">
                             <input type="text" name="docket_no" required class="form-control" value='<?=$dt->docket_no?>' id='docket_no' readonly >
                             </div>
                         </div>
                             <hr/>
-                            <div class="form-group row" id='intro2'>
+                            <div class="form-group row intro2ViewBtnSec" id='intro2'>
                             <?php foreach($docs as $key) { ?>  
                                 <div class="col-sm-2">
+                                <div class="viewListSec">
                                <a href='javascript:void(0)' class='simg'> </a>
-                                <p><?=$key->name?></p>
+                                <p class="titleBox"><?=$key->name?></p>
                                 <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
+                                </div>
                                 </div>
                             <?php }?> 
                                 
@@ -33,14 +35,14 @@
                         
                         <hr/>
                         <div class="form-group row">
-                            <div class="col-sm-2">Remarks</div>
+                            <div class="col-sm-2 fieldname">Remarks</div>
                             <div class="col-sm-10">
                             <textarea name='remarks' class="form-control" placeholder='' ></textarea>
                             </div>
                         </div>
                         <hr/>
                         <div class="form-group row">
-                            <div class="col-sm-2">User</div>
+                            <div class="col-sm-2 fieldname">User</div>
                             <div class="col-sm-4">
                                 <select name='user' class='form-control' required><option value=''>Select user</option>
                                         <?php foreach($users as $key) { ?>
@@ -48,7 +50,7 @@
                                         <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-sm-2">Forward Status</div>
+                            <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
                                     <option value=''>Select user</option>

@@ -19,23 +19,25 @@
                     </div> 
                  
                  <div class="form-group row">
+                 <div class="pdfListBlockMain">
                  <?php foreach($docs as $key){?>   
-                          <div class="col-sm-3" >
-                              <div class='row' style='margin-bottom:15px;'>
+                          <div class="pdfListBlock">
+                              <div class='pdfImg'>
                               <?php $exten = explode('.',($key->document)); 
                                     if($exten[1] != 'pdf'){
                               ?>
                                <img src="<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>" data-toggle="modal" id='<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>'
-                               class="rounded float-left" style="height:150px!important;"alt="..." >
+                               class="rounded float-left" alt="..." >
                                <?php } else { ?>
                                 <img src="<?=base_url()?>uploads/PDFsample.svg" data-toggle="modal" id='<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>'
-                               class="rounded float-left" style="height:150px!important;"alt="..." >
+                               class="rounded float-left" alt="..." >
                                <?php } ?> 
                            </div>
-                               <span style='font-size:22px;border: 2px solid;padding: 5px;'><b><?=$key->name ?></b></span>
+                               <div class="pdfTitle"><?=$key->name ?></div>
                           </div>
                          
                     <?php } ?>
+                    </div>
                  </div>
                  <br>
                  <div class="form-group row">

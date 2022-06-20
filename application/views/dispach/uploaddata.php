@@ -32,7 +32,7 @@
                             </div>
                             <div class="form-group row">
                             <div class="col-sm-2"></div>
-                                <div class="col-sm-9">
+                                <div class="col-sm-10">
                                 <table class="table">
 					               <thead>
 						            <tr><th>Document Name</th><th>Document.(jpg,jped,pdf Allowed and Size upto 8MB)</th><th></th></tr>

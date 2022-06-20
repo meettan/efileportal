@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Master extends CI_Model {
 
-    public function f_get_particulars($table_name, $select=NULL, $where=NULL, $flag) {
+    public function f_get_particulars($table_name, $select=NULL, $where=NULL, $flag=NULL) {
         
         if(isset($select)) {
             $this->db->select($select);

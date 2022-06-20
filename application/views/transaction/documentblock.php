@@ -8,12 +8,14 @@
                  <input type="hidden" name='status' value='1' id='status'>
                  <div class="form-group row">
                  <?php foreach($docs as $key){?>   
-                          <div class="col-sm-3" >
-                              <div class='row' style='margin-bottom:15px;'>
+                          <div class="col-sm-3">
+                          <div class="thumImgMain">
+                              <div class='thumImg'>
                                <img src="<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>" data-toggle="modal" id='<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>'
-                               class="rounded float-left" style="height:150px!important;"alt="..." >
+                               class="rounded float-left" alt="..." >
                            </div>
-                               <span style='font-size:22px;border: 2px solid;padding: 5px;'><b><?=$key->name ?></b></span>
+                               <div class="thumImgTitle"><?=$key->name ?></div>
+                               </div>
                           </div>
                          
                           <?php } ?>

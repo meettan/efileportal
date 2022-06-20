@@ -27,7 +27,7 @@
 <div class="loginmainDiv">
   <div class="loginBox">
 	<div class="adminLogo">
-    <h2 >Register</h2>
+    <h2 class="loginTitle">Register</h2>
   </div>
     <?php if ($this->session->flashdata('success') != ''):   ?>
       <div class="alert alert-success alert-dismissible">
@@ -64,13 +64,13 @@
        </div>
        <div class="form-group">
         <div class="row">
-          <div class="col"><input type="password" class="form-control" name="user_pwd" placeholder="Password" required="required" id='psw' onchange="return validatePassword()"></div>
+          <div class="col"><input type="password" class="form-control" name="user_pwd" placeholder="Password" required="required" id='psw' onChange="return validatePassword()"></div>
            <div class="col"> <input type="password" class="form-control" name="conf_pwd" placeholder="Confirm Password" required="required"  id='psw1'></div>
        </div>          
        </div>
        <div class="form-group">
        <div class="row">
-          <div class="col"><span style="border:0;margin-right: 10px;"><?=$image?></span><button style="border-radius: 50%;background-color: #b91f1f61;" onClick="window.location.reload();"> Refresh</button></div>
+          <div class="col"><span style="border:0;margin-right: 10px;"><?=$image?></span><button class="captureBtn" onClick="window.location.reload();"> Refresh</button></div>
           <div class="col"><input type="text" class="form-control" name="captcha" placeholder="captcha" ></div>
        </div>
        </div>

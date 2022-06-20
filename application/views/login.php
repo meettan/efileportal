@@ -44,12 +44,12 @@
                 
                 <div class="form-group">
                 <div class="row">
-                    <div class="col"><span style="border:0;margin-right: 10px;"><?=$image?></span><button style="border-radius: 50%;background-color: #b91f1f61;" onClick="window.location.reload();"> Refresh</button></div>
+                    <div class="col"><span style="border:0;margin-right: 10px;"><?=$image?></span><button class="captureBtn" onClick="window.location.reload();"> Refresh</button></div>
                     <div class="col"><input type="text" class="form-control" name="captcha" placeholder="captcha" ></div>
                 </div>
                 </div>
                 <div class="form-group">
-                  <input type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                  <input type="submit" value="Submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                 </div>
                <!--  <div class="my-2 d-flex justify-content-between align-items-center">
                   <div class="form-check">
