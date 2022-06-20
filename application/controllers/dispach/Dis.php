@@ -217,7 +217,8 @@ class Dis extends CI_Controller {
 			$query = $this->db->get_where('td_document', array('docket_no =' => $docket_no))->result();
 		
 			if(count($query) > 0){
-				$uwhere = array('dept != '=>'Dispatch');
+				$uwhere = array('dept != '=>'Dispatch',
+				                'id !=' => $this->session->userdata('uloggedin')->id);
 		        $data['users'] = $this->master->f_get_particulars('md_users',NULL,$uwhere,0);
 				$data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 			    $select  = array('a.*','b.first_name');
@@ -229,7 +230,6 @@ class Dis extends CI_Controller {
 				$view = $this->load->view('dispach/documentblock',$data);
 				return $view;
 			}else{
-
 				return 0;
 			}
 	

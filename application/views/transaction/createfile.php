@@ -9,6 +9,17 @@
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/transaction/generatefile/" enctype='multipart/form-data'>
                             <div class="form-group row">
+                                <div class="col-sm-2 fieldname">Please check</div>
+                                <div class="col-sm-2">
+                                    With docket
+                                <input type='radio' value='dk' name='ckdc' checked>
+                                </div>
+                                <div class="col-sm-2">
+                                    With out docket
+                                <input type='radio' value='wdk' name='ckdc' >
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-sm-2">Department</div>
                                 <div class="col-sm-4">
                                  <select class='form-control select2' name='dept' id='dept'>
