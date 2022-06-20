@@ -54,6 +54,7 @@
                                    <?php }?>
                                    </tbody>
                                  </table>  -->
+                                 <div class="pdfListBlockMain">
                                  <?php foreach($docs as $key) { 
                                      $ext = explode('.',$key->document)[1]; 
                                      $ids ='';
@@ -63,18 +64,20 @@
                                         $ids ='myModals';
                                      }
                                      ?> 
-                                 <div class='col-md-3 img-wrap' >
+                                 <!-- <div class='col-md-3 img-wrap' > -->
+                                 <div class="pdfListBlock">
                                  <span  class="close del" value='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>' id='<?=$key->sl_no?>/<?=$key->docket_no?>/<?=$key->document?>'>&times;</span>
-                                 <li> <a href="#<?=$ids?>" data-toggle="modal" value='<?=$key->document?>' data-img-url="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>">
+                                 <div class='pdfImg'> <a href="#<?=$ids?>" data-toggle="modal" value='<?=$key->document?>' data-img-url="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>">
                                  <?php $exten = explode('.',($key->document)); if($exten[1] != 'pdf'){ ?>
                                  <img src="<?=base_url()?>uploads/<?=$dt->docket_no?>/<?=$key->document?>" alt="pdf" class="" id="docdel" style="height: 100px !important;">
                                  <?php } else { ?>
                                 <img src="<?=base_url()?>uploads/PDFsample.svg"  id='docdel'
                                    class="rounded float-left" style="height: 100px !important;" alt="pdf" >
                                  <?php } ?> 
-                                </a></li>
+                                </a></div>
                                   </div>
                                   <?php } ?>
+                                  </div>
                                  </div>
                             </div>	
                         </form>
@@ -214,10 +217,9 @@ $( document ).ready(function() {
                         Swal.fire('Changes are not saved', '', 'info')  
                     }
                 });
-              
         })
 }) 
-$('li a').click(function(e) {
+$('.pdfImg a').click(function(e) {
     
     var img = $(this).attr('data-img-url');
     var extension = img.substr( (img.lastIndexOf('.') +1) );
