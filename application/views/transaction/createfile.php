@@ -7,16 +7,16 @@
             </div>
             <div class="row">
                 <div class="col-sm-12"> 
-                        <form method="post" action="<?=base_url()?>index.php/transaction/generatefile/" enctype='multipart/form-data'>
+                        <form method="post" action="<?=base_url()?>index.php/transaction/generatefile/" enctype='multipart/form-data' id='form'>
                             <div class="form-group row">
                                 <div class="col-sm-2 fieldname">Please check</div>
                                 <div class="col-sm-2">
                                     With docket
-                                <input type='radio' value='dk' name='ckdc' checked>
+                                <input type='radio' value='dk' name='ckdc' class='checkbox-selector'checked>
                                 </div>
                                 <div class="col-sm-2">
                                     With out docket
-                                <input type='radio' value='wdk' name='ckdc' >
+                                <input type='radio' value='wdk' name='ckdc' class='checkbox-selector' >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -31,8 +31,8 @@
                                 </div>
                                 
                                 <div class="col-sm-2">Docket No</div>
-                               <div class="col-sm-4">
-                                  <select class='form-control select2' name='docket' id='docket_no'>
+                                <div class="col-sm-4" id='dcdetail'>
+                                  <select class='select2' name='docket' id='docket_no' >
                                     <option value=''>Select Docket</option>
                                    <?php foreach($dockets as $key) { ?>
                                    <option value='<?=$key->docket_no?>'><?=$key->docket_no?></option>
@@ -44,7 +44,6 @@
                             <div class="col-sm-2">File Type</div>
                                 <div class="col-sm-4">
                                  <select class='form-control' id ='filetype' name='filetype'>
-                                  
                                  </select>
                                 </div>
                             </div>
@@ -107,11 +106,9 @@ $(document).ajaxComplete(function() {
               success: function(data)
               {
                 var string = '<option value="">Select</option>';
-
                     $.each(JSON.parse(data), function( index, value ) {
                         string += '<option value="' + value.file_no + '">' + value.file_name + '-('+ value.file_no +')</option>'
                     });
-
                     $('#filetype').html(string);
               }
         });
@@ -125,9 +122,7 @@ $(document).ajaxComplete(function() {
             success: function(response)
             {
                 if (response != 0){
-
                     $("#imgdetails").html(response);
-                    
                 }
                 else
                 {
@@ -142,8 +137,27 @@ $(document).ajaxComplete(function() {
                     });
                 }
             }
+        });
+    })
+
+    $('.checkbox-selector').click(function() {
+        
+        var value = $(this).val();
+        if(value == 'wdk'){
+            $('#docket_id').prop('required',true);  
+            //document.querySelector('#docket_id').required == false; 
+            //$('#dcdetail').hide();
+        }else{
+            $('#docket_id').prop('required',true);
+            $('#dcdetail').show();  
+        }
+         //return false;  // don't process the link
+     });
+    $( "#form" ).submit(function( event ) {
+        alert( "Handler for  called." );
+        var value = $(this).val();
+        event.preventDefault();
     });
-})
 })
 
 </script>
