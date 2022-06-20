@@ -223,7 +223,6 @@ $('.pdfImg a').click(function(e) {
     
     var img = $(this).attr('data-img-url');
     var extension = img.substr( (img.lastIndexOf('.') +1) );
-               
     if(extension == 'pdf' ){
         $('#myModal iframe').attr('src', $(this).attr('data-img-url'));
     }else{
