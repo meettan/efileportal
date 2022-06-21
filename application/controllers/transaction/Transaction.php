@@ -159,7 +159,9 @@ class Transaction extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 		  $fdetail = explode('/',$this->input->post('docket_no'));
 		  $where = array('docket_no' => $fdetail[0]);
+		  $fwhere = array('file_no' => $fdetail[1]);
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
+		  $data['fdocs']   = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
 		  $data['fileno'] = $fdetail[1];
 		  $whereu = array('dept != '=>'Dispatch');
 		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);

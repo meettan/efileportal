@@ -21,6 +21,8 @@
                         </div>
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
+                            <?php   
+                                  if(isset($dt->docket_no)) {  ?> 
                             <?php foreach($docs as $key) { ?>  
                                 <div class="col-sm-2">
                                 <div class="viewListSec">
@@ -29,20 +31,23 @@
                                 <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
                                 </div>
                                 </div>
-                            <?php }?> 
+                            <?php }  } else{ ?>
+                            
+                            <?php foreach($fdocs as $key) { ?>  
+                                <div class="col-sm-2">
+                                <div class="viewListSec">
+                               <a href='javascript:void(0)' class='simg'> </a>
+                                <p class="titleBox"><?=$key->name?></p>
+                                <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
+                                </div>
+                                </div>
+                            <?php } }?> 
+                            
                             </div>
-                            <div class="form-group row intro2ViewBtnSec" id='intro2'>
-                            <?php foreach($docs as $key) { ?>  
-                                <div class="col-sm-2">
-                                <div class="viewListSec">
-                               <a href='javascript:void(0)' class='simg'> </a>
-                                <p class="titleBox"><?=$key->name?></p>
-                                <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
-                                </div>
-                                </div>
-                            <?php }?> 
+                            <!-- <div class="form-group row intro2ViewBtnSec" id='intro2'>
+                            
                                 
-                            </div>
+                            </div> -->
                         
                         <hr/>
                         <div class="form-group row">
@@ -110,13 +115,16 @@ $( document ).ready(function() {
             }
         });
         $('#intro2').on('click', '.simg', function(){
-               
             var ext = $(this).val();
                 Swal.fire({
                         //text: "",
                         position: "middle",
                         color: '#f0f0f0',
+                        <?php if(isset($dt->docket_no)) { ?>
                         imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
+                        <?php }else{    ?>
+                        imageUrl: "<?=base_url()?>uploads/<?=$fileno?>/"+ext,
+                        <?php } ?>
                         timer: 100000
                 });
         });
