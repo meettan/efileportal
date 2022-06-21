@@ -11,6 +11,7 @@
                         <thead>
                             <tr><th>Sl No</th>
                                 <th>File No</th>
+                                <th>Docket No</th>
                                 <th>File Date</th>
                                 <th>Created by</th>
                                 <th>Status</th>
@@ -24,6 +25,9 @@
                             <tr>
                                 <td><?=++$sl?></td>
                                 <td><?=$key->file_no?></td>
+                                <td><?php if(isset($key->docket_no)){
+                                    echo $key->docket_no;
+                                }?></td>
                                 <td><?=date('d/m/Y',strtotime($key->file_date))?></td>
                                 <td><?=$key->created_by?></td>
                                 <td><?php $key->docket_no?>
@@ -43,6 +47,7 @@
                             <tr>
                                 <th>Sl No</th>
                                 <th>File No</th>
+                                <th>Docket No</th>
                                 <th>Created Date</th>
                                 <th>Created by</th>
                                 <th>Status</th>

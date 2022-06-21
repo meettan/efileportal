@@ -16,10 +16,21 @@
                             </div>
                             <div class="col-sm-2 fieldname">Docket No</div>
                             <div class="col-sm-4">
-                            <input type="text" name="docket_no" required class="form-control" value='<?=$dt->docket_no?>' id='docket_no' readonly >
+                            <input type="text" name="docket_no" required class="form-control" value='<?php if(isset($dt->docket_no)) echo $dt->docket_no;  ?>' id='docket_no' readonly >
                             </div>
                         </div>
                             <hr/>
+                            <div class="form-group row intro2ViewBtnSec" id='intro2'>
+                            <?php foreach($docs as $key) { ?>  
+                                <div class="col-sm-2">
+                                <div class="viewListSec">
+                               <a href='javascript:void(0)' class='simg'> </a>
+                                <p class="titleBox"><?=$key->name?></p>
+                                <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
+                                </div>
+                                </div>
+                            <?php }?> 
+                            </div>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
                             <?php foreach($docs as $key) { ?>  
                                 <div class="col-sm-2">

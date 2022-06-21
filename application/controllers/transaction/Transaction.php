@@ -110,7 +110,6 @@ class Transaction extends CI_Controller {
 						);
 						$id = $this->master->f_insert('td_file_document',$data_array);
 						$success_count++;
-
 					}else{
 						$error_count++;
 					}
@@ -160,7 +159,7 @@ class Transaction extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 		  $fdetail = explode('/',$this->input->post('docket_no'));
 		  $where = array('docket_no' => $fdetail[0]);
-		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,NULL,0);
+		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $data['fileno'] = $fdetail[1];
 		  $whereu = array('dept != '=>'Dispatch');
 		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
