@@ -59,20 +59,15 @@
 </div>
 <script>
 $('.addAnotherrow').click(function(){
-
-let row = '<tr>'+
-			'<td><input type="text" name="name[]" class="form-control"></td><td><input type="file" name="fileToUpload[]" required class="form-control doc"></td>'
-            +'<td><button type="button" class="btn btn-danger removeRow"><i class="fa fa-remove"></i></button></td>'
-          +'</tr>';
- 
-$('#intro2').append(row);
-//$('#order_no'+count, '#intro2').select2();
+    let row = '<tr>'+
+                '<td><input type="text" name="name[]" class="form-control"></td><td><input type="file" name="fileToUpload[]" required class="form-control doc"></td>'
+                +'<td><button type="button" class="btn btn-danger removeRow"><i class="fa fa-remove"></i></button></td>'
+            +'</tr>';
+    $('#intro2').append(row);
 });
 
 $("#intro2").on('click', '.removeRow',function(){
-            
-            $(this).parents('tr').remove();
- 
+    $(this).parents('tr').remove();
 });
 
 $(document).ajaxComplete(function() {

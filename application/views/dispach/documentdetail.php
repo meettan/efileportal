@@ -67,7 +67,6 @@
                 </div>
         <div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-            
                 <div class="modal-content" >
                     <div class="modal-body">
                     <iframe src="" style="width: 750px;height:700px"></iframe>
@@ -77,7 +76,6 @@
         </div>
         <div id="myModals" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
-            
                 <div class="modal-content" >
                     <div class="modal-body">
                     <img src="" ></img>
@@ -85,7 +83,6 @@
                 </div>
             </div>
         </div>
-
             </div>
         </div>
     </div>
