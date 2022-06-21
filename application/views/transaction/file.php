@@ -29,7 +29,7 @@
                                     echo $key->docket_no;
                                 }?></td>
                                 <td><?=date('d/m/Y',strtotime($key->file_date))?></td>
-                                <td><?=$key->created_by?></td>
+                                <td><?=$key->first_name?></td>
                                 <td><?php $key->docket_no?>
                                 <a href="<?php echo site_url('index.php/transaction/print_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>
                                 <button class="link" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button>

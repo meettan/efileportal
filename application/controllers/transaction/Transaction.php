@@ -24,7 +24,9 @@ class Transaction extends CI_Controller {
 
 	//  *****  List of files used table  td_file  *****    //
 	public function file(){
-		$data['files'] = $this->master->f_get_particulars('td_file',NULL,NULL,0);
+		$select = array('a.*','b.first_name');
+		$where  = array('a.created_by = b.id' => NULL);
+		$data['files'] = $this->master->f_get_particulars('td_file a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
 		$this->load->view('transaction/file',$data);
 		$this->load->view('common/footer');
