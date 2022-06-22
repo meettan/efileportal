@@ -61,13 +61,11 @@
   }
 </script>
   
-
   <?php     
         $bp = $gp  =  $gross = $pf = $ptax = $tot_deduct = $net =
         $basic = $da  =  $ir = $hra = $ma = $ca = $ga = $gi =
         $fa = $lic  =  $itx = $pa = 0;        
   ?>
-
     <div class="wraper"> 
         <div class="col-lg-12 container contant-wraper">
             <div id="divToPrint">
@@ -94,7 +92,6 @@
                 <br>
 
                 <table class="table table-bordered table-hover" style="width: 100%;">
-
                     <thead>
 
                         <?php 
@@ -115,7 +112,6 @@
                                 <th>Net Amount</th>
                                 <th>Signature</th>
                             </tr>
-
                         </thead>
 
                         <tbody> 
@@ -134,7 +130,6 @@
                                                 $ptax += $s_list->ptax;
                                                 $tot_deduct += $s_list->tot_deduction;
                                                 $net += $s_list->net_amount;
-
                             ?>
 
                                     <tr>
@@ -155,14 +150,10 @@
                                     </tr>
 
                             <?php
-                                    
-                                        }
-
+                                            }
                                     }
                                 } ?>
-
                                     <tr>
-                                    
                                         <td colspan="5">Total</td>
                                         <td><?php echo $pa; ?></td>
                                         <td><?php echo $pa; ?></td>
@@ -171,13 +162,9 @@
                                         <td><?php echo $tot_deduct; ?></td>
                                         <td><?php echo $net; ?></td>
                                         <td></td>
-                                        
                                     </tr>
-
                             <?php
-                                
                             }
-
                             else if($list && $this->input->post('category') == 2) {
 
                                 foreach($list as $s_list) {
@@ -203,11 +190,8 @@
                                     <td></td>
                                 </tr>
 
+                            <?php   }    ?>
 
-                            <?php
-                                }
-
-                            ?>
                                 <tr>
                                     <td colspan="4">Total</td>
                                     <td><?php echo $pa; ?></td>
@@ -218,17 +202,11 @@
                                     <td><?php echo $net; ?></td>
                                     <td></td>
                                 </tr>
-                            <?php    
-
-                            }
-
+                            <?php    }
                             else {
-
                                 echo "<tr><td colspan='12' style='text-align:center;'>No data Found</td></tr>";
-
                             }
                         }
-
                         else {
 
                     ?>
@@ -244,9 +222,7 @@
                             <th width="15px">I-Tax</th>
                             <th width="15px">Net Amount</th>
                         </tr>
-
                     </thead>
-
                     <tbody> 
 
                         <?php 
@@ -279,9 +255,7 @@
 
                         <?php
                                 $tempCount++;
-                            }
-
-                            ?>
+                            }   ?>
                                 <tr> 
                                     <td >Sl. No. 1-<?=$i?></td>
                                     <td><?php echo $gross; ?></td>
@@ -311,17 +285,11 @@
 				<p style="margin-top:200px">One payment voucher and payment sheet of Rs.<?=$net?>/- are prepared and one adjustment voucher is also prepared in this regard and placed for approval.</p>
 
              <!--   <div  class="bottom">
-                
                     <p style="display: inline;">Prepared By</p>
-
                     <p style="display: inline; margin-left: 8%;">Establishment, Sr. Asstt.</p>
-
                     <p style="display: inline; margin-left: 8%;">Assistant Manager-II</p>
-
                     <p style="display: inline; margin-left: 8%;">ARCS Attached to CONFED-WB</p>
-
                     <p style="display: inline; margin-left: 8%;">Chief Executive Officer</p>
-
                 </div> -->
                  <br>
             </div>
