@@ -25,7 +25,8 @@ class Transaction extends CI_Controller {
 	//  *****  List of files used table  td_file  *****    //
 	public function file(){
 		$select = array('a.*','b.first_name');
-		$where  = array('a.created_by = b.id' => NULL);
+		$where  = array('a.created_by = b.id' => NULL,
+		                'a.created_by'=>$this->session->userdata('uloggedin')->id);
 		$data['files'] = $this->master->f_get_particulars('td_file a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
 		$this->load->view('transaction/file',$data);
@@ -167,6 +168,10 @@ class Transaction extends CI_Controller {
 		  $data['fileno'] = $fdetail[1];
 		  $whereu = array('dept != '=>'Dispatch');
 		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
+		  unset($where);
+		  $where = array('forwarded_by'=>$this->session->userdata('uloggedin')->id,
+						 'file_no' =>$fdetail[1]);
+		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
 		  $view = $this->load->view('transaction/documentdetail',$data);
 		  return $view;
 		}
@@ -227,8 +232,8 @@ class Transaction extends CI_Controller {
 					'remarks' => $this->input->post('remarks'),
 					'fwd_status' => $this->input->post('fwd_status'),
 					'fwd_to' =>$this->input->post('user'),
-					'created_by' =>$this->session->userdata('uloggedin')->id,
-					'created_at' =>date("Y-m-d h:i:s"));
+					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
+					'forwarded_at' =>date("Y-m-d h:i:s"));
 			$this->master->f_insert('td_track_file',$data);
 			redirect('index.php/transaction/file');
 		}

@@ -31,11 +31,16 @@
                                 <td><?=date('d/m/Y',strtotime($key->file_date))?></td>
                                 <td><?=$key->first_name?></td>
                                 <td><?php $key->docket_no?>
-                                <a href="<?php echo site_url('index.php/transaction/print_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>
+                                
                                 <button class="link" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button>
                                 <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button>
                                 <a href="javascript:void(0)" onclick="" class="delete editeCus" title="Delete" id='<?=$key->file_no?>'><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
+                                <?php $str2 = substr($key->file_no,0,1); 
+                                     if($str2 == 'S') { ?>
                                 <a href="<?php echo site_url('index.php/notesheet/salary_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>
+                                     <?php }else{  ?>
+                                 <a href="<?php echo site_url('index.php/transaction/print_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>          
+                                 <?php    } ?>
                             </td>
                             </tr>
                             <?php   }

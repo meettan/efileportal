@@ -30,14 +30,11 @@ class Notesheet extends CI_Controller {
 			$select     =   array("emp_code");
             $where      =   array(
 							"emp_catg"  =>  $sladetail->catg_cd,
-							"emp_status" => 'A'
-                        );
-		    
+							"emp_status" => 'A');
             $emp_id     =   $this->notesheet_model->f_get_particulars("md_employee", $select, $where, 0);
 
             //Temp variable for emp_list
             $eid_list   =   [];
-
             for($i = 0; $i < count($emp_id); $i++) {
 
                 array_push($eid_list, $emp_id[$i]->emp_code);
@@ -46,10 +43,8 @@ class Notesheet extends CI_Controller {
 			
             unset($where);
             $where = array (
-
                 "sal_month"     =>  $sladetail->sal_month,
                 "sal_year"      =>  $sladetail->sal_year
-
             );
            
             $salary['list']              =  $this->notesheet_model->f_get_particulars_in("td_pay_slip", $eid_list, $where);
@@ -60,26 +55,19 @@ class Notesheet extends CI_Controller {
             unset($where);
 
             $select =   array(
-
                 "emp_no", "emp_name", "COUNT(emp_name) count"
-
             );
 
             $where  =   array(
-
                 "sal_month"     =>  $sladetail->sal_month,
-
-                "sal_year = '".$sladetail->sal_year."' GROUP BY emp_no, emp_name"      =>  NULL
-
+                "sal_year = '".$sladetail->sal_year."' GROUP BY emp_no, emp_name" =>  NULL
             );
 			unset($where);
 			$where = array (
 
                 "sal_month"     =>  $sladetail->sal_month,
                 "sal_year"      =>  $sladetail->sal_year,
-				//"emp_catg"      =>  $this->input->post('category')
-                "emp_catg = '". $this->input->post('category')."' GROUP BY emp_no,emp_name" =>  NULL
-
+                "emp_catg = '". $sladetail->catg_cd."' GROUP BY emp_no,emp_name" =>  NULL
             );
 
             $salary['count']              =   $this->notesheet_model->f_get_particulars("td_pay_slip", $select, $where, 0);
@@ -91,6 +79,7 @@ class Notesheet extends CI_Controller {
 
 			$salary['content']     =   $this->notesheet_model->f_get_particulars("td_pay_slip_notesheet", NULL, $where, 0);
             $salary['empstatus']=$this->notesheet_model->f_get_empstatus();
+            $salary['remarks']  = $this->master->f_get_particulars('td_track_file',NULL,array('file_no'=>$this->input->get('fileno')),0);
             $this->load->view('common/header');
             $this->load->view("ptint/salary_notesheet", $salary);
             $this->load->view('common/footer');

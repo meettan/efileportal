@@ -76,12 +76,17 @@
                             </div>
                         </div>
                         <hr/>
-                        <div class="form-group row">
-                            
-                            <div class="col-sm-4">
-                               <button class='btn btn-primary' type='submit' value='Forward'>Submit</button>
+                        <?php if($filestatus) { ?>
+                        
+                        <?php }else{ ?>
+
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                <button class='btn btn-primary' type='submit' value='Forward'>Submit</button>
+                                </div>
                             </div>
-                        </div>
+
+                        <?php } ?>   
                         </form> 
                 </div>
             </div>

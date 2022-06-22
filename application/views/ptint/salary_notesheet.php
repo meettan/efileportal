@@ -275,7 +275,12 @@
 				<p><?php if(isset($cont->content)) echo $cont->content; ?></p>
 	            <?php }?>
                 <br>
-				<br><br><br><br><br><br>
+				<br>
+                <?php  if($remarks)   {
+                 foreach($remarks as $rema){ ?>
+				<p><?php if(isset($rema->remarks)) echo $rema->remarks; ?></p>
+	            <?php }  } ?>
+                <br><br><br><br><br>
 				<p style="margin-top:200px">One payment voucher and payment sheet of Rs.<?=$net?>/- are prepared and one adjustment voucher is also prepared in this regard and placed for approval.</p>
 
              <!--   <div  class="bottom">
