@@ -11,18 +11,13 @@
 
     table, td, th {
         border: 1px solid #dddddd;
-
         padding: 6px;
-
         font-size: 14px;
     }
 
     th {
-
         text-align: center;
-
     }
-
     tr:hover {background-color: #f5f5f5;}
 
 </style>
@@ -31,13 +26,10 @@
   function printDiv() {
 
         var divToPrint = document.getElementById('divToPrint');
-
         var WindowObject = window.open('', 'Print-Window');
         WindowObject.document.open();
         WindowObject.document.writeln('<!DOCTYPE html>');
         WindowObject.document.writeln('<html><head><title></title><style type="text/css">');
-
-
         WindowObject.document.writeln('@media print { .center { text-align: center;}' +
             '                                         .inline { display: inline; }' +
             '                                         .underline { text-decoration: underline; }' +
@@ -60,15 +52,21 @@
 
   }
 </script>
-  
-  <?php     
-        $bp = $gp  =  $gross = $pf = $ptax = $tot_deduct = $net =
-        $basic = $da  =  $ir = $hra = $ma = $ca = $ga = $gi =
-        $fa = $lic  =  $itx = $pa = 0;        
+
+<div class="content-wrapper">
+			<div class="card">
+			 <div class="card-body" >
+				<div class="titleSec">
+                   
+				<h2>File List</h2> 
+				</div>
+                <?php     
+        $bp = 0.00;
+        $gp  =  $gross = $pf = $ptax = $tot_deduct = $net = $basic = $da  =  $ir = $hra = $ma = $ca = $ga = $gi = $fa = $lic  =  $itx = $pa = 0;        
   ?>
-    <div class="wraper"> 
-        <div class="col-lg-12 container contant-wraper">
-            <div id="divToPrint">
+				<div class="row">
+                <div class="col-sm-12"> 
+                <div id="divToPrint">
                 <div class="item_body">
                     <div style="text-align:center;">
                         <h3><br></h3>
@@ -121,9 +119,7 @@
                             if($list && $this->input->post('category') == 3) {
                                 
                                     foreach($list as $s_list) {
-
                                         foreach($attendance_dtls as $a_dtls) {
-
                                             if($s_list->emp_no  ==  $a_dtls->emp_cd) {
                                                 $pa += $s_list->band_pay * $a_dtls->no_of_days;
                                                 $pf += $s_list->pf;
@@ -133,7 +129,6 @@
                             ?>
 
                                     <tr>
-
                                         <td><?php echo $s_list->emp_no; ?></td>
                                         <td><?php echo $s_list->emp_name; ?></td>
                                         <td><?php echo $a_dtls->no_of_days; ?></td>
@@ -146,7 +141,6 @@
                                         <td><?php echo $s_list->tot_deduction; ?></td>
                                         <td><?php echo $s_list->net_amount; ?></td>
                                         <td></td>
-
                                     </tr>
 
                             <?php
@@ -297,5 +291,11 @@
                 <button class="btn btn-info" type="button" onclick="printDiv();">Print</button>
             </div>
 
-        </div>           
-</div>
+				</div>
+			    </div>
+
+			</div>
+		</div>
+	</div>
+
+</div>   <!-- This div start in header.php is of main-panel -->
