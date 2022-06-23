@@ -2,7 +2,7 @@
 			<div class="card">
 			 <div class="card-body" >
 				<div class="titleSec">
-				<h2>File Track</h2> 
+				<h2>Received File</h2> 
 				</div>
 				<div class="row">
                 <div class="col-sm-12"> 
