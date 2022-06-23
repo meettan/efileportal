@@ -90,7 +90,7 @@
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-code"></i>File</a></div>
 	</li>
   <li>
-	<div class="link"><a href="<?=base_url()?>index.php/transaction/file_track"><i class="fa fa-code"></i>File Track</a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/file_track"><i class="fa fa-code"></i>File Received</a></div>
 	</li>
   <li>
 	 <div class="link"><a href="<?=base_url()?>index.php/auth/logout/"><i class="fa fa-code"></i>Logout</a></div>
