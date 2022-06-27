@@ -20,9 +20,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            
-                            <div class="col-sm-4">
-                            
+                            <div class="col-sm-11">
+                            <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
                             </div>
                             
                             

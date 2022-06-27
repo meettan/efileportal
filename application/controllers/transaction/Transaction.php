@@ -164,7 +164,7 @@ class Transaction extends CI_Controller {
 		  $where = array('docket_no' => $fdetail[0]);
 		  $fwhere = array('file_no' => $fdetail[1]);
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
-		  $data['fdocs']   = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
+		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
 		  $data['fileno'] = $fdetail[1];
 		  $whereu = array('dept != '=>'Dispatch');
 		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
@@ -172,6 +172,7 @@ class Transaction extends CI_Controller {
 		  $where = array('forwarded_by'=>$this->session->userdata('uloggedin')->id,
 						 'file_no' =>$fdetail[1]);
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
+		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
 		  $view = $this->load->view('transaction/documentdetail',$data);
 		  return $view;
 		}
