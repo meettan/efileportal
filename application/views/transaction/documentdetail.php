@@ -19,6 +19,14 @@
                             <input type="text" name="docket_no" required class="form-control" value='<?php if(isset($dt->docket_no)) echo $dt->docket_no;  ?>' id='docket_no' readonly >
                             </div>
                         </div>
+                        <div class="form-group row">
+                            
+                            <div class="col-sm-4">
+                            
+                            </div>
+                            
+                            
+                        </div>
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
                             <?php   
