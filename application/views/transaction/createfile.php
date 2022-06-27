@@ -61,7 +61,7 @@
 						            <tr><th>Document Name</th><th>Document.(jpg,jped,pdf Allowed and Size upto 8MB)</th><th></th></tr>
                                    </thead>
                                    <tbody id="intro2">
-                                   <tr><td><input type="text" name="name[]" class="form-control" required></td><td><input type="file" name="fileToUpload[]" class="form-control doc"></td>
+                                   <tr><td><input type="text" name="name[]" class="form-control"></td><td><input type="file" name="fileToUpload[]" class="form-control doc"></td>
                                    <td><button type="button" class="btn btn-success addAnotherrow"><i class="fa fa-plus"></i></button></td>
                                    </tr>
                                    </tbody>
