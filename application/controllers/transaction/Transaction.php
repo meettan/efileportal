@@ -5,7 +5,7 @@ class Transaction extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('Trans_model','trans_model');
-		//For User's Authentication
+		$this->load->model('Notesheet_model','notesheet_model');
         if(!isset($this->session->userdata('uloggedin')->phone_no)){
             redirect('auth/verification/');
         }
@@ -60,6 +60,7 @@ class Transaction extends CI_Controller {
 						'fin_year'  => $this->session->userdata('session_year_id'),
 						'dept_no'   => $this->input->post('dept'),
 						'docket_no' => $this->input->post('docket'),
+						'application_no' => trim($this->input->post('application_no')),
 						'file_no'   => $file_type.'-'.$sess.'-'.($sl+1),
 						'note_sheet'=> $this->input->post('editor1'),
 						'created_by' => $this->session->userdata('uloggedin')->id,
@@ -173,6 +174,10 @@ class Transaction extends CI_Controller {
 						 'file_no' =>$fdetail[1]);
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
 		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
+		  $str2 = substr($fdetail[1],0,1); 
+		  if($str2 == 'L') {
+          $data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->application_no),1) ;
+		  }
 		  $view = $this->load->view('transaction/documentdetail',$data);
 		  return $view;
 		}

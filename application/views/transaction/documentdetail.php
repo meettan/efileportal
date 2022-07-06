@@ -19,12 +19,27 @@
                             <input type="text" name="docket_no" required class="form-control" value='<?php if(isset($dt->docket_no)) echo $dt->docket_no;  ?>' id='docket_no' readonly >
                             </div>
                         </div>
+                        <?php if($leave) { ?>
+                        <div class="form-group row">
+                        <div class="col-sm-11">
+                        <?php $lea = '';
+                            if($leave->leave_type == 'CL'){ $lea = 'Casual Leave';}
+                            else if($leave->leave_type == 'ML'){ $lea = 'Medical Leave';}
+                            else if($leave->leave_type == 'EL'){ $lea = 'Earned Leave';}
+                            else if($leave->leave_type == 'OD'){ $lea = 'Off Day';}
+                            
+                            ?>
+                            <p><?php echo $leave->letterfirstline; ?> </p>
+                        <p>So Sri <?php echo $leave->emp_name; ?> has requested to adjust the leaves in <?=$lea?> ground.</p>
+                        
+                        <p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>
+                        </div>   
+                        </div>  
+                        <?php } ?> 
                         <div class="form-group row">
                             <div class="col-sm-11">
                             <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
                             </div>
-                            
-                            
                         </div>
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
@@ -49,13 +64,7 @@
                                 </div>
                                 </div>
                             <?php } }?> 
-                            
                             </div>
-                            <!-- <div class="form-group row intro2ViewBtnSec" id='intro2'>
-                            
-                                
-                            </div> -->
-                        
                         <hr/>
                         <div class="form-group row">
                             <div class="col-sm-2 fieldname">Remarks</div>

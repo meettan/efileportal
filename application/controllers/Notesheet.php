@@ -10,20 +10,8 @@ class Notesheet extends CI_Controller {
             redirect('auth/verification/');
         }
     }
-	
-	//  ***** List for forwarded document   *****   //
-	public function index(){
-		//$data['forwarded']  = $this->trans_model->get_forwarded_document($this->session->userdata('uloggedin')->id);
-		// $where = array('a.forwarded_by=b.id'=>NULL);
-		// $select = array('a.*','b.first_name');
-		// $data['forwarded'] = $this->master->f_get_particulars('td_doc_track a,md_users b',$select,$where,0);
-		// $this->load->view('common/header');
-		// $this->load->view('transaction/forwarded_docket',$data);
-		// $this->load->view('common/footer');
-	}
 
 	public function salary_notesheet(){
-            //Employee Ids for Salary List
             $salary['empstatus']=$this->notesheet_model->f_get_empstatus();
 			$sladetail=$this->notesheet_model->f_get_particulars('td_salary',NULL,array('file_no'=>$this->input->get('fileno')),1);
             $salary['salarydetail'] = $this->notesheet_model->f_get_particulars('td_salary',NULL,array('file_no'=>$this->input->get('fileno')),1);
@@ -84,6 +72,16 @@ class Notesheet extends CI_Controller {
             $this->load->view("ptint/salary_notesheet", $salary);
             $this->load->view('common/footer');
 	}
+
+    public function leave_notesheet(){
+
+        $file_no = $this->input->get('fileno');
+        $result  = $this->master->f_get_particulars('td_file',array('application_no'),array('file_no'=>$file_no),1);
+        $data['data'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$result->application_no),1) ;
+        $this->load->view('common/header');
+        $this->load->view("ptint/leave_notesheet", $data);
+        $this->load->view('common/footer');
+    }
 
 
 
