@@ -79,7 +79,7 @@ $(document).ready(function() {
         $.ajax({
                 type: "POST",
                 data:{docket_no:$(this).val()},
-                url: '<?=base_url()?>index.php/transaction/docdetail',
+                url: '<?=base_url()?>index.php/transaction/filedetail',
                 success: function(response)
                 {
                 $('#ajaxview').html(response);

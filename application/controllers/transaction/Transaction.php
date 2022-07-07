@@ -253,8 +253,32 @@ class Transaction extends CI_Controller {
 					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);
 		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b',NULL,$where,0);
 		$this->load->view('common/header');
-		$this->load->view('transaction/file_track',$data);
+		$this->load->view('transaction/track_fwd/file_track',$data);
 		$this->load->view('common/footer');
+
+	}
+	public function filedetail(){
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+		  $fdetail = explode('/',$this->input->post('docket_no'));
+		  $where = array('docket_no' => $fdetail[0]);
+		  $fwhere = array('file_no' => $fdetail[1]);
+		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
+		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
+		  $data['fileno'] = $fdetail[1];
+		  $whereu = array('dept != '=>'Dispatch');
+		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
+		  unset($where);
+		  $where = array('forwarded_by'=>$this->session->userdata('uloggedin')->id,
+						 'file_no' =>$fdetail[1]);
+		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
+		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
+		  $str2 = substr($fdetail[1],0,1); 
+		  if($str2 == 'L') {
+          $data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->application_no),1) ;
+		  }
+		  $view = $this->load->view('transaction/track_fwd/file_dtls',$data);
+		  return $view;
+		}
 
 	}
 
