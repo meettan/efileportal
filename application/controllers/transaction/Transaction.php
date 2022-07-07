@@ -275,11 +275,12 @@ class Transaction extends CI_Controller {
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
           $data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->application_no),1) ;
+		  }else{
+			$data['leave'] = '';
 		  }
 		  $view = $this->load->view('transaction/track_fwd/file_dtls',$data);
 		  return $view;
 		}
-
 	}
 
 	
