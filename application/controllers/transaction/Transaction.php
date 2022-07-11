@@ -278,6 +278,7 @@ class Transaction extends CI_Controller {
 		  }else{
 			$data['leave'] = '';
 		  }
+		  $data['comment_author'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.*','b.first_name'),array('a.forwarded_by = b.id'=> NULL,'file_no' =>$fdetail[1]),0);
 		  $view = $this->load->view('transaction/track_fwd/file_dtls',$data);
 		  return $view;
 		}

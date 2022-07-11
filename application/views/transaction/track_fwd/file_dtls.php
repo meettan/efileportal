@@ -41,6 +41,22 @@
                             <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
                             </div>
                         </div>
+                        <?php if($comment_author) { 
+                            foreach($comment_author as $ca){
+                            ?>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="card single_post" style='padding-left:10px'>
+                                    <div class="body" >
+                                        <p><?php if(isset($ca->remarks)) echo $ca->remarks; ?></p>
+                                    </div>
+                                    <div class="footer">
+                                            <div class="actions btn btn-outline-secondary"><?php if(isset($ca->first_name)) echo $ca->first_name; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } }?>
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
                             <?php   
