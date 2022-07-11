@@ -56,25 +56,25 @@
             </div>
 
             <br>
-            
+            <?php if($data != ''){   ?>
             <div>
 			<?php $leave = '';
 			    if($data->leave_type == 'CL'){ $leave = 'Casual Leave';}
 				else if($data->leave_type == 'ML'){ $leave = 'Medical Leave';}
 				else if($data->leave_type == 'EL'){ $leave = 'Earned Leave';}
 				else if($data->leave_type == 'OD'){ $leave = 'Off Day';}
-				
 				?>
                 <p><?php echo $data->letterfirstline; ?> </p>
 	  <!--		<p>
 			Sri  has submitted an application dt. duly receipt no .</p> -->
 			
 			<p>So Sri <?php echo $data->emp_name; ?> has requested to adjust the leaves in <?=$leave?> ground.</p>
-			
 			<p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>
 
             </div>
-
+               <?php }else{ ?> 
+                 <p>No leave application Found with docket number.</p>
+                <?php  } ?>
             <br>
             <div>
 

@@ -1,14 +1,14 @@
 <div class="content-wrapper">
 			<div class="card">
 			 <div class="card-body">
-				 <div class="titleSec">
+				 <!-- <div class="titleSec">
 					 <button type="button" class="btn btn-primary">Export as CSV</button>
 				 <h2>Page Title</h2> 
-				 </div>
+				 </div> -->
 				 
 				<div class="row">
 					 <div class="col-sm-12"> 
-			<table id="example" class="table table-striped table-bordered" style="width:100%">
+			<!-- <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>Name</th>
@@ -104,7 +104,7 @@
                 <th>Action</th>
             </tr>
         </tfoot>
-    </table>
+    </table> -->
 				</div>
 				</div>
 			</div>

@@ -71,6 +71,7 @@
   <li>
   <div class="link"><a href="<?=base_url()?>index.php/auth/dashboard"><i class="fa fa-tachometer"></i>Dashboard</a></div>
   </li>
+  <?php if($this->session->userdata('uloggedin')->designation != 'CEO') { ?>
   <li>
     <div class="link"><a href="<?=base_url()?>index.php/dispach/"><i class="fa fa-code"></i>Docket No </a></div>
   </li>
@@ -89,12 +90,15 @@
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-code"></i>File</a></div>
 	</li>
+  <?php } ?>
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file_track"><i class="fa fa-code"></i>File Received</a></div>
 	</li>
+  <?php if($this->session->userdata('uloggedin')->designation == 'CEO') { ?>
   <li>
-	<div class="link"><a href="<?=base_url()?>index.php/ceo/"><i class="fa fa-code"></i>File Received</a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/ceo/"><i class="fa fa-code"></i>File Operation</a></div>
 	</li>
+  <?php }?>
   <li>
 	 <div class="link"><a href="<?=base_url()?>index.php/auth/logout/"><i class="fa fa-code"></i>Logout</a></div>
 	</li>

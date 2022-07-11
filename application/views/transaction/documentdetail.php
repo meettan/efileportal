@@ -92,7 +92,7 @@
                             <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
-                                    <option value=''>Select user</option>
+                                    <option value=''>Select Status</option>
                                     <option value='A'>Approve</option>
                                     <option value='R'>Reject</option>
                                 </select>
