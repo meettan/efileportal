@@ -2,12 +2,12 @@
 	<div class="card">
         <div class="card-body" >
             <div class="titleSec">
-                              <a href='<?=base_url()?>index.php/transaction/file_track/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
+                              <a href='<?=base_url()?>index.php/ceo/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
                             <h2>Page Title</h2> 
             </div>
             <div class="row">
                 <div class="col-sm-12"> 
-                        <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data'>
+                        <form method="post" action="<?=base_url()?>index.php/ceo/file_forward/" enctype='multipart/form-data'>
                         <?php foreach($docs as $dt);?>   
                         <div class="form-group row">
                             <div class="col-sm-2 fieldname">File No </div>
@@ -16,7 +16,7 @@
                             </div>
                             <div class="col-sm-2 fieldname">Docket No</div>
                             <div class="col-sm-4">
-                            <input type="text" name="docket_no" required class="form-control" value='<?php if(isset($dt->docket_no)) echo $dt->docket_no;  ?>' id='docket_no' readonly >
+                            <input type="text" name="docket_no" required class="form-control" value='<?php if(isset($filedtl->docket_no)) echo $filedtl->docket_no;  ?>' id='docket_no' readonly >
                             </div>
                         </div>
                         <?php if($leave) { ?>
@@ -37,10 +37,34 @@
                         </div>  
                         <?php } ?> 
                         <div class="form-group row">
-                            <div class="col-sm-11">
-                            <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
+                            <div class="col-sm-12">
+                                <div class="card single_post" style='padding-left:10px'>
+                                    <div class="body" >
+                                        <p><?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?></p>
+                                    </div>
+                                    <!-- <div class="footer">
+                                            <div class="actions btn btn-outline-secondary">Continue Reading</div>
+                                    </div> -->
+                                </div>
                             </div>
                         </div>
+                        <?php if($comment_author) { 
+                            foreach($comment_author as $ca){
+                            ?>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="card single_post" style='padding-left:10px'>
+                                    <div class="body" >
+                                        <p><?php if(isset($ca->remarks)) echo $ca->remarks; ?></p>
+                                    </div>
+                                    <div class="footer">
+                                            <div class="actions btn btn-outline-secondary"><?php if(isset($ca->first_name)) echo $ca->first_name; ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php } }?>
+
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
                             <?php   
@@ -97,6 +121,12 @@
                                     <option value='R'>Reject</option>
                                 </select>
                             </div>
+                            </div>
+                            <div class="form-group row">
+                            <div class="col-sm-2 fieldname">Close File</div>
+                                <div class="col-sm-4">
+                                <input type="checkbox" id="cf" name="cf" value="1">
+                                </div>
                             </div>
                             <hr/>
 

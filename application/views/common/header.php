@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Dashboard</title>
+<title>Confed Efile management</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">	
@@ -90,10 +90,11 @@
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-code"></i>File</a></div>
 	</li>
-  <?php } ?>
+  
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file_track"><i class="fa fa-code"></i>File Received</a></div>
 	</li>
+  <?php } ?>
   <?php if($this->session->userdata('uloggedin')->designation == 'CEO') { ?>
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/ceo/"><i class="fa fa-code"></i>File Operation</a></div>
