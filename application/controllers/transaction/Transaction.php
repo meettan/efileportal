@@ -133,7 +133,7 @@ class Transaction extends CI_Controller {
 			$query = $this->db->get_where('td_docket_no', array('docket_no =' => $docket_no))->result();
 			if(count($query) > 0){
 
-			   $data['docs']  = $this->master->f_get_particulars('td_document',NULL,array('fwd_flag' => 'Y'),0);
+			   $data['docs']  = $this->master->f_get_particulars('td_document',NULL,array('docket_no'=>$docket_no,'fwd_flag' => 'Y'),0);
 			   $view = $this->load->view('transaction/documentblock',$data);
 			   return $view;
 
