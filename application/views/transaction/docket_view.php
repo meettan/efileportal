@@ -84,7 +84,8 @@
             
                 <div class="modal-content" >
                     <div class="modal-body">
-                    <iframe src="" style="width: 750px;height:700px"></iframe>
+                    <iframe id='pdfdata'src="" style="width: 750px;height:700px"></iframe>
+                    <img id='imagedata'src="" ></img>
                     </div>
                 </div>
             </div>
@@ -121,12 +122,15 @@ $( document ).ready(function() {
         });
             
 })
-$('.img-wrap').on('click', 'li a', function(){ 
+//$('.img-wrap').on('click', 'li a', function(){ 
+    $('.pdfImg a').click(function(e) {
 //$('li a').click(function(e) {
     var img = $(this).attr('data-img-url');
     var extension = img.substr( (img.lastIndexOf('.') +1) );
     if(extension == 'pdf' ){
-        $('#myModal iframe').attr('src', $(this).attr('data-img-url'));
+        
+        //$('#myModal iframe').attr('src', $(this).attr('data-img-url'));
+        $('#pdfdata').attr('src', $(this).attr('data-img-url'));
     }else{
        $('#myModals img').attr('src', $(this).attr('data-img-url'));
     }

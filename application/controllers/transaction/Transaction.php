@@ -37,6 +37,7 @@ class Transaction extends CI_Controller {
 	public function create_file(){
 		$data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 		$data['dockets']  = $this->trans_model->get_forwarded_document($this->session->userdata('uloggedin')->id);
+		
 		$this->load->view('transaction/createfile',$data);
 	}
 
@@ -264,6 +265,7 @@ class Transaction extends CI_Controller {
 		  $fdetail = explode('/',$this->input->post('docket_no'));
 		  $where = array('docket_no' => $fdetail[0]);
 		  $fwhere = array('file_no' => $fdetail[1]);
+		 
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
 		  $data['fileno'] = $fdetail[1];
@@ -274,9 +276,15 @@ class Transaction extends CI_Controller {
 						 'file_no' =>$fdetail[1]);
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
 		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
+		  //echo $data['filedtl']->application_no;die();
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
-          $data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->application_no),1) ;
+			if($data['filedtl'] ){
+				$data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->docket_no),1) ;
+			}else{
+				$data['leave'] = '';
+			}
+			
 		  }else{
 			$data['leave'] = '';
 		  }

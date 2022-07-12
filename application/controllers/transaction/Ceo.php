@@ -38,7 +38,11 @@ class Ceo extends CI_Controller {
 		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
-          $data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->application_no),1) ;
+			if($data['filedtl'] ){
+				$data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->docket_no),1) ;
+			}else{
+				$data['leave'] = '';
+			}
 		  }else{
 			$data['leave'] = '';
 		  }

@@ -7,7 +7,7 @@
                     </div>  -->
                  <input type="hidden" name='status' value='1' id='status'>
                  <div class="form-group row">
-                 <?php foreach($docs as $key){?>   
+                 <!-- <?php //foreach($docs as $key){?>   
                           <div class="col-sm-3">
                           <div class="thumImgMain">
                               <div class='thumImg'>
@@ -20,7 +20,7 @@
                          
                           <?php } ?>
                  </div>
-                <?php }else { ?>   
+                <?php //}else { ?>   
                     <input type="hidden" name='status' value='0' id='status'>
                        
                               <div class='row' >
@@ -30,4 +30,4 @@
                                
                          
 
-                 <?php } ?>   
+                 <?php //} ?>    -->

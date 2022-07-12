@@ -47,18 +47,17 @@
                                   if(isset($dt->docket_no)) {  ?> 
                             <?php foreach($docs as $key) { ?>  
                                 <div class="col-sm-2">
-                                <div class="viewListSec">
-                               <a href='javascript:void(0)' class='simg'> </a>
+                                <div class="viewListSec pdfImg">
                                 <p class="titleBox"><?=$key->name?></p>
-                                <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
+                                <a href='javascript:void(0)'type="button" class="btn btn-success simg" data-img-url='<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>' data-toggle="modal" data-target="#myModal">view</a>
                                 </div>
                                 </div>
                             <?php }  } else{ ?>
                             
                             <?php foreach($fdocs as $key) { ?>  
                                 <div class="col-sm-2">
-                                <div class="viewListSec">
-                               <a href='javascript:void(0)' class='simg'> </a>
+                                <div class="viewListSec pdfImg">
+                               <a href='javascript:void(0)' class='simg' > </a>
                                 <p class="titleBox"><?=$key->name?></p>
                                 <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
                                 </div>
@@ -113,6 +112,37 @@
         </div>
     </div>
 </div>
+  <!-- Modal -->
+<!-- <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <iframe id='pdfdata'src="" style="width: 750px;height:700px"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div id="myModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            
+                <div class="modal-content" >
+                    <div class="modal-body">
+                    <iframe id='pdfdata'src="" style="width: 750px;height:700px"></iframe>
+                    <img id='imagedata'src="" ></img>
+                    </div>
+                </div>
+            </div>
+        </div>
 <script>
 $( document ).ready(function() {
     $('#intro2').on('change', '.doc', function(){
@@ -139,20 +169,36 @@ $( document ).ready(function() {
             }
             }
         });
-        $('#intro2').on('click', '.simg', function(){
-            var ext = $(this).val();
-                Swal.fire({
-                        //text: "",
-                        position: "middle",
-                        color: '#f0f0f0',
-                        <?php if(isset($dt->docket_no)) { ?>
-                        imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
-                        <?php }else{    ?>
-                        imageUrl: "<?=base_url()?>uploads/<?=$fileno?>/"+ext,
-                        <?php } ?>
-                        timer: 100000
-                });
-        });
+
+        $('.pdfImg a').click(function(e) {
+        var img = $(this).attr('data-img-url');
+        //event.preventDefault()
+        //var img = $(this).val();
+        //alert(img);
+        var extension = img.substr( (img.lastIndexOf('.') +1) );
+        if(extension == 'pdf' ){
+            
+            $('#pdfdata').attr('src', img);
+        }else{
+           
+            $('#imagedata').attr('src', img);
+        }
+            
+       });
+        // $('#intro2').on('click', '.simg', function(){
+        //     var ext = $(this).val();
+        //         Swal.fire({
+        //                 //text: "",
+        //                 position: "middle",
+        //                 color: '#f0f0f0',
+        //                 <?php if(isset($dt->docket_no)) { ?>
+        //                 imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
+        //                 <?php }else{    ?>
+        //                 imageUrl: "<?=base_url()?>uploads/<?=$fileno?>/"+ext,
+        //                 <?php } ?>
+        //                 timer: 100000
+        //         });
+        // });
         $('#intro2').on('click', '.del', function(){
             var row = $(this).parents('tr');
             Swal.fire({  
