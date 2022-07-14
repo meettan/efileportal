@@ -1,4 +1,4 @@
-                <?php if($docs){  ?>
+                <?php //if($docs){  ?>
                     <?php foreach($docs as $doc);?>
                     <input type="hidden" name='status' value='1' id='status'> 
                     <div class="form-group row">
@@ -14,7 +14,7 @@
                     <div class="form-group row">
                         <div class="col-sm-2 fieldname">Remarks</div>
                         <div class="col-sm-10">
-                        <textarea class='form-control' readonly><?=$doc->remarks?></textarea>
+                        <textarea class='form-control' readonly><?php if(isset($doc->remarks)){echo $doc->remarks;}?></textarea>
                         </div>
                     </div> 
                  
@@ -47,7 +47,16 @@
                         </div>
                  </div>        
                     <div class="form-group row">
-                        <div class="col-sm-2 fieldname">User</div>
+                    <div class="col-sm-2 fieldname">Department</div>
+                        <div class="col-sm-3">
+                                <select name='dept' class='form-control' required>
+                                    <option value=''>Select</option>
+                                        <?php foreach($depts as $dept) { ?>
+                                        <option value='<?=$dept->sl_no?>'><?=$dept->department_name?></option>
+                                        <?php } ?>
+                                </select>
+                        </div>
+                        <div class="col-sm-1 fieldname">User</div>
                         <div class="col-sm-3">
                                 <select name='user' class='form-control' required>
                                     <option value=''>Select user</option>
@@ -56,24 +65,17 @@
                                         <?php } ?>
                                 </select>
                         </div>
-                        <div class="col-sm-3">
-                                <select name='dept' class='form-control' required>
-                                    <option value=''>Select Department</option>
-                                        <?php foreach($depts as $dept) { ?>
-                                        <option value='<?=$dept->sl_no?>'><?=$dept->department_name?></option>
-                                        <?php } ?>
-                                </select>
-                        </div>
+                        
                         <div class="col-sm-3 btnSubmitSec">
                                 <input type="submit" class="btn btn-info" id="submit" name="submit" value="Forward">
                             <!-- <input type="reset" onclick="" class="btn btn-info" value="Cancel">-->
                         </div>
                 </div>    
-                <?php }else { ?>   
-                    <input type="hidden" name='status' value='0' id='status'>
+                <?php // }else { ?>   
+                    <!-- <input type="hidden" name='status' value='0' id='status'>
                        
                         <div class='row' >
                         <div class="col-sm-4"></div>
                         <div class="col-sm-6"><br><h2 style="color:red">No Document To Forward</h2></div>
-                        </div>
-                <?php } ?>   
+                        </div> -->
+                <?php //} ?>   

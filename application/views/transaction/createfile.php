@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="col-sm-2">Docket No</div>
                                 <div class="col-sm-4" id='dcdetail'>
-                                  <select class='select2' name='docket' id='docket_no' >
+                                  <select class='select2' name='docket' id='docket_no'>
                                     <option value=''>Select Docket</option>
                                    <?php foreach($dockets as $key) { ?>
                                    <option value='<?=$key->docket_no?>'><?=$key->docket_no?></option>
@@ -42,12 +42,8 @@
                             <div class="form-group row">
                                 <div class="col-sm-2">File Type</div>
                                 <div class="col-sm-4">
-                                 <select class='form-control' id ='filetype' name='filetype'>
+                                 <select class='form-control select2' id ='filetype' name='filetype'>
                                  </select>
-                                </div>
-                                <div class="col-sm-2">Application No</div>
-                                <div class="col-sm-4">
-                                    <input type='text' class='form-control' name="application_no" value=''>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -166,6 +162,7 @@ $(document).ajaxComplete(function() {
                     $.each(JSON.parse(data), function( index, value ) {
                         string += '<option value="' + value.file_no + '">' + value.file_name + '-('+ value.file_no +')</option>'
                     });
+                    //$('.select2').select2();
                     $('#filetype').html(string);
               }
         });

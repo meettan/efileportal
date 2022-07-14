@@ -26,7 +26,8 @@ class Transaction extends CI_Controller {
 	public function file(){
 		$select = array('a.*','b.first_name');
 		$where  = array('a.created_by = b.id' => NULL,
-		                'a.created_by'=>$this->session->userdata('uloggedin')->id);
+		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
+						'1 order by a.file_date desc'=>NULL);
 		$data['files'] = $this->master->f_get_particulars('td_file a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
 		$this->load->view('transaction/file',$data);
@@ -61,7 +62,6 @@ class Transaction extends CI_Controller {
 						'fin_year'  => $this->session->userdata('session_year_id'),
 						'dept_no'   => $this->input->post('dept'),
 						'docket_no' => $this->input->post('docket'),
-						'application_no' => trim($this->input->post('application_no')),
 						'file_no'   => $file_type.'-'.$sess.'-'.($sl+1),
 						'note_sheet'=> $this->input->post('editor1'),
 						'created_by' => $this->session->userdata('uloggedin')->id,

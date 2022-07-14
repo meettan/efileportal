@@ -26,6 +26,7 @@ class Dis extends CI_Controller {
 		$where   = array('a.created_by = b.id' => NULL,
 						'a.docket_dt >=' => $data['start_date'],
 						'a.docket_dt <=' => $data['end_date'],
+						'a.created_by' => $this->session->userdata('uloggedin')->id,
 					    '1 order by a.docket_dt desc' => NULL );
 		$data['dockets']   = $this->master->f_get_particulars('td_docket_no a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
@@ -197,9 +198,10 @@ class Dis extends CI_Controller {
 
 	//  *****  Code for Forward From Dispatch   *****    //
 	public function forward(){
-		$dwhere = array('docket_no in(SELECT distinct docket_no from td_document)'=>NULL,
-			            'fin_year'=>$this->session->userdata('session_year_id')
-						 ,'status'=>'0'
+		$dwhere = array(//'docket_no in(SELECT distinct docket_no from td_document)'=>NULL,
+			            'fin_year'=>$this->session->userdata('session_year_id'),
+						'created_by'=> $this->session->userdata('uloggedin')->id,
+						'status'=>'0'
 					     );
 		$data['dockets'] = $this->master->f_get_particulars('td_docket_no',array('docket_no'),$dwhere,0);
 		$this->load->view('common/header');
@@ -216,9 +218,10 @@ class Dis extends CI_Controller {
 			$docket_no = trim($this->input->post('docket_no'));
 			$query = $this->db->get_where('td_document', array('docket_no =' => $docket_no))->result();
 		
-			if(count($query) > 0){
+			//if(count($query) > 0){
 				$uwhere = array('dept != '=>'Dispatch',
-				                'id !=' => $this->session->userdata('uloggedin')->id);
+				              //  'id !=' => $this->session->userdata('uloggedin')->id
+							);
 		        $data['users'] = $this->master->f_get_particulars('md_users',NULL,$uwhere,0);
 				$data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 			    $select  = array('a.*','b.first_name');
@@ -229,9 +232,9 @@ class Dis extends CI_Controller {
 				$data['docs']    = $this->master->f_get_particulars('td_document',NULL,array('fwd_flag' => 'N','docket_no =' => $docket_no),0);
 				$view = $this->load->view('dispach/documentblock',$data);
 				return $view;
-			}else{
-				return 0;
-			}
+			// }else{
+			// 	return 0;
+			// }
 	
 		}
 	}

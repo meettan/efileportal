@@ -92,23 +92,24 @@ let row = '<tr>'+
                 url: '<?=base_url()?>index.php/dispach/docket_detail/',
                 data: {docket_no:$(this).val()},
                 success: function(response)
-                {
-                    if (response != 0){
-                        $("#imgdetails").html(response);
-                    }
-                    else
-                    {
-                        $("#docket_no").val('');
-                        $("#imgdetails").html('');
-                        Swal.fire({
-                        //title: "Alert Set on Timer",
-                        text: "Docket No Does not Have Document.",
-                        position: "middle",
-                        color: '#f0f0f0',
-                        background: "#ffc0cb",
-                        timer: 100000
-                        });
-                    }
+                {   
+                    $("#imgdetails").html(response);
+                    // if (response != 0){
+                    //     $("#imgdetails").html(response);
+                    // }
+                    // else
+                    // {
+                    //     $("#docket_no").val('');
+                    //     $("#imgdetails").html('');
+                    //     Swal.fire({
+                    //     //title: "Alert Set on Timer",
+                    //     text: "Docket No Does not Have Document.",
+                    //     position: "middle",
+                    //     color: '#f0f0f0',
+                    //     background: "#ffc0cb",
+                    //     timer: 100000
+                    //     });
+                    // }
                 }
         });
     })
