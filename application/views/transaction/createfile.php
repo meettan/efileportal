@@ -29,6 +29,24 @@
                                      <?php } ?>
                                  </select>
                                 </div>
+                                <div class="col-sm-2">Module</div>
+                                <div class="col-sm-4" >
+                                  <select class='select2' name='module' id='module'>
+                                    <option value=''>Select Module</option>
+                                    <option value='L'>Leave</option>
+                                    <option value='P'>Paddy</option>
+                                    <option value='S'>Stationary</option>
+                                    <option value='I'>ICDS</option>
+                                    <option value='OT'>Other</option>
+                                   </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-2">File Type</div>
+                                <div class="col-sm-4">
+                                 <select class='form-control select2' id ='filetype' name='filetype'>
+                                 </select>
+                                </div>
                                 <div class="col-sm-2">Docket No</div>
                                 <div class="col-sm-4" id='dcdetail'>
                                   <select class='select2' name='docket' id='docket_no'>
@@ -39,13 +57,9 @@
                                    </select>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-2">File Type</div>
-                                <div class="col-sm-4">
-                                 <select class='form-control select2' id ='filetype' name='filetype'>
-                                 </select>
-                                </div>
-                            </div>
+                            <div class="form-group row" id='docket_content'>
+
+                            </div>   
                             <div class="form-group row">
                               <div class="col-sm-2">Remarks</div>
                                <div class="col-sm-10">
@@ -126,30 +140,54 @@ $(document).ajaxComplete(function() {
     
         CKEDITOR.replace( 'editor1' );
                 
+    // $("#docket_no").on("change", function() {
+    //     $.ajax({
+    //           type: "POST",
+    //           url: '<?=base_url()?>index.php/dispach/docket_check/',
+    //           data: {docket_no:$(this).val()},
+    //           success: function(response)
+    //           {
+    //               //var jsonData = JSON.parse(response);
+    //               if (response > "0"){     }
+    //               else
+    //               {
+    //                     $("#docket_no").val('');
+    //                     Swal.fire({
+    //                     //title: "Alert Set on Timer",
+    //                     text: "Docket No Does not Exist.",
+    //                     position: "middle",
+    //                     color: '#f0f0f0',
+    //                     background: "#ffc0cb",
+    //                     timer: 100000
+    //                     });
+    //               }
+    //           }
+    //     });
+    // })
+
     $("#docket_no").on("change", function() {
-      $.ajax({
+
+        var module =  $('#module').val();
+        
+        if(module !=''){
+            //$('#module').val('');
+            $.ajax({
               type: "POST",
-              url: '<?=base_url()?>index.php/dispach/docket_check/',
-              data: {docket_no:$(this).val()},
+              url: '<?=base_url()?>index.php/transaction/docket_content_detail/',
+              data: {module:module,docket_no:$(this).val()},
               success: function(response)
               {
-                  //var jsonData = JSON.parse(response);
-                  if (response > "0"){     }
-                  else
-                  {
-                        $("#docket_no").val('');
-                        Swal.fire({
-                        //title: "Alert Set on Timer",
-                        text: "Docket No Does not Exist.",
-                        position: "middle",
-                        color: '#f0f0f0',
-                        background: "#ffc0cb",
-                        timer: 100000
-                        });
-                  }
+                $('#docket_content').html(response);
               }
-        });
+            });
+        }
+        // else{
+        //     alert('Please Select Module');
+        //     $('#docket_no').removeAttr('selected').find('option:first').attr('selected', 'selected');
+        // }
+
     })
+
 
     $("#dept").on("change", function() {
       $.ajax({
@@ -175,21 +213,22 @@ $(document).ajaxComplete(function() {
             data: {docket_no:$(this).val()},
             success: function(response)
             {
-                if (response != 0){
-                    $("#imgdetails").html(response);
-                }
-                else
-                {
-                    $("#docket_no").val('');
-                    Swal.fire({
-                    //title: "Alert Set on Timer",
-                    text: "Docket No Does not Exist.",
-                    position: "middle",
-                    color: '#f0f0f0',
-                    background: "#ffc0cb",
-                    timer: 100000
-                    });
-                }
+                $("#imgdetails").html(response);
+                // if (response != 0){
+                //     $("#imgdetails").html(response);
+                // }
+                // else
+                // {
+                //     $("#docket_no").val('');
+                //     Swal.fire({
+                //     //title: "Alert Set on Timer",
+                //     text: "Docket No Does not Exist.",
+                //     position: "middle",
+                //     color: '#f0f0f0',
+                //     background: "#ffc0cb",
+                //     timer: 100000
+                //     });
+                // }
             }
         });
     })

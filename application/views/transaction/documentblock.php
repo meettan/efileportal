@@ -17,17 +17,6 @@
                                <div class="thumImgTitle"><?=$key->name ?></div>
                                </div>
                           </div>
-                         
+                          </div>  --> 
                           <?php } ?>
-                 </div>
-                <?php //}else { ?>   
-                    <input type="hidden" name='status' value='0' id='status'>
-                       
-                              <div class='row' >
-                              <div class="col-sm-4"></div>
-                              <div class="col-sm-6"><br><h2 style="color:red">No Document To Forward</h2></div>
-                             </div>
-                               
-                         
-
-                 <?php //} ?>    -->
+               

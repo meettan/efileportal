@@ -61,6 +61,7 @@ class Transaction extends CI_Controller {
 						'sl_no'     => ($sl+1),
 						'fin_year'  => $this->session->userdata('session_year_id'),
 						'dept_no'   => $this->input->post('dept'),
+						'module'    => $this->input->post('module'),
 						'docket_no' => $this->input->post('docket'),
 						'file_no'   => $file_type.'-'.$sess.'-'.($sl+1),
 						'note_sheet'=> $this->input->post('editor1'),
@@ -126,21 +127,32 @@ class Transaction extends CI_Controller {
 
 	}
 
+	public function docket_content_detail(){
+			$module = $this->input->post('module');
+			$docket_no = $this->input->post('docket_no');
+		$string = '';
+		if($module == 'L') {
+			$data = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
+			$string = '<div class="col-sm-12" style="color:green"><p/><b>'.$data->emp_name.' Applied for '.$data->leave_type.' From '.$data->from_dt.' TO '.$data->to_dt.'</b></p></div>';
+		}
+		echo $string;
+	}
+
 	//  ****   Code for docket detail  using and td_document,td_docket_no
 	public function docket_detail(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$where = array('docket_no' => $this->input->post('docket_no'));
 			$docket_no = trim($this->input->post('docket_no'));
 			$query = $this->db->get_where('td_docket_no', array('docket_no =' => $docket_no))->result();
-			if(count($query) > 0){
+			//if(count($query) > 0){
 
 			   $data['docs']  = $this->master->f_get_particulars('td_document',NULL,array('docket_no'=>$docket_no,'fwd_flag' => 'Y'),0);
 			   $view = $this->load->view('transaction/documentblock',$data);
 			   return $view;
 
-			}else{
-				echo 0;
-			}
+			//}else{
+			//	echo 0;
+			//}
 			
 		}
 	}
