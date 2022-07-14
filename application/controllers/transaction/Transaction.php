@@ -133,7 +133,11 @@ class Transaction extends CI_Controller {
 		$string = '';
 		if($module == 'L') {
 			$data = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
+			if($data->emp_name !=''){
 			$string = '<div class="col-sm-12" style="color:green"><p/><b>'.$data->emp_name.' Applied for '.$data->leave_type.' From '.$data->from_dt.' TO '.$data->to_dt.'</b></p></div>';
+			}else{
+				$string ='';
+			}
 		}
 		echo $string;
 	}
