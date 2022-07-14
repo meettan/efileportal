@@ -77,10 +77,14 @@ class Notesheet extends CI_Controller {
         $db2 = $this->load->database('db2', TRUE);
         $file_no = $this->input->get('fileno');
         $result  = $this->master->f_get_particulars('td_file',array('docket_no'),array('file_no'=>$file_no),1);
+        if($result){
         if($result->docket_no){
             $data['data'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$result->docket_no),1) ;
         }else{
             $data['data'] = '';
+        }
+        }else{
+            $data['data'] = ''; 
         }
         $this->load->view('common/header');
         $this->load->view("ptint/leave_notesheet", $data);
