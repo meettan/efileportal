@@ -36,9 +36,16 @@
                         </div>   
                         </div>  
                         <?php } ?> 
+                      
                         <div class="form-group row">
-                            <div class="col-sm-11">
-                            <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
+                            <div class="col-sm-12">
+                                <div class="card">
+                                
+                                    <div class="card-body">
+                                    <h5 class="card-title"> Creater: </h5>
+                                    <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <?php if($comment_author) { 
@@ -46,12 +53,10 @@
                             ?>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <div class="card single_post" style='padding-left:10px'>
-                                    <div class="body" >
-                                        <p><?php if(isset($ca->remarks)) echo $ca->remarks; ?></p>
-                                    </div>
-                                    <div class="footer">
-                                            <div class="actions btn btn-outline-secondary"><?php if(isset($ca->first_name)) echo $ca->first_name; ?></div>
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title"> Remarks By: <?php if(isset($ca->first_name)) echo $ca->first_name; ?></h5>
+                                    <?php if(isset($ca->remarks)) echo $ca->remarks; ?>
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +110,7 @@
                                         <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-sm-2 fieldname">Forward Status</div>
+                            <!-- <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
                                     <option value=''>Select user</option>
@@ -113,7 +118,7 @@
                                     <option value='R'>Reject</option>
                                 </select>
                             </div>
-                            </div>
+                            </div> -->
                             <hr/>
 
                             <div class="form-group row">

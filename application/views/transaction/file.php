@@ -3,7 +3,13 @@
 			 <div class="card-body" >
 				<div class="titleSec">
                     <button type="button" class="btn btn-primary" id='add'>Create File</button>
-				<h2>File List</h2> 
+				<h2>File List</h2>
+                <?php if ($this->session->flashdata('success') != ''):   ?>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <?php  echo $this->session->flashdata('success');  ?>
+                    </div>
+                <?php endif; ?> 
 				</div>
 				<div class="row">
                 <div class="col-sm-12"> 
@@ -33,8 +39,10 @@
                                 <td><?php $key->docket_no?>
                                 
                                 <button class="link" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button>
+                                <?php if($key->creater_forward == '0') { ?>
                                 <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button>
                                 <a href="javascript:void(0)" onclick="" class="delete editeCus" title="Delete" id='<?=$key->file_no?>'><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
+                                <?php } ?>
                                 <?php $str2 = substr($key->file_no,0,1); 
                                      if($str2 == 'S') { ?>
                                 <a href="<?php echo site_url('index.php/notesheet/salary_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>

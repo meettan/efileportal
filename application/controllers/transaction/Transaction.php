@@ -256,11 +256,16 @@ class Transaction extends CI_Controller {
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
 					'remarks' => $this->input->post('remarks'),
-					'fwd_status' => $this->input->post('fwd_status'),
-					'fwd_to' =>$this->input->post('user'),
+					'fwd_status' => 'A',
+					'fwd_to'  => $this->input->post('user'),
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
 					'forwarded_at' =>date("Y-m-d h:i:s"));
 			$this->master->f_insert('td_track_file',$data);
+			$created_by = $this->input->post('created_by');
+			if($created_by == $this->session->userdata('uloggedin')->id){
+				$this->master->f_edit('td_file',array('creater_forward'=> '1'),array('file_no'=> $this->input->post('fileno')));
+			}
+			$this->session->set_flashdata('success', 'File Forwarded Successfully');
 			redirect('index.php/transaction/file');
 		}
 
@@ -310,6 +315,4 @@ class Transaction extends CI_Controller {
 		  return $view;
 		}
 	}
-
-	
 }

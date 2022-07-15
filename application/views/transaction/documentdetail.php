@@ -2,12 +2,13 @@
 	<div class="card">
         <div class="card-body" >
             <div class="titleSec">
-                              <a href='<?=base_url()?>index.php/transaction/file/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
-                            <h2>Page Title</h2> 
+                <a href='<?=base_url()?>index.php/transaction/file/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
+                <h2>Page Title</h2> 
             </div>
             <div class="row">
                 <div class="col-sm-12"> 
-                        <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data'>
+                    <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data'>
+                    <input type='hidden' name='created_by' value='<?php if(isset($filedtl->created_by)) echo $filedtl->created_by; ?>'>
                         <?php foreach($docs as $dt);?>   
                         <div class="form-group row">
                             <div class="col-sm-2 fieldname">File No </div>
@@ -16,7 +17,7 @@
                             </div>
                             <div class="col-sm-2 fieldname">Docket No</div>
                             <div class="col-sm-4">
-                            <input type="text" name="docket_no" required class="form-control" value='<?php if(isset($dt->docket_no)) echo $dt->docket_no;  ?>' id='docket_no' readonly >
+                            <input type="text" name="docket_no" required class="form-control" value='<?php if(isset($filedtl->docket_no)) echo $filedtl->docket_no;  ?>' id='docket_no' readonly >
                             </div>
                         </div>
                         <?php if($leave) { ?>
@@ -37,8 +38,14 @@
                         </div>  
                         <?php } ?> 
                         <div class="form-group row">
-                            <div class="col-sm-11">
-                            <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
+                            <div class="col-sm-12">
+                                <div class="card">
+                                
+                                    <div class="card-body">
+                                    <!-- <h5 class="card-title"> Creater: </h5> -->
+                                    <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                             <hr/>
@@ -88,7 +95,7 @@
                                         <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-sm-2 fieldname">Forward Status</div>
+                            <!-- <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
                                     <option value=''>Select Status</option>
@@ -96,7 +103,7 @@
                                     <option value='R'>Reject</option>
                                 </select>
                             </div>
-                            </div>
+                            </div> -->
                             <hr/>
 
                             <div class="form-group row">
