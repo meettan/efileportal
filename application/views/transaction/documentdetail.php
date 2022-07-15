@@ -21,21 +21,57 @@
                             </div>
                         </div>
                         <?php if($leave) { ?>
-                        <div class="form-group row">
+                        <div class="form-group row" id='docket_content'>
+
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-10">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Application Date</th>
+                                        <th>Name</th>
+                                        <th>Leave Type</th>
+                                        <th>From Date</th>
+                                        <th>To Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><?=date('d/m/Y',strtotime($leave->trans_dt))?></td>
+                                        <td><?=$leave->emp_name?></td>
+                                        <td><?=$leave->leave_type?></td>
+                                        <td><?=date('d/m/Y',strtotime($leave->from_dt))?></td>
+                                        <td><?=date('d/m/Y',strtotime($leave->to_dt))?></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan='5'></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td colspan='5'><?=$leave->remarks?></td>
+                                        
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        </div>
+                       
+                        <!-- <div class="form-group row">
                         <div class="col-sm-11">
                         <?php $lea = '';
-                            if($leave->leave_type == 'CL'){ $lea = 'Casual Leave';}
-                            else if($leave->leave_type == 'ML'){ $lea = 'Medical Leave';}
-                            else if($leave->leave_type == 'EL'){ $lea = 'Earned Leave';}
-                            else if($leave->leave_type == 'OD'){ $lea = 'Off Day';}
+                           // if($leave->leave_type == 'CL'){ $lea = 'Casual Leave';}
+                           // else if($leave->leave_type == 'ML'){ $lea = 'Medical Leave';}
+                           // else if($leave->leave_type == 'EL'){ $lea = 'Earned Leave';}
+                          //  else if($leave->leave_type == 'OD'){ $lea = 'Off Day';}
                             
                             ?>
-                            <p><?php echo $leave->letterfirstline; ?> </p>
-                        <p>So Sri <?php echo $leave->emp_name; ?> has requested to adjust the leaves in <?=$lea?> ground.</p>
+                            <p><?php //echo $leave->letterfirstline; ?> </p>
+                        <p>So Sri <?php //echo $leave->emp_name; ?> has requested to adjust the leaves in <?=$lea?> ground.</p>
                         
                         <p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>
                         </div>   
-                        </div>  
+                        </div>   -->
                         <?php } ?> 
                         <div class="form-group row">
                             <div class="col-sm-12">
@@ -47,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                           </div>
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
                             <?php   
@@ -152,6 +188,8 @@
         </div>
 <script>
 $( document ).ready(function() {
+
+
     $('#intro2').on('change', '.doc', function(){
 
         var ext = $(this).val().split('.').pop().toLowerCase();

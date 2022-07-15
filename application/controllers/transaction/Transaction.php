@@ -194,6 +194,7 @@ class Transaction extends CI_Controller {
 		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
+			$bata['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
           $data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->application_no),1) ;
 		  }else{
 			$data['leave'] = '';
@@ -265,7 +266,7 @@ class Transaction extends CI_Controller {
 			if($created_by == $this->session->userdata('uloggedin')->id){
 				$this->master->f_edit('td_file',array('creater_forward'=> '1'),array('file_no'=> $this->input->post('fileno')));
 			}
-			$this->session->set_flashdata('success', 'File Forwarded Successfully');
+			$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
 			redirect('index.php/transaction/file');
 		}
 
@@ -315,4 +316,6 @@ class Transaction extends CI_Controller {
 		  return $view;
 		}
 	}
+
+	
 }

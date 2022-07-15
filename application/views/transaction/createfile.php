@@ -181,11 +181,6 @@ $(document).ajaxComplete(function() {
               }
             });
         }
-        // else{
-        //     alert('Please Select Module');
-        //     $('#docket_no').removeAttr('selected').find('option:first').attr('selected', 'selected');
-        // }
-
     })
 
 
