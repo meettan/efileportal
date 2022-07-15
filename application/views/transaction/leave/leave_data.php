@@ -8,6 +8,7 @@
                 <th>Leave Type</th>
                 <th>From Date</th>
                 <th>To Date</th>
+                <th>No of days</th>
             </tr>
         </thead>
         <tbody>
@@ -17,13 +18,14 @@
                 <td><?=$leave->leave_type?></td>
                 <td><?=date('d/m/Y',strtotime($leave->from_dt))?></td>
                 <td><?=date('d/m/Y',strtotime($leave->to_dt))?></td>
+                <td><?php echo $diff = (abs(strtotime($leave->to_dt) - strtotime($leave->from_dt)))/24/3600; ?></td>
             </tr>
             <tr>
-                <td colspan='5'></td>
+                <td colspan='6'></td>
                 
             </tr>
             <tr>
-                <td colspan='5'><?=$leave->remarks?></td>
+                <td colspan='6'><?=$leave->remarks?></td>
                 
             </tr>
         </tbody>

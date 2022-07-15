@@ -230,6 +230,12 @@ class Transaction extends CI_Controller {
 		$data['fdetail'] = $this->master->f_get_particulars('td_file',NULL,array('file_no' =>$fdetail[1] ),1);
 		$data['depts']   = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 		$data['dockets'] = $this->trans_model->get_forwarded_document('td_document');
+		$str2 = substr($fdetail[1],0,1); 
+		  if($str2 == 'L') {
+			$data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$fdetail[0]),1) ;
+		  }else{
+			$data['leave'] = '';
+		  }
 		$this->load->view('transaction/editfile',$data);
 		}
 

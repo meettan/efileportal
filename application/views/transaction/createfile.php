@@ -30,8 +30,8 @@
                                  </select>
                                 </div>
                                 <div class="col-sm-2">Module</div>
-                                <div class="col-sm-4" >
-                                  <select class='select2' name='module' id='module'>
+                                <div class="col-sm-4">
+                                  <select class='form-control select2' name='module' id='module'>
                                     <option value=''>Select Module</option>
                                     <option value='L'>Leave</option>
                                     <option value='P'>Paddy</option>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="col-sm-2">Docket No</div>
                                 <div class="col-sm-4" id='dcdetail'>
-                                  <select class='select2' name='docket' id='docket_no'>
+                                  <select class='form-control select2' name='docket' id='docket_no'>
                                     <option value=''>Select Docket</option>
                                    <?php foreach($dockets as $key) { ?>
                                    <option value='<?=$key->docket_no?>'><?=$key->docket_no?></option>
