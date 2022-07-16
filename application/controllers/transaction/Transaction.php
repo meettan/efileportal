@@ -142,6 +142,30 @@ class Transaction extends CI_Controller {
 		}
 		echo $string;
 	}
+	public function docket_remark_detail(){
+		$module = $this->input->post('module');
+		$docket_no = $this->input->post('docket_no');
+	$string = '';
+	if($module == 'L') {
+		$data = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
+		if($data){
+			$leave = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
+
+			if($leave->leave_type == 'CL'){ $lea = 'Casual Leave';}
+                            else if($leave->leave_type == 'ML'){ $lea = 'Medical Leave';}
+                            else if($leave->leave_type == 'EL'){ $lea = 'Earned Leave';}
+                            else if($leave->leave_type == 'OD'){ $lea = 'Off Day';}
+                           
+			$string .= "<p>So Sri ".$leave->emp_name." has requested to adjust the leaves in ".$lea." ground.</p>";
+            $string .= "<p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>" ;           
+                        
+		return $string;
+		}else{
+			return	$string ='';
+		}
+	}
+	echo $string;
+    }
 
 	//  ****   Code for docket detail  using and td_document,td_docket_no
 	public function docket_detail(){
@@ -188,9 +212,11 @@ class Transaction extends CI_Controller {
 		  $whereu = array('dept != '=>'Dispatch');
 		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
 		  unset($where);
-		  $where = array('forwarded_by'=>$this->session->userdata('uloggedin')->id,
-						 'file_no' =>$fdetail[1]);
-		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
+		  $where = array('a.fwd_to = b.id'=>NULL,
+			              'a.forwarded_by'=>$this->session->userdata('uloggedin')->id,
+						 'a.file_no' =>$fdetail[1]);
+		 		 
+		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.forwarded_at','a.remarks','b.first_name'),$where,1);
 		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
@@ -259,11 +285,13 @@ class Transaction extends CI_Controller {
 	public function file_forward(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
+			$result = $this->master->f_get_particulars('td_track_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
 					'remarks' => $this->input->post('remarks'),
 					'fwd_status' => 'A',
+					'fwd_dept'=>$result->dept_no,
 					'fwd_to'  => $this->input->post('user'),
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
 					'forwarded_at' =>date("Y-m-d h:i:s"));
@@ -297,6 +325,7 @@ class Transaction extends CI_Controller {
 		 
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
+		  $data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 		  $data['fileno'] = $fdetail[1];
 		  $whereu = array('dept != '=>'Dispatch');
 		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
@@ -306,6 +335,8 @@ class Transaction extends CI_Controller {
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
 		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
 		  //echo $data['filedtl']->application_no;die();
+		  $ft = substr($fdetail[1],0,4); 
+		  $data['filetype'] = $this->master->f_get_particulars('md_file_type',array('file_name'),array('file_no'=>$ft),1);
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
 			if($data['filedtl'] ){

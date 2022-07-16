@@ -63,7 +63,7 @@
                             <div class="form-group row">
                               <div class="col-sm-2">Remarks</div>
                                <div class="col-sm-10">
-                                <textarea  class="form-control" placeholder='Remarks' name="editor1"></textarea>
+                                <textarea  class="form-control" placeholder='Remarks' name="editor1" id='rmk'></textarea>
                                 </div>
                             </div>
                             <div class="form-group row" id='file_documnet'>
@@ -178,6 +178,15 @@ $(document).ajaxComplete(function() {
               success: function(response)
               {
                 $('#docket_content').html(response);
+              }
+            });
+            $.ajax({
+              type: "POST",
+              url: '<?=base_url()?>index.php/transaction/docket_remark_detail/',
+              data: {module:module,docket_no:$(this).val()},
+              success: function(response)
+              {
+                $('#rmk').val(response);
               }
             });
         }

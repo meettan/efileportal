@@ -109,20 +109,39 @@
                             <?php } }?> 
                             </div>
                         <hr/>
-                        <div class="form-group row">
-                            <div class="col-sm-2 fieldname">Remarks</div>
-                            <div class="col-sm-10">
-                            <textarea name='remarks' class="form-control" placeholder='' ></textarea>
-                            </div>
-                        </div>
-                        <hr/>
+                       
                         
                         <?php if($filestatus)  {   ?>
                             <div class="form-group row">
                                  <div class="col-sm-12" ><p style="text-align:center;font-size:18px;font-weight: 900;color: red;">You Forwarded File</p></div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-sm-2 fieldname">Forwarded To</div>
+                                <div class="col-sm-4">
+                                <input type='text' class="form-control" value='<?=$filestatus->remarks?>'  readonly/>
+                                </div>
+                                <div class="col-sm-2 fieldname">Forwarded at</div>
+                                <div class="col-sm-4">
+                                <input type='text' class="form-control" value='<?=$filestatus->forwarded_at?>'  readonly/>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="form-group row">
+                                <div class="col-sm-2 fieldname">Remarks</div>
+                                <div class="col-sm-10">
+                                <textarea name='remarks' class="form-control" placeholder='' ><?=$filestatus->remarks?></textarea>
+                                </div>
+                            </div>
+                            <hr/>
                         
                         <?php }else{ ?>
+                            <div class="form-group row">
+                                <div class="col-sm-2 fieldname">Remarks</div>
+                                <div class="col-sm-10">
+                                <textarea name='remarks' class="form-control" placeholder='' ></textarea>
+                                </div>
+                            </div>
+                            <hr/>
                             <div class="form-group row">
                             <div class="col-sm-2 fieldname">User</div>
                             <div class="col-sm-4">
