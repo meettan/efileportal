@@ -105,23 +105,44 @@ class Auth extends CI_Controller {
 							);
 				$num = $this->master->f_insert('md_users',$data);
 			if($num > 0 ) {
-				$from_email = "auth@wbsmconfed.in";
-				$to_email = $this->input->post('email'); 
+				$config = Array(
+					'protocol' => 'smtp',
+					'smtp_host' => 'wbsmconfed.in',
+					'smtp_port' => 465,
+					'smtp_user' => 'auth@wbsmconfed.in',
+					'smtp_pass' => 'sz09Ji0@3####222',
+					'mailtype'  => 'html', 
+					'charset'   => 'iso-8859-1'
+				);
+				//$from_email = "auth@wbsmconfed.in";
+				$to = $this->input->post('email'); 
 				//Load email library 
-				$this->load->library('email'); 
-				$this->email->from($from_email, 'Your Name'); 
-				$this->email->to($to_email);
-				$this->email->subject('Email Test'); 
-				$this->email->message('Testing the email class.');
+				// $this->load->library('email'); 
+				// $this->email->from($from_email, 'Your Name'); 
+				// $this->email->to($to_email);
+				// $this->email->subject('Email Test'); 
+				// $this->email->message('Testing the email class.');
 				//Send mail 
-				if($this->email->send()) 
+				//$to = "somebody@example.com, somebodyelse@example.com";
+                $subject = "HTML email";
+
+				$message = "";
+
+				// Always set content-type when sending HTML email
+				$headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+				// More headers
+				$headers .= 'From: <auth@wbsmconfed.in>' . "\r\n";
+				//$headers .= 'Cc: myboss@example.com' . "\r\n";
+
+                //mail($to,$subject,$message,$headers);
+				if(mail($to,$subject,$message,$headers)) 
 				$this->session->set_flashdata("email_sent","Email sent successfully."); 
 				else 
 				$this->session->set_flashdata("email_sent","Error in sending Email."); 
-				//$this->load->view('email_form'); 
-				//$this->session->set_flashdata('success', 'Added successfully.');
-				//echo 'Added successfully.';
-				redirect('index.phpauth/register/');
+				
+				redirect('index.php/auth/register/');
 			}else{
 				$this->session->set_flashdata('error', 'Something Went wrong.');
 			}
