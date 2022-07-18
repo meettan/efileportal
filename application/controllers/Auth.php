@@ -107,12 +107,13 @@ class Auth extends CI_Controller {
 			if($num > 0 ) {
 				$config = Array(
 					'protocol' => 'smtp',
-					'smtp_host' => 'wbsmconfed.in',
-					'smtp_port' => 465,
-					'smtp_user' => 'auth@wbsmconfed.in',
-					'smtp_pass' => 'sz09Ji0@3####222',
+					'smtp_host' => 'webmail.wbsmconfed.in',
+					'smtp_port' => 25,
+					'smtp_user' => 'admin@wbsmconfed.in',
+					'smtp_pass' => 'Mi0#2m96j@WBsmConfed',
 					'mailtype'  => 'html', 
-					'charset'   => 'iso-8859-1'
+					'charset'   => 'iso-8859-1',
+					'wordwrap' => TRUE
 				);
 				//$from_email = "auth@wbsmconfed.in";
 				$to = $this->input->post('email'); 
@@ -124,24 +125,23 @@ class Auth extends CI_Controller {
 				// $this->email->message('Testing the email class.');
 				//Send mail 
 				//$to = "somebody@example.com, somebodyelse@example.com";
-                $subject = "HTML email";
+                //$subject = "HTML email";
 
-				$message = "";
-
+				//$message = "Demo message";
 				// Always set content-type when sending HTML email
-				$headers = "MIME-Version: 1.0" . "\r\n";
-				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+				//$headers = "MIME-Version: 1.0" . "\r\n";
+				//$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 				// More headers
-				$headers .= 'From: <auth@wbsmconfed.in>' . "\r\n";
+				//$headers .= 'From: <auth@wbsmconfed.in>' . "\r\n";
 				//$headers .= 'Cc: myboss@example.com' . "\r\n";
 
                 //mail($to,$subject,$message,$headers);
-				if(mail($to,$subject,$message,$headers)) 
-				$this->session->set_flashdata("email_sent","Email sent successfully."); 
-				else 
-				$this->session->set_flashdata("email_sent","Error in sending Email."); 
-				
+				// if(mail($to,$subject,$message,$headers)) 
+				// $this->session->set_flashdata("email_sent","Email sent successfully."); 
+				// else 
+				// $this->session->set_flashdata("email_sent","Error in sending Email."); 
+				$this->session->set_flashdata('success', 'Registration completed.');
 				redirect('index.php/auth/register/');
 			}else{
 				$this->session->set_flashdata('error', 'Something Went wrong.');
@@ -172,6 +172,38 @@ class Auth extends CI_Controller {
 			$this->load->view('registration',$data);
 		}
 			
+	}
+
+	public function testmail(){
+		$this->load->library('email');
+			    $config = Array(
+				        'protocol' => 'smtp',
+						'smtp_host' => 'webmail.wbsmconfed.in',
+						'smtp_port' => 25,
+						'smtp_user' => 'admin@wbsmconfed.in',
+						'smtp_pass' => 'Mi0#2m96j@WBsmConfed',
+						//'mailtype'  => 'html', 
+						//'charset'   => 'iso-8859-1',
+                        //'wordwrap' => TRUE
+					);
+				  $message = 'Demo test email  for testing purpose';
+          $this->email->initialize($config);
+          $this->email->set_newline("\r\n");
+		 //$this->email->set_newline("\r\n");
+		  $this->email->from('admin@wbsmconfed.in'); // change it to yours
+		  //$this->email->to('lokesh@synergicsoftek.com');// change it to yours
+		  $this->email->to('lokesh@synergicsoftek.com','lk60588@gmail.com');// change it to yours
+		  $this->email->subject('Resume from JobsBuddy for your Job posting');
+		  $this->email->message($message);
+		  if($this->email->send())
+		  {
+			  echo 'Email sent.';
+		  }
+		  else
+		  {
+			  show_error($this->email->print_debugger());
+		  }
+
 	}
 
 	//  *****  Code for forgot password listing   ***** //
