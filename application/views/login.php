@@ -32,6 +32,12 @@
              <?php  echo $this->session->flashdata('error');  ?>
     </div>
    <?php endif; ?>
+   <?php if ($this->session->flashdata('success') != ''):   ?>
+      <div class="alert alert-success alert-dismissible">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <?php  echo $this->session->flashdata('success');  ?>
+    </div>
+   <?php endif; ?>
 	 <div class="fieldSec">
 	    <form action="<?=base_url()?>index.php/auth" method="POST">
 
