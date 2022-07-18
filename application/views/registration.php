@@ -48,7 +48,7 @@
        <div class="form-group">
         <div class="row">
           <div class="col"><input type="number" class="form-control" name="phone_no" placeholder="Phone Number" required="required" id='phno'></div>
-          <div class="col"><input type="email" class="form-control" name="email" placeholder="Email" ></div>
+          <div class="col"><input type="email" class="form-control" name="email" placeholder="Email" id='email' autocomplete="off"></div>
        </div>          
        </div>
        <div class="form-group">
@@ -88,10 +88,7 @@
 </div>
 	
 <script>
-
-$(document).ready(function() {
-    $('#example').DataTable();
-} );	
+	
 </script>
 <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
 <script src="<?=base_url()?>assets/js/main_javascript.js"></script>
@@ -176,23 +173,7 @@ function myFunction(){
                   //var jsonData = JSON.parse(response);
                   if (response > "0")
                   {
-                    // Swal.fire({
-                    //   //title: "Alert Set on Timer",
-                    //   text: "Phone number already Exist.",
-                    //   position: "middle",
-                    //   color: '#fff',
-                    //   //html: true,
-                    //   //backdrop: "linear-gradient(yellow, orange)",
-                    //   background: "red",
-                    //   showCloseButton: true,
-                    //   showCancelButton: true,
-                    //   allowOutsideClick: false,
-                    //   allowEscapeKey: false,
-                    //   allowEnterKey: false,
-                    //   showConfirmButton: false,
-                    //   showCancelButton: false,
-                    //   timer: 100000
-                    // });
+                    
                     Swal.fire({
                           title: 'Custom width, padding, color, background.',
                           width: 600,
@@ -265,6 +246,26 @@ function myFunction(){
     }
     return true;
   }
+</script>
+
+<script>
+  $('#email').on('change', function(){
+    alert($(this).val())
+    $.ajax({
+      url:'<?= base_url() ?>index.php/auth/email_check',
+      type:'POST',
+      data:{email: $(this).val()},
+      success:function(data){
+        if(data > 0){
+          message = "This email is registered already!";
+          messageDialog("Error", message, "error", 2);
+          return false;
+        }else{
+          return true
+        }
+      }
+    })
+  })
 </script>         
 </body>
 </html>

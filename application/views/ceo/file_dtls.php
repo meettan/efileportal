@@ -105,7 +105,7 @@
                             <div class="form-group row">
                             <div class="col-sm-2 fieldname">User</div>
                             <div class="col-sm-4">
-                                <select name='user' class='form-control' required><option value=''>Select user</option>
+                                <select name='user' class='form-control' ><option value='0'>Select user</option>
                                         <?php foreach($users as $key) { ?>
                                         <option value='<?=$key->id?>'><?=$key->first_name?></option>
                                         <?php } ?>

@@ -14,18 +14,28 @@
 </tr>
 <tr>
 <td align="left" valign="top" style="padding: 25px 15px 5px 15px; font-family: Arial; font-size: 15px; line-height: 25px;">
-<p style=" margin: 0; font-family: Arial; font-size: 15px; color: #494949;">Dear,<??></p>
+<p style=" margin: 0; font-family: Arial; font-size: 15px; color: #494949;">Dear,<?=$username?><??></p>
 </td>
 </tr>
 <tr>
 <td align="left" valign="top" style="padding: 2px 15px 5px 15px; font-family: Arial; font-size: 15px; line-height: 25px;">
-<p style=" margin: 0; font-family: Arial; font-size: 15px; color: #494949;"><?=$username?> your registration is completed.</p>
+<p style=" margin: 0; font-family: Arial; font-size: 15px; color: #494949;">Your registration is Successfully completed.</p>
 </td>
 </tr>
 
 <tr>
 <td align="left" valign="top" style="padding: 2px 15px 5px 15px; font-family: Arial; font-size: 15px; line-height: 25px;">
 <p style=" padding: 0 0 25px 0; margin: 0; font-family: Arial; font-size: 15px; color: #494949;">Please <a href="<?php echo base_url(); ?>index.php/auth_verify?email_id=<?=$email?>&otp=<?=$otp?>">click here</a> to activate your account.</p>
+</td>
+</tr>
+<tr>
+<td align="left" valign="top" style="padding: 25px 15px 5px 15px; font-family: Arial; font-size: 15px; line-height: 25px;">
+<p style=" margin: 0; font-family: Arial; font-size: 15px; color: #494949;"></p>
+</td>
+</tr>
+<tr>
+<td align="left" valign="top" style="padding: 25px 15px 5px 15px; font-family: Arial; font-size: 15px; line-height: 25px;">
+<p style=" margin: 0; font-family: Arial; font-size: 15px; color: #494949;">Thanks & Regards</br>Admin efilePortal</p>
 </td>
 </tr>
 </tbody>
