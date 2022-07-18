@@ -285,13 +285,14 @@ class Transaction extends CI_Controller {
 	public function file_forward(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
-			$result = $this->master->f_get_particulars('td_track_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
+			$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
+			
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
 					'remarks' => $this->input->post('remarks'),
 					'fwd_status' => 'A',
-					'fwd_dept'=>$result->dept_no,
+					'fwd_dept'=> $result->dept_no,
 					'fwd_to'  => $this->input->post('user'),
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
 					'forwarded_at' =>date("Y-m-d h:i:s"));

@@ -84,6 +84,13 @@ class Auth extends CI_Controller {
 		$query = $this->db->get_where('md_users', array('phone_no =' => $phnumber))->result();
 		echo count($query);
 	}
+	public function email_check(){
+
+		$email = trim($this->input->post('email'));
+		$query = $this->db->get_where('md_users', array('email =' => $email))->result();
+		echo count($query);
+	}
+	
 
 	//  *****    Code for Register a  user    *****    // 
 	public function register(){

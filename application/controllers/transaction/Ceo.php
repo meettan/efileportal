@@ -55,6 +55,7 @@ class Ceo extends CI_Controller {
 	public function file_forward(){
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
+			$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
 			$user = $this->input->post('user');
 			if($user != '' ){
 			$data = array(
@@ -62,6 +63,7 @@ class Ceo extends CI_Controller {
 					'file_no'=> $this->input->post('fileno'),
 					'remarks' => $this->input->post('remarks'),
 					'fwd_status' => $this->input->post('fwd_status'),
+					'fwd_dept'=> $result->dept_no,
 					'fwd_to' =>$this->input->post('user'),
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
 					'forwarded_at' =>date("Y-m-d h:i:s"));
@@ -75,6 +77,12 @@ class Ceo extends CI_Controller {
 									'close_dt'=> date('Y-m-d h:i:s')
 			                    );
 				$this->master->f_edit('td_file',$data_array,array('file_no'=>$this->input->post('fileno')));
+				$data_arrays  = array ('approval_status' => 'A',
+				                      'approved_dt'  => date("Y-m-d"),
+				                       'approved_by' => 'CEO'
+							);
+				$wheres  = array('docket_no' => $this->input->post('docket_no'));
+				$this->notesheet_model->f_edits('td_leave_dtls',$data_arrays,$wheres);
 			}
 			redirect('index.php/ceo/');
 		}

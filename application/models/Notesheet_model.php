@@ -40,6 +40,12 @@
 			
 			return $result->result();
 		}
+		public function f_edits($table_name, $data_array, $where) {
+			$db2 = $this->load->database('db2', TRUE);
+			$db2->where($where);
+			$db2->update($table_name, $data_array);
+			return;
+		}
 
 		public function f_get_empstatus() {
 			$db2 = $this->load->database('db2', TRUE);
