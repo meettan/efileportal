@@ -37,7 +37,7 @@
    <?php endif; ?>
 	 <div class="fieldSec">
     <div class="signup-form">
-    <form action="<?=base_url()?>index.php/auth/register/" method="POST" id="regforms">
+    <form action="<?=base_url()?>index.php/auth/register/" method="POST" id="regforms" autocomplete="off">
     <!--  onsubmit="myFunction()"  -->
        <div class="form-group">
         <div class="row">
@@ -135,8 +135,8 @@ function myFunction(){
 
         if(pswlen < 8) {
             alert('minmum  3 characters needed')
-            event.preventDefault()
-        }elseif(password.search(/[0-9]/) < 0){
+            event.preventDefault();
+        }else if(password.search(/[0-9]/) < 0){
 
           alert("Your password must contain at least one digit.")
           event.preventDefault()
