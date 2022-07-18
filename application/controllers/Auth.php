@@ -92,10 +92,12 @@ class Auth extends CI_Controller {
 			$captcha_insert = $this->input->post('captcha');
 			$contain_sess_captcha = $this->session->userdata('valuecaptchaCode');
 			if ($captcha_insert === $contain_sess_captcha) {
+				$otp = mt_rand(1111,9999);
 				$data = array('first_name'=> trim($this->input->post('first_name')),
 							'last_name' => trim($this->input->post('last_name')),
 							'dept'      => trim($this->input->post('dept')),
 							'email'     => trim($this->input->post('email')),
+							'otp'       => $otp,
 							'phone_no'  => trim($this->input->post('phone_no')),
 							'designation'  => trim($this->input->post('desig')),
 							'password'  => password_hash(trim($this->input->post('user_pwd')), PASSWORD_DEFAULT),
@@ -103,7 +105,7 @@ class Auth extends CI_Controller {
 							'created_by' => trim($this->input->post('first_name')).' '.trim($this->input->post('last_name')),
 							'created_dt' => date('Y-m-d H:i:s')
 							);
-				$num = $this->master->f_insert('md_users',$data);
+			    $num = $this->master->f_insert('md_users',$data);
 			if($num > 0 ) {
 				$config = Array(
 					'protocol' => 'smtp',
@@ -111,36 +113,32 @@ class Auth extends CI_Controller {
 					'smtp_port' => 25,
 					'smtp_user' => 'admin@wbsmconfed.in',
 					'smtp_pass' => 'Mi0#2m96j@WBsmConfed',
-					'mailtype'  => 'html', 
-					'charset'   => 'iso-8859-1',
-					'wordwrap' => TRUE
+					'charset'=>'utf-8',
+					'wordwrap'=> TRUE,
+					'mailtype' => 'html'
 				);
-				//$from_email = "auth@wbsmconfed.in";
-				$to = $this->input->post('email'); 
-				//Load email library 
-				// $this->load->library('email'); 
-				// $this->email->from($from_email, 'Your Name'); 
-				// $this->email->to($to_email);
-				// $this->email->subject('Email Test'); 
-				// $this->email->message('Testing the email class.');
-				//Send mail 
-				//$to = "somebody@example.com, somebodyelse@example.com";
-                //$subject = "HTML email";
-
-				//$message = "Demo message";
-				// Always set content-type when sending HTML email
-				//$headers = "MIME-Version: 1.0" . "\r\n";
-				//$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-				// More headers
-				//$headers .= 'From: <auth@wbsmconfed.in>' . "\r\n";
-				//$headers .= 'Cc: myboss@example.com' . "\r\n";
-
-                //mail($to,$subject,$message,$headers);
-				// if(mail($to,$subject,$message,$headers)) 
-				// $this->session->set_flashdata("email_sent","Email sent successfully."); 
-				// else 
-				// $this->session->set_flashdata("email_sent","Error in sending Email."); 
+				$this->load->library('email');
+				$to = trim($this->input->post('email'));
+				$this->email->initialize($config);
+                $this->email->set_newline("\r\n"); 
+				$this->email->from('admin@wbsmconfed.in'); // change it to yours
+				$emaildata['otp'] = $otp;
+				$emaildata['username'] = trim($this->input->post('first_name'));
+				$emaildata['email'] = trim($this->input->post('email'));
+				$message = $this->load->view('common/emailtemplate',$emaildata,true);
+				//$this->load->view('common/emailtemplate',$emaildata,true);
+				$this->email->to($to);// change it to yours
+				$this->email->subject('Registration');
+				$this->email->message($message);
+				if($this->email->send())
+				{
+					$this->session->set_flashdata("email_sent","Email sent successfully."); 
+				}
+				else
+				{
+					//show_error($this->email->print_debugger());
+					$this->session->set_flashdata("email_sent","Error in sending Email."); 
+				}
 				$this->session->set_flashdata('success', 'Registration completed.');
 				redirect('index.php/auth/register/');
 			}else{
@@ -175,34 +173,32 @@ class Auth extends CI_Controller {
 	}
 
 	public function testmail(){
-		$this->load->library('email');
-			    $config = Array(
-				        'protocol' => 'smtp',
-						'smtp_host' => 'webmail.wbsmconfed.in',
-						'smtp_port' => 25,
-						'smtp_user' => 'admin@wbsmconfed.in',
-						'smtp_pass' => 'Mi0#2m96j@WBsmConfed',
-						//'mailtype'  => 'html', 
-						//'charset'   => 'iso-8859-1',
-                        //'wordwrap' => TRUE
-					);
-				  $message = 'Demo test email  for testing purpose';
-          $this->email->initialize($config);
-          $this->email->set_newline("\r\n");
-		 //$this->email->set_newline("\r\n");
-		  $this->email->from('admin@wbsmconfed.in'); // change it to yours
-		  //$this->email->to('lokesh@synergicsoftek.com');// change it to yours
-		  $this->email->to('lokesh@synergicsoftek.com','lk60588@gmail.com');// change it to yours
-		  $this->email->subject('Resume from JobsBuddy for your Job posting');
-		  $this->email->message($message);
-		  if($this->email->send())
-		  {
-			  echo 'Email sent.';
-		  }
-		  else
-		  {
-			  show_error($this->email->print_debugger());
-		  }
+		$this->load->view('common/emailtemplate');
+		// $this->load->library('email');
+		// 	    $config = Array(
+		// 		        'protocol' => 'smtp',
+		// 				'smtp_host' => 'webmail.wbsmconfed.in',
+		// 				'smtp_port' => 25,
+		// 				'smtp_user' => 'admin@wbsmconfed.in',
+		// 				'smtp_pass' => 'Mi0#2m96j@WBsmConfed',
+		// 			);
+		// 		  $message = 'Demo test email  for testing purpose';
+        //   $this->email->initialize($config);
+        //   $this->email->set_newline("\r\n");
+		//  //$this->email->set_newline("\r\n");
+		//   $this->email->from('admin@wbsmconfed.in'); // change it to yours
+		//   //$this->email->to('lokesh@synergicsoftek.com');// change it to yours
+		//   $this->email->to('lokesh@synergicsoftek.com','lk60588@gmail.com');// change it to yours
+		//   $this->email->subject('Resume from JobsBuddy for your Job posting');
+		//   $this->email->message($message);
+		//   if($this->email->send())
+		//   {
+		// 	  echo 'Email sent.';
+		//   }
+		//   else
+		//   {
+		// 	  show_error($this->email->print_debugger());
+		//   }
 
 	}
 
@@ -214,9 +210,14 @@ class Auth extends CI_Controller {
     //  *****  Code for Dashboard listing   ***** //
 	public function dashboard()
 	{
+		if($this->session->userdata('uloggedin')){
 		$this->load->view('common/header');
 		$this->load->view('dashboard');
 		$this->load->view('common/footer');
+		}else{
+			$this->session->unset_userdata('uloggedin');
+			redirect(base_url());
+		}
 	}
 
 	//  *****  Code for logout User***** //

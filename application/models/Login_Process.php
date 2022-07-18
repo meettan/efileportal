@@ -4,7 +4,8 @@
 
 		public function f_select_password($user_id){
 			$this->db->select('password');
-			$this->db->where('phone_no',$user_id);
+			//$this->db->where('phone_no',$user_id);
+			$this->db->where('email',$user_id);
 			$this->db->where('user_approve','1');
 			$data=$this->db->get('md_users');
 
@@ -31,7 +32,8 @@
 
 		public function f_get_user_inf($user_id){
 			$this->db->select('*');
-			$this->db->where('phone_no',$user_id);
+			//$this->db->where('phone_no',$user_id);
+			$this->db->where('email',$user_id);
 			$data=$this->db->get('md_users');
 			return $data->row();
 		}
