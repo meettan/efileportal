@@ -121,7 +121,7 @@ class Auth extends CI_Controller {
 				//$this->load->view('email_form'); 
 				//$this->session->set_flashdata('success', 'Added successfully.');
 				//echo 'Added successfully.';
-				redirect('auth/register/');
+				redirect('index.phpauth/register/');
 			}else{
 				$this->session->set_flashdata('error', 'Something Went wrong.');
 			}
@@ -129,7 +129,7 @@ class Auth extends CI_Controller {
 		   }else{
 
 			$this->session->set_flashdata('success', 'Captch Not Found.');
-			redirect('auth/register/');
+			redirect('index.php/auth/register/');
 		   }
 		}else{
 			
