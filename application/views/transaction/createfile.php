@@ -63,7 +63,7 @@
                             <div class="form-group row">
                               <div class="col-sm-2">Remarks</div>
                                <div class="col-sm-10">
-                                <textarea  class="form-control" placeholder='Remarks' name="editor1" id='rmk'></textarea>
+                                <textarea  class="form-control" placeholder='Remarks'  id='rmk' name="editor1"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row" id='file_documnet'>
@@ -186,7 +186,10 @@ $(document).ajaxComplete(function() {
               data: {module:module,docket_no:$(this).val()},
               success: function(response)
               {
-                $('#rmk').val(response);
+                // $('textarea#rmk').text(response);
+                //CKEDITOR.instances.observacion.SetData(response);
+                //CKEDITOR.instances.observacion.updateElement();
+                CKEDITOR.instances['rmk'].setData(response);
               }
             });
         }

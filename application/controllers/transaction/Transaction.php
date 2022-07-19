@@ -145,26 +145,30 @@ class Transaction extends CI_Controller {
 	public function docket_remark_detail(){
 		$module = $this->input->post('module');
 		$docket_no = $this->input->post('docket_no');
-	$string = '';
-	if($module == 'L') {
-		$data = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
-		if($data){
-			$leave = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
-
-			if($leave->leave_type == 'CL'){ $lea = 'Casual Leave';}
-                            else if($leave->leave_type == 'ML'){ $lea = 'Medical Leave';}
-                            else if($leave->leave_type == 'EL'){ $lea = 'Earned Leave';}
-                            else if($leave->leave_type == 'OD'){ $lea = 'Off Day';}
-                           
-			$string .= "<p>So Sri ".$leave->emp_name." has requested to adjust the leaves in ".$lea." ground.</p>";
-            $string .= "<p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>" ;           
-                        
-		return $string;
-		}else{
-			return	$string ='';
+		
+	    $string = '';
+		if($module == "L") {
+			
+			$data = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
+			
+			if($data){
+				$leave = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$docket_no),1) ;
+                
+				if($leave->leave_type == 'CL'){ $lea = 'Casual Leave';}
+								else if($leave->leave_type == 'ML'){ $lea = 'Medical Leave';}
+								else if($leave->leave_type == 'EL'){ $lea = 'Earned Leave';}
+								else if($leave->leave_type == 'OD'){ $lea = 'Off Day';}
+							
+				$string .= '<p>So Sri '.$leave->emp_name.' has requested to adjust the leaves in '.$lea.' ground.</p>';
+				$string .= "<p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>" ;           
+							
+			
+				echo  $string; 
+			}else{
+				echo  $string; 
+			}
 		}
-	}
-	echo $string;
+	//echo $string;
     }
 
 	//  ****   Code for docket detail  using and td_document,td_docket_no
@@ -328,13 +332,14 @@ class Transaction extends CI_Controller {
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
 		  $data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 		  $data['fileno'] = $fdetail[1];
-		  $whereu = array('dept != '=>'Dispatch');
+		  $whereu = array('dept != '=>'Dispatch',
+		                  'id !=' => $this->session->userdata('uloggedin')->id);
 		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
 		  unset($where);
 		  $where = array('forwarded_by'=>$this->session->userdata('uloggedin')->id,
 						 'file_no' =>$fdetail[1]);
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
-		  $data['filedtl'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fdetail[1]),1);
+		  $data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$fdetail[1]),1);
 		  //echo $data['filedtl']->application_no;die();
 		  $ft = substr($fdetail[1],0,4); 
 		  $data['filetype'] = $this->master->f_get_particulars('md_file_type',array('file_name'),array('file_no'=>$ft),1);

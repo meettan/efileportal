@@ -22,17 +22,17 @@
                         <?php if($leave) { ?>
                         <div class="form-group row">
                         <div class="col-sm-11">
-                        <?php $lea = '';
+                        <!-- <?php $lea = '';
                             if($leave->leave_type == 'CL'){ $lea = 'Casual Leave';}
                             else if($leave->leave_type == 'ML'){ $lea = 'Medical Leave';}
                             else if($leave->leave_type == 'EL'){ $lea = 'Earned Leave';}
                             else if($leave->leave_type == 'OD'){ $lea = 'Off Day';}
                             
                             ?>
-                            <p><?php echo $leave->letterfirstline; ?> </p>
-                        <p>So Sri <?php echo $leave->emp_name; ?> has requested to adjust the leaves in <?=$lea?> ground.</p>
+                            <p><?php //echo $leave->letterfirstline; ?> </p>
+                        <p>So Sri <?php //echo $leave->emp_name; ?> has requested to adjust the leaves in <?=$lea?> ground.</p>
                         
-                        <p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>
+                        <p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p> -->
                         </div>   
                         </div>  
                         <?php } ?> 
@@ -42,7 +42,7 @@
                                 <div class="card">
                                 
                                     <div class="card-body">
-                                    <h5 class="card-title"> Creater: </h5>
+                                    <h5 class="card-title"> Created By: <?php if(isset($filedtl->first_name)) echo $filedtl->first_name; ?>/ Created Date:  <?php if(isset($filedtl->created_at)) echo date('d/m/Y',strtotime(explode(' ',$filedtl->created_at)[0])).' '.explode(' ',$filedtl->created_at)[1] ; ?></h5>
                                     <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                             <div class="col-sm-12">
                                 <div class="card">
                                     <div class="card-body">
-                                    <h5 class="card-title"> Remarks By: <?php if(isset($ca->first_name)) echo $ca->first_name; ?></h5>
+                                    <h5 class="card-title"> Remarks By: <?php if(isset($ca->first_name)) echo $ca->first_name; ?> / Forwarded Date: <?php if(isset($ca->forwarded_at)) echo date('d/m/Y',strtotime(explode(' ',$ca->forwarded_at)[0])).' '.explode(' ',$ca->forwarded_at)[1] ; ?></h5>
                                     <?php if(isset($ca->remarks)) echo $ca->remarks; ?>
                                     </div>
                                 </div>
