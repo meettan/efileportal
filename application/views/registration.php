@@ -37,8 +37,8 @@
    <?php endif; ?>
 	 <div class="fieldSec">
     <div class="signup-form">
-    <form action="<?=base_url()?>index.php/auth/register/" method="POST" id="regforms" autocomplete="off">
-    <!--  onsubmit="myFunction()"  -->
+    <form action="<?=base_url()?>index.php/auth/register/" method="POST" id="regforms" autocomplete="off" onsubmit="myFunction()" >
+    
        <div class="form-group">
         <div class="row">
           <div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
@@ -64,7 +64,7 @@
        </div>
        <div class="form-group">
         <div class="row">
-          <div class="col"><input type="password" class="form-control" name="user_pwd" placeholder="Password" required="required" id='psw' onChange="return validatePassword()"></div>
+          <div class="col"><input type="password" class="form-control" name="user_pwd" placeholder="Password" required="required" id='psw' ></div>
            <div class="col"> <input type="password" class="form-control" name="conf_pwd" placeholder="Confirm Password" required="required"  id='psw1'></div>
        </div>          
        </div>
@@ -96,6 +96,9 @@
 
 
 <script>
+  $( document ).ready(function() {
+    ('#psw').val('');
+});
 toastr.clear();
 toastr.options = {
 "closeButton": true,
@@ -130,7 +133,7 @@ function myFunction(){
             event.preventDefault();
         }
 
-        if(pswlen < 8) {
+        if(pswlen < 3) {
             alert('minmum  3 characters needed')
             event.preventDefault();
         }else if(password.search(/[0-9]/) < 0){
@@ -173,22 +176,18 @@ function myFunction(){
                   //var jsonData = JSON.parse(response);
                   if (response > "0")
                   {
-                    
+                    $('#phno').val('');
                     Swal.fire({
-                          title: 'Custom width, padding, color, background.',
-                          width: 600,
-                          padding: '3em',
-                          color: '#716add',
-                          background: '#fff url(/images/trees.png)',
-                          backdrop: `
-                            rgba(0,0,123,0.4)
-                            url("/images/nyan-cat.gif")
-                            left top
-                            no-repeat
-                          `
-                        })
-                   // toastr.error('Phone number already Exist.');
-                    //toastr.success('The process has been saved.', 'Success');
+                      title: "<h5 style='color:red'>Phone number already Exist.</h5>",
+                      showCloseButton: true,
+                      showCancelButton: true,
+                      allowOutsideClick: false,
+                      allowEscapeKey: false,
+                      allowEnterKey: false,
+                      showConfirmButton: false,
+                      showCancelButton: false,
+                    })
+                   
                   }
                   else
                   {
@@ -250,15 +249,26 @@ function myFunction(){
 
 <script>
   $('#email').on('change', function(){
-    alert($(this).val())
+    
     $.ajax({
       url:'<?= base_url() ?>index.php/auth/email_check',
       type:'POST',
       data:{email: $(this).val()},
       success:function(data){
         if(data > 0){
-          message = "This email is registered already!";
-          messageDialog("Error", message, "error", 2);
+          Swal.fire({
+                      title: "<h5 style='color:red'>This email is registered already!</h5>",
+                      showCloseButton: true,
+                      showCancelButton: true,
+                      allowOutsideClick: false,
+                      allowEscapeKey: false,
+                      allowEnterKey: false,
+                      showConfirmButton: false,
+                      showCancelButton: false,
+                    });
+         
+          $('#email').val('');
+          
           return false;
         }else{
           return true
