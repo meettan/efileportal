@@ -374,9 +374,10 @@ class Transaction extends CI_Controller {
 	/// *****  Code  for track file on using table td_track_file ****   //
 	public function file_track(){
 
-		$where = array('a.fwd_to=b.id'=>NULL,
+		$where = array('a.forwarded_by=b.id'=>NULL,
+		               'a.file_no = c.file_no'=>NULL,
 					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);
-		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b',NULL,$where,0);
+		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b,td_file c',array('a.*','b.first_name','b.last_name','c.docket_no'),$where,0);
 		$this->load->view('common/header');
 		$this->load->view('transaction/track_fwd/file_track',$data);
 		$this->load->view('common/footer');
@@ -387,6 +388,7 @@ class Transaction extends CI_Controller {
 		  $fdetail = explode('/',$this->input->post('docket_no'));
 		  $where = array('docket_no' => $fdetail[0]);
 		  $fwhere = array('file_no' => $fdetail[1]);
+		  $data['fstatus'] = $fdetail[1];
 		 
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);

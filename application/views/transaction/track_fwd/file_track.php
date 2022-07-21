@@ -11,8 +11,10 @@
                             <tr><th>Sl No</th>
                                 <th>File No</th>
                                 <th>Forward Date</th>
-                                <th>Created by</th>
+                                <th>Forwarded by</th>
                                 <th>Status</th>
+                                <th>option</th>
+                                
                             </tr>
                         </thead>
                         <tbody id='doclist'>
@@ -24,9 +26,20 @@
                                 <td><?=++$sl?></td>
                                 <td><?=$key->file_no?></td>
                                 <td><?=date('d/m/Y',strtotime($key->fwd_dt))?></td>
-                                <td><?=$key->created_by?></td>
-                                <td><?php $key->fwd_status?>
-                                <button class="link" value="<?=$key->file_no?>/<?=$key->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button>
+                                <td><?=$key->first_name?></td>
+                                <td>
+                                    <?php 
+                                    if($key->fwd_status == 'A'){ ?>
+                                    <button type="button" class="btn btn-success">Accepted</button>
+                                 
+                                    <?php }
+                                    else{ 
+                                         ?>
+                                        <button type="button" class="btn btn-warning">Rejected</button> 
+                                    <?php } ?>    
+                                </td>
+                                <td>
+                                <button class="link" value="<?=$key->docket_no?>/<?=$key->file_no?>/<?=$key->fwd_status?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button>
                                 <?php $str2 = substr($key->file_no,0,1); 
                                      if($str2 == 'S') { ?>
                                 <a href="<?php echo site_url('index.php/notesheet/salary_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>
