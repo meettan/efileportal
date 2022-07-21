@@ -34,6 +34,7 @@
                                   <select class='form-control select2' name='module' id='module'>
                                     <option value=''>Select Module</option>
                                     <option value='L'>Leave</option>
+                                    <option value='S'>Salary</option>
                                     <option value='P'>Paddy</option>
                                     <option value='S'>Stationary</option>
                                     <option value='I'>ICDS</option>
@@ -178,8 +179,12 @@ $(document).ajaxComplete(function() {
               success: function(response)
               {
                 $('#docket_content').html(response);
+                if(module == 'S'){
+                CKEDITOR.instances['rmk'].setData(response);
+                }
               }
             });
+            if(module =='L'){
             $.ajax({
               type: "POST",
               url: '<?=base_url()?>index.php/transaction/docket_remark_detail/',
@@ -192,6 +197,7 @@ $(document).ajaxComplete(function() {
                 CKEDITOR.instances['rmk'].setData(response);
               }
             });
+           }
         }
     })
 
