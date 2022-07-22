@@ -264,7 +264,8 @@ class Auth extends CI_Controller {
 				$this->load->view('uservalidation/login');
 			}
 		}else{
-			$this->load->view('uservalidation/login');
+			redirect(base_url());   
+			//$this->load->view('uservalidation/login');
 		}
 			
 	}

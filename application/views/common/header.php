@@ -102,6 +102,9 @@
 	</li>
   <?php }?>
   <li>
+	 <div class="link"><a href="<?=base_url()?>index.php/file_history/"><i class="fa fa-code"></i>File history</a></div>
+	</li>
+  <li>
 	 <div class="link"><a href="<?=base_url()?>index.php/auth/logout/"><i class="fa fa-code"></i>Logout</a></div>
 	</li>
   <!--<li>
