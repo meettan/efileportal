@@ -10,7 +10,7 @@
                         <thead>
                             <tr><th>Sl No</th>
                                 <th>File No</th>
-                                <th>Forward Date</th>
+                                <th>Forwarded Date</th>
                                 <th>Forwarded by</th>
                                 <th>Status</th>
                                 <th>option</th>
@@ -60,8 +60,8 @@
                             <tr>
                                 <th>Sl No</th>
                                 <th>File No</th>
-                                <th>Created Date</th>
-                                <th>Created by</th>
+                                <th>Forwarded Date</th>
+                                <th>Forwarded by</th>
                                 <th>Status</th>
                                 <th>Option</th>
                             </tr>
