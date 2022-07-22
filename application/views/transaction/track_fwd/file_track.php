@@ -53,7 +53,7 @@
                             </tr>
                             <?php   }
                                 }else { ?>
-                                        <tr><td colspan='5'><?php echo  'No record found'?></td></tr>
+                                        <tr><td colspan='6' style='text-align:center'><?php echo  'No record found'?></td></tr>
                             <?php } ?> 
                         </tbody>
                         <tfoot>
@@ -63,6 +63,7 @@
                                 <th>Created Date</th>
                                 <th>Created by</th>
                                 <th>Status</th>
+                                <th>Option</th>
                             </tr>
                         </tfoot>
                         </table>
