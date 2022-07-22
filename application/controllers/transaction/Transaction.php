@@ -196,8 +196,6 @@ class Transaction extends CI_Controller {
 
 			$salary['content']     =   $this->notesheet_model->f_get_particulars("td_pay_slip_notesheet", NULL, $where, 0);
             $salary['empstatus']=$this->notesheet_model->f_get_empstatus();
-          //  $salary['remarks']  = $this->master->f_get_particulars('td_track_file',NULL,array('docket_no'=>$docket_no),0);
-
 			return $this->load->view('transaction/salary/salary_data',$salary);
 		}
 		echo $string;
@@ -222,7 +220,6 @@ class Transaction extends CI_Controller {
 				$string .= '<p>So Sri '.$leave->emp_name.' has requested to adjust the leaves in '.$lea.' ground.</p>';
 				$string .= "<p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>" ;           
 							
-			
 				echo  $string; 
 			}else{
 				echo  $string; 
@@ -285,7 +282,7 @@ class Transaction extends CI_Controller {
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
 			$data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$fdetail[0]),1) ;
-          //$data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->application_no),1) ;
+          
 		  }else{
 			$data['leave'] = '';
 		  }

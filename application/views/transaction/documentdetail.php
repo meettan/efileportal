@@ -22,8 +22,7 @@
                         </div>
                         <?php if($leave) { ?>
                         <div class="form-group row" id='docket_content'>
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-10">
+                        <div class="col-sm-12">
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
@@ -57,22 +56,6 @@
                         </div>
 
                         </div>
-                       
-                        <!-- <div class="form-group row">
-                        <div class="col-sm-11">
-                        <?php $lea = '';
-                           // if($leave->leave_type == 'CL'){ $lea = 'Casual Leave';}
-                           // else if($leave->leave_type == 'ML'){ $lea = 'Medical Leave';}
-                           // else if($leave->leave_type == 'EL'){ $lea = 'Earned Leave';}
-                          //  else if($leave->leave_type == 'OD'){ $lea = 'Off Day';}
-                            
-                            ?>
-                            <p><?php //echo $leave->letterfirstline; ?> </p>
-                        <p>So Sri <?php //echo $leave->emp_name; ?> has requested to adjust the leaves in <?=$lea?> ground.</p>
-                        
-                        <p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p>
-                        </div>   
-                        </div>   -->
                         <?php } ?> 
                         <div class="form-group row">
                             <div class="col-sm-12">
@@ -109,16 +92,14 @@
                             <?php } }?> 
                             </div>
                         <hr/>
-                       
-                        
-                        <?php if($filestatus)  {   ?>
+                        <?php if($filestatus)  {  ?>
                             <div class="form-group row">
                                  <div class="col-sm-12" ><p style="text-align:center;font-size:18px;font-weight: 900;color: red;">You Forwarded File</p></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-2 fieldname">Forwarded To</div>
                                 <div class="col-sm-4">
-                                <input type='text' class="form-control" value='<?=$filestatus->remarks?>'  readonly/>
+                                <input type='text' class="form-control" value='<?=$filestatus->first_name?>'  readonly/>
                                 </div>
                                 <div class="col-sm-2 fieldname">Forwarded at</div>
                                 <div class="col-sm-4">
@@ -151,15 +132,15 @@
                                         <?php } ?>
                                 </select>
                             </div>
-                            <!-- <div class="col-sm-2 fieldname">Forward Status</div>
+                            <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
-                                    <option value=''>Select Status</option>
+                                    <!-- <option value=''>Select Status</option> -->
                                     <option value='A'>Approve</option>
                                     <option value='R'>Reject</option>
                                 </select>
                             </div>
-                            </div> -->
+                            </div>
                             <hr/>
 
                             <div class="form-group row">
