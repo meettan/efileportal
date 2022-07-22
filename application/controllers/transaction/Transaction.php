@@ -352,7 +352,7 @@ class Transaction extends CI_Controller {
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
 					'remarks' => $this->input->post('remarks'),
-					'fwd_status' => 'A',
+					'fwd_status' => $this->input->post('fwd_status'),
 					'fwd_dept'=> $result->dept_no,
 					'fwd_to'  => $this->input->post('user'),
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
@@ -385,7 +385,7 @@ class Transaction extends CI_Controller {
 		  $fdetail = explode('/',$this->input->post('docket_no'));
 		  $where = array('docket_no' => $fdetail[0]);
 		  $fwhere = array('file_no' => $fdetail[1]);
-		  $data['fstatus'] = $fdetail[1];
+		  $data['fstatus'] = $fdetail[2];
 		 
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
@@ -417,6 +417,34 @@ class Transaction extends CI_Controller {
 		  $view = $this->load->view('transaction/track_fwd/file_dtls',$data);
 		  return $view;
 		}
+	}
+
+
+	public function edit_forward_file(){
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+			$data_array =array('docket_no' => $this->input->post('docket'),
+								'note_sheet'=>$this->input->post('editor1'),
+								'modified_by' =>$this->session->userdata('uloggedin')->id ,
+							    'modified_at' =>date("Y-m-d h:i:s")
+							);
+			$where  = array('file_no'=>$this->input->post('fileno'));
+			$this->master->f_edit('td_file',$data_array,$where);
+
+		redirect('index.php/transaction/file_track');
+		}else{
+		$fdetail = explode('/',$this->input->get('filedetail'));
+		$data['fdetail'] = $this->master->f_get_particulars('td_file',NULL,array('file_no' =>$fdetail[1] ),1);
+		$data['depts']   = $this->master->f_get_particulars('md_department',NULL,NULL,0);
+		$data['dockets'] = $this->trans_model->get_forwarded_document('td_document');
+		$str2 = substr($fdetail[1],0,1); 
+		  if($str2 == 'L') {
+			$data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$fdetail[0]),1) ;
+		  }else{
+			$data['leave'] = '';
+		  }
+		$this->load->view('transaction/edit_forward_file',$data);
+		}
+
 	}
 
 	

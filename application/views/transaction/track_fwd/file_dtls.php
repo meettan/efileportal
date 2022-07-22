@@ -125,7 +125,8 @@
                         <hr/>
                         
                         <?php //echo $filestatus->fwd_status;
-                        if($fstatus == 'A')  {   ?>
+                        if($fstatus == 'A')  { 
+                            ?>
                             <div class="form-group row">
                                  <div class="col-sm-12" ><p style="text-align:center;font-size:18px;font-weight: 900;color: red;">You Forwarded File</p></div>
                             </div>
@@ -140,20 +141,19 @@
                                         <?php } ?>
                                 </select>
                             </div>
-                            <!-- <div class="col-sm-2 fieldname">Forward Status</div>
+                            <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
-                                    <option value=''>Select user</option>
                                     <option value='A'>Approve</option>
                                     <option value='R'>Reject</option>
                                 </select>
                             </div>
-                            </div> -->
+                            </div>
                             <hr/>
 
                             <div class="form-group row">
                                 <div class="col-sm-4">
-                                <button class='btn btn-primary' type='submit' value='Forward'>Submit</button>
+                                <button class='btn btn-primary' type='submit' value='Forward'>Submit </button>
                                 </div>
                             </div>
 

@@ -30,12 +30,13 @@
                                 <td>
                                     <?php 
                                     if($key->fwd_status == 'A'){ ?>
-                                    <button type="button" class="btn btn-success">Accepted</button>
+                                    <button type="button" class="btn btn-success btn-sm">Accepted</button>
                                  
                                     <?php }
                                     else{ 
                                          ?>
-                                        <button type="button" class="btn btn-warning">Rejected</button> 
+                                        <button type="button" class="btn btn-warning btn-sm">Rejected</button> 
+                                        
                                     <?php } ?>    
                                 </td>
                                 <td>
@@ -48,7 +49,9 @@
                                    <?php  }else{  ?>
                                  <a href="<?php echo site_url('index.php/transaction/print_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>          
                                  <?php   } ?>
-                                
+                                 <?php if($key->fwd_status != 'A'){ ?>
+                                 <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button>
+                                 <?php } ?>
                             </td>
                             </tr>
                             <?php   }
@@ -102,18 +105,18 @@ $(document).ready(function() {
                 }
         });
     });
-    // $('.edit').on('click', function(){
-    //     $('#ajaxview').empty();
-    //     $.ajax({
-    //             type: "GET",
-    //             data:{filedetail:$(this).val()},
-    //             url: '<?=base_url()?>index.php/transaction/editfile',
-    //             success: function(response)
-    //             {
-    //             $('#ajaxview').html(response);
-    //             }
-    //     });
-    // });
+    $('.edit').on('click', function(){
+        $('#ajaxview').empty();
+        $.ajax({
+                type: "GET",
+                data:{filedetail:$(this).val()},
+                url: '<?=base_url()?>index.php/transaction/edit_forward_file',
+                success: function(response)
+                {
+                $('#ajaxview').html(response);
+                }
+        });
+    });
 
     $('#doclist').on('click', '.delete', function(){
         var row = $(this).parents('tr');

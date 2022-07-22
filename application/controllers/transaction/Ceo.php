@@ -79,12 +79,15 @@ class Ceo extends CI_Controller {
 									'close_dt'=> date('Y-m-d h:i:s')
 			                    );
 				$this->master->f_edit('td_file',$data_array,array('file_no'=>$this->input->post('fileno')));
-				$data_arrays  = array ('approval_status' => 'A',
-				                      'approved_dt'  => date("Y-m-d"),
-				                       'approved_by' => 'CEO'
-							);
-				$wheres  = array('docket_no' => $this->input->post('docket_no'));
-				$this->notesheet_model->f_edits('td_leave_dtls',$data_arrays,$wheres);
+				if($this->input->post('fwd_status') == 'A'){
+
+					$data_arrays  = array ('approval_status' => 'A',
+					'approved_dt'  => date("Y-m-d"),
+					 'approved_by' => 'CEO');
+                    $wheres  = array('docket_no' => $this->input->post('docket_no'));
+                    $this->notesheet_model->f_edits('td_leave_dtls',$data_arrays,$wheres);
+				}
+				
 			}
 			redirect('index.php/ceo/');
 		}

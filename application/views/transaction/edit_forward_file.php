@@ -2,12 +2,12 @@
 	<div class="card">
         <div class="card-body" >
             <div class="titleSec">
-                              <a href='<?=base_url()?>index.php/transaction/file/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
+                              <a href='<?=base_url()?>index.php/transaction/file_track/'>  <button type="button" class="btn btn-primary" id="list">List</button></a>
                             <h2>Page Title</h2> 
             </div>
             <div class="row">
                 <div class="col-sm-12"> 
-                        <form method="post" action="<?=base_url()?>index.php/transaction/editfile/" enctype='multipart/form-data'>
+                        <form method="post" action="<?=base_url()?>index.php/transaction/edit_forward_file/" enctype='multipart/form-data'>
                             <input type='hidden' name='fileno' value='<?php echo $fdetail->file_no ?>'>
                         <div class="form-group row">
                                 <div class="col-sm-2 fieldname">Department</div>
