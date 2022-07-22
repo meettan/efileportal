@@ -13,7 +13,7 @@
                                 <th>Forwarded Date</th>
                                 <th>Forwarded by</th>
                                 <th>Status</th>
-                                <th>option</th>
+                                <th>Option</th>
                                 
                             </tr>
                         </thead>
