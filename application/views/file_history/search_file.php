@@ -20,7 +20,7 @@
                                 <div class="col-sm-4">
                                 <input type="text" name="file_no"  class="form-control" id='docket_no'  >
                                 </div>
-                                <div class="col-sm-2 " style="color: #0000ff;"><input type='submit' class='btn btn-info' name="submit" value='submit'/></div>
+                                <div class="col-sm-2" style="color: #0000ff;"><input type='submit' class='btn btn-info' name="submit" value='submit'/></div>
                                 </div>
                             </div>
                         </div>
