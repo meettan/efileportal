@@ -125,7 +125,8 @@
                         <hr/>
                         
                         <?php //echo $filestatus->fwd_status;
-                        if($fstatus == 'A')  { 
+                        //if($fstatus == 'A')  { 
+                        if($filestatus)  {
                             ?>
                             <div class="form-group row">
                                  <div class="col-sm-12" ><p style="text-align:center;font-size:18px;font-weight: 900;color: red;">You Forwarded File</p></div>
