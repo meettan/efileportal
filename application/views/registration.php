@@ -64,13 +64,18 @@
        </div>
        <div class="form-group">
         <div class="row">
-          <div class="col"><input type="password" class="form-control" name="user_pwd" placeholder="Password" required="required" id='psw' ></div>
+          <div class="col"><input type="password" class="form-control" name="user_pwd" placeholder="Password" required="required" id='psw' onchange="return validatePassword()"></div>
            <div class="col"> <input type="password" class="form-control" name="conf_pwd" placeholder="Confirm Password" required="required"  id='psw1'></div>
        </div>          
        </div>
        <div class="form-group">
        <div class="row">
-          <div class="col"><span style="border:0;margin-right: 10px;"><?=$image?></span><button class="captureBtn" onClick="window.location.reload();"> Refresh</button></div>
+          <div class="col-md-3">
+                        <button style='width:100px!important;height:50px!important;border: 2px solid #0000FF;'><?php echo $word //echo $image; ?></button>
+                      </div> 
+                      <div class="col-md-3">
+                        <button class="captureBtn" onClick="window.location.reload();"> Refresh</button>
+                      </div>  
           <div class="col"><input type="text" class="form-control" name="captcha" placeholder="captcha" ></div>
        </div>
        </div>
@@ -97,7 +102,7 @@
 
 <script>
   $( document ).ready(function() {
-    ('#psw').val('');
+    $('#psw').val('');
 });
 toastr.clear();
 toastr.options = {
@@ -133,8 +138,8 @@ function myFunction(){
             event.preventDefault();
         }
 
-        if(pswlen < 3) {
-            alert('minmum  3 characters needed')
+        if(pswlen < 6) {
+            alert('minmum  6 characters needed')
             event.preventDefault();
         }else if(password.search(/[0-9]/) < 0){
 
@@ -230,14 +235,16 @@ function myFunction(){
   function validatePassword() {
     var p = document.getElementById('psw').value,
         errors = [];
-    if (p.length < 8) {
-        errors.push("Your password must be at least 8 characters"); 
+    if (p.length < 6) {
+        errors.push("Your password must be at least 6 characters"); 
     }
-    // if (p.search(/[a-z]/i) < 0) {
-    //     errors.push("Your password must contain at least one letter.");
-    // }
+    if (p.search(/[a-z]/i) < 0) {
+        errors.push("Your password must contain at least one letter.");
+        document.getElementById("psw").value = '';
+    }
     if (p.search(/[0-9]/) < 0) {
-        errors.push("Your password must contain at least one digit."); 
+        errors.push("Your password must contain at least one digit.");
+        document.getElementById("psw").value = '';
     }
     if (errors.length > 0) {
         alert(errors.join("\n"));

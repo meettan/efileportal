@@ -112,14 +112,15 @@
                       //title: "Alert Set on Timer",
                       text: response,
                       position: "middle",
+                      type: "success",
                       //backdrop: "linear-gradient(yellow, orange)",
                       background: "white",
-                      showCloseButton: true,
-                      showCancelButton: true,
+                      //showCloseButton: true,
+                     // showCancelButton: true,
                       allowOutsideClick: false,
                       allowEscapeKey: false,
                       allowEnterKey: false,
-                      showConfirmButton: false,
+                      showConfirmButton: true,
                       showCancelButton: false,
                       //timer: 10000
                      }).then((result) => {

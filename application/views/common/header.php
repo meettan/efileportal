@@ -32,7 +32,7 @@
 	<div class="float-left logo"><img src="<?=base_url()?>assets/images/confed.jpg" alt="" style='height:50px'/></div>
 	<div class="float-left navRightSec">		
 		<ul class="topDate">
- <li>KMS Year: 2022-23</li> <li>User: <?php  if($this->session->userdata('uloggedin')->first_name) echo ucfirst($this->session->userdata('uloggedin')->first_name); ?></li> 
+ <li>Financial Year: 2022-23</li> <li>User: <?php  if($this->session->userdata('uloggedin')->first_name) echo ucfirst($this->session->userdata('uloggedin')->first_name); ?></li> 
  <!-- <li>Module: Paddy Procurement</li> -->
 </ul>
 <!--
@@ -41,10 +41,10 @@
 </ul>
 -->
 		<ul class="nav topDateRight">
-			<li class="nav-item dropdown">
+			<!-- <li class="nav-item dropdown">
                     <a href="#" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
-                </li>
-			          <li class="nav-item dropdown">
+                </li> -->
+			          <!-- <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Main Menu 1</a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="#" class="dropdown-item">Dropdown Menu 1</a>
@@ -52,7 +52,7 @@
                       <a href="#" class="dropdown-item">Dropdown Menu 3</a>
                       <a href="#" class="dropdown-item">Dropdown Menu 4</a>
                     </div>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i> Notification</a>
                 </li>
