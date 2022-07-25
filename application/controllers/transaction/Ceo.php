@@ -71,9 +71,9 @@ class Ceo extends CI_Controller {
 					'forwarded_at' =>date("Y-m-d h:i:s"));
 			$this->master->f_insert('td_track_file',$data);
 			}
-			$fc = $this->input->post('cf');
+			$fc = $this->input->post('fwd_status');
 			
-			if($fc == 1){
+			if($fc == 'A'){
 				$data_array = array('close_status' => '1',
 									'close_by'=>$this->session->userdata('uloggedin')->id,
 									'close_dt'=> date('Y-m-d h:i:s')

@@ -120,12 +120,12 @@
                                 </select>
                             </div>
                             </div>
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                             <div class="col-sm-2 fieldname">Close File</div>
                                 <div class="col-sm-4">
                                 <input type="checkbox" id="cf" name="cf" value="1">
                                 </div>
-                            </div>
+                            </div> -->
                             <hr/>
 
                             <div class="form-group row">
