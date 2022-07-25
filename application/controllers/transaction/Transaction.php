@@ -27,6 +27,7 @@ class Transaction extends CI_Controller {
 		$select = array('a.*','b.first_name');
 		$where  = array('a.created_by = b.id' => NULL,
 		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
+						'a.creater_forward'=> '0',
 						'1 order by a.file_date desc'=>NULL);
 		$data['files'] = $this->master->f_get_particulars('td_file a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
@@ -360,15 +361,26 @@ class Transaction extends CI_Controller {
 			if($created_by == $this->session->userdata('uloggedin')->id){
 				$this->master->f_edit('td_file',array('creater_forward'=> '1'),array('file_no'=> $this->input->post('fileno')));
 			}
-			$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
+			$this->session->set_flashdata('success', 'File Forwarded Successfully');
 			redirect('index.php/transaction/file');
 		}
+
+	}
+	public function forwarded_file(){
+        $data['title']   = 'Forward Files';
+		$where = array('a.forwarded_by=b.id'=>NULL,
+		               'a.file_no = c.file_no'=>NULL,
+					    'a.forwarded_by' => $this->session->userdata('uloggedin')->id);
+		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b,td_file c',array('a.*','b.first_name','b.last_name','c.docket_no'),$where,0);
+		$this->load->view('common/header');
+		$this->load->view('transaction/track_fwd/file_track',$data);
+		$this->load->view('common/footer');
 
 	}
 
 	/// *****  Code  for track file on using table td_track_file ****   //
 	public function file_track(){
-
+		$data['title']   = 'Received Files';
 		$where = array('a.forwarded_by=b.id'=>NULL,
 		               'a.file_no = c.file_no'=>NULL,
 					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);
@@ -381,6 +393,7 @@ class Transaction extends CI_Controller {
 	public function filedetail(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 		  $fdetail = explode('/',$this->input->post('docket_no'));
+		  $data['url']   = $this->input->post('url');
 		  $where = array('docket_no' => $fdetail[0]);
 		  $fwhere = array('file_no' => $fdetail[1]);
 		  $data['fstatus'] = $fdetail[2];

@@ -37,7 +37,6 @@
                                 <td><?=date('d/m/Y',strtotime($key->file_date))?></td>
                                 <td><?=$key->first_name?></td>
                                 <td><?php $key->docket_no?>
-                                
                                 <button class="link" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button>
                                 <?php if($key->creater_forward == '0') { ?>
                                 <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button>
@@ -55,7 +54,7 @@
                             </tr>
                             <?php   }
                                 }else { ?>
-                                        <tr><td colspan='5'><?php echo  'No record found'?></td></tr>
+                                        <tr><td colspan='6' style='text-align:center'><?php echo  'No record found'?></td></tr>
                             <?php } ?> 
                         </tbody>
                         <tfoot>

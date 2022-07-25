@@ -2,7 +2,7 @@
 			<div class="card">
 			 <div class="card-body" >
 				<div class="titleSec">
-				<h2>Received File</h2> 
+				<h2><?=$title?></h2>
 				</div>
 				<div class="row">
                 <div class="col-sm-12"> 
@@ -95,9 +95,10 @@ $(document).ready(function() {
 
     $('#doclist').on('click', '.link', function(){
         $('#ajaxview').empty();
+        var url = 'forwarded_file'
         $.ajax({
                 type: "POST",
-                data:{docket_no:$(this).val()},
+                data:{docket_no:$(this).val(),url:url},
                 url: '<?=base_url()?>index.php/transaction/filedetail',
                 success: function(response)
                 {
