@@ -8,6 +8,7 @@
             <div class="row">
                 <div class="col-sm-12"> 
                     <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data'>
+                    <input type='hidden' value='file' name='url'>
                     <input type='hidden' name='created_by' value='<?php if(isset($filedtl->created_by)) echo $filedtl->created_by; ?>'>
                         <?php foreach($docs as $dt);?>   
                         <div class="form-group row">
@@ -92,7 +93,9 @@
                             <?php } }?> 
                             </div>
                         <hr/>
-                        <?php if($filestatus)  {  ?>
+                        <?php // if($filestatus)  {  
+                           if($filedtl->creater_forward == '1'){
+                            ?>
                             <div class="form-group row">
                                  <div class="col-sm-12" ><p style="text-align:center;font-size:18px;font-weight: 900;color: red;">You Forwarded File</p></div>
                             </div>
@@ -119,7 +122,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-2 fieldname">Remarks</div>
                                 <div class="col-sm-10">
-                                <textarea name='remarks' class="form-control" placeholder='' ></textarea>
+                                <textarea name='remarks' class="ckeditor form-control" placeholder='' id='rmk' ></textarea>
                                 </div>
                             </div>
                             <hr/>
@@ -132,14 +135,14 @@
                                         <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-sm-2 fieldname">Forward Status</div>
+                            <!-- <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
-                                    <!-- <option value=''>Select Status</option> -->
+                                    <option value=''>Select Status</option> 
                                     <option value='A'>Approve</option>
                                     <option value='R'>Reject</option>
                                 </select>
-                            </div>
+                            </div> -->
                             </div>
                             <hr/>
 
@@ -189,7 +192,7 @@
         </div>
 <script>
 $( document ).ready(function() {
-
+    CKEDITOR.replace( 'remarks' );
 
     $('#intro2').on('change', '.doc', function(){
 

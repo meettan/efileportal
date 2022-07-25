@@ -346,12 +346,12 @@ class Transaction extends CI_Controller {
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
-			
+			$url = $this->input->post('url');
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
 					'remarks' => $this->input->post('remarks'),
-					'fwd_status' => $this->input->post('fwd_status'),
+					'fwd_status' => 'A',
 					'fwd_dept'=> $result->dept_no,
 					'fwd_to'  => $this->input->post('user'),
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
@@ -362,10 +362,41 @@ class Transaction extends CI_Controller {
 				$this->master->f_edit('td_file',array('creater_forward'=> '1'),array('file_no'=> $this->input->post('fileno')));
 			}
 			$this->session->set_flashdata('success', 'File Forwarded Successfully');
-			redirect('index.php/transaction/file');
+			if($url == 'file'){
+				redirect('index.php/transaction/file');
+			}else{
+				redirect('index.php/transaction/forwarded_file');
+			}
+			
 		}
 
 	}
+	public function file_reject(){
+
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+			$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
+			$url = $this->input->post('url');
+			$data = array(
+				    'fwd_dt' => date('Y-m-d'),
+					'file_no'=> $this->input->post('fileno'),
+					'remarks' => $this->input->post('remarks'),
+					'fwd_status' => 'R',
+					'fwd_dept'=> $result->dept_no,
+					'fwd_to'  => $result->created_by,
+					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
+					'forwarded_at' =>date("Y-m-d h:i:s"));
+			$this->master->f_insert('td_track_file',$data);
+			//$created_by = $this->input->post('created_by');
+			$this->master->f_edit('td_file',array('creater_forward'=> '0'),array('file_no'=> $this->input->post('fileno')));
+			$this->session->set_flashdata('error', 'File Rejected Successfully');
+
+			$url = base_url().'index.php/transaction/forwarded_file';
+			
+			echo $url;
+		}
+
+	}
+	
 	public function forwarded_file(){
         $data['title']   = 'Forward Files';
 		$where = array('a.forwarded_by=b.id'=>NULL,

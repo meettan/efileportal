@@ -1,8 +1,21 @@
 <div class="content-wrapper">
 			<div class="card">
 			 <div class="card-body" >
+
 				<div class="titleSec">
 				<h2><?=$title?></h2>
+                <?php if ($this->session->flashdata('success') != ''):   ?>
+       <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+             <?php  echo $this->session->flashdata('success');  ?>
+        </div>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('error') != ''):   ?>
+       <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+             <?php  echo $this->session->flashdata('error');  ?>
+        </div>
+        <?php endif; ?>
 				</div>
 				<div class="row">
                 <div class="col-sm-12"> 
@@ -49,9 +62,9 @@
                                    <?php  }else{  ?>
                                  <a href="<?php echo site_url('index.php/transaction/print_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>          
                                  <?php   } ?>
-                                 <?php if($key->fwd_status != 'A'){ ?>
-                                 <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button>
-                                 <?php } ?>
+                                 <?php //if($key->fwd_status != 'A'){ ?>
+                                 <!-- <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button> -->
+                                 <?php //} ?>
                             </td>
                             </tr>
                             <?php   }

@@ -100,6 +100,10 @@ $(document).ready(function() {
                 success: function(response)
                 {
                 $('#ajaxview').html(response);
+                // CKEDITOR.appendTo( 'rmk');
+                CKEDITOR.replace( 'editor1' );
+                // ckeditor.replace('#rmk'); // ADD THIS
+                //  $('#rmk').ckeditor(); // ADD THIS
                 }
         });
     });

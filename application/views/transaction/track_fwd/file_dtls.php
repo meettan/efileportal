@@ -7,7 +7,8 @@
             </div>
             <div class="row">
                 <div class="col-sm-12"> 
-                        <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data'>
+                        <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data' id='fwd_frm'>
+                        <input type='hidden' value='forwarded_file' name='url'>
                         <?php foreach($docs as $dt);?> 
                         <div class="form-group row">
                                 <div class="col-sm-2 fieldname">Department</div>
@@ -119,7 +120,7 @@
                         <div class="form-group row">
                             <div class="col-sm-2 fieldname">Remarks</div>
                             <div class="col-sm-10">
-                            <textarea name='remarks' class="form-control" placeholder='' ></textarea>
+                            <textarea name='remarks' class="form-control" placeholder='' id='editor'></textarea>
                             </div>
                         </div>
                         <hr/>
@@ -142,13 +143,19 @@
                                         <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-sm-2 fieldname">Forward Status</div>
+                            <div class="col-sm-2 fieldname">
+                                <button class="btn btn-danger" id='file_reject'>File Reject</button>
+                            </div>
+                                <!-- <div class="col-sm-4">
+                                <input type="checkbox" id="cr" name="cr" value="1">
+                            </div> -->
+                            <!-- <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
                                     <option value='A'>Approve</option>
                                     <option value='R'>Reject</option>
                                 </select>
-                            </div>
+                            </div> -->
                             </div>
                             <hr/>
                             <div class="form-group row">
@@ -165,6 +172,7 @@
 </div>
 <script>
 $( document ).ready(function() {
+    CKEDITOR.replace( 'remarks' );
     $('#intro2').on('change', '.doc', function(){
 
         var ext = $(this).val().split('.').pop().toLowerCase();
@@ -234,4 +242,23 @@ $( document ).ready(function() {
         })
 
 })
+$('#file_reject').click(function(){
+    event.preventDefault();
+    if(confirm("Are you sure you want to reject this file.After rejecting this file it will move to creater of file?")){
+        $.ajax({
+            type: "POST",
+            url: '<?=base_url()?>index.php/transaction/file_reject',
+            data: $('#fwd_frm').serialize(),
+            success: function(response)
+            {
+                window.location.href = response;
+            }
+        });
+    }
+    else{
+        return false;
+    }
+    
+});
+
 </script>
