@@ -32,7 +32,6 @@
                                    </select>
                                 </div>
                         </div> 
-                         
                         <div class="form-group row">
                             <div class="col-sm-2 fieldname">File Type  <??> </div>
                             <div class="col-sm-4">

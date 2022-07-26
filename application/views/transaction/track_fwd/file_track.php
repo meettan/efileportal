@@ -27,7 +27,6 @@
                                 <th>Forwarded by</th>
                                 <th>Status</th>
                                 <th>Option</th>
-                                
                             </tr>
                         </thead>
                         <tbody id='doclist'>
@@ -57,8 +56,8 @@
                                 <?php $str2 = substr($key->file_no,0,1); 
                                      if($str2 == 'S') { ?>
                                 <a href="<?php echo site_url('index.php/notesheet/salary_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>
-                                     <?php }elseif($str2 == 'L') { ?>
-                                        <a href="<?php echo site_url('index.php/notesheet/leave_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>   
+                                     <?php //}elseif($str2 == 'L') { ?>
+                                        <!-- <a href="<?php //echo site_url('index.php/notesheet/leave_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>    -->
                                    <?php  }else{  ?>
                                  <a href="<?php echo site_url('index.php/transaction/print_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>          
                                  <?php   } ?>
@@ -85,11 +84,9 @@
                         </table>
 				</div>
 			</div>
-
 			</div>
 		</div>
 	</div>
-
 </div>   <!-- This div start in header.php is of main-panel -->
 <script>
 $(document).ready(function() {

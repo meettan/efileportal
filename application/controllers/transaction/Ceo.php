@@ -66,7 +66,7 @@ class Ceo extends CI_Controller {
 					'remarks' => $this->input->post('remarks'),
 					'fwd_status' => $this->input->post('fwd_status'),
 					'fwd_dept'=> $result->dept_no,
-					'fwd_to' =>$this->input->post('user'),
+					'fwd_to'  => $this->input->post('user'),
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
 					'forwarded_at' =>date("Y-m-d h:i:s"));
 			$this->master->f_insert('td_track_file',$data);
@@ -87,7 +87,9 @@ class Ceo extends CI_Controller {
                     $wheres  = array('docket_no' => $this->input->post('docket_no'));
                     $this->notesheet_model->f_edits('td_leave_dtls',$data_arrays,$wheres);
 				}
-				
+			}else{
+
+				$this->master->f_edit('td_file',array('creater_forward'=> '0'),array('file_no'=> $this->input->post('fileno')));
 			}
 			redirect('index.php/ceo/');
 		}
