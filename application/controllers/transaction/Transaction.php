@@ -295,6 +295,7 @@ class Transaction extends CI_Controller {
 	public function print_notesheet(){
 		$fileno = $this->input->get('fileno');
 		$data['notesheet'] = $this->master->f_get_particulars('td_file',NULL,array('file_no'=>$fileno),1);
+		$data['comment_author'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.*','b.first_name'),array('a.forwarded_by = b.id'=> NULL,'file_no' =>$fileno),0);
 		$this->load->view('transaction/notesheet',$data);
 		
 	}

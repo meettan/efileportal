@@ -42,10 +42,22 @@
                 </div>
             </div>
             <?php  echo $notesheet->note_sheet; ?>
-
-		
-        
-		  					
+        </div>
+        <div class="col-lg-12 container contant-wraper">
+            <?php if($comment_author) { 
+                            foreach($comment_author as $ca){
+                    ?>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                    <h5 class="card-title"> Remarks By: <?php if(isset($ca->first_name)) echo $ca->first_name; ?> / Forwarded Date: <?php if(isset($ca->forwarded_at)) echo date('d/m/Y',strtotime(explode(' ',$ca->forwarded_at)[0])).' '.explode(' ',$ca->forwarded_at)[1] ; ?></h5>
+                                    <?php if(isset($ca->remarks)) echo $ca->remarks; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            <?php } }?>
         </div>
     </div>
 </div>
