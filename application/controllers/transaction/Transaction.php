@@ -234,7 +234,6 @@ class Transaction extends CI_Controller {
 			$docket_no = trim($this->input->post('docket_no'));
 			$query = $this->db->get_where('td_docket_no', array('docket_no =' => $docket_no))->result();
 			//if(count($query) > 0){
-
 			   $data['docs']  = $this->master->f_get_particulars('td_document',NULL,array('docket_no'=>$docket_no,'fwd_flag' => 'Y'),0);
 			   $view = $this->load->view('transaction/documentblock',$data);
 			   return $view;
@@ -351,7 +350,7 @@ class Transaction extends CI_Controller {
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
-					'remarks' => $this->input->post('remarks'),
+					//'remarks' => $this->input->post('remarks'),
 					'fwd_status' => 'A',
 					'fwd_dept'=> $result->dept_no,
 					'fwd_to'  => $this->input->post('user'),
@@ -441,7 +440,7 @@ class Transaction extends CI_Controller {
 		  $where = array('forwarded_by'=>$this->session->userdata('uloggedin')->id,
 						 'file_no' =>$fdetail[1]);
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
-		  $data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$fdetail[1]),1);
+		  $data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name','b.designation'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$fdetail[1]),1);
 		  //echo $data['filedtl']->application_no;die();
 		  $ft = substr($fdetail[1],0,4); 
 		  $data['filetype'] = $this->master->f_get_particulars('md_file_type',array('file_name'),array('file_no'=>$ft),1);
@@ -456,7 +455,7 @@ class Transaction extends CI_Controller {
 		  }else{
 			$data['leave'] = '';
 		  }
-		  $data['comment_author'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.*','b.first_name'),array('a.forwarded_by = b.id'=> NULL,'file_no' =>$fdetail[1]),0);
+		  $data['comment_author'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.*','b.first_name','b.designation'),array('a.forwarded_by = b.id'=> NULL,'file_no' =>$fdetail[1]),0);
 		  $view = $this->load->view('transaction/track_fwd/file_dtls',$data);
 		  return $view;
 		}
@@ -489,6 +488,7 @@ class Transaction extends CI_Controller {
 		}
 
 	}
+	
 
 	
 }

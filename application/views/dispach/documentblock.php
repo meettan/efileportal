@@ -11,13 +11,14 @@
                         <input type="text" class='form-control' value='<?=date('d-m-Y',strtotime($docket->docket_dt))?>' readonly> 
                         </div>
                     </div>
+                    <?php if(isset($doc->remarks) && $doc->remarks !='') { ?>
                     <div class="form-group row">
                         <div class="col-sm-2 fieldname">Remarks</div>
                         <div class="col-sm-10">
                         <textarea class='form-control' readonly><?php if(isset($doc->remarks)){echo $doc->remarks;}?></textarea>
                         </div>
                     </div> 
-                 
+                    <?php   } ?>
                  <div class="form-group row">
                  <div class="pdfListBlockMain">
                  <?php foreach($docs as $key){?>   
@@ -40,6 +41,24 @@
                     </div>
                  </div>
                  <br>
+                 <div class="form-group row">
+                    <div class="col-sm-2 fieldname">Received from<span style="color: red;"> *</span></div>
+                    <div class="col-sm-10">
+                            <input type ='text' name='received_from' class='form-control' required/>
+                    </div>
+                 </div>
+                 <div class="form-group row">
+                    <div class="col-sm-2 fieldname">Bill/Memo no<span style="color: red;"> *</span></div>
+                    <div class="col-sm-10">
+                             <input type ='text' name='bill_memo_no' class='form-control' required/>  
+                    </div>
+                 </div>
+                 <div class="form-group row">
+                    <div class="col-sm-2 fieldname">Subject<span style="color: red;"> *</span></div>
+                    <div class="col-sm-10">
+                             <input type ='text' name='subject' class='form-control' required/>  
+                    </div>
+                 </div>
                  <div class="form-group row">
                         <div class="col-sm-2 fieldname">Remarks</div>
                         <div class="col-sm-8">

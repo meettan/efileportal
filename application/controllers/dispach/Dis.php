@@ -241,6 +241,13 @@ class Dis extends CI_Controller {
 
 	public function forward_doc(){
 
+		$this->form_validation->set_rules('received_from', 'Received from', 'required');
+		$this->form_validation->set_rules('bill_memo_no', 'Bill/Memo no', 'required');
+		$this->form_validation->set_rules('subject', 'Subject', 'required');
+		$this->form_validation->set_rules('docket_no', 'Docket no', 'required');
+		$docket_no = $this->input->post('docket_no');
+		if ($this->form_validation->run() == TRUE)
+		{
 		$data_array  = array('fwd_dt'  => date('Y-m-d'),
 							'docket_no'=>$this->input->post('docket_no'),
 		                    'remarks'  => $this->input->post('remarks'),
@@ -250,6 +257,11 @@ class Dis extends CI_Controller {
 							'forwarded_at' => date("Y-m-d h:i:s")
 							);
 		$where =array('docket_no' => $this->input->post('docket_no'));
+		$docket_array = array('status' => '1',
+							  'received_from' => $this->input->post('received_from'),
+							  'bill_memo_no' => $this->input->post('bill_memo_no'),
+							  'subject' => $this->input->post('subject')
+						    );
 		$forward_doc_array =  array('fwd_flag'=>'Y',
 									'fwd_dept'=>$this->input->post('dept'),
 									'fwd_to' => $this->input->post('user'),
@@ -258,9 +270,14 @@ class Dis extends CI_Controller {
 								);			 
 		$this->master->f_edit('td_document',$forward_doc_array, $where);
 		$this->master->f_insert('td_doc_track',$data_array);
-		$this->master->f_edit('td_docket_no',array('status' => '1'), $where);
+		$this->master->f_edit('td_docket_no',$docket_array, $where);
 		$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
 		redirect('index.php/dispach/forward');
+		}else{
+            $validation = validation_errors();
+			$this->session->set_flashdata('error', $validation.$docket_no.' Docket Not Forwarded');
+		    redirect('index.php/dispach/forward');
+		}
 	}
 
 	//     Search document view page

@@ -119,12 +119,12 @@
                             <hr/>
                         
                         <?php }else{ ?>
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <div class="col-sm-2 fieldname">Remarks</div>
                                 <div class="col-sm-10">
                                 <textarea name='remarks' class="ckeditor form-control" placeholder='' id='rmk' ></textarea>
                                 </div>
-                            </div>
+                            </div> -->
                             <hr/>
                             <div class="form-group row">
                             <div class="col-sm-2 fieldname">User</div>
@@ -192,7 +192,7 @@
         </div>
 <script>
 $( document ).ready(function() {
-    CKEDITOR.replace( 'remarks' );
+    // CKEDITOR.replace( 'remarks' );
 
     $('#intro2').on('change', '.doc', function(){
 

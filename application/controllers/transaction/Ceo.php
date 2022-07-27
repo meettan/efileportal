@@ -37,7 +37,7 @@ class Ceo extends CI_Controller {
 		  $where = array('forwarded_by'=>$this->session->userdata('uloggedin')->id,
 						 'file_no' =>$fdetail[1]);
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
-		  $data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$fdetail[1]),1);
+		  $data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name','b.designation'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$fdetail[1]),1);
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
 			if($data['filedtl'] ){
@@ -48,7 +48,7 @@ class Ceo extends CI_Controller {
 		  }else{
 			$data['leave'] = '';
 		  }
-		  $data['comment_author'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.*','b.first_name'),array('a.forwarded_by = b.id'=> NULL,'file_no' =>$fdetail[1]),0);
+		  $data['comment_author'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.*','b.first_name','b.designation'),array('a.forwarded_by = b.id'=> NULL,'file_no' =>$fdetail[1]),0);
 		  $view = $this->load->view('ceo/file_dtls',$data);
 		  return $view;
 		}
