@@ -41,6 +41,15 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="col-lg-12">
+                <div class="row">
+                    
+                    <div class='col-md-6'>Received from : <?php  echo $notesheet->received_from; ?></div>
+                    <div class='col-md-6'>Bill/Memo no : <?php  echo $notesheet->bill_memo_no; ?></div>
+                </div>
+            </div>
+            </br>
             <?php  echo $notesheet->note_sheet; ?>
         </div>
         <div class="col-lg-12 container contant-wraper">

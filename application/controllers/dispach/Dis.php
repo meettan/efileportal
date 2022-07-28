@@ -241,13 +241,13 @@ class Dis extends CI_Controller {
 
 	public function forward_doc(){
 
-		$this->form_validation->set_rules('received_from', 'Received from', 'required');
-		$this->form_validation->set_rules('bill_memo_no', 'Bill/Memo no', 'required');
-		$this->form_validation->set_rules('subject', 'Subject', 'required');
-		$this->form_validation->set_rules('docket_no', 'Docket no', 'required');
-		$docket_no = $this->input->post('docket_no');
-		if ($this->form_validation->run() == TRUE)
-		{
+		// $this->form_validation->set_rules('received_from', 'Received from', 'required');
+		// $this->form_validation->set_rules('bill_memo_no', 'Bill/Memo no', 'required');
+		// $this->form_validation->set_rules('subject', 'Subject', 'required');
+		// $this->form_validation->set_rules('docket_no', 'Docket no', 'required');
+		// $docket_no = $this->input->post('docket_no');
+		// if ($this->form_validation->run() == TRUE)
+		// {
 		$data_array  = array('fwd_dt'  => date('Y-m-d'),
 							'docket_no'=>$this->input->post('docket_no'),
 		                    'remarks'  => $this->input->post('remarks'),
@@ -273,11 +273,11 @@ class Dis extends CI_Controller {
 		$this->master->f_edit('td_docket_no',$docket_array, $where);
 		$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
 		redirect('index.php/dispach/forward');
-		}else{
-            $validation = validation_errors();
-			$this->session->set_flashdata('error', $validation.$docket_no.' Docket Not Forwarded');
-		    redirect('index.php/dispach/forward');
-		}
+		// }else{
+        //     $validation = validation_errors();
+		// 	$this->session->set_flashdata('error', $validation.$docket_no.' Docket Not Forwarded');
+		//     redirect('index.php/dispach/forward');
+		// }
 	}
 
 	//     Search document view page

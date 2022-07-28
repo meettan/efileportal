@@ -40,7 +40,6 @@
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <div class="card">
-                                
                                     <div class="card-body">
                                     <h5 class="card-title"> Created By: <?php if(isset($filedtl->first_name)) echo $filedtl->first_name; ?>/ <?php if(isset($filedtl->designation)) echo $filedtl->designation; ?> :  <?php if(isset($filedtl->created_at)) echo date('d/m/Y',strtotime(explode(' ',$filedtl->created_at)[0])).' '.explode(' ',$filedtl->created_at)[1] ; ?></h5>
                                     <?php if(isset($filedtl->note_sheet)) echo $filedtl->note_sheet; ?>

@@ -41,7 +41,7 @@
                     </div>
                  </div>
                  <br>
-                 <div class="form-group row">
+                 <!-- <div class="form-group row">
                     <div class="col-sm-2 fieldname">Received from<span style="color: red;"> *</span></div>
                     <div class="col-sm-10">
                             <input type ='text' name='received_from' class='form-control' required/>
@@ -58,7 +58,7 @@
                     <div class="col-sm-10">
                              <input type ='text' name='subject' class='form-control' required/>  
                     </div>
-                 </div>
+                 </div> -->
                  <div class="form-group row">
                         <div class="col-sm-2 fieldname">Remarks</div>
                         <div class="col-sm-8">

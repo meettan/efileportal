@@ -20,7 +20,7 @@
                                 </div>
                             </div> -->
                             <div class="form-group row">
-                                <div class="col-sm-2">Department</div>
+                                <div class="col-sm-2 fieldname">Department</div>
                                 <div class="col-sm-4">
                                  <select class='form-control select2' name='dept' id='dept'>
                                      <option value=''>Select Department</option>
@@ -29,7 +29,7 @@
                                      <?php } ?>
                                  </select>
                                 </div>
-                                <div class="col-sm-2">Module</div>
+                                <div class="col-sm-2 fieldname">Module</div>
                                 <div class="col-sm-4">
                                   <select class='form-control select2' name='module' id='module'>
                                     <option value=''>Select Module</option>
@@ -43,12 +43,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-2">File Type</div>
+                                <div class="col-sm-2 fieldname">File Type</div>
                                 <div class="col-sm-4">
                                  <select class='form-control select2' id ='filetype' name='filetype'>
                                  </select>
                                 </div>
-                                <div class="col-sm-2">Docket No</div>
+                                <div class="col-sm-2 fieldname">Docket No</div>
                                 <div class="col-sm-4" id='dcdetail'>
                                   <select class='form-control select2' name='docket' id='docket_no'>
                                     <option value=''>Select Docket</option>
@@ -60,9 +60,27 @@
                             </div>
                             <div class="form-group row" id='docket_content'>
 
-                            </div>   
+                            </div>
                             <div class="form-group row">
-                              <div class="col-sm-2">Remarks</div>
+                    <div class="col-sm-2 fieldname">Received from<span style="color: red;"> *</span></div>
+                    <div class="col-sm-10">
+                            <input type ='text' name='received_from' class='form-control' required/>
+                    </div>
+                 </div>
+                 <div class="form-group row">
+                    <div class="col-sm-2 fieldname">Bill/Memo no<span style="color: red;"> *</span></div>
+                    <div class="col-sm-10">
+                             <input type ='text' name='bill_memo_no' class='form-control' required/>  
+                    </div>
+                 </div>
+                 <div class="form-group row">
+                    <div class="col-sm-2 fieldname">Subject<span style="color: red;"> *</span></div>
+                    <div class="col-sm-10">
+                             <input type ='text' name='subject' class='form-control' required/>  
+                    </div>
+                 </div>   
+                            <div class="form-group row">
+                              <div class="col-sm-2 fieldname">Notesheet</div>
                                <div class="col-sm-10">
                                 <textarea  class="form-control" placeholder='Remarks'  id='rmk' name="editor1"></textarea>
                                 </div>

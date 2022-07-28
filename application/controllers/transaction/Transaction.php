@@ -53,6 +53,13 @@ class Transaction extends CI_Controller {
 	// ******  Generate file  on file type  using table td_file  ******  //
 	public function generatefile(){
 
+		$this->form_validation->set_rules('received_from', 'Received from', 'required');
+		$this->form_validation->set_rules('bill_memo_no', 'Bill/Memo no', 'required');
+		$this->form_validation->set_rules('subject', 'Subject', 'required');
+		$this->form_validation->set_rules('docket', 'Docket no', 'required');
+		if ($this->form_validation->run() == TRUE)
+		{
+
 		$sess = SESSION_YEAR;
 		$data  = $this->master->f_get_particulars('td_file','ifnull(max(sl_no),0) as sl_no',NULL,1);
 		$sl    = $data->sl_no;
@@ -64,66 +71,69 @@ class Transaction extends CI_Controller {
 						'dept_no'   => $this->input->post('dept'),
 						'module'    => $this->input->post('module'),
 						'docket_no' => $this->input->post('docket'),
+						'received_from' => $this->input->post('received_from'),
+						'bill_memo_no' => $this->input->post('bill_memo_no'),
+						'subject' => $this->input->post('subject'),
 						'file_no'   => $file_type.'-'.$sess.'-'.($sl+1),
 						'note_sheet'=> $this->input->post('editor1'),
 						'created_by' => $this->session->userdata('uloggedin')->id,
 						'created_at'=> date("Y-m-d h:i:s")
 		               );
 		$id = $this->master->f_insert('td_file',$data_array);
-		// if($this->input->post('ckdc') == 'wdk'){
 
-		// 	$file      = $_FILES["fileToUpload"]["name"];
-		// 	$name      = $this->input->post('name');
-		// 	$error = '';
-		// 	$error_count = 0 ;
-		// 	$success_count = 0;
-		// 	$file_no = $file_type.'-'.$sess.'-'.($sl+1);
-		// 	//$old = umask(0);
-		// 	$target_dir = './uploads/'.$file_no.'/';
-		// 	// to mkdir() must be specified.
-		// 	if(!file_exists($target_dir)){
-		// 		if (!mkdir($target_dir, 0777, true)) {
-		// 			$error = 'Failed to create directories...';
-		// 		}
-		// 	}
-		// 	for($key=0;$key<sizeof($file);$key++){
-
-		// 		$filename=$_FILES["fileToUpload"]["name"][$key];
-		// 		$tmp = explode('.', $filename);
-		// 		$extension = end($tmp);
-		// 		$newfilename=$key.time().".".$extension;
-		// 		$target_file = $target_dir . $newfilename;
-		// 		$uploadOk = 1;
-		// 		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-		// 		if ($_FILES["fileToUpload"]["size"][$key] > 8000000) {
-		// 		$error .= "Sorry, your file is too large.";
-		// 		$uploadOk = 0;
-		// 		}
-		// 		//Allow certain file formats
-		// 		if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "pdf"){
-		// 		$error .= "only JPG, JPEG, PDF  files are allowed.";
-		// 		$uploadOk = 0;
-		// 		}
-		// 		if ($uploadOk == 1) {
-		// 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$key], $target_file)) {
-		// 				$data_array = array(
-		// 					'upload_dt'  => date('Y-m-d'),
-		// 					'file_no'  => $file_no,
-		// 					'name'       => $name[$key],
-		// 					'document'   => $newfilename,
-		// 					'upld_by'    => $this->session->userdata('uloggedin')->id,
-		// 					'upld_at'    => date("Y-m-d h:i:s")
-		// 				);
-		// 				$id = $this->master->f_insert('td_file_document',$data_array);
-		// 				$success_count++;
-		// 			}else{
-		// 				$error_count++;
-		// 			}
-		// 		}
-		// 	}
-		// }
-
+			// $file      = $_FILES["fileToUpload"]["name"];
+			// $name      = $this->input->post('name');
+			// $error = '';
+			// $error_count = 0 ;
+			// $success_count = 0;
+			// $file_no = $file_type.'-'.$sess.'-'.($sl+1);
+			// //$old = umask(0);
+			// $target_dir = './uploads/'.$file_no.'/';
+			// if(!file_exists($target_dir)){
+			// 	if (!mkdir($target_dir, 0777, true)) {
+			// 		$error = 'Failed to create directories...';
+			// 	}
+			// }
+			// for($key=0;$key<sizeof($file);$key++){
+			// 	$filename=$_FILES["fileToUpload"]["name"][$key];
+			// 	$tmp = explode('.', $filename);
+			// 	$extension = end($tmp);
+			// 	$newfilename=$key.time().".".$extension;
+			// 	$target_file = $target_dir . $newfilename;
+			// 	$uploadOk = 1;
+			// 	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+			// 	if ($_FILES["fileToUpload"]["size"][$key] > 8000000) {
+			// 	$error .= "Sorry, your file is too large.";
+			// 	$uploadOk = 0;
+			// 	}
+			// 	//Allow certain file formats
+			// 	if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "pdf"){
+			// 	$error .= "only JPG, JPEG, PDF  files are allowed.";
+			// 	$uploadOk = 0;
+			// 	}
+			// 	if ($uploadOk == 1) {
+			// 		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$key], $target_file)) {
+			// 			$data_array = array(
+			// 				'upload_dt'  => date('Y-m-d'),
+			// 				'file_no'  => $file_no,
+			// 				'name'       => $name[$key],
+			// 				'document'   => $newfilename,
+			// 				'upld_by'    => $this->session->userdata('uloggedin')->id,
+			// 				'upld_at'    => date("Y-m-d h:i:s")
+			// 			);
+			// 			$id = $this->master->f_insert('td_file_document',$data_array);
+			// 			$success_count++;
+			// 		}else{
+			// 			$error_count++;
+			// 		}
+			// 	}
+			// }
 		redirect('index.php/transaction/file');
+		}else{
+			$validation = validation_errors();
+			$this->session->set_flashdata('error', $validation.' File Not Created');
+			redirect('index.php/transaction/file');
+		}
 	}
 
 	public function docket_content_detail(){
