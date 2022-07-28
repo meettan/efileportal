@@ -439,13 +439,19 @@ class Transaction extends CI_Controller {
 
 	}
 	public function forward_file(){
-        $data['title']   = 'Forward Files';
+        $data['title']   = 'Received Files';
 		$where = array('a.forwarded_by=b.id'=>NULL,
 		               'a.file_no = c.file_no'=>NULL,
-					    'a.forwarded_by' => $this->session->userdata('uloggedin')->id);
+					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);
 		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b,td_file c',array('a.*','b.first_name','b.last_name','c.docket_no'),$where,0);
+		$selects = array('a.*','b.first_name');
+		$wheres  = array('a.created_by = b.id' => NULL,
+		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
+						'a.creater_forward'=> '0',
+						'1 order by a.file_date desc'=>NULL);
+		$data['filess'] = $this->master->f_get_particulars('td_file a,md_users b',$selects,$wheres,0);
 		$this->load->view('common/header');
-		$this->load->view('transaction/track_fwd/file_track',$data);
+		$this->load->view('transaction/track_fwd/fwd_file',$data);
 		$this->load->view('common/footer');
 
 	}
