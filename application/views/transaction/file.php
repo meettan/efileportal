@@ -1,9 +1,10 @@
 <div class="content-wrapper">
 			<div class="card">
 			 <div class="card-body" >
-				<div class="titleSec">
-                    <button type="button" class="btn btn-primary" id='add'>Create File</button>
-				<h2>File List</h2>
+				<!-- <div class="titleSec">
+
+	
+                </div> -->
                 <?php if ($this->session->flashdata('success') != ''):   ?>
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -16,17 +17,32 @@
                         <?php  echo $this->session->flashdata('error');  ?>
                     </div>
                 <?php endif; ?>
-				</div>
+				
+                
+                <div class="col-sm-12">
+                    <form action="" method="post" > 
+                   <div class="form-group row">
+                            <div class='col-sm-3'><h3>List of Files</h3></div>
+                            <div class='col-sm-2'><input type='date'  class='btn-sm' name='fr_date' value='<?=$fr_date?>'></div>
+                            <div class='col-sm-2'><input type='date'  class='btn-sm' name='to_date' value='<?=$to_date?>'></div>
+                            <div class='col-sm-2'><input type="submit" class="btn btn-info btn-sm" name="Filter" /></div>
+                            <div class='col-sm-1'></div>
+                            <div class='col-sm-2'><button type="button" class="btn btn-primary" id='add'>Create File</button></div>
+                    </div>
+                    </form>
+                </div>
+            
 				<div class="row">
                 <div class="col-sm-12"> 
                         <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr><th>Sl No</th>
                                 <th>File No</th>
-                                <th>Docket No</th>
+                                <!-- <th>Docket No</th> -->
                                 <th>File Date</th>
-                                <th>Created by</th>
-                                <th>Status</th>
+                                <!-- <th>Created by</th> -->
+                                <th>Option</th>
+                                <th>Print</th>
                             </tr>
                         </thead>
                         <tbody id='doclist'>
@@ -37,22 +53,23 @@
                             <tr>
                                 <td><?=++$sl?></td>
                                 <td><?=$key->file_no?></td>
-                                <td><?php if(isset($key->docket_no)){
+                                <!-- <td><?php if(isset($key->docket_no)){
                                     echo $key->docket_no;
-                                }?></td>
+                                }?></td> -->
                                 <td><?=date('d/m/Y',strtotime($key->file_date))?></td>
-                                <td><?=$key->first_name?></td>
+                                <!-- <td><?=$key->first_name?></td> -->
                                 <td><?php $key->docket_no?>
                                 <button class="link" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button>
                                 <?php if($key->creater_forward == '0') { ?>
                                 <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button>
                                 <a href="javascript:void(0)" onclick="" class="delete editeCus" title="Delete" id='<?=$key->file_no?>'><i class="fa fa-trash-o menu-icon" style="color: #bd2130"></i></a>
                                 <?php } ?>
+                                
+                            </td>
+                            <td>
                                 <?php $str2 = substr($key->file_no,0,1); 
                                      if($str2 == 'S') { ?>
                                 <a href="<?php echo site_url('index.php/notesheet/salary_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>
-                                     <?php }elseif($str2 == 'L') { ?>
-                                        <a href="<?php echo site_url('index.php/notesheet/leave_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>   
                                    <?php  }else{  ?>
                                  <a href="<?php echo site_url('index.php/transaction/print_notesheet?fileno='.(urldecode($key->file_no))); ?>" target="_blank"><i class="fa fa-print fa-fw fa-2x"></i></a>          
                                  <?php   } ?>
@@ -67,10 +84,11 @@
                             <tr>
                                 <th>Sl No</th>
                                 <th>File No</th>
-                                <th>Docket No</th>
+                                <!-- <th>Docket No</th> -->
                                 <th>Created Date</th>
-                                <th>Created by</th>
-                                <th>Status</th>
+                                <!-- <th>Created by</th> -->
+                                <th>Option</th>
+                                <th>Print</th>
                             </tr>
                         </tfoot>
                         </table>

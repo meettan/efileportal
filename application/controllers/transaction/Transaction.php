@@ -24,15 +24,35 @@ class Transaction extends CI_Controller {
 
 	//  *****  List of files used table  td_file  *****    //
 	public function file(){
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+		$data['fr_date'] = date("Y-m-d", strtotime("-1 months"));
+		$data['to_date'] = date("Y-m-d");
 		$select = array('a.*','b.first_name');
 		$where  = array('a.created_by = b.id' => NULL,
 		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
+						'a.file_date >=' => $data['fr_date'],
+						'a.file_date <=' => $data['to_date'],
 						'a.creater_forward'=> '0',
 						'1 order by a.file_date desc'=>NULL);
 		$data['files'] = $this->master->f_get_particulars('td_file a,md_users b',$select,$where,0);
 		$this->load->view('common/header');
 		$this->load->view('transaction/file',$data);
 		$this->load->view('common/footer');
+		}else{
+		$data['fr_date'] = $this->input->post('fr_date');
+		$data['to_date'] = $this->input->post('to_date');
+		$select = array('a.*','b.first_name');
+		$where  = array('a.created_by = b.id' => NULL,
+		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
+						'a.file_date >=' => $data['fr_date'],
+						'a.file_date <=' => $data['to_date'],
+						'a.creater_forward'=> '0',
+						'1 order by a.file_date desc'=>NULL);
+		$data['files'] = $this->master->f_get_particulars('td_file a,md_users b',$select,$where,0);
+		$this->load->view('common/header');
+		$this->load->view('transaction/file',$data);
+		$this->load->view('common/footer');
+		}
 	}
 
 	//   ******  View for creating add view Screen   *****    //
@@ -79,8 +99,7 @@ class Transaction extends CI_Controller {
 						'created_by' => $this->session->userdata('uloggedin')->id,
 						'created_at'=> date("Y-m-d h:i:s")
 		               );
-		$id = $this->master->f_insert('td_file',$data_array);
-
+		    $id = $this->master->f_insert('td_file',$data_array);
 			// $file      = $_FILES["fileToUpload"]["name"];
 			// $name      = $this->input->post('name');
 			// $error = '';
@@ -408,6 +427,17 @@ class Transaction extends CI_Controller {
 	}
 	
 	public function forwarded_file(){
+        $data['title']   = 'Forward Files';
+		$where = array('a.forwarded_by=b.id'=>NULL,
+		               'a.file_no = c.file_no'=>NULL,
+					    'a.forwarded_by' => $this->session->userdata('uloggedin')->id);
+		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b,td_file c',array('a.*','b.first_name','b.last_name','c.docket_no'),$where,0);
+		$this->load->view('common/header');
+		$this->load->view('transaction/track_fwd/file_track',$data);
+		$this->load->view('common/footer');
+
+	}
+	public function forward_file(){
         $data['title']   = 'Forward Files';
 		$where = array('a.forwarded_by=b.id'=>NULL,
 		               'a.file_no = c.file_no'=>NULL,

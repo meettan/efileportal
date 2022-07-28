@@ -89,12 +89,14 @@
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/"><i class="fa fa-code"></i>Forwarded Docket</a></div>
 	</li>
   <li>
-	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-code"></i>File</a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-code"></i>Create File</a></div>
 	</li>
   <li>
-	<div class="link"><a href="<?=base_url()?>index.php/transaction/forwarded_file"><i class="fa fa-code"></i>Forwarded File</a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/forward_file"><i class="fa fa-code"></i>Forwarded File</a></div>
 	</li>
-  
+  <!-- <li>
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/forwarded_file"><i class="fa fa-code"></i>Forwarded File</a></div>
+	</li> -->
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file_track"><i class="fa fa-code"></i>Received File</a></div>
 	</li>
