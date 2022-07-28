@@ -25,8 +25,9 @@ class Transaction extends CI_Controller {
 	//  *****  List of files used table  td_file  *****    //
 	public function file(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
-		$data['fr_date'] = date("Y-m-d", strtotime("-1 months"));
-		$data['to_date'] = date("Y-m-d");
+			$data['fr_date'] = $this->input->post('fr_date');
+			$data['to_date'] = $this->input->post('to_date');	
+		
 		$select = array('a.*','b.first_name');
 		$where  = array('a.created_by = b.id' => NULL,
 		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
@@ -39,8 +40,8 @@ class Transaction extends CI_Controller {
 		$this->load->view('transaction/file',$data);
 		$this->load->view('common/footer');
 		}else{
-		$data['fr_date'] = $this->input->post('fr_date');
-		$data['to_date'] = $this->input->post('to_date');
+			$data['fr_date'] = date("Y-m-d", strtotime("-1 months"));
+			$data['to_date'] = date("Y-m-d");
 		$select = array('a.*','b.first_name');
 		$where  = array('a.created_by = b.id' => NULL,
 		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
