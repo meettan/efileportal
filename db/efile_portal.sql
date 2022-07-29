@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 07, 2022 at 06:37 PM
--- Server version: 5.7.38-0ubuntu0.18.04.1
--- PHP Version: 7.2.24-0ubuntu0.18.04.12
+-- Generation Time: Jul 29, 2022 at 03:05 PM
+-- Server version: 5.7.39-0ubuntu0.18.04.2
+-- PHP Version: 7.2.24-0ubuntu0.18.04.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -280,6 +280,7 @@ CREATE TABLE `md_users` (
   `last_name` varchar(100) DEFAULT NULL,
   `dept` varchar(20) NOT NULL,
   `email` varchar(55) DEFAULT NULL,
+  `otp` varchar(250) DEFAULT NULL,
   `phone_no` bigint(20) NOT NULL,
   `phone_verification` enum('0','1') NOT NULL DEFAULT '0',
   `password` varchar(200) NOT NULL,
@@ -299,11 +300,14 @@ CREATE TABLE `md_users` (
 -- Dumping data for table `md_users`
 --
 
-INSERT INTO `md_users` (`id`, `first_name`, `last_name`, `dept`, `email`, `phone_no`, `phone_verification`, `password`, `conifrm_pwd`, `designation`, `user_type`, `user_approve`, `approve_by`, `approve_dt`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
-(1, 'demo', 'demo', 'Dispatch', 'abc@gmail.com', 9007507220, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'junior Assistant', '', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
-(2, 'arko', 'arko', 'Administration', 'abc@gmail.com', 9876543217, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'junior Assistant', '', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
-(3, 'raja', 'raja', 'Administration', 'abc@gmail.com', 1234567890, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'junior Assistant', '', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
-(4, 'CEO', 'CEO', 'Administration', 'ceo@gmail.com', 9999999999, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'CEO', '', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL);
+INSERT INTO `md_users` (`id`, `first_name`, `last_name`, `dept`, `email`, `otp`, `phone_no`, `phone_verification`, `password`, `conifrm_pwd`, `designation`, `user_type`, `user_approve`, `approve_by`, `approve_dt`, `created_by`, `created_dt`, `modified_by`, `modified_dt`) VALUES
+(1, 'demo', 'demo', 'Dispatch', 'abc@gmail.com', '', 9007507220, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'Dispach', '', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
+(2, 'arko', 'arko', 'Administration', 'arka@gmail.com', '', 9876543217, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'junior Assistant', '', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
+(3, 'raja', 'raja', 'Administration', 'raja@gmail.com', '', 1234567890, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'junior Assistant', '', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
+(4, 'CEO', 'CEO', 'Administration', 'ceo@gmail.com', '', 9999999999, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'CEO', 'CEO', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
+(5, 'Deputy Manager', 'Deputy Manager', 'Administration', 'dm@gmail.com', '', 9999999000, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'DM', 'DM', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
+(6, 'CDO', 'CDO', 'Administration', 'CDO@gmail.com', '', 9999999900, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'CDO', 'CDO', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL),
+(7, 'ARCS', 'ARCS', 'Administration', 'arcs@gmail.com', '', 9999999990, '0', '$2y$10$uo9FFOXV6c1eCAsH4JKAkuyJ.aKTqcey1Xxhl1fLQG3W56XdcZM0e', '$2y$10$3tHEhJdG5gIe.EgwtGiIWuMOjWB.HPQwPdDgla.g8DVQgmzbiWztq', 'ARCS', 'ARCS', '1', NULL, NULL, 'demo demo', '2022-05-11 16:11:55', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -327,6 +331,9 @@ CREATE TABLE `td_docket_no` (
   `fin_year` int(11) NOT NULL,
   `sl_no` int(11) NOT NULL,
   `docket_no` varchar(30) NOT NULL,
+  `received_from` varchar(200) DEFAULT NULL,
+  `bill_memo_no` varchar(200) DEFAULT NULL,
+  `subject` text,
   `status` enum('0','1') NOT NULL DEFAULT '0' COMMENT '1=> Forwarded',
   `created_by` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
@@ -336,21 +343,15 @@ CREATE TABLE `td_docket_no` (
 -- Dumping data for table `td_docket_no`
 --
 
-INSERT INTO `td_docket_no` (`docket_dt`, `fin_year`, `sl_no`, `docket_no`, `status`, `created_by`, `created_at`) VALUES
-('2022-05-12', 1, 1, '2022-23-1', '1', '1', '2022-05-12 11:11:18'),
-('2022-05-12', 1, 2, '2022-23-2', '0', '1', '2022-05-12 11:48:13'),
-('2022-05-16', 1, 3, '2022-23-3', '0', '1', '2022-05-16 03:11:11'),
-('2022-05-23', 1, 4, '2022-23-4', '0', '1', '2022-05-23 12:46:56'),
-('2022-05-23', 1, 5, '2022-23-5', '0', '1', '2022-05-23 02:55:09'),
-('2022-05-23', 1, 6, '2022-23-6', '0', '1', '2022-05-23 02:55:41'),
-('2022-05-23', 1, 7, '2022-23-7', '0', '1', '2022-05-23 02:56:11'),
-('2022-05-23', 1, 8, '2022-23-8', '0', '1', '2022-05-23 02:56:31'),
-('2022-05-23', 1, 9, '2022-23-9', '0', '1', '2022-05-23 02:58:08'),
-('2022-05-23', 1, 10, '2022-23-10', '0', '1', '2022-05-23 02:58:23'),
-('2022-06-08', 1, 11, '2022-23-11', '0', '1', '2022-06-08 11:12:50'),
-('2022-06-08', 1, 12, '2022-23-12', '1', '1', '2022-06-08 03:24:57'),
-('2022-06-21', 1, 13, '2022-23-13', '0', '2', '2022-06-21 11:38:16'),
-('2022-07-06', 1, 14, '2022-23-14', '0', '1', '2022-07-06 11:37:12');
+INSERT INTO `td_docket_no` (`docket_dt`, `fin_year`, `sl_no`, `docket_no`, `received_from`, `bill_memo_no`, `subject`, `status`, `created_by`, `created_at`) VALUES
+('2022-07-15', 1, 1, '2022-23-1', NULL, '', NULL, '1', '1', '2022-07-15 06:27:02'),
+('2022-07-19', 1, 2, '2022-23-2', NULL, '', NULL, '1', '1', '2022-07-19 12:16:18'),
+('2022-07-25', 1, 3, '2022-23-3', NULL, '', NULL, '1', '1', '2022-07-25 12:49:34'),
+('2022-07-26', 1, 4, '2022-23-4', NULL, '', NULL, '1', '1', '2022-07-26 11:20:51'),
+('2022-07-27', 1, 5, '2022-23-5', 'lokesh', 'clain12', 'tour and travels', '1', '1', '2022-07-27 10:22:59'),
+('2022-07-27', 1, 6, '2022-23-6', 'demo', '1452/123', 'Leave', '1', '1', '2022-07-27 10:23:09'),
+('2022-07-28', 1, 7, '2022-23-7', NULL, NULL, NULL, '1', '2', '2022-07-28 01:35:29'),
+('2022-07-29', 1, 8, '2022-23-8', NULL, NULL, NULL, '0', '2', '2022-07-29 11:30:28');
 
 -- --------------------------------------------------------
 
@@ -380,14 +381,9 @@ CREATE TABLE `td_document` (
 --
 
 INSERT INTO `td_document` (`upload_dt`, `docket_no`, `sl_no`, `name`, `document`, `term_flag`, `fwd_flag`, `remarks`, `fwd_dept`, `fwd_to`, `upld_by`, `upld_at`, `fwd_by`, `fwd_at`) VALUES
-('2022-05-16', '2022-23-1', 1, 'Tara traders', '01652678432.jpeg', 'N', 'Y', 'test data', 1, 2, '1', '2022-05-16 10:50:32', '1', '2022-06-20 01:17:39'),
-('2022-05-16', '2022-23-1', 2, 'Ma kali traders', '11652678432.jpeg', 'N', 'Y', 'test data', 1, 2, '1', '2022-05-16 10:50:32', '1', '2022-06-20 01:17:39'),
-('2022-05-16', '2022-23-1', 3, 'RS TRADESRS', '21652678432.jpeg', 'N', 'Y', 'test data', 1, 2, '1', '2022-05-16 10:50:32', '1', '2022-06-20 01:17:39'),
-('2022-06-13', '2022-23-1', 10, 'test data', '01655099723.pdf', 'N', 'Y', 'Test data ', 1, 2, '1', '2022-06-13 11:25:23', '1', '2022-06-20 01:17:39'),
-('2022-06-13', '2022-23-1', 11, 'tredr', '11655099723.jpeg', 'N', 'Y', 'Test data ', 1, 2, '1', '2022-06-13 11:25:23', '1', '2022-06-20 01:17:39'),
-('2022-06-13', '2022-23-1', 12, 'DASDD', '01655101076.pdf', 'N', 'Y', 'axdSD', 1, 2, '1', '2022-06-13 11:47:56', '1', '2022-06-20 01:17:39'),
-('2022-06-13', '2022-23-12', 15, 'test', '01655124637.pdf', 'N', 'Y', 'test dat here', 1, 2, '1', '2022-06-13 06:20:37', '1', '2022-06-21 11:12:58'),
-('2022-06-13', '2022-23-5', 18, 'testg', '01655125817.pdf', 'N', 'Y', 'test', 1, 2, '1', '2022-06-13 06:40:17', '1', '2022-06-16 01:47:51');
+('2022-07-29', '2022-23-5', 1, 'test', '01659078762.pdf', 'N', 'Y', '', 1, 2, '1', '2022-07-29 12:42:42', '1', '2022-07-29 12:47:32'),
+('2022-07-29', '2022-23-6', 2, 'test', '01659081558.pdf', 'N', 'Y', 'aSAS', 0, 0, '1', '2022-07-29 01:29:18', NULL, NULL),
+('2022-07-29', '2022-23-6', 3, 'tdet', '11659081558.jpeg', 'N', 'Y', 'aSAS', 0, 0, '1', '2022-07-29 01:29:18', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -399,7 +395,7 @@ CREATE TABLE `td_doc_track` (
   `fwd_dt` date NOT NULL,
   `sl_no` int(11) NOT NULL,
   `docket_no` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
-  `remarks` text CHARACTER SET utf8mb4 NOT NULL,
+  `remarks` text CHARACTER SET utf8mb4,
   `fwd_status` enum('A','R') CHARACTER SET utf8mb4 NOT NULL COMMENT 'A - approve R- reject',
   `fwd_dept` int(11) NOT NULL,
   `fwd_to` int(11) NOT NULL,
@@ -412,8 +408,13 @@ CREATE TABLE `td_doc_track` (
 --
 
 INSERT INTO `td_doc_track` (`fwd_dt`, `sl_no`, `docket_no`, `remarks`, `fwd_status`, `fwd_dept`, `fwd_to`, `forwarded_by`, `forwarded_at`) VALUES
-('2022-06-20', 5, '2022-23-1', 'asxDADASFD', 'A', 1, 2, '1', '2022-06-20 01:17:39'),
-('2022-06-21', 6, '2022-23-12', 'dsfsdf', 'A', 1, 2, '1', '2022-06-21 11:12:58');
+('2022-07-15', 1, '2022-23-1', 'test', 'A', 1, 2, '1', '2022-07-15 06:27:20'),
+('2022-07-19', 3, '2022-23-2', '', 'A', 1, 1, '1', '2022-07-19 12:22:47'),
+('2022-07-25', 4, '2022-23-3', '', 'A', 1, 1, '1', '2022-07-25 03:27:11'),
+('2022-07-26', 5, '2022-23-4', '', 'A', 1, 2, '1', '2022-07-26 11:21:06'),
+('2022-07-27', 6, '2022-23-6', '', 'A', 1, 2, '1', '2022-07-27 12:22:21'),
+('2022-07-28', 7, '2022-23-7', 'sdf', 'A', 1, 3, '2', '2022-07-28 01:35:48'),
+('2022-07-29', 8, '2022-23-5', '', 'A', 1, 2, '1', '2022-07-29 12:47:32');
 
 -- --------------------------------------------------------
 
@@ -427,12 +428,18 @@ CREATE TABLE `td_file` (
   `fin_year` int(11) NOT NULL,
   `file_no` varchar(50) NOT NULL,
   `dept_no` int(11) NOT NULL,
-  `application_no` varchar(150) DEFAULT NULL,
+  `module` varchar(10) DEFAULT NULL,
   `docket_no` varchar(15) DEFAULT NULL,
+  `received_from` varchar(200) DEFAULT NULL,
+  `bill_memo_no` varchar(200) DEFAULT NULL,
+  `subject` text,
   `note_sheet` text NOT NULL,
   `created_by` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `creater_forward` enum('0','1') NOT NULL DEFAULT '0',
+  `close_status` enum('0','1') NOT NULL DEFAULT '0',
+  `close_by` varchar(100) DEFAULT NULL,
+  `close_dt` datetime DEFAULT NULL,
   `modified_by` varchar(50) DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -441,13 +448,12 @@ CREATE TABLE `td_file` (
 -- Dumping data for table `td_file`
 --
 
-INSERT INTO `td_file` (`file_date`, `sl_no`, `fin_year`, `file_no`, `dept_no`, `application_no`, `docket_no`, `note_sheet`, `created_by`, `created_at`, `creater_forward`, `modified_by`, `modified_at`) VALUES
-('2022-05-18', 4, 1, 'I-42-2022-23-4', 3, NULL, '2022-23-1', '<p>This is test data developed for test purpose&nbsp;</p>', '2', '2022-05-18 05:40:26', '0', NULL, NULL),
-('2022-05-18', 5, 1, 'C-99-2022-23-5', 1, NULL, '2022-23-1', '<p>This is test data developed for test purpose&nbsp;</p>', '1', '2022-05-18 06:11:12', '0', NULL, NULL),
-('2022-05-19', 6, 1, 'I-42-2022-23-6', 3, NULL, '2022-23-1', '<p>This is test data developed for test purpose&nbsp;</p>\n', '2', '2022-05-19 11:53:09', '0', NULL, NULL),
-('2022-05-19', 8, 1, 'P-206-2022-23-8', 1, NULL, '2022-23-1', '<p>asSAS SQAs s qwed qq edq xadasd csafaf dasdasdasdasd lokesh vdsfgesgv dvfsegver</p>\r\n', '1', '2022-05-19 05:11:28', '0', '1', '2022-05-19 06:48:21'),
-('2022-06-21', 11, 1, 'P-77-2022-23-11', 1, NULL, '', '<p>dshdsa skadksa d jkasksafj ksljkasfk&nbsp; asdaklfakl</p>\r\n', '2', '2022-06-21 12:24:32', '0', NULL, NULL),
-('2022-06-21', 12, 1, 'S-220-2022-23-12', 1, NULL, '', '', '1', '2022-06-21 05:14:08', '0', NULL, NULL);
+INSERT INTO `td_file` (`file_date`, `sl_no`, `fin_year`, `file_no`, `dept_no`, `module`, `docket_no`, `received_from`, `bill_memo_no`, `subject`, `note_sheet`, `created_by`, `created_at`, `creater_forward`, `close_status`, `close_by`, `close_dt`, `modified_by`, `modified_at`) VALUES
+('2022-07-15', 1, 1, 'L-78-2022-23-1', 1, 'L', '2022-23-1', NULL, NULL, NULL, '<p>xfsdfsff</p>\r\n', '2', '2022-07-15 06:38:01', '1', '1', '4', '2022-07-18 06:07:14', NULL, NULL),
+('2022-07-25', 3, 1, 'P-77-2022-23-3', 1, 'P', '2022-23-2', NULL, NULL, NULL, '<p>saSas&nbsp; sQAS&nbsp; dadadadad dadadad QDASDQDw</p>\r\n', '1', '2022-07-25 02:11:11', '1', '0', NULL, NULL, NULL, NULL),
+('2022-07-25', 4, 1, 'C-60-2022-23-4', 1, 'OT', '2022-23-3', NULL, NULL, NULL, '<p>sdgad dnasdhaskd dhaskd ajkdhakjsdhakjshdad&nbsp; dakldhajdhak dakdakld ajdhajshdahdadjs</p>\r\n\r\n<p>xjc d asdhasdh hda sdhaIDy dklsahdkahsdkh kshdakjshdahsd dsahdajkshdakjh</p>\r\n', '1', '2022-07-25 03:38:48', '1', '0', NULL, NULL, NULL, NULL),
+('2022-07-26', 5, 1, 'L-78-2022-23-5', 1, 'L', '2022-23-4', NULL, NULL, NULL, '<p>So Sri Rupa Hazra has requested to adjust the leaves in Casual Leave ground.</p>\r\n\r\n<p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please.</p>\r\n', '2', '2022-07-26 11:22:41', '1', '1', '4', '2022-07-26 11:32:08', NULL, NULL),
+('2022-07-28', 6, 1, 'C-60-2022-23-6', 1, 'OT', '2022-23-6', 'Water Supplyer', '1452/123', 'Water Bill', '<p>wATER SUPPLYER SUPPLY WATER BILL TO US and asker money 2500/&nbsp;</p>\r\n', '2', '2022-07-28 01:35:17', '0', '0', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -484,10 +490,11 @@ CREATE TABLE `td_track_file` (
   `fwd_dt` date NOT NULL,
   `sl_no` int(11) NOT NULL,
   `file_no` varchar(50) NOT NULL,
-  `remarks` text NOT NULL,
+  `remarks` text,
   `fwd_status` enum('A','R') NOT NULL COMMENT 'A - approve R- reject',
   `fwd_dept` int(11) NOT NULL,
   `fwd_to` int(11) NOT NULL,
+  `receiver_status` enum('0','1') NOT NULL DEFAULT '0',
   `forwarded_by` varchar(50) DEFAULT NULL,
   `forwarded_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -496,11 +503,17 @@ CREATE TABLE `td_track_file` (
 -- Dumping data for table `td_track_file`
 --
 
-INSERT INTO `td_track_file` (`fwd_dt`, `sl_no`, `file_no`, `remarks`, `fwd_status`, `fwd_dept`, `fwd_to`, `forwarded_by`, `forwarded_at`) VALUES
-('2022-05-20', 1, 'I-42-2022-23-4', 'asSS', 'A', 0, 2, NULL, NULL),
-('2022-06-22', 2, 'S-220-2022-23-12', 'Wll done it is very special data for tst ', 'A', 0, 2, '1', '2022-06-22 05:20:25'),
-('2022-06-23', 3, 'S-220-2022-23-12', 'Hi it si my forward to data ', 'A', 0, 3, '2', '2022-06-23 03:24:59'),
-('2022-07-06', 4, 'L-83-2022-23-13', 'Leave for Arko ', 'A', 0, 3, '1', '2022-07-06 12:54:14');
+INSERT INTO `td_track_file` (`fwd_dt`, `sl_no`, `file_no`, `remarks`, `fwd_status`, `fwd_dept`, `fwd_to`, `receiver_status`, `forwarded_by`, `forwarded_at`) VALUES
+('2022-07-18', 1, 'L-78-2022-23-1', 'ffggfgf', 'A', 1, 4, '0', '2', '2022-07-18 05:57:30'),
+('2022-07-18', 3, 'L-78-2022-23-1', 'test', 'A', 1, 0, '0', '4', '2022-07-18 06:07:14'),
+('2022-07-25', 10, 'P-77-2022-23-3', 'xzsxaSa', 'A', 1, 2, '0', '1', '2022-07-25 02:11:24'),
+('2022-07-25', 14, 'C-60-2022-23-4', '', 'A', 1, 2, '0', '1', '2022-07-25 04:32:14'),
+('2022-07-25', 22, 'C-60-2022-23-4', '', 'R', 1, 1, '0', '2', '2022-07-25 05:16:53'),
+('2022-07-26', 23, 'L-78-2022-23-5', '<p>Put for approval</p>\r\n', 'A', 1, 5, '0', '2', '2022-07-26 11:23:05'),
+('2022-07-26', 24, 'L-78-2022-23-5', '<p>I Put for arcs to approve</p>\r\n', 'A', 1, 7, '0', '5', '2022-07-26 11:25:17'),
+('2022-07-26', 25, 'L-78-2022-23-5', '<p>put to ceo for approval</p>\r\n', 'A', 1, 4, '0', '7', '2022-07-26 11:30:56'),
+('2022-07-26', 26, 'L-78-2022-23-5', 'Approved', 'A', 1, 0, '0', '4', '2022-07-26 11:32:07'),
+('2022-07-27', 27, 'C-60-2022-23-4', NULL, 'A', 1, 2, '0', '1', '2022-07-27 12:38:53');
 
 --
 -- Indexes for dumped tables
@@ -628,7 +641,7 @@ ALTER TABLE `md_terms`
 -- AUTO_INCREMENT for table `md_users`
 --
 ALTER TABLE `md_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `md_user_type`
 --
@@ -638,12 +651,12 @@ ALTER TABLE `md_user_type`
 -- AUTO_INCREMENT for table `td_document`
 --
 ALTER TABLE `td_document`
-  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `td_doc_track`
 --
 ALTER TABLE `td_doc_track`
-  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `td_file_document`
 --
@@ -653,7 +666,7 @@ ALTER TABLE `td_file_document`
 -- AUTO_INCREMENT for table `td_track_file`
 --
 ALTER TABLE `td_track_file`
-  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sl_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
