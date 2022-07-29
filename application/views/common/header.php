@@ -85,9 +85,9 @@
 	<li>
 	<div class="link"><a href="<?=base_url()?>index.php/dispach/searchdoc"><i class="fa fa-code"></i>Docket Search</a></div>
 	</li>
-  <li>
+  <!-- <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/"><i class="fa fa-code"></i>Forwarded Docket</a></div>
-	</li>
+	</li> -->
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-code"></i>Create File</a></div>
 	</li>
