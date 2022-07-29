@@ -114,8 +114,54 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1"
+                role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- w-100 class so that header
+                        div covers 100% width of parent div -->
+                            <h5 class="modal-title w-100"
+                                id="exampleModalLabel">
+                               
+                            </h5>
+                            <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    ×
+                                </span>
+                            </button>
+                        </div>
+                        <!--Modal body with image-->
+                        <div class="modal-body">
+                            <img id="myImage" src="" />
+                            <iframe id="frame" style="width: 750px;height:700px"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger"
+                                data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </div>
 <script>
+    $( document ).ajaxComplete(function() {
+        $(".rounded").click(function () {
+            var myBookId = $(this).attr('id');
+            var lastItem = myBookId.split(".").pop();
+            if(lastItem == 'pdf'){
+                $("#frame").attr("src", myBookId);
+            }else{
+                $('#myImage').attr('src', myBookId);
+                $("#frame").attr("src", '');
+            }
+            $(this).attr('data-target', '#exampleModal');
+        });
+    }) 
 $( document ).ready(function() {
 $('#file_documnet').hide();
 $('.addAnotherrow').click(function(){

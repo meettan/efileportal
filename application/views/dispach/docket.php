@@ -40,7 +40,7 @@
                     <th>Docket No</th>
                     <th>Created By</th>
                     <th>View</th>
-                    <th>Option</th>
+                    <th>Upload</th>
                     <!-- <th>Forwarded to </th>
                     <th>Forwarded by</th>
                     <th>Forwarded date</th>
@@ -83,8 +83,8 @@
                     <th>Docket dt</th>
                     <th>Docket No</th>
                     <th>Created By</th>
-                    <th>No Of Document</th>
-                    <th>Option</th>
+                    <th>View</th>
+                    <th>Upload</th>
                     <!-- <th>Forwarded to </th>
                     <th>Forwarded by</th>
                     <th>Forwarded date</th>
