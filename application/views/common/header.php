@@ -80,10 +80,10 @@
     <div class="link"><a href="<?=base_url()?>index.php/dispach/upload/"><i class="fa fa-code"></i>Upload </a></div>
   </li> -->
 	<li>
-	<div class="link"><a href="<?=base_url()?>index.php/dispach/forward"><i class="fa fa-code"></i>Forward </a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/dispach/forward"><i class="fa fa-code"></i>Docket Forward </a></div>
 	</li>
 	<li>
-	<div class="link"><a href="<?=base_url()?>index.php/dispach/searchdoc"><i class="fa fa-code"></i>Search</a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/dispach/searchdoc"><i class="fa fa-code"></i>Docket Search</a></div>
 	</li>
   <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/"><i class="fa fa-code"></i>Forwarded Docket</a></div>
