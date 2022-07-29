@@ -73,10 +73,9 @@ class Transaction extends CI_Controller {
 
 	// ******  Generate file  on file type  using table td_file  ******  //
 	public function generatefile(){
-
-		$this->form_validation->set_rules('received_from', 'Received from', 'required');
-		$this->form_validation->set_rules('bill_memo_no', 'Bill/Memo no', 'required');
-		$this->form_validation->set_rules('subject', 'Subject', 'required');
+		// $this->form_validation->set_rules('received_from', 'Received from', 'required');
+		// $this->form_validation->set_rules('bill_memo_no', 'Bill/Memo no', 'required');
+		// $this->form_validation->set_rules('subject', 'Subject', 'required');
 		$this->form_validation->set_rules('docket', 'Docket no', 'required');
 		if ($this->form_validation->run() == TRUE)
 		{
@@ -92,9 +91,9 @@ class Transaction extends CI_Controller {
 						'dept_no'   => $this->input->post('dept'),
 						'module'    => $this->input->post('module'),
 						'docket_no' => $this->input->post('docket'),
-						'received_from' => $this->input->post('received_from'),
-						'bill_memo_no' => $this->input->post('bill_memo_no'),
-						'subject' => $this->input->post('subject'),
+					//	'received_from' => $this->input->post('received_from'),
+					//	'bill_memo_no' => $this->input->post('bill_memo_no'),
+					//	'subject' => $this->input->post('subject'),
 						'file_no'   => $file_type.'-'.$sess.'-'.($sl+1),
 						'note_sheet'=> $this->input->post('editor1'),
 						'created_by' => $this->session->userdata('uloggedin')->id,

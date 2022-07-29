@@ -61,24 +61,25 @@
                             <div class="form-group row" id='docket_content'>
 
                             </div>
-                            <div class="form-group row">
+                           
+                    <!-- <div class="form-group row">
                     <div class="col-sm-2 fieldname">Received from<span style="color: red;"> *</span></div>
                     <div class="col-sm-10">
                             <input type ='text' name='received_from' class='form-control' required/>
                     </div>
-                 </div>
-                 <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
                     <div class="col-sm-2 fieldname">Bill/Memo no<span style="color: red;"> *</span></div>
                     <div class="col-sm-10">
                              <input type ='text' name='bill_memo_no' class='form-control' required/>  
                     </div>
-                 </div>
-                 <div class="form-group row">
+                    </div>
+                    <div class="form-group row">
                     <div class="col-sm-2 fieldname">Subject<span style="color: red;"> *</span></div>
                     <div class="col-sm-10">
                              <input type ='text' name='subject' class='form-control' required/>  
                     </div>
-                 </div>   
+                    </div>    -->
                             <div class="form-group row">
                               <div class="col-sm-2 fieldname">Notesheet</div>
                                <div class="col-sm-10">

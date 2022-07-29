@@ -41,7 +41,7 @@
                     </div>
                  </div>
                  <br>
-                 <!-- <div class="form-group row">
+                 <div class="form-group row">
                     <div class="col-sm-2 fieldname">Received from<span style="color: red;"> *</span></div>
                     <div class="col-sm-10">
                             <input type ='text' name='received_from' class='form-control' required/>
@@ -58,10 +58,10 @@
                     <div class="col-sm-10">
                              <input type ='text' name='subject' class='form-control' required/>  
                     </div>
-                 </div> -->
+                 </div>
                  <div class="form-group row">
                         <div class="col-sm-2 fieldname">Remarks</div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-10">
                                 <textarea name='remarks' class='form-control'></textarea>
                         </div>
                  </div>        
@@ -85,7 +85,7 @@
                                 </select>
                         </div>
                         
-                        <div class="col-sm-3 btnSubmitSec">
+                        <div class="col-sm-2 btnSubmitSec">
                                 <input type="submit" class="btn btn-info" id="submit" name="submit" value="Forward">
                             <!-- <input type="reset" onclick="" class="btn btn-info" value="Cancel">-->
                         </div>
