@@ -450,6 +450,7 @@ class Transaction extends CI_Controller {
 						'a.creater_forward'=> '0',
 						'1 order by a.file_date desc'=>NULL);
 		$data['filess'] = $this->master->f_get_particulars('td_file a,md_users b',$selects,$wheres,0);
+		echo $this->db->last_query();
 		$this->load->view('common/header');
 		$this->load->view('transaction/track_fwd/fwd_file',$data);
 		$this->load->view('common/footer');

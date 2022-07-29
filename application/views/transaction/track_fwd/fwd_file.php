@@ -31,15 +31,15 @@
                         </thead>
                         <tbody id='doclist'>
                             <?php if($filess) {    $sl = 0 ;
-                               foreach($files as $key){ 
+                               foreach($filess as $keys){ 
                                 ?>
                                 <tr>
                                 <td><?=++$sl?></td>
-                                <td><?=$key->file_no?></td>
+                                <td><?=$keys->file_no?></td>
                                 <td></td>
                                 <td>SELF</td>
                                 <td></td>
-                                <td> <button class="link" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button></td>
+                                <td> <button class="link" value="<?=$keys->docket_no?>/<?=$keys->file_no?>"> <i class="fa fa-eye fa-fw fa-2x"></i></button></td>
                                </tr>
                               <?php } ?>  
 
