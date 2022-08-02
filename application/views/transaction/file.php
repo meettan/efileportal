@@ -25,9 +25,9 @@
                             <div class='col-sm-3'><h3>List of Files</h3></div>
                             <div class='col-sm-2'><input type='date'  class='btn-sm' name='fr_date' value='<?=$fr_date?>'></div>
                             <div class='col-sm-2'><input type='date'  class='btn-sm' name='to_date' value='<?=$to_date?>'></div>
-                            <div class='col-sm-2'><input type="submit" class="btn btn-info btn-sm" name="Filter" /></div>
+                            <div class='col-sm-2'><input type="submit" class="btn btn-success" name="Filter" /></div>
                             <div class='col-sm-1'></div>
-                            <div class='col-sm-2'><button type="button" class="btn btn-primary" id='add'>Create File</button></div>
+                            <div class='col-sm-2'><button type="button" class="btn btn-primary btnYellow" id='add'>Create File</button></div>
                     </div>
                     </form>
                 </div>

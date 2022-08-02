@@ -31,8 +31,13 @@
 <nav class="navBar fixed-top">
 	<div class="float-left logo"><img src="<?=base_url()?>assets/images/confed.jpg" alt="" style='height:50px'/></div>
 	<div class="float-left navRightSec">		
-		<ul class="topDate">
+		<?php /*?><ul class="topDate">
  <li>Financial Year: 2022-23</li> <li>User: <?php  if($this->session->userdata('uloggedin')->first_name) echo ucfirst($this->session->userdata('uloggedin')->first_name); ?></li> 
+ <!-- <li>Module: Paddy Procurement</li> -->
+</ul><?php */?>
+
+<ul class="topDate">
+ <li class="topHomeTitle">Home</li> 
  <!-- <li>Module: Paddy Procurement</li> -->
 </ul>
 <!--
@@ -41,10 +46,11 @@
 </ul>
 -->
 		<ul class="nav topDateRight">
-			<!-- <li class="nav-item dropdown">
+        <li class="searchBox"><input name="" type="search" placeholder="Search"></li>
+			 <?php /*?><li class="nav-item dropdown">
                     <a href="#" class="nav-link"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
-                </li> -->
-			          <!-- <li class="nav-item dropdown">
+                </li> 
+			           <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Main Menu 1</a>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="#" class="dropdown-item">Dropdown Menu 1</a>
@@ -52,9 +58,19 @@
                       <a href="#" class="dropdown-item">Dropdown Menu 3</a>
                       <a href="#" class="dropdown-item">Dropdown Menu 4</a>
                     </div>
-                </li> -->
+                </li> 
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i> Notification</a>
+                </li><?php */?>
+                <li class="nav-item dropdown">
+                    <a href="#" class="avatarTopNav" data-toggle="dropdown">ur</a>
+                    <div class="dropdown-menu dropdown-menu-right dropdownCustomRight">
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">My Settings…</a>
+                       <!-- <a href="#" class="dropdown-item">Dropdown Menu 2</a>
+                      <a href="#" class="dropdown-item">Dropdown Menu 3</a>
+                      <a href="#" class="dropdown-item">Dropdown Menu 4</a>-->
+                    </div>
+                    
                 </li>
       </ul>
 </div>
@@ -73,29 +89,29 @@
   <div class="link"><a href="<?=base_url()?>index.php/auth/dashboard"><i class="fa fa-tachometer"></i>Dashboard</a></div>
   </li>
   <?php if($this->session->userdata('uloggedin')->designation != 'CEO') { ?>
-  <li>
-    <div class="link"><a href="<?=base_url()?>index.php/dispach/"><i class="fa fa-code"></i>Docket No </a></div>
+  <li class="dividerLine_top">
+    <div class="link"><a href="<?=base_url()?>index.php/dispach/"><i class="fa fa-phone"></i>Docket No </a></div>
   </li>
   <!-- <li>
     <div class="link"><a href="<?=base_url()?>index.php/dispach/upload/"><i class="fa fa-code"></i>Upload </a></div>
   </li> -->
 	<li>
-	<div class="link"><a href="<?=base_url()?>index.php/dispach/forward"><i class="fa fa-code"></i>Docket Forward </a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/dispach/forward"><i class="fa fa-share"></i>Docket Forward </a></div>
 	</li>
-	<li>
-	<div class="link"><a href="<?=base_url()?>index.php/dispach/searchdoc"><i class="fa fa-code"></i>Docket Search</a></div>
+	<li class="dividerLine_Bot">
+	<div class="link"><a href="<?=base_url()?>index.php/dispach/searchdoc"><i class="fa fa-search"></i>Docket Search</a></div>
 	</li>
   <!-- <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/"><i class="fa fa-code"></i>Forwarded Docket</a></div>
 	</li> -->
-  <li>
-	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-code"></i>Create File</a></div>
+  <li class="dividerLine_top">
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-plus"></i>Create File</a></div>
 	</li>
   <li>
-	<div class="link"><a href="<?=base_url()?>index.php/transaction/file_track"><i class="fa fa-code"></i>Receive File</a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/file_track"><i class="fa fa-repeat"></i>Receive File</a></div>
 	</li>
   <li>
-	<div class="link"><a href="<?=base_url()?>index.php/transaction/forward_file"><i class="fa fa-code"></i>Forward File</a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/forward_file"><i class="fa fa-share"></i>Forward File</a></div>
 	</li>
   <!-- <li>
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/forwarded_file"><i class="fa fa-code"></i>Forwarded File</a></div>
@@ -104,14 +120,14 @@
   <?php } ?>
   <?php if($this->session->userdata('uloggedin')->designation == 'CEO') { ?>
   <li>
-	<div class="link"><a href="<?=base_url()?>index.php/ceo/"><i class="fa fa-code"></i>File Operation</a></div>
+	<div class="link"><a href="<?=base_url()?>index.php/ceo/"><i class="fa fa fa-history"></i>File Operation</a></div>
 	</li>
   <?php }?>
-  <li>
-	 <div class="link"><a href="<?=base_url()?>index.php/file_history/"><i class="fa fa-code"></i>File history</a></div>
+  <li class="dividerLine_Bot">
+	 <div class="link"><a href="<?=base_url()?>index.php/file_history/"><i class="fa fa-history"></i>File history</a></div>
 	</li>
-  <li>
-	 <div class="link"><a href="<?=base_url()?>index.php/auth/logout/"><i class="fa fa-code"></i>Logout</a></div>
+  <li class="dividerLine_top">
+	 <div class="link"><a href="<?=base_url()?>index.php/auth/logout/"><i class="fa fa-sign-out"></i>Logout</a></div>
 	</li>
   <!--<li>
       <div class="link"><i class="fa fa-mobile"></i>Dropdown 1<i class="fa fa-chevron-down"></i></div>
@@ -179,3 +195,637 @@
         </ul>-->
     </nav>
     <div class="main-panel"  id='ajaxview'>
+    <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal_dialog_custom" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal_header_CusDash">
+        <h5 class="modal-title" id="exampleModalLabel">My Settings</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body modal_bodyCustomDash">
+      
+      
+    <div class="tab_cusDash">
+    <button class="tablinks_Popup active" onClick="openPopupTab(event, 'Profile')">Profile</button>
+    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Notifications')">Notifications</button>
+    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Email_Forwarding')">Email Forwarding</button>
+    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Account')">Account</button>
+    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Display')">Display</button>
+    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Apps')">Apps</button>
+    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Hacks')">Hacks</button>
+    
+    </div>
+    
+    <div id="Profile" class="tabcontent_cusDash_Popup" style="display:block;">
+    <div class="photoChange">
+    <h5>Your photo</h5>
+    <div class="photoChangeMain">
+    <div class="photoThum"><div class="PlaceholderAvatar--xlarge" style="background-image: url(&quot;https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg&quot;);"></div></div>
+    <div class="photoThumDetails">
+    <h4>Upload your photo</h4>
+    <p>Photos help your teammates recognize you in Asana</p>
+    </div>
+    </div>
+    </div>
+    
+    <div class="profileForm">
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Your full name</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Pronouns</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Email</label>
+    <input name="" type="text">
+    </div>
+    
+    
+    </div>
+    
+    
+    <div class="profileFormRow">
+    <div class="profileFieldFull">
+    <label>About me</label>
+    <textarea placeholder="Text here"></textarea>
+    </div>
+    
+    
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldThree">
+    <label>First day</label>
+    <input name="" type="date">
+    </div>
+    
+    <div class="profileFieldThree">
+    <label>Last day</label>
+    <input name="" type="date">
+    </div>
+    </div>
+    
+    <div class="profileFormRow" style="margin-bottom:0;">
+    <div class="profileFieldFull btnProfileCus">
+    <input name="" type="submit">
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div id="Notifications" class="tabcontent_cusDash_Popup">
+    <h3>Notifications</h3>
+    <div class="profileForm">
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Your full name</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Pronouns</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Email</label>
+    <input name="" type="text">
+    </div>
+    
+    
+    </div>
+    
+    
+    <div class="profileFormRow">
+    <div class="profileFieldFull">
+    <label>About me</label>
+    <textarea placeholder="Text here"></textarea>
+    </div>
+    
+    
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldThree">
+    <label>First day</label>
+    <input name="" type="date">
+    </div>
+    
+    <div class="profileFieldThree">
+    <label>Last day</label>
+    <input name="" type="date">
+    </div>
+    </div>
+    
+    <div class="profileFormRow" style="margin-bottom:0;">
+    <div class="profileFieldFull btnProfileCus">
+    <input name="" type="submit">
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div id="Email_Forwarding" class="tabcontent_cusDash_Popup">
+    <h3>Email Forwarding</h3>
+    <div class="profileForm">
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Your full name</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Pronouns</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Email</label>
+    <input name="" type="text">
+    </div>
+    
+    
+    </div>
+    
+    
+    <div class="profileFormRow">
+    <div class="profileFieldFull">
+    <label>About me</label>
+    <textarea placeholder="Text here"></textarea>
+    </div>
+    
+    
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldThree">
+    <label>First day</label>
+    <input name="" type="date">
+    </div>
+    
+    <div class="profileFieldThree">
+    <label>Last day</label>
+    <input name="" type="date">
+    </div>
+    </div>
+    
+    <div class="profileFormRow" style="margin-bottom:0;">
+    <div class="profileFieldFull btnProfileCus">
+    <input name="" type="submit">
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div id="Account" class="tabcontent_cusDash_Popup">
+    <h3>Account</h3>
+    <div class="profileForm">
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Your full name</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Pronouns</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Email</label>
+    <input name="" type="text">
+    </div>
+    
+    
+    </div>
+    
+    
+    <div class="profileFormRow">
+    <div class="profileFieldFull">
+    <label>About me</label>
+    <textarea placeholder="Text here"></textarea>
+    </div>
+    
+    
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldThree">
+    <label>First day</label>
+    <input name="" type="date">
+    </div>
+    
+    <div class="profileFieldThree">
+    <label>Last day</label>
+    <input name="" type="date">
+    </div>
+    </div>
+    
+    <div class="profileFormRow" style="margin-bottom:0;">
+    <div class="profileFieldFull btnProfileCus">
+    <input name="" type="submit">
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div id="Display" class="tabcontent_cusDash_Popup">
+    <h3>Display</h3>
+    <div class="profileForm">
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Your full name</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Pronouns</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Email</label>
+    <input name="" type="text">
+    </div>
+    
+    
+    </div>
+    
+    
+    <div class="profileFormRow">
+    <div class="profileFieldFull">
+    <label>About me</label>
+    <textarea placeholder="Text here"></textarea>
+    </div>
+    
+    
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldThree">
+    <label>First day</label>
+    <input name="" type="date">
+    </div>
+    
+    <div class="profileFieldThree">
+    <label>Last day</label>
+    <input name="" type="date">
+    </div>
+    </div>
+    
+    <div class="profileFormRow" style="margin-bottom:0;">
+    <div class="profileFieldFull btnProfileCus">
+    <input name="" type="submit">
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div id="Apps" class="tabcontent_cusDash_Popup">
+    <h3>Apps</h3>
+    <div class="profileForm">
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Your full name</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Pronouns</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Email</label>
+    <input name="" type="text">
+    </div>
+    
+    
+    </div>
+    
+    
+    <div class="profileFormRow">
+    <div class="profileFieldFull">
+    <label>About me</label>
+    <textarea placeholder="Text here"></textarea>
+    </div>
+    
+    
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldThree">
+    <label>First day</label>
+    <input name="" type="date">
+    </div>
+    
+    <div class="profileFieldThree">
+    <label>Last day</label>
+    <input name="" type="date">
+    </div>
+    </div>
+    
+    <div class="profileFormRow" style="margin-bottom:0;">
+    <div class="profileFieldFull btnProfileCus">
+    <input name="" type="submit">
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    <div id="Hacks" class="tabcontent_cusDash_Popup">
+    <h3>Hacks</h3>
+    <div class="profileForm">
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Your full name</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Pronouns</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Role</label>
+    <input name="" type="text">
+    </div>
+    
+    <div class="profileFieldHalf">
+    <label>Department or team</label>
+    <input name="" type="text">
+    </div>
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldHalf">
+    <label>Email</label>
+    <input name="" type="text">
+    </div>
+    
+    
+    </div>
+    
+    
+    <div class="profileFormRow">
+    <div class="profileFieldFull">
+    <label>About me</label>
+    <textarea placeholder="Text here"></textarea>
+    </div>
+    
+    
+    </div>
+    
+    <div class="profileFormRow">
+    <div class="profileFieldThree">
+    <label>First day</label>
+    <input name="" type="date">
+    </div>
+    
+    <div class="profileFieldThree">
+    <label>Last day</label>
+    <input name="" type="date">
+    </div>
+    </div>
+    
+    <div class="profileFormRow" style="margin-bottom:0;">
+    <div class="profileFieldFull btnProfileCus">
+    <input name="" type="submit">
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    </div>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+function openPopupTab(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent_cusDash_Popup");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks_Popup");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent_cusDash");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+</script>

@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-			<div class="card">
+			<div class="card cardCustomNew">
 			 <div class="card-body">
 				 <!-- <div class="titleSec">
 					 <button type="button" class="btn btn-primary">Export as CSV</button>
@@ -105,6 +105,194 @@
             </tr>
         </tfoot>
     </table> -->
+    
+    <div class="dashboardTopTxt">
+    <h5>Friday, July&nbsp;29</h5>
+    <h2>Good evening,&nbsp; Name</h2>
+    <div class="statusDash"> <div>dfgdfg</div> <div>dfgdfg</div> <div>dfgdfg</div> </div>
+    
+    <div class="dashboardBox">
+    <div class="col-sm-6 float-left">
+    <div class="dashboardBoxData">
+    
+    <div class="photoChange_dashboard">
+    <div class="photoChangeMain">
+    <div class="photoThum"><div class="PlaceholderAvatar--xlarge" style="background-image: url(&quot;https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg&quot;);"></div></div>
+    <div class="photoThumDetails">
+    <h2>My Priorities</h2>
+    </div>
+    </div>
+    </div>
+    
+     <div class="tab_cusDash">
+    <button class="tablinks active" onclick="openCity(event, 'Upcoming')">Upcoming</button>
+    <button class="tablinks" onclick="openCity(event, 'Overdue')">Overdue (24)</button>
+    
+    </div>
+    
+   <div id="Upcoming" class="tabcontent_cusDash tabcontent_cusDashNoPad" style="display:block;">
+    <div class="prioritiesBoxList">
+    <ul>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    </ul>
+    </div>
+    </div>
+   
+    
+    <div id="Overdue" class="tabcontent_cusDash tabcontent_cusDashNoPad">
+    <div class="prioritiesBoxList">
+    <ul>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">xxx  window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    </ul>
+    </div>
+    </div>
+    
+    
+    </div>
+    </div>
+    <div class="col-sm-6 float-left">
+    <div class="dashboardBoxData">
+    
+    <div class="photoChange_dashboard">
+    <div class="photoChangeMain">
+    
+    <div class="photoThumDetails">
+    <h2>File History</h2>
+    </div>
+    </div>
+    </div>
+    
+    <div class="tabcontent_cusDash_NotTab tabcontent_cusDashNoPad">
+    <div class="prioritiesBoxList">
+    <ul>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    </ul>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    
+    <div class="dashboardBox">
+    <div class="col-sm-12 float-left">
+    <div class="dashboardBoxData">
+    
+    <div class="photoChange_dashboard">
+    <div class="photoChangeMain">
+    <div class="photoThum"><div class="PlaceholderAvatar--xlarge" style="background-image: url(&quot;https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg&quot;);"></div></div>
+    <div class="photoThumDetails">
+    <h2>My Priorities</h2>
+    </div>
+    </div>
+    </div>
+    
+     <div class="tab_cusDash">
+    <button class="tablinks active" onclick="openCity(event, 'Upcoming')">Upcoming</button>
+    <button class="tablinks" onclick="openCity(event, 'Overdue')">Overdue (24)</button>
+    
+    </div>
+    
+   <div id="Upcoming" class="tabcontent_cusDash tabcontent_cusDashNoPad" style="display:block;">
+    <div class="prioritiesBoxList">
+    <ul>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    </ul>
+    </div>
+    </div>
+   
+    
+    <div id="Overdue" class="tabcontent_cusDash tabcontent_cusDashNoPad">
+    <div class="prioritiesBoxList">
+    <ul>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">xxx  window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    <li>
+    <div class="iconSec"><i class="fa fa-check" aria-hidden="true"></i> </div>
+    <div class="listTxt">wall sign & window cling need to highlight the items & prices</div>
+    </li>
+    </ul>
+    </div>
+    </div>
+    
+    
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    
 				</div>
 				</div>
 			</div>

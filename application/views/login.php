@@ -49,16 +49,26 @@
                 </div>
                 
                 <div class="form-group">
-                  <div class="row">
-                      <div class="col-md-3">
-                        <button style='width:100px!important;height:50px!important;border: 2px solid #0000FF;'><?php echo $word //echo $image; ?></button>
+                  <div class="row rowLoginPagBtn">
+                      <?php /*?><div class="col-md-3">
+                        <button class="captureImgCus"><?php echo $word //echo $image; ?></button>
                       </div> 
                       <div class="col-md-3">
                         <button class="captureBtn" onClick="window.location.reload();"> Refresh</button>
                       </div>   
                       <div class="col-md-6">
                         <input type="text" class="form-control" name="captcha" placeholder="captcha" >
-                      </div>
+                      </div><?php */?>
+                      
+                      
+                        <button class="captureImgCus"><?php echo $word //echo $image; ?></button>
+                      
+                      
+                        <button class="captureBtn" onClick="window.location.reload();"><i class="fa fa-refresh" aria-hidden="true"></i>
+</button>
+                      
+                        <input type="text" class="form-control" name="captcha" placeholder="captcha" >
+                      
                   </div>
                 </div>
                 <div class="form-group">
@@ -84,8 +94,9 @@
 
               </form>
 		</div>
-    <div class="text-center">Not a account <a href="<?php echo base_url();?>index.php/auth/register/">Register</a></div>
-    <div class="text-center"><a href="<?php echo base_url();?>index.php/auth/forgotpass/">Forgot Password </a></div>
+        <div class="loginBotomTxt">
+    <p>Not a account <a href="<?php echo base_url();?>index.php/auth/register/">Register</a> | <a href="<?php echo base_url();?>index.php/auth/forgotpass/">Forgot Password </a></p>
+    </div>
   </div>
 </div>
 	

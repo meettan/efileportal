@@ -1,7 +1,7 @@
 
 
 .loginmainDiv {
-    background: #008080;
+    background: #f9f8f8;
     padding: 45px 0 70px 0;
     position: relative;
     width: 100%;
@@ -10,8 +10,9 @@
 	display: flex;
 }
 
-.loginBox{max-width: 600px; background: #fff; margin: 0 auto; width: 100%; padding: 15px; border-radius: 10px; box-shadow:0 0 8px 0px #13c8c8;}
+.loginBox{max-width:440px; background: #fff; margin: 0 auto; width: 100%; padding:48px 32px; border-radius: 10px; box-shadow:0 0 8px 0px #dfe0e1;}
 .adminLogo {margin-bottom: 45px; text-align: center;}
+.adminLogo img{max-width:115px;}
 .loginBox h3.adTitle {
     font-weight: 500 !important;
     text-align: left;
@@ -19,22 +20,27 @@
 	margin: 0;}
 
 .loginBox .fieldSec{}
-.fieldSec input[type="text"]{border: 1px solid #f3f3f3;
+.fieldSec input[type="text"]{border: 1px solid #dbdada;
 background: #fff;
-border-radius: 2px;
-font-size: 17px;
-padding: 12px 15px;
-height: 52px;}
+border-radius: 5px;
+font-size: 15px;
+padding: 7px 10px;
+height: 39px;
+font-weight: 400;}
 
-.fieldSec input[type="password"]{border: 1px solid #f3f3f3;
+.fieldSec input[type="password"]{border: 1px solid #dbdada;
 background: #fff;
-border-radius: 2px;
-font-size: 17px;
-padding: 12px 15px;
-height: 52px;}
+border-radius: 5px;
+font-size: 15px;
+padding: 7px 10px;
+height: 39px;
+font-weight: 400;}
 
-.fieldSec input[type="submit"]{background: #333; border: none;
-border-radius: 2px; font-size: 17px; padding: 12px 15px;}
+.fieldSec input[type="submit"]{background:#181717;
+border: none;
+border-radius: 5px;
+font-size: 15px;
+padding: 7px 15px;}
 
 
 .btn-primary:not(:disabled):not(.disabled):active{background: #000;}
@@ -71,12 +77,208 @@ button.edit i{color:#fff;}
 .viewListSec button.btn{padding: 5px 20px;line-height: 15px;display: block;width: 100%;}
 .intro2ViewBtnSec{padding-top:10px;}
 
-.captureBtn{background: #fb8787;border: none;color: #fff;min-height: 49px;padding: 0 15px;font-size: 15px;border-radius: 5px;}
+.captureBtn{background: none;
+border: none;
+color: #fb8787;
+min-height: 40px;
+padding: 0;
+font-size: 28px;
+border-radius: 5px;
+margin-right: 15px;}
+
+.photoChange{display:inline-block; width:100%; margin-bottom: 25px;}
+.photoChange_dashboard{display:inline-block; width:100%; margin-bottom:5px;}
+.photoChange h5{margin-bottom: 8px; color:#5b5b5c; font-size: 14px; font-weight: 400; text-align: left;}
+
+.photoChangeMain{display:flex;}
+.photoChangeMain .photoThum .PlaceholderAvatar--xlarge {
+  height: 48px;
+  width: 48px; align-items: center;
+border-radius: 50%;
+box-sizing: border-box;
+display: inline-flex;
+justify-content: center; border: dashed #ccc 1px;}
+
+.photoChangeMain .photoThum {margin-right:20px;}
+.photoChangeMain .photoThumDetails{align-items:center; display:inline-grid;}
+.photoChangeMain .photoThumDetails h4{color: #3A76D3;font-size: 15px;font-weight: 300;margin-bottom: 0px;}
+.photoChangeMain .photoThumDetails h2{color: #1e1f21;font-size: 20px;font-weight: 300;margin-bottom: 0px;}
+.photoChangeMain .photoThumDetails p{color:#6f7479; font-size: 14px;font-weight: 300;margin-bottom: 0;}
+
+
+.profileForm{display:inline-block; width:100%;}
+.profileForm .profileFormRow{margin-left:-15px; margin-right:-15px; margin-bottom:15px; display:inline-block; width:100%;}
+.profileForm .profileFormRow .profileFieldHalf{padding-left:15px; padding-right:15px; float:left; width:50%;}
+.profileForm .profileFormRow .profileFieldHalf label{color:#5b5b5c; font-size: 14px; font-weight: 400; width: 100%; margin: 0 0 8px 0;}
+.profileForm .profileFormRow .profileFieldHalf input[type="text"]{padding:8px; border:#ccc solid 1px; border-radius: 6px; width:100%; font-size:14px; color: #333;}
+
+.profileForm .profileFormRow .profileFieldFull{padding-left:15px; padding-right:15px; float:left; width:100%;}
+.profileForm .profileFormRow .profileFieldFull label{color:#5b5b5c; font-size: 14px; font-weight: 400; width: 100%; margin: 0 0 8px 0;}
+.profileForm .profileFormRow .profileFieldFull textarea{padding:8px; border:#ccc solid 1px; border-radius: 6px; width:100%; font-size:14px; color: #333; height:80px;}
+
+
+.profileForm .profileFormRow .profileFieldThree{padding-left:15px; padding-right:15px; float:left; width:33.33%;}
+.profileForm .profileFormRow .profileFieldThree label{color:#5b5b5c; font-size: 14px; font-weight: 400; width: 100%; margin: 0 0 8px 0;}
+.profileForm .profileFormRow .profileFieldThree input[type="text"]{padding:8px; border:#ccc solid 1px; border-radius: 6px; width:100%; font-size:14px; color: #333;}
+.profileForm .profileFormRow .profileFieldThree input[type="date"]{padding:8px; border:#ccc solid 1px; border-radius: 6px; width:100%; font-size:14px; color: #333;}
+
+.profileForm .profileFormRow .btnProfileCus{text-align:left;}
+.profileForm .profileFormRow .btnProfileCus input[type="submit"]{background: #181717; border: none; border-radius: 5px; font-size: 15px; padding: 9px 20px; color: #fff; font-weight: 300;}
+
+
+.dashboardBox{display:flex; margin-bottom: 30px;}
+.dashboardBox .dashboardBoxData{border: #ccc solid 1px; width:100%; border-radius: 6px; background:#fff; padding:10px; height: 100%; color: #5b5b5c; font-size: 14px;} 
+
+.prioritiesBoxList ul{list-style-type:none; margin:0; padding:0;}
+.prioritiesBoxList ul li{list-style-type:none; display:flex; border-bottom: #edeae9 solid 1px; padding-bottom:8px; padding-top:4px;}
+.prioritiesBoxList ul li .iconSec{border: #ccc solid 1px;border-radius: 50px;height: 22px;width: 22px;align-items: center;display: flex;text-align: center;margin-right: 10px; font-size:13px;}
+.prioritiesBoxList ul li .iconSec i{margin:0 auto;}
+.prioritiesBoxList ul li .listTxt{max-width:75%; color: #333; font-size:14px; display: flex; align-items: center;}
+
+.dividerLine_top{border-top:#222224 solid 1px; margin-top:8px;}
+.dividerLine_Bot{margin-bottom:8px;}
+
 
 .loginTitle{color:#333;}
 
+.rowLoginPagBtn{display: flex; flex-wrap: inherit; padding: 0 15px;}
+
+.rowLoginPagBtn .captureImgCus{margin-right:15px;}
+
+.loginBox .form-group{margin-bottom:25px;}
+
+.loginBotomTxt p{font-size: 14px;
+color: #6d6e6f;
+margin: 0;
+padding: 0;
+text-align: center;
+line-height: 22px;}
+
+.loginBotomTxt p a{color: #fb8787; font-weight: 500;}
+.loginBotomTxt p a:hover{text-decoration:underline;}
+
+.avatarTopNav{font-size: 12px; border-radius: 50%; background:#f06a6a; color:#fff !important;
+height: 35px;
+line-height: 35px;
+min-width: 35px;
+width: 35px;
+transition: box-shadow .2s; display: block; text-align: center;}
+
+.searchBox{padding-right:15px;}
+.searchBox input[type="search"]{border: #ccc solid 1px;
+border-radius: 50px;
+max-width: 185px;
+height: 100%;
+padding:5px 15px 5px 26px; color:#6a6969; background:url(../images/search.png) no-repeat 4% center;}
+
+.captureImgCus{width: 100%;
+height: 40px;
+border: 1px solid #dbdada;
+border-radius: 5px;
+margin-right: 0;}
+
+.navRightSec .topDate li.topHomeTitle{font-size: 20px;}
+
+.cardCustomNew{background:none; box-shadow: none; border: none;}
+
+.dashboardTopTxt{max-width:1200px; margin:0 auto;}
+.dashboardTopTxt h5{font-size: 16px; line-height: 20px; color:#1e1f21; width:100%; text-align:center; font-weight: 400; margin-bottom:8px;}
+ 
+.dashboardTopTxt h2{font-size: 32px; line-height: 40px; color:#1e1f21; width:100%; text-align:center; font-weight: 400; margin-bottom: 12px;}
+
+.statusDash{background:#e4e4e4; border-radius:50px; max-width:450px; margin:0 auto 25px auto; padding:15px; display: flex;}
 
 
 
 
+
+.dropdownCustomRight {min-width: 250px; left:inherit; right:0;}
+
+.modal_dialog_custom{max-width:750px;}
+
+.modal_dialog_custom .modal-header h5.modal-title{color: #1e1f21; font-size:25px; font-weight:300; line-height:22px;}
+
+/* Style the tab */
+.tab_cusDash {
+  overflow: hidden;
+  padding-left:5px; padding-right:5px;
+  border-bottom:#edeae9 solid 1px;
+}
+
+/* Style the buttons inside the tab */
+.tab_cusDash button {
+  background-color: inherit;
+  float: left;
+border: none;
+outline: none;
+cursor: pointer;
+padding: 0 0 5px 0; margin-left:10px; margin-right:10px;
+transition: 0.3s;
+font-size: 14px;
+color: #777;
+}
+
+/* Change background color of buttons on hover */
+.tab_cusDash button:hover {
+  border-bottom:#6d6e6f solid 2px; color:#333;
+}
+
+/* Create an active/current tablink class */
+.tab_cusDash button.active {
+  border-bottom:#6d6e6f solid 2px; color:#333;
+}
+
+/* Style the tab content */
+.tabcontent_cusDash {
+  display: none;
+  padding:15px 15px;
+  border-top: none;
+  /*height: 400px;
+  overflow-y: scroll;*/
+}
+
+
+.tabcontent_cusDash_Popup{
+  display: none;
+  padding:15px 15px;
+  border-top: none;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.tabcontent_cusDash_NotTab{
+  padding:15px 15px;
+  border-top: none;
+  /*height: 400px;
+  overflow-y: scroll;*/
+}
+
+.tabcontent_cusDashNoPad{padding-left:0; padding-right:0;}
+
+.modal_header_CusDash{border:none;}
+
+.modal_bodyCustomDash{padding-left:0; padding-right:0;}
+
+.btn-success {
+  color: #fff;
+  background-color: #4573d2;
+  border-color: #4573d2;
+}
+
+.btn-success:hover {
+  color: #fff;
+  background-color: #526dc6;
+  border-color: #526dc6;
+}
+
+.btn-warning {
+  color: #fff;
+  background-color: #f06a6a;
+  border-color: #f06a6a;
+}
+
+.btn-warning:hover {
+  color: #fff;
+  background-color: #f06a6a;
+  border-color: #f06a6a;
 
