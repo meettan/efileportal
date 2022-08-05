@@ -376,7 +376,8 @@ class Transaction extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
 			$url = $this->input->post('url');
-			$fn = $this->input->post('fileno');
+			//$fn = $this->input->post('fileno');
+			$fn = 'fff';
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
@@ -400,9 +401,9 @@ class Transaction extends CI_Controller {
 			$department_name =  $depdtl->short_code;
 			$sender_name = $this->session->userdata('uloggedin')->first_name;
 			$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
-			echo $sms_send = $this->master->sendsms($mobile_no,$template);
+			$sms_send = $this->master->sendsms($mobile_no,$template);
 			//     Code for sending SMS       //
-			die();
+			//die();
 			$this->session->set_flashdata('success', 'File Forwarded Successfully');
 			if($url == 'file'){
 				redirect('index.php/transaction/file');
