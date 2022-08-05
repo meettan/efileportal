@@ -229,7 +229,7 @@
     <div class="photoThum"><div class="PlaceholderAvatar--xlarge" style="background-image: url(&quot;https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg&quot;);"></div></div>
     <div class="photoThumDetails">
     <h4>Upload your photo</h4>
-    <p>Photos help your teammates recognize you in Asana</p>
+    <p>Photos help your teammates recognize you in efile</p>
     </div>
     </div>
     </div>

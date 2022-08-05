@@ -88,5 +88,26 @@ class Master extends CI_Model {
         $this->db->delete($table_name, $where);
         return;
     }
+    public function sendsms($to,$message){
+
+        $data_array = array('mobile_no'=>$to,'message'=>$message);
+        $id = $this->f_insert('send_sms',$data_array);
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'https://bulksms.sssplsales.in/api/api_http.php',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => array('username' => 'SYNERGIC','password' => 'SYN@526RGC','senderid' => 'SYNRGC','to' => '9007507220','text' => 'Dear lokesh File No. Demo123 has been forwarded to you from administration department by arka,for your necessary action.-SYNERGIC','route' => 'Informative','type' => 'text'),
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        echo $response;
+    }
+    
 
 }
