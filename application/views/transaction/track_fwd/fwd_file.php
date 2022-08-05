@@ -30,7 +30,8 @@
                             </tr>
                         </thead>
                         <tbody id='doclist'>
-                            <?php if($filess) {    $sl = 0 ;
+                            <?php $sl = 0 ;
+                            if($filess) {    
                                foreach($filess as $keys){ 
                                 ?>
                                 <tr>

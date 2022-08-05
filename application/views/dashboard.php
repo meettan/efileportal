@@ -108,7 +108,7 @@
     
     <div class="dashboardTopTxt">
     <h5>Friday, July&nbsp;29</h5>
-    <h2>Good evening,&nbsp; Name</h2>
+    <h2>Good evening,&nbsp; <?php  if($this->session->userdata('uloggedin')->first_name) echo ucfirst($this->session->userdata('uloggedin')->first_name); ?></h2>
     <div class="statusDash"> <div>dfgdfg</div> <div>dfgdfg</div> <div>dfgdfg</div> </div>
     
     <div class="dashboardBox">

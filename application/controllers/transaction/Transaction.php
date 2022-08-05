@@ -376,6 +376,7 @@ class Transaction extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
 			$url = $this->input->post('url');
+			$fn = $this->input->post('fileno');
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
@@ -390,6 +391,18 @@ class Transaction extends CI_Controller {
 			if($created_by == $this->session->userdata('uloggedin')->id){
 				$this->master->f_edit('td_file',array('creater_forward'=> '1'),array('file_no'=> $this->input->post('fileno')));
 			}
+
+			//     Code for sending SMS       //
+			$userdtl = $this->master->f_get_particulars('md_users',NULL,array('id'=> trim($this->input->post('user'))),1);
+			$depdtl  = $this->master->f_get_particulars('md_department',NULL,array('sl_no'=> $result->dept_no),1);
+			$first_name = $userdtl->first_name; 
+			$mobile_no = $userdtl->phone_no;
+			$department_name =  $depdtl->short_code;
+			$sender_name = $this->session->userdata('uloggedin')->first_name;
+			$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+			echo $sms_send = $this->master->sendsms($mobile_no,$template);
+			//     Code for sending SMS       //
+			die();
 			$this->session->set_flashdata('success', 'File Forwarded Successfully');
 			if($url == 'file'){
 				redirect('index.php/transaction/file');
@@ -473,7 +486,7 @@ class Transaction extends CI_Controller {
 		  $data['url']   = $this->input->post('url');
 		  $where = array('docket_no' => $fdetail[0]);
 		  $fwhere = array('file_no' => $fdetail[1]);
-		  $data['fstatus'] = $fdetail[2];
+		  //$data['fstatus'] = $fdetail[2];
 		 
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
