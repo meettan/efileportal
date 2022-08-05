@@ -88,8 +88,7 @@ class Master extends CI_Model {
     }
     public function sendsms($to,$message){
 
-        $data_array = array('mobile_no'=>$to,'message'=>$message);
-        $id = $this->f_insert('send_sms',$data_array);
+        
         $curl = curl_init();
         curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://bulksms.sssplsales.in/api/api_http.php',
@@ -104,6 +103,12 @@ class Master extends CI_Model {
         ));
         $response = curl_exec($curl);
         curl_close($curl);
+        $data_array = array('mobile_no'=>$to,
+                        'message'=>$message,
+                        'response'=>$response,
+                        'created_by'=>$this->session->userdata('uloggedin')->id,
+                        'created_at'=>date("Y-m-d h:i:s"));
+        $id = $this->f_insert('send_sms',$data_array);
         echo $response;
     }
     
