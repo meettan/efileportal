@@ -376,8 +376,8 @@ class Transaction extends CI_Controller {
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
 			$url = $this->input->post('url');
-			//$fn = $this->input->post('fileno');
-			$fn = 'fff';
+			$fn = $this->input->post('fileno');
+			//$fn = 'fff';
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
