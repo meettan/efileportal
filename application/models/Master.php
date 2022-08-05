@@ -66,10 +66,8 @@ class Master extends CI_Model {
     //For Inserting Multiple Row
 
     public function f_insert_multiple($table_name, $data_array){
-
         $this->db->insert_batch($table_name, $data_array);
         return;
-
     }
 
     //For Editing row
@@ -102,7 +100,7 @@ class Master extends CI_Model {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('username' => 'SYNERGIC','password' => 'SYN@526RGC','senderid' => 'SYNRGC','to' => '9007507220','text' => 'Dear lokesh File No. Demo123 has been forwarded to you from administration department by arka,for your necessary action.-SYNERGIC','route' => 'Informative','type' => 'text'),
+        CURLOPT_POSTFIELDS => array('username' => 'SYNERGIC','password' => 'SYN@526RGC','senderid' => 'SYNRGC','to' => $to,'text' => $message,'route' => 'Informative','type' => 'text'),
         ));
         $response = curl_exec($curl);
         curl_close($curl);

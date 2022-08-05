@@ -63,7 +63,7 @@
                     <a href="#" class="nav-link"><i class="fa fa-bell" aria-hidden="true"></i> Notification</a>
                 </li><?php */?>
                 <li class="nav-item dropdown">
-                    <a href="#" class="avatarTopNav" data-toggle="dropdown">ur</a>
+                    <a href="#" class="avatarTopNav" data-toggle="dropdown"><?php  if($this->session->userdata('uloggedin')->first_name) echo ucfirst($this->session->userdata('uloggedin')->first_name); ?></a>
                     <div class="dropdown-menu dropdown-menu-right dropdownCustomRight">
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">My Settings…</a>
                        <!-- <a href="#" class="dropdown-item">Dropdown Menu 2</a>

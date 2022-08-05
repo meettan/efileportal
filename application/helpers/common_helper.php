@@ -69,5 +69,17 @@
         }
     }
 
+    function get_mobile_number_by_id($user_id){
+        $CI = &get_instance(); 
+        $CI->load->database();
+        $sql = 'SELECT phone_no FROM md_users where id="'.$user_id.'"'; 
+        $result = $CI->db->query($sql)->row();
+        if($result){
+            return  $result->phone_no;
+        }else{
+            return 0;
+        }
+    }
+
 
 ?>
