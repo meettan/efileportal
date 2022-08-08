@@ -466,7 +466,6 @@ class Transaction extends CI_Controller {
 		$this->load->view('common/header');
 		$this->load->view('transaction/track_fwd/fwd_file',$data);
 		$this->load->view('common/footer');
-
 	}
 
 	/// *****  Code  for track file on using table td_track_file ****   //
@@ -474,12 +473,12 @@ class Transaction extends CI_Controller {
 		$data['title']   = 'Received Files';
 		$where = array('a.forwarded_by=b.id'=>NULL,
 		               'a.file_no = c.file_no'=>NULL,
-					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);
+					   'a.fwd_to' => $this->session->userdata('uloggedin')->id,
+					   '1 order by fwd_dt desc' => NULL);
 		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b,td_file c',array('a.*','b.first_name','b.last_name','c.docket_no'),$where,0);
 		$this->load->view('common/header');
 		$this->load->view('transaction/track_fwd/file_track',$data);
 		$this->load->view('common/footer');
-
 	}
 	public function filedetail(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
