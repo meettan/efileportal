@@ -6,6 +6,7 @@ class Auth extends CI_Controller {
 	function __construct() {
         parent::__construct();
         $this->load->model('Login_Process');
+		$this->load->model('Master');
 		$this->load->helper('captcha');
     }
 
@@ -270,4 +271,38 @@ class Auth extends CI_Controller {
 			
 	}
 	//
+
+	//  code for Update profile   ///
+	 public function update_profile(){
+		$this->form_validation->set_rules('first_name', 'First name', 'required');
+		$this->form_validation->set_rules('phone_no', 'Phone no', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('designation', 'Designation', 'required');
+		$msg = array();
+		if ($this->form_validation->run() == TRUE)
+        {
+			$where = array('id'=>$this->input->post('id'));
+
+			$data_array = array('first_name' => $this->input->post('first_name'),
+								'last_name' => $this->input->post('last_name'),
+								'email' => $this->input->post('email'),
+								'phone_no' => $this->input->post('phone_no'),
+								'dept' => $this->input->post('dept'),
+								'designation' => $this->input->post('designation'),
+							);
+			$this->Master->f_edit('md_users',$data_array,$where);
+			
+			$msg['type'] = 'success';
+			$msg['text'] = 'Your profile updated successfully';
+			
+			echo json_encode($msg);
+		}else{
+
+			$msg['type'] = 'error';
+			$msg['text'] = validation_errors();
+
+			echo json_encode($msg);
+		}
+
+	 }
 }

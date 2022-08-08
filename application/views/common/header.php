@@ -213,102 +213,108 @@
       
     <div class="tab_cusDash">
     <button class="tablinks_Popup active" onClick="openPopupTab(event, 'Profile')">Profile</button>
-    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Notifications')">Notifications</button>
+    <!-- <button class="tablinks_Popup" onClick="openPopupTab(event, 'Notifications')">Notifications</button>
     <button class="tablinks_Popup" onClick="openPopupTab(event, 'Email_Forwarding')">Email Forwarding</button>
     <button class="tablinks_Popup" onClick="openPopupTab(event, 'Account')">Account</button>
     <button class="tablinks_Popup" onClick="openPopupTab(event, 'Display')">Display</button>
     <button class="tablinks_Popup" onClick="openPopupTab(event, 'Apps')">Apps</button>
-    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Hacks')">Hacks</button>
-    
+    <button class="tablinks_Popup" onClick="openPopupTab(event, 'Hacks')">Hacks</button> -->
+    <div id="alert-container"></div>
     </div>
-    
+    <?php $presult = $this->Master->f_get_particulars('md_users',NULL,array('id'=>$this->session->userdata('uloggedin')->id),1); ?>
+    <form action="javascript:void(0)" id="profile_form" method="POST">
     <div id="Profile" class="tabcontent_cusDash_Popup" style="display:block;">
-    <div class="photoChange">
-    <h5>Your photo</h5>
-    <div class="photoChangeMain">
-    <div class="photoThum"><div class="PlaceholderAvatar--xlarge" style="background-image: url(&quot;https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg&quot;);"></div></div>
-    <div class="photoThumDetails">
-    <h4>Upload your photo</h4>
-    <p>Photos help your teammates recognize you in efile</p>
-    </div>
-    </div>
-    </div>
+    <!-- <div class="photoChange">
+      <h5>Your photo</h5>
+      <div class="photoChangeMain">
+          <div class="photoThum">
+            <div class="PlaceholderAvatar--xlarge" style="background-image: url(&quot;https://d3ki9tyy5l5ruj.cloudfront.net/obj/3d4665c7cf119dc9dc38232301b18fa68b9bb17c/avatar.svg&quot;);"></div>
+          </div>
+          <div class="photoThumDetails">
+              <h4>Upload your photo</h4>
+              <p>Photos help your teammates recognize you in efile</p>
+          </div>
+        </div>
+    </div> -->
     
     <div class="profileForm">
-    
     <div class="profileFormRow">
-    <div class="profileFieldHalf">
-    <label>Your full name</label>
-    <input name="" type="text">
-    </div>
+      <div class="profileFieldHalf">
+        <label>First name</label>
+        <input type='hidden' name='id' value="<?=$this->session->userdata('uloggedin')->id?>">
+        <input name="first_name" type="text" value="<?=$presult->first_name?>" >
+      </div>
+      <div class="profileFieldHalf">
+        <label>Last name</label>
+        <input name="last_name" type="text" value="<?=$presult->last_name?>" >
+      </div>
     
-    <div class="profileFieldHalf">
-    <label>Pronouns</label>
-    <input name="" type="text">
-    </div>
-    </div>
-    
-    <div class="profileFormRow">
-    <div class="profileFieldHalf">
-    <label>Role</label>
-    <input name="" type="text">
-    </div>
-    
-    <div class="profileFieldHalf">
-    <label>Department or team</label>
-    <input name="" type="text">
-    </div>
+      
     </div>
     
     <div class="profileFormRow">
-    <div class="profileFieldHalf">
-    <label>Role</label>
-    <input name="" type="text">
-    </div>
+      <div class="profileFieldHalf">
+        <label>Mobile No</label>
+        <input name="phone_no" type="text" value="<?=$presult->phone_no?>">
+      </div>
+      <div class="profileFieldHalf">
+        <label>Email</label>
+        <input name="email" type="text" value="<?=$presult->email?>">
+      </div>
     
-    <div class="profileFieldHalf">
-    <label>Department or team</label>
-    <input name="" type="text">
-    </div>
-    </div>
-    
-    <div class="profileFormRow">
-    <div class="profileFieldHalf">
-    <label>Email</label>
-    <input name="" type="text">
-    </div>
-    
-    
-    </div>
-    
-    
-    <div class="profileFormRow">
-    <div class="profileFieldFull">
-    <label>About me</label>
-    <textarea placeholder="Text here"></textarea>
-    </div>
-    
-    
+      
     </div>
     
     <div class="profileFormRow">
-    <div class="profileFieldThree">
-    <label>First day</label>
-    <input name="" type="date">
+
+      <div class="profileFieldHalf">
+        <label>Department</label>
+        <input name="dept" type="text" value="<?=$presult->dept?>">
+      </div>
+      <div class="profileFieldHalf">
+        <label>Designation</label>
+        <input name="designation" type="text" value="<?=$presult->designation?>">
+      </div>
+    
+      <!-- <div class="profileFieldHalf">
+        <label>Department or team</label>
+        <input name="" type="text">
+      </div> -->
     </div>
     
-    <div class="profileFieldThree">
-    <label>Last day</label>
-    <input name="" type="date">
+    <!-- <div class="profileFormRow">
+      <div class="profileFieldHalf">
+        <label>Email</label>
+        <input name="" type="text">
+      </div>
+    </div> -->
+    
+    
+    <!-- <div class="profileFormRow">
+        <div class="profileFieldFull">
+          <label>About me</label>
+          <textarea placeholder="Text here"></textarea>
+        </div>
     </div>
-    </div>
+    
+    <div class="profileFormRow">
+      <div class="profileFieldThree">
+        <label>First day</label>
+        <input name="" type="date">
+      </div>
+    
+      <div class="profileFieldThree">
+        <label>Last day</label>
+        <input name="" type="date">
+      </div>
+    </div> -->
     
     <div class="profileFormRow" style="margin-bottom:0;">
     <div class="profileFieldFull btnProfileCus">
-    <input name="" type="submit">
+    <input name="submit" type="submit" id="profile_submit">
     </div>
     </div>
-    
+  </form>
     </div>
     </div>
     
@@ -677,10 +683,7 @@
     <label>Email</label>
     <input name="" type="text">
     </div>
-    
-    
     </div>
-    
     
     <div class="profileFormRow">
     <div class="profileFieldFull">
@@ -688,9 +691,7 @@
     <textarea placeholder="Text here"></textarea>
     </div>
     
-    
     </div>
-    
     <div class="profileFormRow">
     <div class="profileFieldThree">
     <label>First day</label>
@@ -715,7 +716,6 @@
     <div id="Hacks" class="tabcontent_cusDash_Popup">
     <h3>Hacks</h3>
     <div class="profileForm">
-    
     <div class="profileFormRow">
     <div class="profileFieldHalf">
     <label>Your full name</label>
@@ -758,16 +758,13 @@
     <input name="" type="text">
     </div>
     
-    
     </div>
-    
     
     <div class="profileFormRow">
     <div class="profileFieldFull">
     <label>About me</label>
     <textarea placeholder="Text here"></textarea>
     </div>
-    
     
     </div>
     
@@ -788,7 +785,7 @@
     <input name="" type="submit">
     </div>
     </div>
-    
+  
     </div>
     </div>
     
@@ -827,5 +824,25 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+  $("#profile_form").submit(function(e) {
+
+      $.ajax({
+        type : 'POST',
+        url : '<?=base_url()?>index.php/auth/update_profile/',
+        data : $('#profile_form').serialize(),
+        success: function (data) {
+        //var result=data;
+        const obj = JSON.parse(data);
+        if(obj.type == 'alert'){
+          $('#alert-container').append('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+ obj.text +'</div>');
+        }else{
+          $('#alert-container').append('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+ obj.text +'</div>');
+        }
+
+        }
+      })
+  
+  })
 
 </script>
