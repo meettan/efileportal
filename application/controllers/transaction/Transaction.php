@@ -396,10 +396,10 @@ class Transaction extends CI_Controller {
 			//     Code for sending SMS       //
 			$userdtl = $this->master->f_get_particulars('md_users',NULL,array('id'=> trim($this->input->post('user'))),1);
 			$depdtl  = $this->master->f_get_particulars('md_department',NULL,array('sl_no'=> $result->dept_no),1);
-			$first_name = $userdtl->first_name; 
+			$first_name = ($userdtl->first_name); 
 			$mobile_no = $userdtl->phone_no;
 			$department_name =  $depdtl->short_code;
-			$sender_name = $this->session->userdata('uloggedin')->first_name;
+			$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
 			$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
 			$sms_send = $this->master->sendsms($mobile_no,$template);
 			//     Code for sending SMS       //
