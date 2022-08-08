@@ -392,7 +392,7 @@ class Transaction extends CI_Controller {
 			if($created_by == $this->session->userdata('uloggedin')->id){
 				$this->master->f_edit('td_file',array('creater_forward'=> '1'),array('file_no'=> $this->input->post('fileno')));
 			}
-
+            
 			//     Code for sending SMS       //
 			$userdtl = $this->master->f_get_particulars('md_users',NULL,array('id'=> trim($this->input->post('user'))),1);
 			$depdtl  = $this->master->f_get_particulars('md_department',NULL,array('sl_no'=> $result->dept_no),1);
@@ -452,7 +452,7 @@ class Transaction extends CI_Controller {
 
 	}
 	public function forward_file(){
-        $data['title']   = 'Received Files';
+        $data['title']   = 'Forward Files';
 		$where = array('a.forwarded_by=b.id'=>NULL,
 		               'a.file_no = c.file_no'=>NULL,
 					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);

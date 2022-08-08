@@ -9,6 +9,7 @@
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/transaction/file_forward/" enctype='multipart/form-data' id='fwd_frm'>
                         <input type='hidden' value='forwarded_file' name='url'>
+                        <input type='hidden' value='<?php echo $filedtl->created_by;  ?>' name='created_by'/>
                         <?php foreach($docs as $dt);?> 
                         <div class="form-group row">
                                 <div class="col-sm-2 fieldname">Department</div>
