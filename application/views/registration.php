@@ -38,7 +38,6 @@
 	 <div class="fieldSec">
     <div class="signup-form">
     <form action="<?=base_url()?>index.php/auth/register/" method="POST" id="regforms" autocomplete="off" onsubmit="myFunction()" >
-    
        <div class="form-group">
         <div class="row">
           <div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
@@ -92,13 +91,9 @@
   </div>
 </div>
 	
-<script>
-	
-</script>
 <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
 <script src="<?=base_url()?>assets/js/main_javascript.js"></script>
 <script src="<?=base_url()?>assets/js/main_jquery.js"></script>
-
 
 <script>
   $( document ).ready(function() {
