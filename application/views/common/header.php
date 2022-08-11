@@ -221,7 +221,7 @@
     <button class="tablinks_Popup" onClick="openPopupTab(event, 'Hacks')">Hacks</button> -->
     <div id="alert-container"></div>
     </div>
-    <?php $presult = $this->Master->f_get_particulars('md_users',NULL,array('id'=>$this->session->userdata('uloggedin')->id),1); ?>
+    <?php $presult = $this->master->f_get_particulars('md_users',NULL,array('id'=>$this->session->userdata('uloggedin')->id),1);?>
     <form action="javascript:void(0)" id="profile_form" method="POST">
     <div id="Profile" class="tabcontent_cusDash_Popup" style="display:block;">
     <!-- <div class="photoChange">
