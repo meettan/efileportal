@@ -101,7 +101,7 @@
                                 <div class="viewListSec">
                                <a href='javascript:void(0)' class='simg'> </a>
                                 <p class="titleBox"><?=$key->name?></p>
-                                <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
+                                <button type="button" class="btn btn-success simg" id="<?=$key->document?>" value='<?=$key->document?>'>view</button>
                                 </div>
                                 </div>
                             <?php }  }  ?>
@@ -111,7 +111,7 @@
                                 <div class="viewListSec">
                                <a href='javascript:void(0)' class='simg'> </a>
                                 <p class="titleBox"><?=$key->name?></p>
-                                <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
+                                <button type="button" class="btn btn-success simg" id="<?=$key->document?>" value='<?=$key->document?>'>view</button>
                                 </div>
                                 </div>
                             <?php } } ?> 
@@ -169,6 +169,40 @@
             </div>
         </div>
     </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1"
+                role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- w-100 class so that header
+                        div covers 100% width of parent div -->
+                            <h5 class="modal-title w-100"
+                                id="exampleModalLabel">
+                               
+                            </h5>
+                            <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    ×
+                                </span>
+                            </button>
+                        </div>
+                        <!--Modal body with image-->
+                        <div class="modal-body">
+                            <img id="myImage" src="" />
+                            <iframe id="frame" style="width: 750px;height:700px"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger"
+                                data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 </div>
 <script>
 $( document ).ready(function() {
@@ -197,20 +231,34 @@ $( document ).ready(function() {
             }
             }
         });
-        $('#intro2').on('click', '.simg', function(){
-            var ext = $(this).val();
-                Swal.fire({
-                        //text: "",
-                        position: "middle",
-                        color: '#f0f0f0',
-                        <?php if(isset($filedtl->docket_no)) { ?>
-                        imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
-                        <?php }else{    ?>
-                        imageUrl: "<?=base_url()?>uploads/<?=$fileno?>/"+ext,
-                        <?php } ?>
-                        timer: 100000
-                });
+        // $('#intro2').on('click', '.simg', function(){
+        //     var ext = $(this).val();
+        //         Swal.fire({
+        //                 //text: "",
+        //                 position: "middle",
+        //                 color: '#f0f0f0',
+        //                 <?php if(isset($filedtl->docket_no)) { ?>
+        //                 imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
+        //                 <?php }else{    ?>
+        //                 imageUrl: "<?=base_url()?>uploads/<?=$fileno?>/"+ext,
+        //                 <?php } ?>
+        //                 timer: 100000
+        //         });
+        // });
+     //   $( document ).ajaxComplete(function() {
+     $('#intro2').on('click', '.simg', function(){
+     //   $(".simg").click(function () {
+            var myBookId = $(this).attr('id');
+            var lastItem = myBookId.split(".").pop();
+            if(lastItem == 'pdf'){
+                $("#frame").attr("src", myBookId);
+            }else{
+                $('#myImage').attr('src', myBookId);
+                $("#frame").attr("src", '');
+            }
+            $(this).attr('data-target', '#exampleModal');
         });
+      //  })
         $('#intro2').on('click', '.del', function(){
             var row = $(this).parents('tr');
             Swal.fire({  
