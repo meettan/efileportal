@@ -65,7 +65,7 @@
                 <li class="nav-item dropdown">
                     <a href="#" class="avatarTopNav" data-toggle="dropdown"><?php  if($this->session->userdata('uloggedin')->first_name) echo ucfirst($this->session->userdata('uloggedin')->first_name); ?></a>
                     <div class="dropdown-menu dropdown-menu-right dropdownCustomRight">
-                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#exampleModal">My Settings…</a>
+                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#userModal">My Settings…</a>
                        <!-- <a href="#" class="dropdown-item">Dropdown Menu 2</a>
                       <a href="#" class="dropdown-item">Dropdown Menu 3</a>
                       <a href="#" class="dropdown-item">Dropdown Menu 4</a>-->
@@ -199,7 +199,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal_dialog_custom" role="document">
     <div class="modal-content">
       <div class="modal-header modal_header_CusDash">
