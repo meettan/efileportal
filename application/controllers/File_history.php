@@ -18,6 +18,7 @@ class File_history extends CI_Controller {
 			$file_no = trim($this->input->post('file_no'));
 			$data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$file_no),1);
 			$data['comment_author'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.*','b.first_name'),array('a.forwarded_by = b.id'=> NULL,'file_no' =>$file_no),0);
+			echo $this->db->last_query();
 			return $this->load->view('file_history/file_movement',$data);
 		}
 		else{

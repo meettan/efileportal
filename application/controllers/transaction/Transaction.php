@@ -519,7 +519,6 @@ class Transaction extends CI_Controller {
 		}
 	}
 
-
 	public function edit_forward_file(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$data_array =array('docket_no' => $this->input->post('docket'),
