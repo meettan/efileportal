@@ -381,7 +381,7 @@ class Transaction extends CI_Controller {
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
-					//'remarks' => $this->input->post('remarks'),
+					'remarks' => $this->input->post('remarks') ? $this->input->post('remarks') : NULL,
 					'fwd_status' => 'A',
 					'fwd_dept'=> $result->dept_no,
 					'fwd_to'  => $this->input->post('user'),
@@ -402,8 +402,7 @@ class Transaction extends CI_Controller {
 			$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
 			$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
 			$sms_send = $this->master->sendsms($mobile_no,$template);
-			//     Code for sending SMS       //
-			//die();
+			
 			$this->session->set_flashdata('success', 'File Forwarded Successfully');
 			if($url == 'file'){
 				redirect('index.php/transaction/file');
