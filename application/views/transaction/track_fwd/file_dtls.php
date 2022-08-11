@@ -95,7 +95,7 @@
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
                             <?php   
-                                  if(isset($dt->docket_no)) {  ?> 
+                                  if(isset($filedtl->docket_no)) {  ?> 
                             <?php foreach($docs as $key) { ?>  
                                 <div class="col-sm-2">
                                 <div class="viewListSec">
