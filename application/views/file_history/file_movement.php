@@ -22,13 +22,15 @@
                   
     <div style="margin-top: 30px;"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
     <?php } ?>
-    <div class='col-sm-2'>
+    <div class='col-sm-2' style="margin-bottom: 10px;">
         <div class='bg-primary text-white' style='padding:10px'>
         Forwarded By: <?php if(isset($ca->first_name)) echo $ca->first_name; ?> / Forwarded Date: <?php if(isset($ca->forwarded_at)) echo date('d/m/Y',strtotime(explode(' ',$ca->forwarded_at)[0])).' '.explode(' ',$ca->forwarded_at)[1] ; ?>
         </div>
      </div>
-     <div style="margin-top: 30px;"><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
-     <div class='col-sm-2'>
+     <?php if ($ca->fwd_status == 'R'){ $cvar ='style="color: #ff0000;"'; }else{ $cvar = '';} ?>
+     <div style="margin-top: 30px;"><i class="fa fa-arrow-right" aria-hidden="true" <?=$cvar?> ></i></div>
+    
+     <div class='col-sm-2' style="margin-bottom: 10px;">
         <div class='bg-primary text-white' style='padding:10px'>
         Forwarded To: <?php $objct = user_fist($ca->fwd_to); 
                                 echo $objct->first_name;
