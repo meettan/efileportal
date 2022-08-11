@@ -95,7 +95,7 @@
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
                             <?php   
-                                  if(isset($filedtl->docket_no)) {  ?> 
+                                  if(isset($docs)) {  ?> 
                             <?php foreach($docs as $key) { ?>  
                                 <div class="col-sm-2">
                                 <div class="viewListSec">
@@ -104,9 +104,9 @@
                                 <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
                                 </div>
                                 </div>
-                            <?php }  } else{ ?>
+                            <?php }  }  ?>
                             
-                            <?php foreach($fdocs as $key) { ?>  
+                            <?php    if(isset($fdocs)) { foreach($fdocs as $key) { ?>  
                                 <div class="col-sm-2">
                                 <div class="viewListSec">
                                <a href='javascript:void(0)' class='simg'> </a>
@@ -114,7 +114,7 @@
                                 <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
                                 </div>
                                 </div>
-                            <?php } }?> 
+                            <?php } } ?> 
                             </div>
                         <hr/>
                         <div class="form-group row">
