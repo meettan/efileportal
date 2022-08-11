@@ -71,7 +71,7 @@
     function user_fist($id){
         $CI = &get_instance(); 
         $CI->load->database();
-        $sql = 'SELECT * FROM md_users where a.id = "'.$id.'" ';
+        $sql = 'SELECT * FROM md_users where id = "'.$id.'" ';
         $result = $CI->db->query($sql)->row(); 
         if($result){
             return  $result;
