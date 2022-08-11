@@ -207,30 +207,30 @@
 <script>
 $( document ).ready(function() {
     CKEDITOR.replace( 'remarks' );
-    $('#intro2').on('change', '.doc', function(){
+    // $('#intro2').on('change', '.doc', function(){
 
-        var ext = $(this).val().split('.').pop().toLowerCase();
-        if($.inArray(ext, ['pdf','jpg','jpeg']) == -1) {
-                    Swal.fire({
-                        text: 'invalid extension!',
-                        position: "middle",
-                        color: '#f0f0f0',
-                        timer: 100000
-                    });
-            $(this).val('');
-        }else{
-                //  2000000  => 2MB  File size 
-            if(this.files[0].size > 100000) {
-                    Swal.fire({
-                            text: "Please upload file less than 100kb. Thanks!!",
-                            position: "middle",
-                            color: '#f0f0f0',
-                            timer: 100000
-                    });
-            $(this).val('');
-            }
-            }
-        });
+    //     var ext = $(this).val().split('.').pop().toLowerCase();
+    //     if($.inArray(ext, ['pdf','jpg','jpeg']) == -1) {
+    //                 Swal.fire({
+    //                     text: 'invalid extension!',
+    //                     position: "middle",
+    //                     color: '#f0f0f0',
+    //                     timer: 100000
+    //                 });
+    //         $(this).val('');
+    //     }else{
+    //             //  2000000  => 2MB  File size 
+    //         if(this.files[0].size > 100000) {
+    //                 Swal.fire({
+    //                         text: "Please upload file less than 100kb. Thanks!!",
+    //                         position: "middle",
+    //                         color: '#f0f0f0',
+    //                         timer: 100000
+    //                 });
+    //         $(this).val('');
+    //         }
+    //         }
+    //     });
         // $('#intro2').on('click', '.simg', function(){
         //     var ext = $(this).val();
         //         Swal.fire({
