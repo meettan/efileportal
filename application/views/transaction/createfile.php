@@ -114,7 +114,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1"
+            <div class="modal fade" id="exampleModal" tabindex="-1"
                 role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -144,6 +144,7 @@
                                 Close
                             </button>
                         </div>
+
                     </div>
                 </div>
             </div>

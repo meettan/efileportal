@@ -68,5 +68,16 @@
             return  'Not found';
         }
     }
+    function user_fist($id){
+        $CI = &get_instance(); 
+        $CI->load->database();
+        $sql = 'SELECT * FROM md_users where a.id = "'.$id.'" ';
+        $result = $CI->db->query($sql)->row(); 
+        if($result){
+            return  $result;
+        }else{
+            return  'Not found';
+        }
+    }
 
 ?>
