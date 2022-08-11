@@ -203,7 +203,7 @@ $( document ).ready(function() {
                         //text: "",
                         position: "middle",
                         color: '#f0f0f0',
-                        <?php if(isset($dt->docket_no)) { ?>
+                        <?php if(isset($filedtl->docket_no)) { ?>
                         imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
                         <?php }else{    ?>
                         imageUrl: "<?=base_url()?>uploads/<?=$fileno?>/"+ext,
