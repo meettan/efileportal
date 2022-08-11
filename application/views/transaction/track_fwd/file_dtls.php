@@ -101,19 +101,19 @@
                                 <div class="viewListSec">
                                <a href='javascript:void(0)' class='simg'> </a>
                                 <p class="titleBox"><?=$key->name?></p>
-                                <button type="button" class="btn btn-success simg" id="<?=$key->document?>" value='<?=$key->document?>'>view</button>
+                                <button type="button" class="btn btn-success simg" id="<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>" data-toggle="modal" data-target="#userModal" >view</button>
                                 </div>
                                 </div>
                             <?php }  }  ?>
                             
                             <?php    if(isset($fdocs)) { foreach($fdocs as $key) { ?>  
-                                <div class="col-sm-2">
+                                <!-- <div class="col-sm-2">
                                 <div class="viewListSec">
                                <a href='javascript:void(0)' class='simg'> </a>
                                 <p class="titleBox"><?=$key->name?></p>
-                                <button type="button" class="btn btn-success simg" id="<?=$key->document?>" value='<?=$key->document?>'>view</button>
+                                <button type="button" class="btn btn-success simg" id="" value=''>view</button>
                                 </div>
-                                </div>
+                                </div> -->
                             <?php } } ?> 
                             </div>
                         <hr/>
@@ -208,7 +208,6 @@
 $( document ).ready(function() {
     CKEDITOR.replace( 'remarks' );
     // $('#intro2').on('change', '.doc', function(){
-
     //     var ext = $(this).val().split('.').pop().toLowerCase();
     //     if($.inArray(ext, ['pdf','jpg','jpeg']) == -1) {
     //                 Swal.fire({
@@ -231,22 +230,9 @@ $( document ).ready(function() {
     //         }
     //         }
     //     });
-        // $('#intro2').on('click', '.simg', function(){
-        //     var ext = $(this).val();
-        //         Swal.fire({
-        //                 //text: "",
-        //                 position: "middle",
-        //                 color: '#f0f0f0',
-        //                 <?php if(isset($filedtl->docket_no)) { ?>
-        //                 imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
-        //                 <?php }else{    ?>
-        //                 imageUrl: "<?=base_url()?>uploads/<?=$fileno?>/"+ext,
-        //                 <?php } ?>
-        //                 timer: 100000
-        //         });
-        // });
+     
      //   $( document ).ajaxComplete(function() {
-     $('#intro2').on('click', '.simg', function(){
+    $('#intro2').on('click', '.simg', function(){
      //   $(".simg").click(function () {
             var myBookId = $(this).attr('id');
             var lastItem = myBookId.split(".").pop();
@@ -257,7 +243,7 @@ $( document ).ready(function() {
                 $("#frame").attr("src", '');
             }
             $(this).attr('data-target', '#exampleModal');
-        });
+    });
       //  })
         $('#intro2').on('click', '.del', function(){
             var row = $(this).parents('tr');
