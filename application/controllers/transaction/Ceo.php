@@ -28,6 +28,7 @@ class Ceo extends CI_Controller {
 		  $fwhere = array('file_no' => $fdetail[1]);
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
+		  $data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 		  $data['fileno'] = $fdetail[1];
 		  $whereu = array('dept != '=>'Dispatch',
 		                  'id !=' => $this->session->userdata('uloggedin')->id
@@ -38,6 +39,8 @@ class Ceo extends CI_Controller {
 						 'file_no' =>$fdetail[1]);
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
 		  $data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name','b.designation'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$fdetail[1]),1);
+		  $ft = substr($fdetail[1],0,4); 
+		  $data['filetype'] = $this->master->f_get_particulars('md_file_type',array('file_name'),array('file_no'=>$ft),1);
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
 			if($data['filedtl'] ){

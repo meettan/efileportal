@@ -8,7 +8,35 @@
             <div class="row">
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/ceo/file_forward/" enctype='multipart/form-data'>
-                        <?php foreach($docs as $dt);?>   
+                        <?php foreach($docs as $dt);?>  
+                        <div class="form-group row">
+                                <div class="col-sm-2 fieldname">Department</div>
+                                <div class="col-sm-4">
+                                 <select class='form-control select2' name='dept' id='dept'  disabled>
+                                     <option value=''>Select Department</option>
+                                     <?php foreach($depts as $dt) {  ?>
+                                     <option value='<?=$dt->sl_no?>' <?php if( $filedtl->dept_no == $dt->sl_no ) echo 'selected';  ?> > <?=$dt->department_name?></option>
+                                     <?php } ?>
+                                 </select>
+                                </div>
+                                <div class="col-sm-2 fieldname">Module</div>
+                                <div class="col-sm-4">
+                                  <select class='form-control select2' name='module' id='module' disabled>
+                                    <option value=''>Select Module</option>
+                                    <option value='L' <?php if( $filedtl->module == 'L' ) echo 'selected';  ?>>Leave</option>
+                                    <option value='P' <?php if( $filedtl->module == 'P' ) echo 'selected';  ?>>Paddy</option>
+                                    <option value='S' <?php if( $filedtl->module == 'S' ) echo 'selected';  ?>>Stationary</option>
+                                    <option value='I' <?php if( $filedtl->module == 'I' ) echo 'selected';  ?>>ICDS</option>
+                                    <option value='OT' <?php if( $filedtl->module == 'OT' ) echo 'selected';  ?>>Other</option>
+                                   </select>
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-2 fieldname">File Type  <??> </div>
+                            <div class="col-sm-4">
+                            <input type="text" name="filetype"  class="form-control" value='<?php if(isset($filetype->file_name)) echo $filetype->file_name; ?>' readonly >
+                            </div>
+                        </div>     
                         <div class="form-group row">
                             <div class="col-sm-2 fieldname">File No </div>
                             <div class="col-sm-4">
@@ -31,7 +59,6 @@
                             ?>
                             <p><?php //echo $leave->letterfirstline; ?> </p>
                         <p>So Sri <?php //echo $leave->emp_name; ?> has requested to adjust the leaves in <?=$lea?> ground.</p>
-                        
                         <p>Put up to CEO through ARCS and Deputy Manager for perusal and taking necessary action please. </p> -->
                         </div>   
                         </div>  
@@ -94,7 +121,6 @@
                             </div>
                         </div>
                         <hr/>
-                        
                         <?php if($filestatus)  {   ?>
                             <div class="form-group row">
                                  <div class="col-sm-12" ><p style="text-align:center;font-size:18px;font-weight: 900;color: red;">You Forwarded File</p></div>
