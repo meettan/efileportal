@@ -70,18 +70,29 @@ class Ceo extends CI_Controller {
 					'fwd_status' => $this->input->post('fwd_status'),
 					'fwd_dept'=> $result->dept_no,
 					'fwd_to'  => $this->input->post('user'),
+					//'fwd_to'  => $result->created_by,
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
 					'forwarded_at' =>date("Y-m-d h:i:s"));
 			$this->master->f_insert('td_track_file',$data);
 			}
 			$fc = $this->input->post('fwd_status');
-			
+			$fn = $this->input->post('fileno');
 			if($fc == 'A'){
 				$data_array = array('close_status' => '1',
 									'close_by'=>$this->session->userdata('uloggedin')->id,
 									'close_dt'=> date('Y-m-d h:i:s')
 			                    );
 				$this->master->f_edit('td_file',$data_array,array('file_no'=>$this->input->post('fileno')));
+                //  SMS SEND CODE    //
+				$userdtl = $this->master->f_get_particulars('md_users',NULL,array('id'=> $result->created_by),1);
+				$depdtl  = $this->master->f_get_particulars('md_department',NULL,array('sl_no'=> $result->dept_no),1);
+				$first_name = ($userdtl->first_name); 
+				$mobile_no = $userdtl->phone_no;
+				$department_name =  $depdtl->short_code;
+				$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
+				$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+				$sms_send = $this->master->sendsms($mobile_no,$template);
+                //  SMS SEND CODE    //
 				if($this->input->post('module') == 'L'){
 
 					$data_arrays  = array ('approval_status' => 'A',

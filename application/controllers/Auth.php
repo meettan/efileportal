@@ -91,7 +91,6 @@ class Auth extends CI_Controller {
 		$query = $this->db->get_where('md_users', array('email =' => $email))->result();
 		echo count($query);
 	}
-	
 
 	//  *****    Code for Register a  user    *****    // 
 	public function register(){
@@ -300,7 +299,6 @@ class Auth extends CI_Controller {
 
 			$msg['type'] = 'error';
 			$msg['text'] = validation_errors();
-
 			echo json_encode($msg);
 		}
 
