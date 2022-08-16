@@ -82,7 +82,7 @@ class Ceo extends CI_Controller {
 									'close_dt'=> date('Y-m-d h:i:s')
 			                    );
 				$this->master->f_edit('td_file',$data_array,array('file_no'=>$this->input->post('fileno')));
-				if($this->input->post('fwd_status') == 'A'){
+				if($this->input->post('module') == 'L'){
 
 					$data_arrays  = array ('approval_status' => 'A',
 					'approved_dt'  => date("Y-m-d"),
