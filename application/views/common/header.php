@@ -259,7 +259,7 @@
       </div>
       <div class="profileFieldHalf">
         <label>Email</label>
-        <input name="email" type="text" value="<?=$presult->email?>">
+        <input name="email" type="text" readonly value="<?=$presult->email?>" style="background-color:#d3d3d37a">
       </div>
     
       

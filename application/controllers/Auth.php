@@ -276,7 +276,7 @@ class Auth extends CI_Controller {
 	 public function update_profile(){
 		$this->form_validation->set_rules('first_name', 'First name', 'required');
 		$this->form_validation->set_rules('phone_no', 'Phone no', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required');
+		//$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_rules('designation', 'Designation', 'required');
 		$msg = array();
 		if ($this->form_validation->run() == TRUE)
@@ -285,7 +285,7 @@ class Auth extends CI_Controller {
 
 			$data_array = array('first_name' => $this->input->post('first_name'),
 								'last_name' => $this->input->post('last_name'),
-								'email' => $this->input->post('email'),
+								//'email' => $this->input->post('email'),
 								'phone_no' => $this->input->post('phone_no'),
 								'dept' => $this->input->post('dept'),
 								'designation' => $this->input->post('designation'),
