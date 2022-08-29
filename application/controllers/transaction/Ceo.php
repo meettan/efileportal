@@ -15,7 +15,8 @@ class Ceo extends CI_Controller {
 	public function index(){
 		
 		$where = array('a.fwd_to=b.id'=>NULL,
-					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);
+					    'a.fwd_to' => $this->session->userdata('uloggedin')->id,
+					   'order by fwd_dt desc');
 		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b',NULL,$where,0);
 		$this->load->view('common/header');
 		$this->load->view('ceo/file_track',$data);
