@@ -45,6 +45,7 @@ class Auth extends CI_Controller {
 					}else{
 						$this->session->unset_userdata('valuecaptchaCode');
 		                $this->session->set_userdata('valuecaptchaCode',$data['word']);
+						$this->session->set_flashdata('error', 'Problem with Password');
 						$this->load->view('login',$data);
 					}
 				}else{
