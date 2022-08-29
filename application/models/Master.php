@@ -109,7 +109,7 @@ class Master extends CI_Model {
                         'created_by'=>$this->session->userdata('uloggedin')->id,
                         'created_at'=>date("Y-m-d h:i:s"));
         $id = $this->f_insert('send_sms',$data_array);
-        echo $response;
+        return $response;
     }
     
 
