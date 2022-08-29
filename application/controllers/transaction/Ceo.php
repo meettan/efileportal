@@ -62,7 +62,11 @@ class Ceo extends CI_Controller {
 
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
+			if($fc == 'R'){
 			$user = $this->input->post('user');
+			 }else{
+			 	$user = $result->created_by;
+			 }
 			if($user != '' ){
 			$data = array(
 				    'fwd_dt' => date('Y-m-d'),
@@ -70,7 +74,7 @@ class Ceo extends CI_Controller {
 					'remarks' => $this->input->post('remarks'),
 					'fwd_status' => $this->input->post('fwd_status'),
 					'fwd_dept'=> $result->dept_no,
-					'fwd_to'  => $this->input->post('user'),
+					'fwd_to'  => $user,
 					//'fwd_to'  => $result->created_by,
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
 					'forwarded_at' =>date("Y-m-d h:i:s"));

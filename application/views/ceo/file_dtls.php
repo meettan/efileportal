@@ -128,22 +128,25 @@
                         
                         <?php }else{ ?>
                             <div class="form-group row">
-                            <div class="col-sm-2 fieldname">User</div>
-                            <div class="col-sm-4">
-                                <select name='user' class='form-control' ><option value='0'>Select user</option>
-                                        <?php foreach($users as $key) { ?>
-                                        <option value='<?=$key->id?>'><?=$key->first_name?></option>
-                                        <?php } ?>
-                                </select>
-                            </div>
                             <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
-                                <select name='fwd_status' class='form-control' required>
+                                <select name='fwd_status' class='form-control' required id="fwd_status">
                                     <option value=''>Select Status</option>
                                     <option value='A'>Approve</option>
                                     <option value='R'>Reject</option>
                                 </select>
-                            </div>
+                            </div> 
+                            
+                                <div class="col-sm-2 fieldname user">User</div>
+                                <div class="col-sm-4 user">
+                                    <select name='user' class='form-control' ><option value='0'>Select user</option>
+                                            <?php foreach($users as $key) { ?>
+                                            <option value='<?=$key->id?>'><?=$key->first_name?></option>
+                                            <?php } ?>
+                                    </select>
+                                </div>
+                            
+
                             </div>
                             <!-- <div class="form-group row">
                             <div class="col-sm-2 fieldname">Close File</div>
@@ -235,6 +238,16 @@ $( document ).ready(function() {
                     }
                 });
         })
+
+  $('.user').hide();
+  $('#fwd_status').on('change', function(){
+       var ststus = $(this).val();
+       if(ststus == 'R'){
+        $('.user').show();
+       }else{
+        $('.user').hide();
+       }
+  })      
 
 })
 </script>
