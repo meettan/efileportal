@@ -440,7 +440,7 @@ class Transaction extends CI_Controller {
 	}
 	
 	public function forwarded_file(){
-        $data['title']   = 'Forward Files';
+        $data['title']   = 'Forwarded Files';
 		$where = array('a.forwarded_by=b.id'=>NULL,
 		               'a.file_no = c.file_no'=>NULL,
 					    'a.forwarded_by' => $this->session->userdata('uloggedin')->id);

@@ -22,7 +22,8 @@
                             </div>
                             </form>
                         </div>
-                        <div class='col-md-3'> <button type="button" class="btn btn-primary" id='gdocketno'>Generate Docket No</button> </div>
+                        <div class='col-md-3'> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#docket_create_model" id='gdocketnof'>Generate Docket No</button> </div>
+              
                      </div>   
                      <?php if ($this->session->flashdata('success') != ''):   ?>
                         <div class="alert alert-success alert-dismissible">
@@ -57,7 +58,6 @@
                     <td><?=date('d/m/Y',strtotime($key->docket_dt))?></td>
                     <td><?=$key->docket_no?></td>
                     <td><?=$key->first_name?></td>
-                    
                     <td>
                         <?php if(totaldocument($key->docket_no) == 0 ){ ?>
                         <?=totaldocument($key->docket_no)?>
@@ -99,13 +99,63 @@
 		</div>
 	</div>
 
+<div class="modal fade" id="docket_create_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Generate Docket</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action ='javascript:void(0)' method="POST"  id='gdocketno'  onsubmit="formSubmit();">
+      <div class="form-group row">
+                    <div class="col-sm-3 fieldname">Received from<span style="color: red;"> *</span></div>
+                    <div class="col-sm-9">
+                            <input type ='text' name='received_from' class='form-control' required/>
+                    </div>
+            </div>
+            <div class="form-group row">
+                    <div class="col-sm-3 fieldname">Bill/Memo no<span style="color: red;"> *</span></div>
+                    <div class="col-sm-9">
+                             <input type ='text' name='bill_memo_no' class='form-control' required/>  
+                    </div>
+            </div>
+            <div class="form-group row">
+                    <div class="col-sm-3 fieldname">Subject<span style="color: red;"> *</span></div>
+                    <div class="col-sm-9">
+                             <input type ='text' name='subject' class='form-control' required/>  
+                    </div>
+            </div>
+            <div class="form-group row">
+                        <div class="col-sm-3 fieldname">Remarks</div>
+                        <div class="col-sm-9">
+                                <textarea name='remarks' class='form-control'></textarea>
+                        </div>
+            </div>
+            <div class="form-group row">
+               <div class="col-sm-10"></div>
+               <div class="col-sm-2"><input type="submit" name="submit" value='save' class='btn btn-primary' /></div>
+                
+            </div>   
+            </form>    
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>  
+
 
 <script>
-    $('#gdocketno').click(function(e) {
+    function formSubmit(){
           $.ajax({
               type: "POST",
               url: '<?=base_url()?>index.php/dispach/gen_docket',
-              //data: $(this).serialize(),
+              data: $('#gdocketno').serialize(),
               success: function(response)
               {
                 Swal.fire({
@@ -129,7 +179,7 @@
                         });
             }
         });
-    });
+    };
 
     $(document ).ready(function() {
 

@@ -2,7 +2,7 @@
 			<div class="card">
 			 <div class="card-body" >
 				<div class="titleSec">
-					 <button type="button" class="btn btn-primary" id='add'>Upload</button>
+					<button type="button" class="btn btn-primary" id='add'>Upload</button>
 				<h2>Page Title</h2> 
 				</div>
 				<div class="row">
@@ -74,7 +74,6 @@
                     success: function(response)
                     {
                     $('#ajaxview').html(response);
-                    
                     }
             });
 

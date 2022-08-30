@@ -36,23 +36,36 @@ class Dis extends CI_Controller {
 
 	//  *****  Code for generate Docket list    *****  //
 	public function gen_docket(){
-		$where = array('fin_year' => 1);
-		$sess = SESSION_YEAR;
-		$data  = $this->master->f_get_particulars('td_docket_no','ifnull(max(sl_no),0) as sl_no',NULL,1);
-		$sl    = $data->sl_no;
-		$data_array = array(
-						'docket_dt' => date('Y-m-d'),
-						'fin_year'  => $this->session->userdata('session_year_id'),
-						'sl_no'     => ($sl+1),
-						'docket_no' => $sess.'-'.($sl+1),
-						'created_by' => $this->session->userdata('uloggedin')->id,
-						'created_at'=> date("Y-m-d h:i:s")
-		               );
-		$id = $this->master->f_insert('td_docket_no',$data_array);
-		if($id){
-			echo 'Docket No '.$sess.'-'.($sl+1).' generated Scessfully';
-		}else{
-			echo 'Docket No not generated Scessfully';
+		$this->form_validation->set_rules('received_from', 'Received from', 'required');
+		$this->form_validation->set_rules('bill_memo_no', 'Bill Memo No', 'required');
+		$this->form_validation->set_rules('subject', 'Subject', 'required');
+		if ($this->form_validation->run() == TRUE)
+        {
+			$where = array('fin_year' => 1);
+			$sess = SESSION_YEAR;
+			$data  = $this->master->f_get_particulars('td_docket_no','ifnull(max(sl_no),0) as sl_no',NULL,1);
+			$sl    = $data->sl_no;
+			$data_array = array(
+							'docket_dt' => date('Y-m-d'),
+							'fin_year'  => $this->session->userdata('session_year_id'),
+							'sl_no'     => ($sl+1),
+							'docket_no' => $sess.'-'.($sl+1),
+							'received_from'=> $this->input->post('received_from'),
+							'bill_memo_no' => $this->input->post('bill_memo_no'),
+							'subject' => $this->input->post('subject'),
+							'remarks' => $this->input->post('remarks'),
+							'created_by' => $this->session->userdata('uloggedin')->id,
+							'created_at'=> date("Y-m-d h:i:s")
+						);
+			$id = $this->master->f_insert('td_docket_no',$data_array);
+			if($id){
+				echo 'Docket No '.$sess.'-'.($sl+1).' generated Scessfully';
+			}else{
+				echo 'Docket No not generated Scessfully';
+			}
+	    }else{
+			$validation_error = validation_errors();
+			echo $validation_error.'</br>Docket No not generated Scessfully';
 		}
 
 	}

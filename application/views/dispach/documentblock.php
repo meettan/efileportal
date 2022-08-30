@@ -44,25 +44,25 @@
                  <div class="form-group row">
                     <div class="col-sm-2 fieldname">Received from<span style="color: red;"> *</span></div>
                     <div class="col-sm-10">
-                            <input type ='text' name='received_from' class='form-control' required/>
+                            <input type ='text' name='received_from' class='form-control' value="<?php if(isset($docket->received_from)) { echo $docket->received_from;}?>" />
                     </div>
                  </div>
                  <div class="form-group row">
                     <div class="col-sm-2 fieldname">Bill/Memo no<span style="color: red;"> *</span></div>
                     <div class="col-sm-10">
-                             <input type ='text' name='bill_memo_no' class='form-control' required/>  
+                             <input type ='text' name='bill_memo_no' class='form-control' value="<?php if(isset($docket->bill_memo_no)) { echo $docket->bill_memo_no;}?>"  />  
                     </div>
                  </div>
                  <div class="form-group row">
                     <div class="col-sm-2 fieldname">Subject<span style="color: red;"> *</span></div>
                     <div class="col-sm-10">
-                             <input type ='text' name='subject' class='form-control' required/>  
+                             <input type ='text' name='subject' class='form-control' value="<?php if(isset($docket->subject)) { echo $docket->subject;}?>"  />  
                     </div>
                  </div>
                  <div class="form-group row">
                         <div class="col-sm-2 fieldname">Remarks</div>
                         <div class="col-sm-10">
-                                <textarea name='remarks' class='form-control'></textarea>
+                                <textarea name='remarks' class='form-control' ><?php if(isset($docket->remarks)) { echo $docket->remarks;}?></textarea>
                         </div>
                  </div>        
                     <div class="form-group row">
