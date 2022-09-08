@@ -109,7 +109,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action ='javascript:void(0)' method="POST"  id='gdocketno'  onsubmit="formSubmit();">
+        <!-- <form action ='javascript:void(0)' method="POST"  id='gdocketno'  onsubmit="formSubmit();"> -->
+        <form action ='<?=base_url()?>index.php/dispach/gendocket' method="POST"  id='gdocketno'  >
       <div class="form-group row">
                     <div class="col-sm-3 fieldname">Received from<span style="color: red;"> *</span></div>
                     <div class="col-sm-9">
@@ -154,8 +155,9 @@
     function formSubmit(){
           $.ajax({
               type: "POST",
-              url: '<?=base_url()?>index.php/dispach/gen_docket',
+              url: '<?=base_url()?>index.php/dispach/gendocket',
               data: $('#gdocketno').serialize(),
+              dataType: 'json',
               success: function(response)
               {
                 Swal.fire({

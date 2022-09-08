@@ -6,6 +6,7 @@ class Dis extends CI_Controller {
         parent::__construct();
         $this->load->model('Login_Process');
 		$this->load->helper('common');
+		header("Access-Control-Allow-Origin: *");
 		//For User's Authentication
         if(!isset($this->session->userdata('uloggedin')->phone_no)){
             redirect('auth/verification/');
@@ -35,7 +36,7 @@ class Dis extends CI_Controller {
 	}
 
 	//  *****  Code for generate Docket list    *****  //
-	public function gen_docket(){
+	public function gendocket(){
 		$this->form_validation->set_rules('received_from', 'Received from', 'required');
 		$this->form_validation->set_rules('bill_memo_no', 'Bill Memo No', 'required');
 		$this->form_validation->set_rules('subject', 'Subject', 'required');
@@ -59,13 +60,16 @@ class Dis extends CI_Controller {
 						);
 			$id = $this->master->f_insert('td_docket_no',$data_array);
 			if($id){
-				echo 'Docket No '.$sess.'-'.($sl+1).' generated Scessfully';
+				//echo 'Docket No '.$sess.'-'.($sl+1).' generated Scessfully';
+				redirect(base_url().'index.php/dispach/');
 			}else{
-				echo 'Docket No not generated Scessfully';
+				//echo 'Docket No not generated Scessfully';
+				redirect(base_url().'index.php/dispach/');
 			}
 	    }else{
 			$validation_error = validation_errors();
-			echo $validation_error.'</br>Docket No not generated Scessfully';
+			redirect(base_url().'index.php/dispach/');
+			//echo $validation_error.'</br>Docket No not generated Scessfully';
 		}
 
 	}
