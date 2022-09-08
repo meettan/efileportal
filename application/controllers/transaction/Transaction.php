@@ -79,9 +79,9 @@ class Transaction extends CI_Controller {
 		$this->form_validation->set_rules('docket', 'Docket no', 'required');
 		if ($this->form_validation->run() == TRUE)
 		{
-
+        $where = array('fin_year' => $this->session->userdata('session_year_id'),'file_type'=>$this->input->post('filetype'));
 		$sess = SESSION_YEAR;
-		$data  = $this->master->f_get_particulars('td_file','ifnull(max(sl_no),0) as sl_no',NULL,1);
+		$data  = $this->master->f_get_particulars('td_file','ifnull(max(sl_no),0) as sl_no',$where,1);
 		$sl    = $data->sl_no;
 		$file_type = $this->input->post('filetype');
 		$data_array = array(
@@ -93,7 +93,7 @@ class Transaction extends CI_Controller {
 						'docket_no' => $this->input->post('docket'),
 					//	'received_from' => $this->input->post('received_from'),
 					//	'bill_memo_no' => $this->input->post('bill_memo_no'),
-					//	'subject' => $this->input->post('subject'),
+						'file_type' => $this->input->post('filetype'),
 						'file_no'   => $file_type.'-'.$sess.'-'.($sl+1),
 						'note_sheet'=> $this->input->post('editor1'),
 						'created_by' => $this->session->userdata('uloggedin')->id,
