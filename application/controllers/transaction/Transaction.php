@@ -21,6 +21,16 @@ class Transaction extends CI_Controller {
 		$this->load->view('transaction/forwarded_docket',$data);
 		$this->load->view('common/footer');
 	}
+	public function receiveddocket(){
+		//$data['forwarded']  = $this->trans_model->get_forwarded_document($this->session->userdata('uloggedin')->id);
+		$where = array('a.forwarded_by=b.id'=>NULL,
+						'a.fwd_to' => $this->session->userdata('uloggedin')->id);
+		$select = array('a.*','b.first_name');
+		$data['forwarded'] = $this->master->f_get_particulars('td_doc_track a,md_users b',$select,$where,0);
+		$this->load->view('common/header');
+		$this->load->view('transaction/received_docket',$data);
+		$this->load->view('common/footer');
+	}
 
 	//  *****  List of files used table  td_file  *****    //
 	public function file(){

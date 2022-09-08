@@ -101,9 +101,9 @@
 	<li class="dividerLine_Bot">
 	<div class="link"><a href="<?=base_url()?>index.php/dispach/searchdoc"><i class="fa fa-search"></i>Docket Search</a></div>
 	</li>
-  <!-- <li>
-	<div class="link"><a href="<?=base_url()?>index.php/transaction/"><i class="fa fa-code"></i>Forwarded Docket</a></div>
-	</li> -->
+  <li>
+	<div class="link"><a href="<?=base_url()?>index.php/transaction/receiveddocket"><i class="fa fa-code"></i>Received Docket</a></div>
+	</li>
   <li class="dividerLine_top">
 	<div class="link"><a href="<?=base_url()?>index.php/transaction/file"><i class="fa fa-plus"></i>Create File</a></div>
 	</li>
