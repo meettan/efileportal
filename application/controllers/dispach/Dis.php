@@ -288,6 +288,16 @@ class Dis extends CI_Controller {
 		$this->master->f_edit('td_document',$forward_doc_array, $where);
 		$this->master->f_insert('td_doc_track',$data_array);
 		$this->master->f_edit('td_docket_no',$docket_array, $where);
+		//     Code for sending SMS       //
+		$userdtl = $this->master->f_get_particulars('md_users',NULL,array('id'=> trim($this->input->post('user'))),1);
+		//$depdtl  = $this->master->f_get_particulars('md_department',NULL,array('sl_no'=> $result->dept_no),1);
+		$first_name = ($userdtl->first_name); 
+		$mobile_no = $userdtl->phone_no;
+		$department_name =  'DIS';
+		$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
+		$template = 'Dear '.$first_name.' File No. '.$docket_no.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+		$sms_send = $this->master->sendsms($mobile_no,$template);
+		//  code  //
 		$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
 		redirect('index.php/dispach/forward');
 		}else{
