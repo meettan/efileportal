@@ -8,17 +8,6 @@
             <div class="row">
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/transaction/generatefile/" enctype='multipart/form-data' id='form'>
-                            <!-- <div class="form-group row">
-                                <div class="col-sm-2 fieldname">Please check</div>
-                                <div class="col-sm-2">
-                                    With docket
-                                <input type='radio' value='dk' name='ckdc' class='checkbox-selector'checked>
-                                </div>
-                                <div class="col-sm-2">
-                                    With out docket
-                                <input type='radio' value='wdk' name='ckdc' class='checkbox-selector' >
-                                </div>
-                            </div> -->
                             <div class="form-group row">
                                 <div class="col-sm-2 fieldname">Department</div>
                                 <div class="col-sm-4">
@@ -52,6 +41,7 @@
                                 <div class="col-sm-4" id='dcdetail'>
                                   <select class='form-control select2' name='docket' id='docket_no'>
                                     <option value=''>Select Docket</option>
+                                    <option value='NA'>NA</option>
                                    <?php foreach($dockets as $key) { ?>
                                    <option value='<?=$key->docket_no?>'><?=$key->docket_no?></option>
                                    <?php } ?>
@@ -61,25 +51,6 @@
                             <div class="form-group row" id='docket_content'>
 
                             </div>
-                           
-                    <!-- <div class="form-group row">
-                    <div class="col-sm-2 fieldname">Received from<span style="color: red;"> *</span></div>
-                    <div class="col-sm-10">
-                            <input type ='text' name='received_from' class='form-control' required/>
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                    <div class="col-sm-2 fieldname">Bill/Memo no<span style="color: red;"> *</span></div>
-                    <div class="col-sm-10">
-                             <input type ='text' name='bill_memo_no' class='form-control' required/>  
-                    </div>
-                    </div>
-                    <div class="form-group row">
-                    <div class="col-sm-2 fieldname">Subject<span style="color: red;"> *</span></div>
-                    <div class="col-sm-10">
-                             <input type ='text' name='subject' class='form-control' required/>  
-                    </div>
-                    </div>    -->
                             <div class="form-group row">
                               <div class="col-sm-2 fieldname">Notesheet</div>
                                <div class="col-sm-10">
@@ -164,7 +135,7 @@
         });
     }) 
 $( document ).ready(function() {
-$('#file_documnet').hide();
+//$('#file_documnet').hide();
 $('.addAnotherrow').click(function(){
     let row = '<tr>'+
                 '<td><input type="text" name="name[]" class="form-control"></td><td><input type="file" name="fileToUpload[]"  class="form-control doc"></td>'
