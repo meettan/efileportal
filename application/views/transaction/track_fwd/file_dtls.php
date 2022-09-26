@@ -107,13 +107,13 @@
                             <?php }  }  ?>
                             
                             <?php    if(isset($fdocs)) { foreach($fdocs as $key) { ?>  
-                                <!-- <div class="col-sm-2">
+                                <div class="col-sm-2">
                                 <div class="viewListSec">
                                <a href='javascript:void(0)' class='simg'> </a>
                                 <p class="titleBox"><?=$key->name?></p>
-                                <button type="button" class="btn btn-success simg" id="" value=''>view</button>
+                                <button type="button" class="btn btn-success simg" id="<?=base_url()?>uploads/<?=$key->file_no?>/<?=$key->document?>" data-toggle="modal" data-target="#userModal">view</button>
                                 </div>
-                                </div> -->
+                                </div>
                             <?php } } ?> 
                             </div>
                         <hr/>
@@ -143,19 +143,20 @@
                                         <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-sm-2 fieldname">
+                            <!-- <div class="col-sm-2 fieldname">
                                 <button class="btn btn-danger" id='file_reject'>File Reject</button>
-                            </div>
+                            </div> -->
                                 <!-- <div class="col-sm-4">
                                 <input type="checkbox" id="cr" name="cr" value="1">
                             </div> -->
-                            <!-- <div class="col-sm-2 fieldname">Forward Status</div>
+                            <div class="col-sm-2 fieldname">Forward Status</div>
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required>
                                     <option value='A'>Approve</option>
+                                    <option value='RT'>Return</option>
                                     <option value='R'>Reject</option>
                                 </select>
-                            </div> -->
+                            </div>
                             </div>
                             <hr/>
                             <div class="form-group row">
