@@ -563,6 +563,63 @@ class Transaction extends CI_Controller {
 		}
 	}
 
+	public function roll_back(){
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+		  $fdetail = explode('/',$this->input->post('docket_no'));
+		  $data['url']   = $this->input->post('url');
+		  $where = array('docket_no' => $fdetail[0]);
+		  $fwhere = array('file_no' => $fdetail[1]);
+		  //$data['fstatus'] = $fdetail[2];
+		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
+		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
+		  $data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
+		  $data['fileno'] = $fdetail[1];
+		  $whereu = array('dept != '=>'Dispatch',
+		                  'id !=' => $this->session->userdata('uloggedin')->id);
+		  $data['users'] = $this->master->f_get_particulars('md_users',NULL,$whereu,0);
+		  unset($where);
+		  $where = array('forwarded_by'=>$this->session->userdata('uloggedin')->id,
+						 'file_no' =>$fdetail[1]);
+		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
+		  $data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name','b.designation'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$fdetail[1]),1);
+		  //echo $data['filedtl']->application_no;die();
+		  $ft = substr($fdetail[1],0,4); 
+		  $data['filetype'] = $this->master->f_get_particulars('md_file_type',array('file_name'),array('file_no'=>$ft),1);
+		  $str2 = substr($fdetail[1],0,1); 
+		  if($str2 == 'L') {
+			if($data['filedtl'] ){
+				$data['leave'] = $this->notesheet_model->f_get_particulars('td_leave_dtls',NULL,array('docket_no'=>$data['filedtl']->docket_no),1) ;
+			}else{
+				$data['leave'] = '';
+			}
+			
+		  }else{
+			$data['leave'] = '';
+		  }
+		  $data['comment_author'] = $this->master->f_get_particulars('td_track_file a,md_users b',array('a.*','b.first_name','b.designation'),array('a.forwarded_by = b.id'=> NULL,'file_no' =>$fdetail[1]),0);
+		  $view = $this->load->view('transaction/track_fwd/roll_back',$data);
+		  return $view;
+		}
+	}
+	public function file_rollback(){
+        $data['title']   = 'Forward Files';
+		
+		$where = array('a.forwarded_by=b.id'=>NULL,
+		               'a.file_no = c.file_no'=>NULL,
+					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);
+		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b,td_file c',array('a.*','b.first_name','b.last_name','c.docket_no'),$where,0);
+		$selects = array('a.*','b.first_name');
+		$wheres  = array('a.created_by = b.id' => NULL,
+		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
+						'a.creater_forward'=> '0',
+						'1 order by a.file_date desc'=>NULL);
+		$data['filess'] = $this->master->f_get_particulars('td_file a,md_users b',$selects,$wheres,0);
+		$this->master->f_edit('td_track_file',array('rollback_status'=> 1 ),array('sl_no'=>$this->input->post('sl_no')));
+		$this->load->view('common/header');
+		$this->load->view('transaction/track_fwd/fwd_file',$data);
+		$this->load->view('common/footer');
+	}
+
 	public function edit_forward_file(){
 		if($_SERVER['REQUEST_METHOD']=="POST"){
 			$data_array =array('docket_no' => $this->input->post('docket'),

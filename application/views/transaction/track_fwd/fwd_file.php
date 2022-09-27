@@ -131,6 +131,19 @@ $(document).ready(function() {
                 }
         });
     });
+    $('#roll_back').on('click', '.link', function(){
+        $('#ajaxview').empty();
+        var url = 'forwarded_file'
+        $.ajax({
+                type: "POST",
+                data:{docket_no:$(this).val(),url:url},
+                url: '<?=base_url()?>index.php/transaction/roll_back',
+                success: function(response)
+                {
+                $('#ajaxview').html(response);
+                }
+        });
+    });
     $('.edit').on('click', function(){
         $('#ajaxview').empty();
         $.ajax({

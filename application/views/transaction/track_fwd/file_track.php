@@ -27,6 +27,7 @@
                                 <th>Forwarded by</th>
                                 <th>Status</th>
                                 <th>Option</th>
+                                <th>Roll Back</th>
                             </tr>
                         </thead>
                         <tbody id='doclist'>
@@ -65,6 +66,11 @@
                                  <!-- <button class="edit" value="<?=$key->docket_no?>/<?=$key->file_no?>"> <i class="fa fa-edit fa-fw fa-2x"></i></button> -->
                                  <?php //} ?>
                             </td>
+                            <td><?php 
+                                  $rb = roll_back_status($key->forwarded_by,$key->forwarded_at);
+                                  if($rb == 1){   ?>
+                            <button class="rollback" value="<?=$key->docket_no?>/<?=$key->file_no?>/<?=$key->fwd_status?>"> <i class="fa fa-undo fa-fw fa-2x"></i></button>
+                           <?php }  ?></td>
                             </tr>
                             <?php   }
                                 }else { ?>
@@ -79,6 +85,7 @@
                                 <th>Forwarded by</th>
                                 <th>Status</th>
                                 <th>Option</th>
+                                <th>Roll Back</th>
                             </tr>
                         </tfoot>
                         </table>
@@ -110,6 +117,19 @@ $(document).ready(function() {
                 type: "POST",
                 data:{docket_no:$(this).val(),url:url},
                 url: '<?=base_url()?>index.php/transaction/filedetail',
+                success: function(response)
+                {
+                $('#ajaxview').html(response);
+                }
+        });
+    });
+    $('#doclist').on('click', '.rollback', function(){
+        $('#ajaxview').empty();
+        var url = 'forwarded_file'
+        $.ajax({
+                type: "POST",
+                data:{docket_no:$(this).val(),url:url},
+                url: '<?=base_url()?>index.php/transaction/roll_back',
                 success: function(response)
                 {
                 $('#ajaxview').html(response);
