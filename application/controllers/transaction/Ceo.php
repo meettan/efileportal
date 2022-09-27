@@ -67,22 +67,36 @@ class Ceo extends CI_Controller {
 			 }else{
 			 	$user = $result->created_by;
 			 }
-			if($user != '' ){
-			$data = array(
+			// if($user != '' ){
+			
+			// }
+			$fc = $this->input->post('fwd_status');
+			$fn = $this->input->post('fileno');
+			if($fc == 'A'){
+
+				$data = array(
 				    'fwd_dt' => date('Y-m-d'),
 					'file_no'=> $this->input->post('fileno'),
 					'remarks' => $this->input->post('remarks'),
 					'fwd_status' => $this->input->post('fwd_status'),
 					'fwd_dept'=> $result->dept_no,
-					'fwd_to'  => $user,
-					//'fwd_to'  => $result->created_by,
+					'fwd_to'  => $this->input->post('user'),
 					'forwarded_by' =>$this->session->userdata('uloggedin')->id,
 					'forwarded_at' =>date("Y-m-d h:i:s"));
-			$this->master->f_insert('td_track_file',$data);
+			       $this->master->f_insert('td_track_file',$data);
+				     //  SMS SEND CODE    //
+				$userdtl = $this->master->f_get_particulars('md_users',NULL,array('id'=> trim($this->input->post('user'))),1);
+				$depdtl  = $this->master->f_get_particulars('md_department',NULL,array('sl_no'=> $result->dept_no),1);
+				$first_name = ($userdtl->first_name); 
+				$mobile_no = $userdtl->phone_no;
+				$department_name =  $depdtl->short_code;
+				$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
+				$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+				$sms_send = $this->master->sendsms($mobile_no,$template);
+                //  SMS SEND CODE    //
+				$this->session->set_flashdata('success', 'File Forwarded Successfully');
 			}
-			$fc = $this->input->post('fwd_status');
-			$fn = $this->input->post('fileno');
-			if($fc == 'A'){
+			elseif($fc == 'FS'){
 				$data_array = array('close_status' => '1',
 									'close_by'=>$this->session->userdata('uloggedin')->id,
 									'close_dt'=> date('Y-m-d h:i:s')
@@ -106,9 +120,11 @@ class Ceo extends CI_Controller {
                     $wheres  = array('docket_no' => $this->input->post('docket_no'));
                     $this->notesheet_model->f_edits('td_leave_dtls',$data_arrays,$wheres);
 				}
+				$this->session->set_flashdata('success', 'File Submitted and closed Successfully');
 			}else{
 
 				$this->master->f_edit('td_file',array('creater_forward'=> '0'),array('file_no'=> $this->input->post('fileno')));
+				$this->session->set_flashdata('error', 'File rejected and closed Successfully');
 			}
 			redirect('index.php/ceo/');
 		}

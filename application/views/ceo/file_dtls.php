@@ -132,7 +132,8 @@
                             <div class="col-sm-4">
                                 <select name='fwd_status' class='form-control' required id="fwd_status">
                                     <option value=''>Select Status</option>
-                                    <option value='A'>Approve</option>
+                                    <option value='A'>Approve(Forward)</option>
+                                    <option value='FS'>Final Submit</option>
                                     <option value='R'>Reject</option>
                                 </select>
                             </div> 
@@ -242,7 +243,7 @@ $( document ).ready(function() {
   $('.user').hide();
   $('#fwd_status').on('change', function(){
        var ststus = $(this).val();
-       if(ststus == 'R'){
+       if(ststus == 'R' || ststus == 'A'){
         $('.user').show();
        }else{
         $('.user').hide();
