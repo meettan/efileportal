@@ -84,7 +84,7 @@
 
         $CI = &get_instance(); 
         $CI->load->database();
-        $sql = 'SELECT count(*) as cnt FROM td_track_file where forwarded_by = "'.$forwarded_by.'"  and forwarded_at > "'.$forwarded_at.'"' ;
+        $sql = 'SELECT count(*) as cnt FROM td_track_file where forwarded_at > "'.$forwarded_at.'"' ;
         $result = $CI->db->query($sql)->row();
         if($result){
             return  $result->cnt;
