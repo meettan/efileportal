@@ -520,7 +520,7 @@ class Transaction extends CI_Controller {
 					   '1 order by fwd_dt desc' => NULL);
 		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b,td_file c',array('a.*','b.first_name','b.last_name','c.docket_no'),$where,0);
 		$this->load->view('common/header');
-		$this->load->view('transaction/track_fwd/file_track',$data);
+		$this->load->view('transaction/track_fwd/received_file',$data);
 		$this->load->view('common/footer');
 	}
 	public function filedetail(){
