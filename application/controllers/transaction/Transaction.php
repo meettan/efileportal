@@ -599,23 +599,83 @@ class Transaction extends CI_Controller {
 		  return $view;
 		}
 	}
+
 	public function file_rollback(){
-        $data['title']   = 'Forward Files';
-		
-		$where = array('a.forwarded_by=b.id'=>NULL,
-		               'a.file_no = c.file_no'=>NULL,
-					    'a.fwd_to' => $this->session->userdata('uloggedin')->id);
-		$data['files'] = $this->master->f_get_particulars('td_track_file a,md_users b,td_file c',array('a.*','b.first_name','b.last_name','c.docket_no'),$where,0);
-		$selects = array('a.*','b.first_name');
-		$wheres  = array('a.created_by = b.id' => NULL,
-		                'a.created_by'=>$this->session->userdata('uloggedin')->id,
-						'a.creater_forward'=> '0',
-						'1 order by a.file_date desc'=>NULL);
-		$data['filess'] = $this->master->f_get_particulars('td_file a,md_users b',$selects,$wheres,0);
-		$this->master->f_edit('td_track_file',array('rollback_status'=> 1 ),array('sl_no'=>$this->input->post('sl_no')));
-		$this->load->view('common/header');
-		$this->load->view('transaction/track_fwd/fwd_file',$data);
-		$this->load->view('common/footer');
+
+		if($_SERVER['REQUEST_METHOD']=="POST"){
+			if($this->input->post('fwd_status') == 'R'){
+				$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
+				$url = $this->input->post('url');
+				$fn = $this->input->post('fileno');
+				$data = array(
+						'fwd_dt' => date('Y-m-d'),
+						'file_no'=> $this->input->post('fileno'),
+						'remarks' => $this->input->post('remarks'),
+						'fwd_status' => 'R',
+						'fwd_dept'=> $result->dept_no,
+						'fwd_to'  => $result->created_by,
+						'forwarded_by' =>$this->session->userdata('uloggedin')->id,
+						'forwarded_at' =>date("Y-m-d h:i:s"));
+				$this->master->f_insert('td_track_file',$data);
+				//$created_by = $this->input->post('created_by');
+				$this->master->f_edit('td_file',array('creater_forward'=> '0'),array('file_no'=> $this->input->post('fileno')));
+				$this->session->set_flashdata('error', 'File Rejected Successfully');
+				//   Start  Code for sending SMS       //
+				$userdtl = $this->master->f_get_particulars('md_users',NULL,array('id'=> trim($result->created_by)),1);
+				$depdtl  = $this->master->f_get_particulars('md_department',NULL,array('sl_no'=> $result->dept_no),1);
+				$first_name = ($userdtl->first_name); 
+				$mobile_no = $userdtl->phone_no;
+				$department_name =  $depdtl->short_code;
+				$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
+				$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+				$sms_send = $this->master->sendsms($mobile_no,$template);
+                //   End  Code for sending SMS    //
+
+				//$url = base_url().'index.php/transaction/forwarded_file';
+				//echo $url;
+				redirect('index.php/transaction/forwarded_file');
+
+			}else{
+				$result = $this->master->f_get_particulars('td_file',NULL,array('file_no'=> $this->input->post('fileno')),1);
+				$url = $this->input->post('url');
+				$fn = $this->input->post('fileno');
+				//$fn = 'fff';
+				$data = array(
+						'fwd_dt' => date('Y-m-d'),
+						'file_no'=> $this->input->post('fileno'),
+						'remarks' => $this->input->post('remarks') ? $this->input->post('remarks') : NULL,
+						'fwd_status' => $this->input->post('fwd_status'),
+						'fwd_dept'=> $result->dept_no,
+						'fwd_to'  => $this->input->post('user'),
+						'forwarded_by' =>$this->session->userdata('uloggedin')->id,
+						'forwarded_at' =>date("Y-m-d h:i:s"));
+				$this->master->f_insert('td_track_file',$data);
+				$created_by = $this->input->post('created_by');
+				
+				$this->master->f_edit('td_track_file',array('rollback_status'=> 1),array('sl_no'=> $this->input->post('sl_no')));
+				if($created_by == $this->session->userdata('uloggedin')->id){
+					$this->master->f_edit('td_file',array('creater_forward'=> '1'),array('file_no'=> $this->input->post('fileno')));
+				}
+				
+				//     Code for sending SMS       //
+				$userdtl = $this->master->f_get_particulars('md_users',NULL,array('id'=> trim($this->input->post('user'))),1);
+				$depdtl  = $this->master->f_get_particulars('md_department',NULL,array('sl_no'=> $result->dept_no),1);
+				$first_name = ($userdtl->first_name); 
+				$mobile_no = $userdtl->phone_no;
+				$department_name =  $depdtl->short_code;
+				$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
+				$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+				$sms_send = $this->master->sendsms($mobile_no,$template);
+				$this->session->set_flashdata('success', 'File Forwarded Successfully');
+				if($url == 'file'){
+					redirect('index.php/transaction/file');
+				}else{
+					redirect('index.php/transaction/forwarded_file');
+				}
+		    }
+			
+		}
+
 	}
 
 	public function edit_forward_file(){
