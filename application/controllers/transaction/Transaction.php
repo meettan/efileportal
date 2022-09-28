@@ -529,8 +529,6 @@ class Transaction extends CI_Controller {
 		  $data['url']   = $this->input->post('url');
 		  $where = array('docket_no' => $fdetail[0]);
 		  $fwhere = array('file_no' => $fdetail[1]);
-		  //$data['fstatus'] = $fdetail[2];
-		 
 		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
 		  $data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
