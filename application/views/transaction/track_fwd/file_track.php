@@ -69,7 +69,7 @@
                             <td><?php 
                                   $rb = roll_back_status($key->forwarded_by,$key->forwarded_at);
                                   if($rb == 0){   ?>
-                            <button class="rollback" value="<?=$key->docket_no?>/<?=$key->file_no?>/<?=$key->fwd_status?>"> <i class="fa fa-undo fa-fw fa-2x"></i></button>
+                            <button class="rollback" value="<?=$key->docket_no?>/<?=$key->file_no?>/<?=$key->fwd_status?>/<?=$key->sl_no?>"> <i class="fa fa-undo fa-fw fa-2x"></i></button>
                            <?php }  ?></td>
                             </tr>
                             <?php   }

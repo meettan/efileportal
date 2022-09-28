@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-sm-12"> 
                         <form method="post" action="<?=base_url()?>index.php/transaction/file_rollback/" enctype='multipart/form-data' id='fwd_frm'>
-                        <input type='hidden' name='sl_no' value='<?=$filestatus->sl_no?>'>
+                        <input type='hidden' name='sl_no' value='<?=$sl_no?>'>
                         <input type='hidden' value='forwarded_file' name='url'>
                         <input type='hidden' value='<?php echo $filedtl->created_by;  ?>' name='created_by'/>
                         <?php foreach($docs as $dt);?> 
