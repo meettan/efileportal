@@ -27,7 +27,7 @@ class Ceo extends CI_Controller {
 		  $fdetail = explode('/',$this->input->post('docket_no'));
 		  $where = array('docket_no' => $fdetail[0]);
 		  $fwhere = array('file_no' => $fdetail[1]);
-		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,$where,0);
+		  
 		  $data['fdocs']  = $this->master->f_get_particulars('td_file_document',NULL,$fwhere,0);
 		  $data['depts'] = $this->master->f_get_particulars('md_department',NULL,NULL,0);
 		  $data['fileno'] = $fdetail[1];
@@ -41,6 +41,7 @@ class Ceo extends CI_Controller {
 		  $data['filestatus'] = $this->master->f_get_particulars('td_track_file',NULL,$where,1);
 		  $data['filedtl'] = $this->master->f_get_particulars('td_file a,md_users b',array('a.*','b.first_name','b.last_name','b.designation'),array('a.created_by = b.id'=> NULL,'a.file_no'=>$fdetail[1]),1);
 		  $ft = substr($fdetail[1],0,4); 
+		  $data['docs']   = $this->master->f_get_particulars('td_document',NULL,array('docket_no'=>$data['filedtl']->docket_no),0); 
 		  $data['filetype'] = $this->master->f_get_particulars('md_file_type',array('file_name'),array('file_no'=>$ft),1);
 		  $str2 = substr($fdetail[1],0,1); 
 		  if($str2 == 'L') {
