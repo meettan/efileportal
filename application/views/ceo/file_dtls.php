@@ -91,8 +91,9 @@
 
                             <hr/>
                             <div class="form-group row intro2ViewBtnSec" id='intro2'>
-                            <?php   
-                                  if(isset($dt->docket_no)) {  ?> 
+                            <?php   if(isset($docs)) {
+                              //    if(isset($dt->docket_no)) {
+                                      ?> 
                             <?php foreach($docs as $key) { ?>  
                                 <div class="col-sm-2">
                                 <div class="viewListSec">
@@ -101,7 +102,9 @@
                                 <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
                                 </div>
                                 </div>
-                            <?php }  } else{ ?>
+                            <?php }  } 
+                            
+                            else{ ?>
                             
                             <?php foreach($fdocs as $key) { ?>  
                                 <div class="col-sm-2">
