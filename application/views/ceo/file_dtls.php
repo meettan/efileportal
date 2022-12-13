@@ -99,7 +99,7 @@
                                 <div class="viewListSec">
                                <a href='javascript:void(0)' class='simg'> </a>
                                 <p class="titleBox"><?=$key->name?></p>
-                                <button type="button" class="btn btn-success simg" value='<?=$key->document?>'>view</button>
+                                <button type="button" class="btn btn-success simg" id="<?=base_url()?>uploads/<?=$key->docket_no?>/<?=$key->document?>" data-toggle="modal" data-target="#userModal" >view</button>
                                 </div>
                                 </div>
                             <?php }  } 
@@ -172,47 +172,81 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1"
+                role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- w-100 class so that header
+                        div covers 100% width of parent div -->
+                            <h5 class="modal-title w-100"
+                                id="exampleModalLabel">
+                               
+                            </h5>
+                            <button type="button" class="close"
+                                data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">
+                                    ×
+                                </span>
+                            </button>
+                        </div>
+                        <!--Modal body with image-->
+                        <div class="modal-body">
+                            <img id="myImage" src="" />
+                            <iframe id="frame" style="width: 750px;height:700px"></iframe>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger"
+                                data-dismiss="modal">
+                                Close
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 </div>
 <script>
 $( document ).ready(function() {
-    $('#intro2').on('change', '.doc', function(){
+    // $('#intro2').on('change', '.doc', function(){
 
-        var ext = $(this).val().split('.').pop().toLowerCase();
-        if($.inArray(ext, ['pdf','jpg','jpeg']) == -1) {
-                    Swal.fire({
-                        text: 'invalid extension!',
-                        position: "middle",
-                        color: '#f0f0f0',
-                        timer: 100000
-                    });
-            $(this).val('');
-        }else{
-                //  2000000  => 2MB  File size 
-            if(this.files[0].size > 100000) {
-                    Swal.fire({
-                            text: "Please upload file less than 100kb. Thanks!!",
-                            position: "middle",
-                            color: '#f0f0f0',
-                            timer: 100000
-                    });
-            $(this).val('');
+    //     var ext = $(this).val().split('.').pop().toLowerCase();
+    //     if($.inArray(ext, ['pdf','jpg','jpeg']) == -1) {
+    //                 Swal.fire({
+    //                     text: 'invalid extension!',
+    //                     position: "middle",
+    //                     color: '#f0f0f0',
+    //                     timer: 100000
+    //                 });
+    //         $(this).val('');
+    //     }else{
+    //             //  2000000  => 2MB  File size 
+    //         if(this.files[0].size > 100000) {
+    //                 Swal.fire({
+    //                         text: "Please upload file less than 100kb. Thanks!!",
+    //                         position: "middle",
+    //                         color: '#f0f0f0',
+    //                         timer: 100000
+    //                 });
+    //         $(this).val('');
+    //         }
+    //         }
+    //     });
+    $('#intro2').on('click', '.simg', function(){
+     //   $(".simg").click(function () {
+            var myBookId = $(this).attr('id');
+            var lastItem = myBookId.split(".").pop();
+            
+            if(lastItem == 'pdf'){
+                $("#frame").attr("src", myBookId);
+            }else{
+                $('#myImage').attr('src', myBookId);
+                $("#frame").attr("src", '');
             }
-            }
-        });
-        $('#intro2').on('click', '.simg', function(){
-            var ext = $(this).val();
-                Swal.fire({
-                        //text: "",
-                        position: "middle",
-                        color: '#f0f0f0',
-                        <?php if(isset($dt->docket_no)) { ?>
-                        imageUrl: "<?=base_url()?>uploads/<?=$dt->docket_no?>/"+ext,
-                        <?php }else{    ?>
-                        imageUrl: "<?=base_url()?>uploads/<?=$fileno?>/"+ext,
-                        <?php } ?>
-                        timer: 100000
-                });
-        });
+            $(this).attr('data-target', '#exampleModal');
+    });
+        
         $('#intro2').on('click', '.del', function(){
             var row = $(this).parents('tr');
             Swal.fire({  
