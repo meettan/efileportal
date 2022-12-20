@@ -86,12 +86,12 @@ class Master extends CI_Model {
         $this->db->delete($table_name, $where);
         return;
     }
+
     public function sendsms($to,$message){
 
-        
         $curl = curl_init();
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'https://bulksms.sssplsales.in/api/api_http.php',
+        CURLOPT_URL => 'http://sms.digilexa.in/http-api.php',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -99,7 +99,7 @@ class Master extends CI_Model {
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'POST',
-        CURLOPT_POSTFIELDS => array('username' => 'SYNERGIC','password' => 'SYN@526RGC','senderid' => 'SYNRGC','to' => $to,'text' => $message,'route' => 'Informative','type' => 'text'),
+        CURLOPT_POSTFIELDS => array('username' => 'WBCOOPERATIVE','password' => 'WBMCCF@56y','senderid' => 'WBMCCF','route' => 7,'number' => $to,'message' => $message),
         ));
         $response = curl_exec($curl);
         curl_close($curl);
@@ -112,5 +112,5 @@ class Master extends CI_Model {
         return $response;
     }
     
-
+    
 }

@@ -295,7 +295,7 @@ class Dis extends CI_Controller {
 		$mobile_no = $userdtl->phone_no;
 		$department_name =  'DIS';
 		$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
-		$template = 'Dear '.$first_name.' File No. '.$docket_no.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+		$template = 'Dear '.$first_name.' File No. '.$docket_no.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-WBMCCF';
 		$sms_send = $this->master->sendsms($mobile_no,$template);
 		//  code  //
 		$this->session->set_flashdata('success', 'Docket Forwarded Successfully');
