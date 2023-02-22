@@ -92,7 +92,8 @@ class Ceo extends CI_Controller {
 				$mobile_no = $userdtl->phone_no;
 				$department_name =  $depdtl->short_code;
 				$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
-				$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+				$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-WBMCCF';
+				
 				$sms_send = $this->master->sendsms($mobile_no,$template);
                 //  SMS SEND CODE    //
 				$this->session->set_flashdata('success', 'File Forwarded Successfully');
@@ -110,7 +111,7 @@ class Ceo extends CI_Controller {
 				$mobile_no = $userdtl->phone_no;
 				$department_name =  $depdtl->short_code;
 				$sender_name = ucfirst($this->session->userdata('uloggedin')->first_name);
-				$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-SYNERGIC';
+				$template = 'Dear '.$first_name.' File No. '.$fn.' has been forwarded to you from '.$department_name.' department by '.$sender_name.',for your necessary action.-WBMCCF';
 				$sms_send = $this->master->sendsms($mobile_no,$template);
                 //  SMS SEND CODE    //
 				if($this->input->post('module') == 'L'){
